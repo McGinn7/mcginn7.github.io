@@ -412,7 +412,7 @@ h_t = \sigma(Wx_{t-1}+Uh_{t-1}+\mathbb{1}(t=1)\cdot Cv)</script><p>​    图像
 <ul>
 <li><p><strong>语义概念检测 </strong></p>
 <p>作者将语义标签检测作为多标签分类问题。</p>
-<p>首先先从训练集的文字说明中提取常见的$K \approx 1000$个单词作为分类标签$y<em>i = [y</em>{i1}，\dots，y_{iK}] \in {0, 1}^K$。</p>
+<p>首先先从训练集的文字说明中提取常见的 $K \approx 1000$个单词作为分类标签 $y_i = [y_{i1}，\dots，y_{iK}] \in \{0, 1\}^K$。</p>
 <p>标签$s_i$使用MLP来预测(Ps：这里可能是在CNN的基础上加入MLP)，</p>
 <script type="math/tex; mode=display">
 s_i = \sigma(MLP(v_i))</script><p>$s_i$表示每个标签的概率，也可以理解为权重。</p>
@@ -445,7 +445,7 @@ h_t = \sigma(W_a\hat x_{t-1} + U_a\hat h_{t-1} + z)</script></li>
             <p>原文作者：<a href="http://mcginn7.github.io">Mcginn</a>
             <p>原文链接：<a href="http://mcginn7.github.io/2018/08/18/论文笔记 Semantic Compositional Networks for Visual Captioning/">http://mcginn7.github.io/2018/08/18/论文笔记 Semantic Compositional Networks for Visual Captioning/</a>
             <p>发表日期：<a href="http://mcginn7.github.io/2018/08/18/论文笔记 Semantic Compositional Networks for Visual Captioning/">August 18th 2018, 8:58:18 pm</a>
-            <p>更新日期：<a href="http://mcginn7.github.io/2018/08/18/论文笔记 Semantic Compositional Networks for Visual Captioning/">October 7th 2018, 2:29:52 pm</a>
+            <p>更新日期：<a href="http://mcginn7.github.io/2018/08/18/论文笔记 Semantic Compositional Networks for Visual Captioning/">October 8th 2018, 8:55:41 pm</a>
             <p>版权声明：本文采用<a rel="license" href="http://creativecommons.org/licenses/by-nc/4.0/">知识共享署名-非商业性使用 4.0 国际许可协议</a>进行许可</p>
         </div>
     
@@ -588,6 +588,10 @@ top:50vh;
     <div class="sidebar-content sidebar-content-show-archive">
           <div class="sidebar-panel-archives">
     <!-- 在ejs中将archive按照时间排序 -->
+    
+    
+    
+    
     
     
     
