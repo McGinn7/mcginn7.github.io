@@ -1,0 +1,129 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+  <title>Hexo</title>
+  
+  
+  <link href="/atom.xml" rel="self"/>
+  
+  <link href="http://yoursite.com/"/>
+  <updated>2018-10-07T05:58:00.716Z</updated>
+  <id>http://yoursite.com/</id>
+  
+  <author>
+    <name>John Doe</name>
+    
+  </author>
+  
+  <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>DOMjudge配置</title>
+    <link href="http://yoursite.com/2018/10/04/DOMjudge%E9%85%8D%E7%BD%AE/"/>
+    <id>http://yoursite.com/2018/10/04/DOMjudge配置/</id>
+    <published>2018-10-04T15:29:36.000Z</published>
+    <updated>2018-10-07T05:58:00.716Z</updated>
+    
+    <content type="html"><![CDATA[<p>系统环境为 Debbian GNU/Linux 9 (stretch) 64-bit。</p><h2 id="Domserver部署"><a href="#Domserver部署" class="headerlink" title="Domserver部署"></a>Domserver部署</h2><h4 id="安装遇到的问题"><a href="#安装遇到的问题" class="headerlink" title="安装遇到的问题"></a>安装遇到的问题</h4><p>在<em>Web server configuration</em>中，</p><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ln -s etc/apache.conf /etc/apache2/conf-available/domjudge.conf</span><br></pre></td></tr></table></figure><p>原文件路径(etc/apache.conf)需要写成完整路径，否则运行 a2enconf domjudge 会出现文件不存在错误。实际使用命令：</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ln -s /home/mcginn/domjudge/domserver/etc/apache.conf /etc/apache2/conf-available/domjudge.conf</span><br></pre></td></tr></table></figure><h4 id="PHP-timezone"><a href="#PHP-timezone" class="headerlink" title="PHP timezone"></a>PHP timezone</h4><ol><li><p>php.ini文件位置</p><ul><li>CentOS/RedHat/Fedora = /etc/php.ini</li><li>Ubuntu/Debian/LinuxMint = /etc/php5/apache2/php.ini</li></ul></li><li><p>选择时区，通常定位为”Asia/Shanghai”</p><ul><li><a href="https://php.net/manual/en/timezones.php" target="_blank" rel="noopener">PHP: List of Supported Timezones</a></li></ul></li><li><p>编辑php.ini文件</p><figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">date.timezone = <span class="string">"Asia/Shanghai"</span></span><br></pre></td></tr></table></figure></li><li><p>重启Apache Service。</p><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo service apache2 restart</span><br></pre></td></tr></table></figure></li></ol><h4 id="MySQL-maximum-connections"><a href="#MySQL-maximum-connections" class="headerlink" title="MySQL maximum connections"></a>MySQL maximum connections</h4><p>​    原先编辑 <em>\etc\mysql\my.cnf</em> 添加 <strong>max_connections = 1000</strong>，然后重启apache2即可。但是设置后一直为214，因为该值受限于<em>table_open_ache</em>和<em>open_files_limit</em>。</p><p>​    下面的方法在Ubuntu 16.04和MySQL 5.7.23版本实验成功：</p><ol><li><p>运行下面的命令，设置open_files_limit</p><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">systemctl edit mysql</span><br></pre></td></tr></table></figure></li><li><p>输入以下内容</p><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">[Service]</span><br><span class="line">LimitNOFILE=8000</span><br></pre></td></tr></table></figure></li><li><p>重启服务</p><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">systemctl daemon-reload</span><br><span class="line">systemctl restart mysql</span><br></pre></td></tr></table></figure></li></ol><h2 id="数据导入"><a href="#数据导入" class="headerlink" title="数据导入"></a>数据导入</h2><h4 id="测试数据导入"><a href="#测试数据导入" class="headerlink" title="测试数据导入"></a>测试数据导入</h4><p>​    在Problems页面下可以编辑Problem name, Time limit这些信息，测试数据(Testcases)在页面上<strong>只能</strong>单点添加和修改，并且不能删除。</p><p>​    批量导入测试数据步骤：</p><ol><li><p>先添加题目，填入”Problem name”、”Time limit”和”Memory limit”等信息，其余的保存默认即可，但是暂不添加”Testcases”。</p></li><li><p>点击该题目的导出按钮，下载得到一个压缩包。解压后的文件夹内容如下：</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">// 在Windows使用 tree/f 生成该目录文本信息</span><br><span class="line">│  domjudge-problem.ini</span><br><span class="line">│  problem.yaml</span><br><span class="line">│</span><br><span class="line">├─data</span><br><span class="line">│  ├─sample</span><br><span class="line">│  └─secret</span><br><span class="line">│</span><br><span class="line">└─problem_statement</span><br><span class="line">        problem.pdf</span><br></pre></td></tr></table></figure></li><li><p>目录<em>sample</em>和<em>secret</em>需要自行创建，两个目录存放样例数据和测试数据。</p></li><li><p>将数据”0.in”，“0.ans”放入对应的文件夹下，重新压缩成新的压缩包。</p></li><li><p>在题目的编辑页面，通过<em>Upload problem archive</em>上传新压缩包。注意<em>Contest</em>选项选择为<em>Do not add / update contest data</em>，否则可能会上传失败。</p></li></ol><h4 id="队伍账号导入"><a href="#队伍账号导入" class="headerlink" title="队伍账号导入"></a>队伍账号导入</h4><ul><li><p><a href="https://www.domjudge.org/pipermail/domjudge-devel/2015-September/001753.html" target="_blank" rel="noopener">Domjudge队伍导入 - 参考链接</a></p></li><li><p>需要在home &gt; import / export页面下，导入<em>teams.tsv</em>和<em>accounts.tsv</em>这两个文件。</p></li><li><p>两个文件的格式在前面的参考连接中。team和user通过<strong>external ID</strong>进行关联。在编辑这两个文件时，需要使用<strong>UTF-8</strong>格式，否则会上传失败或导致乱码。</p></li><li><p><strong>teams.tsv</strong>格式：</p> <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">teams    1</span><br><span class="line">team_id    external_ID    group_id    team_name    institution_nameinstitution_short_name    country_code</span><br></pre></td></tr></table></figure><p> groupd_id固定为3，表示是participants（参赛人员）。<br> external_ID需要和accounts.tsv中的username相同。</p></li><li><p><strong>accounts.tsv</strong>格式：</p> <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">accounts1</span><br><span class="line">account_typefullnameusernamepassword</span><br></pre></td></tr></table></figure><p> account_type的值为：team, judge, admin, analyst。因为是要导入队伍，所以这里固定为team。</p><p> username需要与<em>teams.tsv</em>的external_ID相同才能对应到队伍上。</p></li></ul><h2 id="评测机"><a href="#评测机" class="headerlink" title="评测机"></a>评测机</h2><h4 id="Unprivileged-user-and-group"><a href="#Unprivileged-user-and-group" class="headerlink" title="Unprivileged user and group"></a>Unprivileged user and group</h4><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">// 下面这条命令是必须运行的</span><br><span class="line">useradd -d /nonexistent -U -M -s /bin/false domjudge-run</span><br><span class="line">// X=1~4，X通常等同于CPU核心数</span><br><span class="line">useradd -d /nonexistent -U -M -s /bin/false domjudge-run-X</span><br></pre></td></tr></table></figure><h4 id="Sudo-permissions"><a href="#Sudo-permissions" class="headerlink" title="Sudo permissions"></a>Sudo permissions</h4><p>​    Runguard在某些操作需要root权限，需要把judgehost/etc/sudoers-domjudge复制到/etc/sudoers.d/目录</p><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo cp $JUDGEHOST_PATH/etc/sudoers-domjudge /etc/sudoers.d/</span><br></pre></td></tr></table></figure><h4 id="Creating-a-chroot-environment"><a href="#Creating-a-chroot-environment" class="headerlink" title="Creating a chroot environment"></a>Creating a chroot environment</h4><ul><li>需要联网运行<strong>bin/dj_make_chroot</strong>，安装相应的依赖包。</li></ul><h4 id="Linux-Control-Groups"><a href="#Linux-Control-Groups" class="headerlink" title="Linux Control Groups"></a>Linux Control Groups</h4><ul><li><strong>每次重启都需要运行<em>judgehost/bin/create_cgroups</em>，否则提交会编译错误。</strong></li></ul>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;p&gt;系统环境为 Debbian GNU/Linux 9 (stretch) 64-bit。&lt;/p&gt;
+&lt;h2 id=&quot;Domserver部署&quot;&gt;&lt;a href=&quot;#Domserver部署&quot; class=&quot;headerlink&quot; title=&quot;Domserver部署&quot;&gt;&lt;/a&gt;Do
+      
+    
+    </summary>
+    
+    
+  </entry>
+  
+  <entry>
+    <title>论文笔记 Semantic Compositional Networks for Visual Captioning</title>
+    <link href="http://yoursite.com/2018/08/18/%E8%AE%BA%E6%96%87%E7%AC%94%E8%AE%B0%20Semantic%20Compositional%20Networks%20for%20Visual%20Captioning/"/>
+    <id>http://yoursite.com/2018/08/18/论文笔记 Semantic Compositional Networks for Visual Captioning/</id>
+    <published>2018-08-18T12:58:18.000Z</published>
+    <updated>2018-10-07T06:29:52.044Z</updated>
+    
+    <content type="html"><![CDATA[<h3 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h3><p>​    该论文提出了语义组合网络(Semantic Compositional Network, SCN)，其有效利用语义概念（标签）来达到效果比较好的图文生成。</p><p><img src="https://github.com/McGinn7/mcginn7.github.io/blob/master/img/temp/1534597565116.png?raw=true" alt=""></p><h3 id="Semantic-compositional-networks"><a href="#Semantic-compositional-networks" class="headerlink" title="Semantic compositional networks"></a>Semantic compositional networks</h3><p><img src="https://github.com/McGinn7/mcginn7.github.io/blob/master/img/temp/1534597459535.png?raw=true" alt=""></p><ul><li><p><strong>模型基础</strong></p><p>使用CNN提取图像特征，RNN作文字生成。</p><p>文字生成的概率公式：</p><script type="math/tex; mode=display">p(\bold X | \bold I) = \prod _{t=1}^Tp(x_t|x_0, \dots , x_{t-1}, v)</script><p> $ \bold X = (x_1, \dots , x_T)$ 表示文字序列，$v$ 为提取的图像特征。</p><p>  LSTM的转换函数：</p><script type="math/tex; mode=display">h_t = \sigma(Wx_{t-1}+Uh_{t-1}+\mathbb{1}(t=1)\cdot Cv)</script><p>​    图像特征仅在开始输入<strong>一次</strong>。</p></li></ul><ul><li><p><strong>语义概念检测 </strong></p><p>作者将语义标签检测作为多标签分类问题。</p><p>首先先从训练集的文字说明中提取常见的$K \approx 1000$个单词作为分类标签$y<em>i = [y</em>{i1}，\dots，y_{iK}] \in {0, 1}^K$。</p><p>标签$s_i$使用MLP来预测(Ps：这里可能是在CNN的基础上加入MLP)，</p><script type="math/tex; mode=display">s_i = \sigma(MLP(v_i))</script><p>$s_i$表示每个标签的概率，也可以理解为权重。</p><p>优化目标函数：</p><script type="math/tex; mode=display">\frac 1N\sum_{i=1}^N \sum_{k=1}^K {(y_{ik}\log s_{ik}+(1-y_{ik}\log(1-s_{ik})))}</script></li><li><p><strong>SCN-RNN</strong></p><p>这一步就是将语义标签嵌入到RNN中。 </p><p><img src="https://github.com/McGinn7/mcginn7.github.io/blob/master/img/temp/1534596069120.png?raw=true" alt=""></p><p>嵌入相关公式：</p><script type="math/tex; mode=display">\hat x_{t-1}=W_bs\bigodot W_cx_{t-1} \\\hat h_{t-1} = U_bs\bigodot U_ch_{t-1} \\z=\mathbb{1}(t=1)\cdot Cv \\h_t = \sigma(W_a\hat x_{t-1} + U_a\hat h_{t-1} + z)</script></li><li><p><strong>视频文字生成(video caption)</strong></p><p>视频的图像特征包括两部分：均值池化2D CNN提取的图像特征和3D CNN提取的特征，两个特征连接起来作为视频的图像特征。</p></li></ul><h3 id="结果"><a href="#结果" class="headerlink" title="结果"></a>结果</h3><ul><li>在数据集COCO和Youtube2Text的各个评估指标全面提升。</li></ul><p><img src="https://github.com/McGinn7/mcginn7.github.io/blob/master/img/temp/1534596916958.png?raw=true" alt=""></p><p><img src="https://github.com/McGinn7/mcginn7.github.io/blob/master/img/temp/1534596858609.png?raw=true" alt=""></p>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;h3 id=&quot;简介&quot;&gt;&lt;a href=&quot;#简介&quot; class=&quot;headerlink&quot; title=&quot;简介&quot;&gt;&lt;/a&gt;简介&lt;/h3&gt;&lt;p&gt;​    该论文提出了语义组合网络(Semantic Compositional Network, SCN)，其有效利用语义概念（标签）来达
+      
+    
+    </summary>
+    
+    
+  </entry>
+  
+  <entry>
+    <title>The Binding of Isaac:Afterbirth+总结</title>
+    <link href="http://yoursite.com/2018/07/19/The%20Binding%20of%20Isaac%20Afterbirth+%E6%80%BB%E7%BB%93/"/>
+    <id>http://yoursite.com/2018/07/19/The Binding of Isaac Afterbirth+总结/</id>
+    <published>2018-07-19T07:02:03.000Z</published>
+    <updated>2018-07-21T07:20:04.070Z</updated>
+    
+    <content type="html"><![CDATA[<ul><li><p><img src="http://www.chinabaike.com/uploads/allimg/160614/031Q331C-41.jpg" alt="献血袋"></p><p>献血袋：扣半颗红心（子宫层一颗），掉落随机数量（通常1）的硬币。献血袋很强，很容易刷起来。</p></li><li><p><img src="http://ins.lookgame.com/static/allimg/151130/5-151130101R4.png" alt="手术刀"></p><p>手术刀：在地上制造褐色和蓝色两个通道并传送，传送出来时有短暂无敌，可以做到：</p><ol><li><strong>白嫖卖血机</strong>，喂黑小孩，进出刺房等；</li><li>进BOSS房和挑战房时，开箱子后直接传出去。</li></ol></li><li><p>在白心的隐藏房，使用存血罐可以吐出白心。配合1+1和肉刀可以生成N多肉哥。</p></li><li><p>钥匙通常留给商店使用。</p></li><li><p>睫毛膏是负面道具，不要拿。</p></li><li><p>商店高概率刷出复眼（复制本房间的道具，未购买的道具也可以复制），最好等出了打折券再用。</p></li><li><p>20分钟内打败妈腿会开Boss Rush房；30分钟内打败妈心开启Blue Womb(蓝色子宫，打hush)房。使用<strong>MaMa Mega!</strong>可以<strong>强制</strong>开启br和bw。</p></li></ul>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;ul&gt;
+&lt;li&gt;&lt;p&gt;&lt;img src=&quot;http://www.chinabaike.com/uploads/allimg/160614/031Q331C-41.jpg&quot; alt=&quot;献血袋&quot;&gt;&lt;/p&gt;
+&lt;p&gt;献血袋：扣半颗红心（子宫层一颗），掉落随机数量（通常1）的硬币。献血袋
+      
+    
+    </summary>
+    
+    
+  </entry>
+  
+  <entry>
+    <title>论文阅读记录</title>
+    <link href="http://yoursite.com/2018/07/17/%E8%AE%BA%E6%96%87%E9%98%85%E8%AF%BB%E8%AE%B0%E5%BD%95/"/>
+    <id>http://yoursite.com/2018/07/17/论文阅读记录/</id>
+    <published>2018-07-17T02:33:16.000Z</published>
+    <updated>2018-07-17T02:57:19.822Z</updated>
+    
+    <content type="html"><![CDATA[<h3 id="2014"><a href="#2014" class="headerlink" title="2014"></a>2014</h3><ul><li><a href="https://arxiv.org/abs/1406.2661v1" target="_blank" rel="noopener">Generative Adversarial Networks</a><ul><li><a href="https://srome.github.io//An-Annotated-Proof-of-Generative-Adversarial-Networks-with-Implementation-Notes/" target="_blank" rel="noopener">An Annotated Proof of Generative Adversarial Networks with Implementation Notes</a></li></ul></li><li><a href="https://arxiv.org/abs/1411.1784" target="_blank" rel="noopener">Conditional Generative Adversarial Nets</a></li></ul><h3 id="2016"><a href="#2016" class="headerlink" title="2016"></a>2016</h3><ul><li><a href="https://arxiv.org/abs/1610.09585" target="_blank" rel="noopener">Conditional Image Synthesis With Auxiliary Classifier GANs</a></li><li><a href="https://arxiv.org/abs/1606.03657" target="_blank" rel="noopener">InfoGAN: Interpretable Representation Learning by Information Maximizing  Generative Adversarial Nets</a></li></ul><h3 id="2017"><a href="#2017" class="headerlink" title="2017"></a>2017</h3><ul><li><a href="https://arxiv.org/abs/1701.07875" target="_blank" rel="noopener">Wasserstein GAN</a><ul><li><a href="https://zhuanlan.zhihu.com/p/25071913" target="_blank" rel="noopener">令人拍案叫绝的Wasserstein GAN</a></li></ul></li><li><a href="https://arxiv.org/abs/1704.00028" target="_blank" rel="noopener">Improved Training of Wasserstein GANs</a></li></ul>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;h3 id=&quot;2014&quot;&gt;&lt;a href=&quot;#2014&quot; class=&quot;headerlink&quot; title=&quot;2014&quot;&gt;&lt;/a&gt;2014&lt;/h3&gt;&lt;ul&gt;
+&lt;li&gt;&lt;a href=&quot;https://arxiv.org/abs/1406.2661v1&quot; target=&quot;_bla
+      
+    
+    </summary>
+    
+    
+  </entry>
+  
+  <entry>
+    <title>Ubuntu离线安装软件包</title>
+    <link href="http://yoursite.com/2018/06/05/apt-offline%E7%AE%A1%E7%90%86Ubuntu%E7%A6%BB%E7%BA%BF%E5%AE%89%E8%A3%85%E8%BD%AF%E4%BB%B6%E5%8C%85/"/>
+    <id>http://yoursite.com/2018/06/05/apt-offline管理Ubuntu离线安装软件包/</id>
+    <published>2018-06-05T11:27:37.000Z</published>
+    <updated>2018-06-06T06:26:39.635Z</updated>
+    
+    <content type="html"><![CDATA[<h3 id="参考链接"><a href="#参考链接" class="headerlink" title="参考链接"></a>参考链接</h3><ul><li><a href="http://wiki.ubuntu.org.cn/Apt-offline离线安装指南" target="_blank" rel="noopener">apt-offline离线安装指南</a></li><li><a href="https://blog.sleeplessbeastie.eu/2014/01/30/how-to-manage-packages-on-an-off-line-debian-system/" target="_blank" rel="noopener">https://blog.sleeplessbeastie.eu/2014/01/30/how-to-manage-packages-on-an-off-line-debian-system/</a></li><li><a href="http://manpages.ubuntu.com/manpages/precise/man8/apt-offline.8.html#contenttoc4" target="_blank" rel="noopener">http://manpages.ubuntu.com/manpages/precise/man8/apt-offline.8.html#contenttoc4</a></li><li><a href="https://www.debian.org/" target="_blank" rel="noopener">https://www.debian.org/</a></li><li><a href="https://camicri.github.io/camicri-cube/#/" target="_blank" rel="noopener">https://camicri.github.io/camicri-cube/#/</a></li></ul><h3 id="应用场景"><a href="#应用场景" class="headerlink" title="应用场景"></a>应用场景</h3><ul><li>需要升级/安装软件的电脑无网络。</li><li>软件要安装到多台电脑上，且软件较大，下载时间长。</li></ul><h3 id="方案"><a href="#方案" class="headerlink" title="方案"></a>方案</h3><ul><li>由于<strong>apt-offline</strong>的安装有依赖，离线安装会失败，所以需要借助<strong>Camicri Cube</strong>来完成<strong>apt-offline</strong>的安装。</li><li>不用<strong>Camicri Cube</strong>完成全部安装是因为它貌似不支持命令行，只有可视化界面操作。如果安装的包较多，就比较麻烦。而<strong>apt-offline</strong>支持命令行操作，一次性可以打包多个安装包，比较方便。</li></ul><h3 id="Camicri-Cube完成离线系统升级"><a href="#Camicri-Cube完成离线系统升级" class="headerlink" title="Camicri Cube完成离线系统升级"></a>Camicri Cube完成离线系统升级</h3><ul><li>在<strong>离线</strong>电脑上打开Camicri Cube，创建一个<strong>project</strong>，关闭后打包Cube目录下相应的project。</li><li>在<strong>联网</strong>电脑上，将打包文件解压到Cube目录下的project目录，然后用Cube打开这个project。</li><li>点击  <strong>Cube -&gt; Repository -&gt; Download Repositories</strong>  进行下载更新。</li><li>点击 <strong> Asterisk -&gt; Upgradable</strong> ， <strong> Cube -&gt; Download -&gt; Mark All Updates for Download </strong>，  <strong> Cube -&gt; Download -&gt; Download All Marked Packages</strong> ，就可以完成软件包的升级。</li><li>在上方的搜索框输入<strong>apt-offline</strong>和<strong>vim</strong>，点download进行下载。</li><li>在<strong>联网</strong>电脑的project打包后传到<strong>离线</strong>电脑上，<strong>覆盖</strong>原先的project，然后用Cube打开。</li><li><strong> Cube -&gt; System -&gt; Update Computer’s Repositories</strong> 更新Repository。</li><li><strong>Cube -&gt; Install -&gt; Mark All Downloaded for Installation</strong>  , <strong>Cube -&gt; Install -&gt; Install All Marked Packages </strong> ，完成安装软件。</li></ul><h3 id="apt-offline下载及安装离线软件包"><a href="#apt-offline下载及安装离线软件包" class="headerlink" title="apt-offline下载及安装离线软件包"></a>apt-offline下载及安装离线软件包</h3><ul><li><p>假设要在<strong>离线</strong>电脑安装mysql-server，先在离线电脑运行以下命令来，完成安装包的行为和定义签名文件：</p><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">apt-offline set debian-install.sig --install-packages mysql-server</span><br></pre></td></tr></table></figure></li><li><p>将生成的<strong>debian-install.sig</strong>文件上传到<strong>联网</strong>电脑执行下载并打包：</p><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">apt-offline get debian-install.sig --bundle debian-install.zip</span><br></pre></td></tr></table></figure></li><li><p>将打包好的<strong>debian-install.zip</strong>传到<strong>离线</strong>电脑上，运行下面的命令来更新APT database:</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo apt-offline install debian-install.zip</span><br></pre></td></tr></table></figure></li><li><p>最后运行apt-get来完成安装：</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo apt-get install mysql-server</span><br></pre></td></tr></table></figure></li></ul>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;h3 id=&quot;参考链接&quot;&gt;&lt;a href=&quot;#参考链接&quot; class=&quot;headerlink&quot; title=&quot;参考链接&quot;&gt;&lt;/a&gt;参考链接&lt;/h3&gt;&lt;ul&gt;
+&lt;li&gt;&lt;a href=&quot;http://wiki.ubuntu.org.cn/Apt-offline离线安装指南&quot; ta
+      
+    
+    </summary>
+    
+    
+  </entry>
+  
+</feed>
