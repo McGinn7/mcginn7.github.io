@@ -390,17 +390,14 @@ L=-\sum_i^M\sum_j^N s_{ij}\log (\hat s_{ij})-(1-s_{ij})\log(1-\hat s_{ij})
         <div class="abstract-content">
             目标​    配置主要针对ACM/ICPC竞赛选手在windows系统下使用vim。
 ​    配置：1) 编译和运行*.cpp文件；2) 一键复制代码; 3) 记事本打开代码。
+​    
+Git for windows
+使用git for windows而不用vim for windows的原因是，vim for windows配置完以后对鼠标的支持不友好，而且配置比较麻烦（为了尽可能模拟ubuntu环境下的指令）。
 
-Fig 1. 最终效果
+搜索并下载”git for windows”。
 
-vim安装、配置
-搜索”vim for windows“， 下载并安装vim（此处安装的版本为Vim 8.1）。
-1234D:\VIM│  _vimrc├─ vim81├─ vimfiles
-
-将安装目录下的vim81添加到环境变量 &gt; 系统变量 &gt; Path中，以上述结构为例，路径为”D:\Vim\vim81”。
-
-编辑”_vimrc”文件，添加以下内容。
-123456...
+编辑”D:\Git\etc/vimrc”，配置快捷键。
+123456set nu ai ci si mouse=a ...
         </div>
         <div class="abstract-post-meta">
             <!-- date  -->
@@ -529,6 +526,8 @@ Domserver部署安装遇到的问题在Web server configuration中，
     <div class="sidebar-content sidebar-content-show-archive">
           <div class="sidebar-panel-archives">
     <!-- 在ejs中将archive按照时间排序 -->
+    
+    
     
     
     
