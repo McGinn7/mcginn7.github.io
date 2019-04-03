@@ -346,24 +346,23 @@
     
     
     <article class="index-post">
-        <a class="abstract-title" href = "../../2019/03/31/Nowcoder-出题人的数组/" >
+        <a class="abstract-title" href = "../../2019/04/03/斜率优化/" >
             
-                <span>Nowcoder-出题人的数组</span>
+                <span>斜率优化</span>
         </a>
         <div class="abstract-content">
-            链接：https://ac.nowcoder.com/acm/contest/545/C来源：牛客网
-题目描述出题人有两个数组 $A, B$，请你把两个数组归并起来使得 $Cost=∑i∗C_i$ 最小，要求两个原数组的顺序在新数组中保持不变。 
-输入描述第一行输入两个正整数 $n,m$，分别表示数组 $A, B$ 的长度。第二行输入 $n$ 个正整数，表示数组 $A$。第二行输入 $m$ 个正整数，表示数组 $B$ 。
-输出描述一个正整数，表示最小代价 $Cost$。
-示例 1输入输出3 31 3 52 6 475
+            斜率优化针对形如：
 
-备注$n, m \le 100000$
-$A_i, B_i \le ...
+dp(i)=\min _{j=1}^{i-1} (dp(j)+cost(i, j))的动态规划转移方程，可通过’’斜率’’的单调性进行优化。
+题一、[HNOI2008]玩具装箱TOY题意 题目链接给定长为 $1\le N\le 50000$ 的序列 $1\le C_i\le 10^7$，将序列分成若干连续段，每段 $[i, j]$ 的花费为
+
+((j - i+\sum_{k=i}^jC_k)-L)^2其中 $L$ 为常数，$1\le L \le 10^7$。要求计算总的最小花费代价。
+解题思路利用前缀和 $S_i​$，区间 $[i, j]​$ 序列和可表示成 $S_...
         </div>
         <div class="abstract-post-meta">
             <!-- date  -->
             <div class="abstract-date">
-                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2019/03/31</span>
+                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2019/04/03</span>
             </div>
             <!-- tags  -->
             
@@ -371,7 +370,7 @@ $A_i, B_i \le ...
     
         <a class="post-tag" href="javascript:void(0);" data-tags = "ICPC">ICPC</a>
     
-        <a class="post-tag" href="javascript:void(0);" data-tags = "贪心">贪心</a>
+        <a class="post-tag" href="javascript:void(0);" data-tags = "斜率优化">斜率优化</a>
     
 </div>
             
