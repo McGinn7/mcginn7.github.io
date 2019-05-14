@@ -423,11 +423,26 @@ Git bash 配置
                 <span>DOMjudge 配置</span>
         </a>
         <div class="abstract-content">
-            系统环境为 Debbian GNU/Linux 9 (stretch) 64-bit。
-Domserver 部署安装遇到的问题在 Web server configuration 中，
-1ln -s etc/apache.conf /etc/apache2/conf-available/domjudge.conf
-原文件路径（etc/apache.conf）需要写成完整路径，否则运行 a2enconf domjudge 会出现文件不存在错误。实际使用命令：
-1ln -s /home/mcginn/domjudge/domserver/etc/apache.conf /etc/apache...
+            Domserver 部署PHP timezone
+php.ini 文件位置
+
+CentOS/RedHat/Fedora = /etc/php.ini
+Ubuntu/Debian/LinuxMint = /etc/php5/apache2/php.ini
+
+
+选择时区，通常定位为 “Asia/Shanghai”
+
+PHP: List of Supported Timezones
+
+
+编辑 php.ini 文件
+1date.timezone = "Asia/Shanghai"
+
+重启 Apache Service。
+1sudo service apache2 restart
+
+
+MySQL ...
         </div>
         <div class="abstract-post-meta">
             <!-- date  -->
@@ -934,7 +949,24 @@ jsonContent:
     </div>
     <!-- async load share.js -->
      
-    </body>
+    <script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+        tex2jax: {
+            inlineMath: [ ["$","$"], ["\\(","\\)"] ],
+            skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'],
+            processEscapes: true
+        }
+    });
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax();
+        for (var i = 0; i < all.length; ++i)
+            all[i].SourceElement().parentNode.className += ' has-jax';
+    });
+</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML"></script>
+
+
+</body>
 </html>
 
 
