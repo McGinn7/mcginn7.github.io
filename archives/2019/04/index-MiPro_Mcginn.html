@@ -346,28 +346,33 @@
     
     
     <article class="index-post">
-        <a class="abstract-title" href = "../../../2018/06/05/apt-offline管理Ubuntu离线安装软件包/" >
+        <a class="abstract-title" href = "../../../2019/04/03/斜率优化/" >
             
-                <span>Ubuntu离线安装软件包</span>
+                <span>斜率优化</span>
         </a>
         <div class="abstract-content">
-            参考链接
-apt-offline离线安装指南
-https://blog.sleeplessbeastie.eu/2014/01/30/how-to-manage-packages-on-an-off-line-debian-system/
-http://manpages.ubuntu.com/manpages/precise/man8/apt-offline.8.html#contenttoc4
-https://www.debian.org/
-https://camicri.github.io/camicri-cube/#/
+            斜率优化针对形如：
 
-应用场景
-需要升级/安装软件的电脑无网络。
-软件要安装到多台...
+dp(i)=\min _{j=1}^{i-1} (dp(j)+cost(i, j))的动态规划转移方程，可通过’’斜率’’的单调性进行优化。
+题一、[HNOI2008]玩具装箱TOY题意 题目链接给定长为 $1\le N\le 50000$ 的序列 $1\le C_i\le 10^7$，将序列分成若干连续段，每段 $[i, j]$ 的花费为
+
+((j - i+\sum_{k=i}^jC_k)-L)^2其中 $L$ 为常数，$1\le L \le 10^7$。要求计算总的最小花费代价。
+解题思路利用前缀和 $S_i​$，区间 $[i, j]​$ 序列和可表示成 $S_...
         </div>
         <div class="abstract-post-meta">
             <!-- date  -->
             <div class="abstract-date">
-                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2018/06/05</span>
+                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2019/04/03</span>
             </div>
             <!-- tags  -->
+            
+            <div class= abstract-tags >
+    
+        <a class="post-tag" href="javascript:void(0);" data-tags = "ICPC">ICPC</a>
+    
+        <a class="post-tag" href="javascript:void(0);" data-tags = "斜率优化">斜率优化</a>
+    
+</div>
             
         </div>
     </article>
@@ -463,12 +468,6 @@ https://camicri.github.io/camicri-cube/#/
     <div class="sidebar-content sidebar-content-show-archive">
           <div class="sidebar-panel-archives">
     <!-- 在ejs中将archive按照时间排序 -->
-    
-    
-    
-    
-    
-    
     
     
     

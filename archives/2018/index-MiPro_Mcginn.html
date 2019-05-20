@@ -26,7 +26,7 @@
     <style type="text/css">
     @font-face {
         font-family: 'Oswald-Regular';
-        src: url("../../../font/Oswald-Regular.ttf");
+        src: url("../../font/Oswald-Regular.ttf");
     }
 
     body {
@@ -75,8 +75,8 @@
 
 </style>
 
-    <link rel="preload" href= "../../../css/style.css?v=20180824" as="style" onload="this.onload=null;this.rel='stylesheet'" />
-    <link rel="stylesheet" href= "../../../css/mobile.css?v=20180824" media="(max-width: 980px)">
+    <link rel="preload" href= "../../css/style.css?v=20180824" as="style" onload="this.onload=null;this.rel='stylesheet'" />
+    <link rel="stylesheet" href= "../../css/mobile.css?v=20180824" media="(max-width: 980px)">
     
     <link rel="preload" href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.2.5/jquery.fancybox.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'" />
     
@@ -187,11 +187,11 @@
 }( typeof global !== "undefined" ? global : this ) );
 </script>
 
-    <link rel="icon" href= "../../../assets/m.ico" />
+    <link rel="icon" href= "../../assets/m.ico" />
     <link rel="preload" href="https://cdn.jsdelivr.net/npm/webfontloader@1.6.28/webfontloader.min.js" as="script" />
     <link rel="preload" href="https://cdn.jsdelivr.net/npm/jquery@3.3.1/dist/jquery.min.js" as="script" />
-    <link rel="preload" href="../../../scripts/main.js" as="script" />
-    <link rel="preload" as="font" href="../../../font/Oswald-Regular.ttf" crossorigin>
+    <link rel="preload" href="../../scripts/main.js" as="script" />
+    <link rel="preload" as="font" href="../../font/Oswald-Regular.ttf" crossorigin>
     <link rel="preload" as="font" href="https://at.alicdn.com/t/font_327081_1dta1rlogw17zaor.woff" crossorigin>
     
     <!-- fancybox -->
@@ -225,7 +225,7 @@
     <!-- 主页  -->
             
     <div class="site-intro-placeholder"></div>
-    <div class="site-intro-img" style="background-image: url(../../../index.html)"></div>
+    <div class="site-intro-img" style="background-image: url(../../index.html)"></div>
     <div class="site-intro-meta">
         <!-- 标题  -->
         <h1 class="intro-title">
@@ -333,10 +333,10 @@
   asyncLoadWithFallBack([
     "https://cdn.jsdelivr.net/npm/webfontloader@1.6.28/webfontloader.min.js", 
     "https://cdn.bootcss.com/webfont/1.6.28/webfontloader.js",
-    "../../../lib/webfontloader.min.js"
+    "../../lib/webfontloader.min.js"
   ], asyncCb, asyncErr)
 </script>        
-        <img class="loading" src="../../../assets/loading.svg" style="display: block; margin: 6rem auto 0 auto; width: 6rem; height: 6rem;" />
+        <img class="loading" src="../../assets/loading.svg" style="display: block; margin: 6rem auto 0 auto; width: 6rem; height: 6rem;" />
         <div class="container container-unloaded">
             <main class="main index-page">
     
@@ -346,7 +346,214 @@
     
     
     <article class="index-post">
-        <a class="abstract-title" href = "../../../2018/06/05/apt-offline管理Ubuntu离线安装软件包/" >
+        <a class="abstract-title" href = "../../2018/10/09/论文笔记-Tips-and-Tricks-for-Visual-Question-Answering/" >
+            
+                <span>论文笔记 Tips and Tricks for Visual Question Answering</span>
+        </a>
+        <div class="abstract-content">
+            简介​    该论文作者取得了 2017 VQA Challenge 的第一，总结一些 tips 和 tricks 来提升 VQA 的表现。
+​    这篇论文的每个实验使用不同的随机种子重复3次实验来统计结果。
+
+模型
+
+一些细节
+所有问题的长度固定 14。
+
+问题特征 $q$ 与图像特征 $\hat v$ 的融合使用 Hadamard product（逐项相乘）。
+
+h = f_q(q) \circ f_v(\hat v)
+目标函数（损失函数）
+
+L=-\sum_i^M\sum_j^N s_{ij}\log (\hat s_{ij})-(1-s_{ij})\log(1-\hat s_...
+        </div>
+        <div class="abstract-post-meta">
+            <!-- date  -->
+            <div class="abstract-date">
+                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2018/10/09</span>
+            </div>
+            <!-- tags  -->
+            
+        </div>
+    </article>
+    
+    
+    
+    
+    
+    
+    <article class="index-post">
+        <a class="abstract-title" href = "../../2018/10/08/Vim-for-windows-配置/" >
+            
+                <span>Windows 下使用 Vim</span>
+        </a>
+        <div class="abstract-content">
+            简要说明主要针对 ACM/ICPC 竞赛选手在 Windows 10 系统下使用 vim 编写 C/C++ 代码。
+功能配置：
+
+编译和运行 *.cpp 文件；
+一键复制代码;
+记事本打开代码。
+
+
+git bash 和 gvim 都配置了一遍。gvim 使用 Windows 自带的 cmd 运行的话，鼠标是没办法移动光标的，并且配置相对 git bash 较麻烦，所以推荐使用 git bash。
+Git bash 配置
+搜索并下载 “git for windows”。
+
+编辑安装路径下的 vimrc 文件，例如 “D:\Git\etc\vimrc”，配置快捷键。
+1234567set ...
+        </div>
+        <div class="abstract-post-meta">
+            <!-- date  -->
+            <div class="abstract-date">
+                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2018/10/08</span>
+            </div>
+            <!-- tags  -->
+            
+        </div>
+    </article>
+    
+    
+    
+    
+    
+    
+    <article class="index-post">
+        <a class="abstract-title" href = "../../2018/10/04/DOMjudge配置/" >
+            
+                <span>DOMjudge 配置</span>
+        </a>
+        <div class="abstract-content">
+            系统环境为 Debbian GNU/Linux 9 (stretch) 64-bit。
+Domserver 部署安装遇到的问题在 Web server configuration 中，
+1ln -s etc/apache.conf /etc/apache2/conf-available/domjudge.conf
+原文件路径（etc/apache.conf）需要写成完整路径，否则运行 a2enconf domjudge 会出现文件不存在错误。实际使用命令：
+1ln -s /home/mcginn/domjudge/domserver/etc/apache.conf /etc/apache...
+        </div>
+        <div class="abstract-post-meta">
+            <!-- date  -->
+            <div class="abstract-date">
+                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2018/10/04</span>
+            </div>
+            <!-- tags  -->
+            
+        </div>
+    </article>
+    
+    
+    
+    
+    
+    
+    <article class="index-post">
+        <a class="abstract-title" href = "../../2018/08/18/论文笔记 Semantic Compositional Networks for Visual Captioning/" >
+            
+                <span>论文笔记 Semantic Compositional Networks for Visual Captioning</span>
+        </a>
+        <div class="abstract-content">
+            简介​    该论文提出了语义组合网络(Semantic Compositional Network, SCN)，其有效利用语义概念（标签）来达到效果比较好的图文生成。
+
+Semantic compositional networks
+
+模型基础
+使用CNN提取图像特征，RNN作文字生成。
+文字生成的概率公式：
+
+p(\bold X | \bold I) = \prod _{t=1}^Tp(x_t|x_0, \dots , x_{t-1}, v) $ \bold X = (x_1, \dots , x_T)$ 表示文字序列，$v$ 为提取的图像特征。
+  LSTM的转换函数：
+
+h_t ...
+        </div>
+        <div class="abstract-post-meta">
+            <!-- date  -->
+            <div class="abstract-date">
+                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2018/08/18</span>
+            </div>
+            <!-- tags  -->
+            
+        </div>
+    </article>
+    
+    
+    
+    
+    
+    
+    <article class="index-post">
+        <a class="abstract-title" href = "../../2018/07/19/The Binding of Isaac Afterbirth+总结/" >
+            
+                <span>The Binding of Isaac:Afterbirth+总结</span>
+        </a>
+        <div class="abstract-content">
+            
+
+献血袋：扣半颗红心（子宫层一颗），掉落随机数量（通常1）的硬币。献血袋很强，很容易刷起来。
+
+
+手术刀：在地上制造褐色和蓝色两个通道并传送，传送出来时有短暂无敌，可以做到：
+
+白嫖卖血机，喂黑小孩，进出刺房等；
+进BOSS房和挑战房时，开箱子后直接传出去。
+
+
+在白心的隐藏房，使用存血罐可以吐出白心。配合1+1和肉刀可以生成N多肉哥。
+
+钥匙通常留给商店使用。
+
+睫毛膏是负面道具，不要拿。
+
+商店高概率刷出复眼（复制本房间的道具，未购买的道具也可以复制），最好等出了打折券再用。
+
+20分钟内打败妈腿会开Boss Rush房；30分钟内打败妈心开启Blue Womb(蓝色子宫，打hus...
+        </div>
+        <div class="abstract-post-meta">
+            <!-- date  -->
+            <div class="abstract-date">
+                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2018/07/19</span>
+            </div>
+            <!-- tags  -->
+            
+        </div>
+    </article>
+    
+    
+    
+    
+    
+    
+    <article class="index-post">
+        <a class="abstract-title" href = "../../2018/07/17/论文阅读记录/" >
+            
+                <span>论文阅读记录</span>
+        </a>
+        <div class="abstract-content">
+            2014
+Generative Adversarial Networks
+An Annotated Proof of Generative Adversarial Networks with Implementation Notes
+
+
+Conditional Generative Adversarial Nets
+
+2016
+Conditional Image Synthesis With Auxiliary Classifier GANs
+InfoGAN: Interpretable Representation Learning by Information Maximizing ...
+        </div>
+        <div class="abstract-post-meta">
+            <!-- date  -->
+            <div class="abstract-date">
+                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2018/07/17</span>
+            </div>
+            <!-- tags  -->
+            
+        </div>
+    </article>
+    
+    
+    
+    
+    
+    
+    <article class="index-post">
+        <a class="abstract-title" href = "../../2018/06/05/apt-offline管理Ubuntu离线安装软件包/" >
             
                 <span>Ubuntu离线安装软件包</span>
         </a>
@@ -463,12 +670,6 @@ https://camicri.github.io/camicri-cube/#/
     <div class="sidebar-content sidebar-content-show-archive">
           <div class="sidebar-panel-archives">
     <!-- 在ejs中将archive按照时间排序 -->
-    
-    
-    
-    
-    
-    
     
     
     
@@ -708,10 +909,10 @@ jsonContent:
         if (typeof window.$ === 'undefined')
         {
             console.warn('jquery load from jsdelivr failed, will load local script')
-            document.write('<script src="../../../lib/jquery.min.js">\x3C/script>')
+            document.write('<script src="../../lib/jquery.min.js">\x3C/script>')
         }
     </script>
-    <script src="../../../scripts/main.js"></script>
+    <script src="../../scripts/main.js"></script>
     <!-- algolia -->
     
     <!-- busuanzi  -->

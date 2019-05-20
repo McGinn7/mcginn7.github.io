@@ -346,26 +346,93 @@
     
     
     <article class="index-post">
-        <a class="abstract-title" href = "../../../2018/06/05/apt-offline管理Ubuntu离线安装软件包/" >
+        <a class="abstract-title" href = "../../../2018/10/09/论文笔记-Tips-and-Tricks-for-Visual-Question-Answering/" >
             
-                <span>Ubuntu离线安装软件包</span>
+                <span>论文笔记 Tips and Tricks for Visual Question Answering</span>
         </a>
         <div class="abstract-content">
-            参考链接
-apt-offline离线安装指南
-https://blog.sleeplessbeastie.eu/2014/01/30/how-to-manage-packages-on-an-off-line-debian-system/
-http://manpages.ubuntu.com/manpages/precise/man8/apt-offline.8.html#contenttoc4
-https://www.debian.org/
-https://camicri.github.io/camicri-cube/#/
+            简介​    该论文作者取得了 2017 VQA Challenge 的第一，总结一些 tips 和 tricks 来提升 VQA 的表现。
+​    这篇论文的每个实验使用不同的随机种子重复3次实验来统计结果。
 
-应用场景
-需要升级/安装软件的电脑无网络。
-软件要安装到多台...
+模型
+
+一些细节
+所有问题的长度固定 14。
+
+问题特征 $q$ 与图像特征 $\hat v$ 的融合使用 Hadamard product（逐项相乘）。
+
+h = f_q(q) \circ f_v(\hat v)
+目标函数（损失函数）
+
+L=-\sum_i^M\sum_j^N s_{ij}\log (\hat s_{ij})-(1-s_{ij})\log(1-\hat s_...
         </div>
         <div class="abstract-post-meta">
             <!-- date  -->
             <div class="abstract-date">
-                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2018/06/05</span>
+                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2018/10/09</span>
+            </div>
+            <!-- tags  -->
+            
+        </div>
+    </article>
+    
+    
+    
+    
+    
+    
+    <article class="index-post">
+        <a class="abstract-title" href = "../../../2018/10/08/Vim-for-windows-配置/" >
+            
+                <span>Windows 下使用 Vim</span>
+        </a>
+        <div class="abstract-content">
+            简要说明主要针对 ACM/ICPC 竞赛选手在 Windows 10 系统下使用 vim 编写 C/C++ 代码。
+功能配置：
+
+编译和运行 *.cpp 文件；
+一键复制代码;
+记事本打开代码。
+
+
+git bash 和 gvim 都配置了一遍。gvim 使用 Windows 自带的 cmd 运行的话，鼠标是没办法移动光标的，并且配置相对 git bash 较麻烦，所以推荐使用 git bash。
+Git bash 配置
+搜索并下载 “git for windows”。
+
+编辑安装路径下的 vimrc 文件，例如 “D:\Git\etc\vimrc”，配置快捷键。
+1234567set ...
+        </div>
+        <div class="abstract-post-meta">
+            <!-- date  -->
+            <div class="abstract-date">
+                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2018/10/08</span>
+            </div>
+            <!-- tags  -->
+            
+        </div>
+    </article>
+    
+    
+    
+    
+    
+    
+    <article class="index-post">
+        <a class="abstract-title" href = "../../../2018/10/04/DOMjudge配置/" >
+            
+                <span>DOMjudge 配置</span>
+        </a>
+        <div class="abstract-content">
+            系统环境为 Debbian GNU/Linux 9 (stretch) 64-bit。
+Domserver 部署安装遇到的问题在 Web server configuration 中，
+1ln -s etc/apache.conf /etc/apache2/conf-available/domjudge.conf
+原文件路径（etc/apache.conf）需要写成完整路径，否则运行 a2enconf domjudge 会出现文件不存在错误。实际使用命令：
+1ln -s /home/mcginn/domjudge/domserver/etc/apache.conf /etc/apache...
+        </div>
+        <div class="abstract-post-meta">
+            <!-- date  -->
+            <div class="abstract-date">
+                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2018/10/04</span>
             </div>
             <!-- tags  -->
             
@@ -463,12 +530,6 @@ https://camicri.github.io/camicri-cube/#/
     <div class="sidebar-content sidebar-content-show-archive">
           <div class="sidebar-panel-archives">
     <!-- 在ejs中将archive按照时间排序 -->
-    
-    
-    
-    
-    
-    
     
     
     
