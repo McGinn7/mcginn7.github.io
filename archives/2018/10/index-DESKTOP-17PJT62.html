@@ -26,7 +26,7 @@
     <style type="text/css">
     @font-face {
         font-family: 'Oswald-Regular';
-        src: url("../../font/Oswald-Regular.ttf");
+        src: url("../../../font/Oswald-Regular.ttf");
     }
 
     body {
@@ -75,8 +75,8 @@
 
 </style>
 
-    <link rel="preload" href= "../../css/style.css?v=20180824" as="style" onload="this.onload=null;this.rel='stylesheet'" />
-    <link rel="stylesheet" href= "../../css/mobile.css?v=20180824" media="(max-width: 980px)">
+    <link rel="preload" href= "../../../css/style.css?v=20180824" as="style" onload="this.onload=null;this.rel='stylesheet'" />
+    <link rel="stylesheet" href= "../../../css/mobile.css?v=20180824" media="(max-width: 980px)">
     
     <link rel="preload" href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.2.5/jquery.fancybox.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'" />
     
@@ -187,11 +187,11 @@
 }( typeof global !== "undefined" ? global : this ) );
 </script>
 
-    <link rel="icon" href= "../../assets/m.ico" />
+    <link rel="icon" href= "../../../assets/m.ico" />
     <link rel="preload" href="https://cdn.jsdelivr.net/npm/webfontloader@1.6.28/webfontloader.min.js" as="script" />
     <link rel="preload" href="https://cdn.jsdelivr.net/npm/jquery@3.3.1/dist/jquery.min.js" as="script" />
-    <link rel="preload" href="../../scripts/main.js" as="script" />
-    <link rel="preload" as="font" href="../../font/Oswald-Regular.ttf" crossorigin>
+    <link rel="preload" href="../../../scripts/main.js" as="script" />
+    <link rel="preload" as="font" href="../../../font/Oswald-Regular.ttf" crossorigin>
     <link rel="preload" as="font" href="https://at.alicdn.com/t/font_327081_1dta1rlogw17zaor.woff" crossorigin>
     
     <!-- fancybox -->
@@ -225,7 +225,7 @@
     <!-- 主页  -->
             
     <div class="site-intro-placeholder"></div>
-    <div class="site-intro-img" style="background-image: url(../../index.html)"></div>
+    <div class="site-intro-img" style="background-image: url(../../../index.html)"></div>
     <div class="site-intro-meta">
         <!-- 标题  -->
         <h1 class="intro-title">
@@ -333,10 +333,10 @@
   asyncLoadWithFallBack([
     "https://cdn.jsdelivr.net/npm/webfontloader@1.6.28/webfontloader.min.js", 
     "https://cdn.bootcss.com/webfont/1.6.28/webfontloader.js",
-    "../../lib/webfontloader.min.js"
+    "../../../lib/webfontloader.min.js"
   ], asyncCb, asyncErr)
 </script>        
-        <img class="loading" src="../../assets/loading.svg" style="display: block; margin: 6rem auto 0 auto; width: 6rem; height: 6rem;" />
+        <img class="loading" src="../../../assets/loading.svg" style="display: block; margin: 6rem auto 0 auto; width: 6rem; height: 6rem;" />
         <div class="container container-unloaded">
             <main class="main index-page">
     
@@ -346,25 +346,30 @@
     
     
     <article class="index-post">
-        <a class="abstract-title" href = "../../2019/05/12/ICPC-Resolver-踩坑/" >
+        <a class="abstract-title" href = "../../../2018/10/09/论文笔记-Tips-and-Tricks-for-Visual-Question-Answering/" >
             
-                <span>ICPC Resolver 踩坑</span>
+                <span>论文笔记 Tips and Tricks for Visual Question Answering</span>
         </a>
         <div class="abstract-content">
-            应用场景从 DOMjudge 系统中导出数据，使用 ICPC Tools/Resolver 滚榜。
-DOMjudge 版本：7.0.1。
-Resolver 版本：2.0.1798。如果使用 DOMjudge 评测，建议使用 2.1 及以上版本。
-数据操作
-搜索 ICPC Tools，下载 ICPC Resolver.rar。
+            简介​    该论文作者取得了 2017 VQA Challenge 的第一，总结一些 tips 和 tricks 来提升 VQA 的表现。
+​    这篇论文的每个实验使用不同的随机种子重复3次实验来统计结果。
 
-运行 award.sh，通过 REST 导入 event feed（一场比赛的所有信息流）。
-123URL: http://59.77.134.102/domjudge/api/contests/5USER: amdinPassword: *******
-点击 s...
+模型
+
+一些细节
+所有问题的长度固定 14。
+
+问题特征 $q$ 与图像特征 $\hat v$ 的融合使用 Hadamard product（逐项相乘）。
+
+h = f_q(q) \circ f_v(\hat v)
+目标函数（损失函数）
+
+L=-\sum_i^M\sum_j^N s_{ij}\log (\hat s_{ij})-(1-s_{ij})\log(1-\hat s_...
         </div>
         <div class="abstract-post-meta">
             <!-- date  -->
             <div class="abstract-date">
-                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2019/05/12</span>
+                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2018/10/09</span>
             </div>
             <!-- tags  -->
             
@@ -377,33 +382,32 @@ Resolver 版本：2.0.1798。如果使用 DOMjudge 评测，建议使用 2.1 及
     
     
     <article class="index-post">
-        <a class="abstract-title" href = "../../2019/04/03/斜率优化/" >
+        <a class="abstract-title" href = "../../../2018/10/08/Vim-for-windows-配置/" >
             
-                <span>斜率优化</span>
+                <span>Windows 下使用 Vim</span>
         </a>
         <div class="abstract-content">
-            斜率优化针对形如：
+            简要说明主要针对 ACM/ICPC 竞赛选手在 Windows 10 系统下使用 vim 编写 C/C++ 代码。
+功能配置：
 
-dp(i)=\min _{j=1}^{i-1} (dp(j)+cost(i, j))的动态规划转移方程，可通过’’斜率’’的单调性进行优化。
-题一、[HNOI2008]玩具装箱TOY题意 题目链接给定长为 $1\le N\le 50000$ 的序列 $1\le C_i\le 10^7$，将序列分成若干连续段，每段 $[i, j]$ 的花费为
+编译和运行 *.cpp 文件；
+一键复制代码;
+记事本打开代码。
 
-((j - i+\sum_{k=i}^jC_k)-L)^2其中 $L$ 为常数，$1\le L \le 10^7$。要求计算总的最小花费代价。
-解题思路利用前缀和 $S_i​$，区间 $[i, j]​$ 序列和可表示成 $S_...
+
+git bash 和 gvim 都配置了一遍。gvim 使用 Windows 自带的 cmd 运行的话，鼠标是没办法移动光标的，并且配置相对 git bash 较麻烦，所以推荐使用 git bash。
+Git bash 配置
+搜索并下载 “git for windows”。
+
+编辑安装路径下的 vimrc 文件，例如 “D:\Git\etc\vimrc”，配置快捷键。
+1234567set ...
         </div>
         <div class="abstract-post-meta">
             <!-- date  -->
             <div class="abstract-date">
-                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2019/04/03</span>
+                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2018/10/08</span>
             </div>
             <!-- tags  -->
-            
-            <div class= abstract-tags >
-    
-        <a class="post-tag" href="javascript:void(0);" data-tags = "ICPC">ICPC</a>
-    
-        <a class="post-tag" href="javascript:void(0);" data-tags = "斜率优化">斜率优化</a>
-    
-</div>
             
         </div>
     </article>
@@ -414,32 +418,42 @@ dp(i)=\min _{j=1}^{i-1} (dp(j)+cost(i, j))的动态规划转移方程，可通�
     
     
     <article class="index-post">
-        <a class="abstract-title" href = "../../2019/03/31/Nowcoder-出题人的数组/" >
+        <a class="abstract-title" href = "../../../2018/10/04/DOMjudge配置/" >
             
-                <span>Nowcoder-出题人的数组</span>
+                <span>DOMjudge 配置</span>
         </a>
         <div class="abstract-content">
-            链接：https://ac.nowcoder.com/acm/contest/545/C来源：牛客网
-题目描述出题人有两个数组 $A, B$，请你把两个数组归并起来使得 $Cost=∑i∗C_i$ 最小，要求两个原数组的顺序在新数组中保持不变。 
-输入描述第一行输入两个正整数 $n,m$，分别表示数组 $A, B$ 的长度。第二行输入 $n$ 个正整数，表示数组 $A$。第二行输入 $m$ 个正整数，表示数组 $B$ 。
-输出描述一个正整数，表示最小代价 $Cost$。
-示例 1输入输出3 31 3 52 6 475
+            Domserver 部署PHP timezone
+php.ini 文件位置
 
-备注$n, m \le 100000$
-$A_i, B_i \le ...
+CentOS/RedHat/Fedora = /etc/php.ini
+Ubuntu/Debian/LinuxMint = /etc/php5/apache2/php.ini
+
+
+选择时区，通常定位为 “Asia/Shanghai”
+
+PHP: List of Supported Timezones
+
+
+编辑 php.ini 文件
+1date.timezone = "Asia/Shanghai"
+
+重启 Apache Service。
+1sudo service apache2 restart
+
+
+MySQL ...
         </div>
         <div class="abstract-post-meta">
             <!-- date  -->
             <div class="abstract-date">
-                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2019/03/31</span>
+                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2018/10/04</span>
             </div>
             <!-- tags  -->
             
             <div class= abstract-tags >
     
-        <a class="post-tag" href="javascript:void(0);" data-tags = "ICPC">ICPC</a>
-    
-        <a class="post-tag" href="javascript:void(0);" data-tags = "贪心">贪心</a>
+        <a class="post-tag" href="javascript:void(0);" data-tags = "domjudge">domjudge</a>
     
 </div>
             
@@ -665,12 +679,12 @@ $A_i, B_i \le ...
     
     
         <li class="archive-post-item">
-            <span class="archive-post-date">05/12</span><a class="archive-post-title" href= "" >ICPC Resolver 踩坑</a>
+            <span class="archive-post-date">05/12</span><a class="archive-post-title" href= "../../../05/12/ICPC-Resolver-踩坑/" >ICPC Resolver 踩坑</a>
         </li>
     
     
         <li class="archive-post-item">
-            <span class="archive-post-date">04/03</span><a class="archive-post-title" href= "../../../04/03/斜率优化/" >斜率优化</a>
+            <span class="archive-post-date">04/03</span><a class="archive-post-title" href= "" >斜率优化</a>
         </li>
     
     
@@ -786,10 +800,10 @@ jsonContent:
         if (typeof window.$ === 'undefined')
         {
             console.warn('jquery load from jsdelivr failed, will load local script')
-            document.write('<script src="../../lib/jquery.min.js">\x3C/script>')
+            document.write('<script src="../../../lib/jquery.min.js">\x3C/script>')
         }
     </script>
-    <script src="../../scripts/main.js"></script>
+    <script src="../../../scripts/main.js"></script>
     <!-- algolia -->
     
     <!-- busuanzi  -->

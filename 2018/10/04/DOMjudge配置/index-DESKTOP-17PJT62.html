@@ -272,7 +272,7 @@ height:50vh;
                 
                 
                     <div class="post-intro-read">
-                        <span>字数统计: <span class="post-count word-count">1.2k</span>阅读时长: <span class="post-count reading-time">5 min</span></span>
+                        <span>字数统计: <span class="post-count word-count">1.2k</span>阅读时长: <span class="post-count reading-time">4 min</span></span>
                     </div>
                 
                 <div class="post-intro-meta">
@@ -483,12 +483,11 @@ height:50vh;
  <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">accounts	1</span><br><span class="line">team	三核战队	team008	T3yRt3</span><br><span class="line">team	挂机不队	team018	86MFyB</span><br><span class="line">team	这都是什么鬼	team031	RTJr6e</span><br></pre></td></tr></table></figure>
 </li>
 </ul>
-<h2 id="评测机"><a href="#评测机" class="headerlink" title="评测机"></a>评测机</h2><h3 id="Unprivileged-user-and-group"><a href="#Unprivileged-user-and-group" class="headerlink" title="Unprivileged user and group"></a>Unprivileged user and group</h3><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">// 下面这条命令是必须运行的</span><br><span class="line">useradd -d /nonexistent -U -M -s /bin/false domjudge-run</span><br><span class="line">// X=1~4，X通常等同于CPU核心数</span><br><span class="line">useradd -d /nonexistent -U -M -s /bin/false domjudge-run-X</span><br></pre></td></tr></table></figure>
-<h3 id="Linux-Control-Groups"><a href="#Linux-Control-Groups" class="headerlink" title="Linux Control Groups"></a>Linux Control Groups</h3><ul>
+<h2 id="评测机"><a href="#评测机" class="headerlink" title="评测机"></a>评测机</h2><h4 id="Unprivileged-user-and-group"><a href="#Unprivileged-user-and-group" class="headerlink" title="Unprivileged user and group"></a>Unprivileged user and group</h4><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">// 下面这条命令是必须运行的</span><br><span class="line">useradd -d /nonexistent -U -M -s /bin/false domjudge-run</span><br><span class="line">// X=1~4，X通常等同于CPU核心数</span><br><span class="line">useradd -d /nonexistent -U -M -s /bin/false domjudge-run-X</span><br></pre></td></tr></table></figure>
+<h4 id="Linux-Control-Groups"><a href="#Linux-Control-Groups" class="headerlink" title="Linux Control Groups"></a>Linux Control Groups</h4><ul>
 <li>每次<strong>重启</strong>都需要运行 <strong><em>judgehost/bin/create_cgroups</em></strong>，否则提交会编译错误。</li>
 </ul>
-<h2 id="问题集锦"><a href="#问题集锦" class="headerlink" title="问题集锦"></a>问题集锦</h2><h3 id="1-比赛正常需要几台机器？"><a href="#1-比赛正常需要几台机器？" class="headerlink" title="1. 比赛正常需要几台机器？"></a>1. 比赛正常需要几台机器？</h3><p>个人认为正常应该至少需要 4 台机器，配置较高的作为主服务器，即 DOMserver，提供比赛的 web 页面；一台打印服务器，也安装 DOMserver，但开放 print 页面，达到比赛与打印分开，减少宕机对选手的影响；两台评测机，即 Judgehost，这样如果一台宕机，也有另一台继续评测，而不是完全中断评测，并且修复后可随时上线新的评测机。</p>
-<p>由于安装的机器较多且安装包大，建议使用 apt-offline 打包需要的安装包，节省安装时间。</p>
+<h2 id="问题集锦"><a href="#问题集锦" class="headerlink" title="问题集锦"></a>问题集锦</h2><h3 id="1-比赛正常需要几台机器？"><a href="#1-比赛正常需要几台机器？" class="headerlink" title="1. 比赛正常需要几台机器？"></a>1. 比赛正常需要几台机器？</h3><p>个人认为正常应该至少需要 4 台机器，配置较高的作为主服务器，即 DOMserver，提供比赛的 web 页面；一台打印服务器，达到比赛与打印分开，减少对选手的影响；两台评测机，即 Judgehost，这样如果一台宕机，也有另一台继续评测，而不是完全中断评测，并且修复后可随时上线新的评测机。</p>
 <h3 id="2-气球状态页面返回-500-错误"><a href="#2-气球状态页面返回-500-错误" class="headerlink" title="2. 气球状态页面返回 500 错误"></a>2. 气球状态页面返回 500 错误</h3><p>正式比赛开始时，contest 只能留有一个比赛。（个人不知道原因）。</p>
 <h3 id="3-测试数据上传失败"><a href="#3-测试数据上传失败" class="headerlink" title="3. 测试数据上传失败"></a>3. 测试数据上传失败</h3><p>可能需要修改的几个文件：</p>
 <ol>
@@ -499,9 +498,9 @@ height:50vh;
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">[mysqld]</span><br><span class="line">max_connections = 10000</span><br><span class="line">max_allowed_packet = 512M</span><br><span class="line">innodb_log_file_size = 512M</span><br></pre></td></tr></table></figure>
 </li>
 </ol>
-<h3 id="4-如何让-DOMJudge-支持多台打印机？"><a href="#4-如何让-DOMJudge-支持多台打印机？" class="headerlink" title="4. 如何让 DOMJudge 支持多台打印机？"></a>4. 如何让 DOMJudge 支持多台打印机？</h3><p>修改 domserver/webapp/src/DOMJudgeBundle/Utils/Printing.php 中 <code>cmd</code> 指令：</p>
+<h3 id="4-如果让-DOMJudge-支持多台打印机？"><a href="#4-如果让-DOMJudge-支持多台打印机？" class="headerlink" title="4. 如果让 DOMJudge 支持多台打印机？"></a>4. 如果让 DOMJudge 支持多台打印机？</h3><p>修改 domserver/webapp/src/DOMJudgeBundle/Utils/Printing.php 中 <code>cmd</code> 指令：</p>
 <figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">$cmd = <span class="string">"enscript -C "</span> . $highlight</span><br><span class="line">    . <span class="string">" -d "</span> . $printername 		<span class="comment">// 指定打印机名</span></span><br><span class="line">    . <span class="string">" -b "</span> . escapeshellarg($header)</span><br><span class="line">    . <span class="string">" -a 0-10 "</span></span><br><span class="line">    . <span class="string">" -f Courier9 "</span></span><br><span class="line"><span class="comment">//    . " -p $tmp "</span></span><br><span class="line">    . escapeshellarg($filename) . <span class="string">" 2&gt;&amp;1"</span>;</span><br></pre></td></tr></table></figure>
-<p>去除 <code>-p $tmp</code> ，添加 <code>-d</code> 参数，指定打印机打印。多台打印机则让打印机名轮转即可。</p>
+<p>去除 <code>-p $tmp</code> ，添加 <code>-d</code> 参数，指定打印机打印。多台打印机则在多个打印机名轮转即可。</p>
 
     </article>
     <!-- license  -->
@@ -510,7 +509,7 @@ height:50vh;
             <p>原文作者：<a href="http://mcginn7.github.io">Mcginn</a>
             <p>原文链接：<a href="http://mcginn7.github.io/2018/10/04/DOMjudge配置/">http://mcginn7.github.io/2018/10/04/DOMjudge配置/</a>
             <p>发表日期：<a href="http://mcginn7.github.io/2018/10/04/DOMjudge配置/">October 4th 2018, 11:29:36 pm</a>
-            <p>更新日期：<a href="http://mcginn7.github.io/2018/10/04/DOMjudge配置/">May 21st 2019, 3:05:41 pm</a>
+            <p>更新日期：<a href="http://mcginn7.github.io/2018/10/04/DOMjudge配置/">May 21st 2019, 2:54:15 pm</a>
             <p>版权声明：本文采用<a rel="license" href="http://creativecommons.org/licenses/by-nc/4.0/">知识共享署名-非商业性使用 4.0 国际许可协议</a>进行许可</p>
         </div>
     
@@ -641,7 +640,7 @@ top:50vh;
         <div class="toc-catalog">
             <span class="iconfont-archer catalog-icon">&#xe613;</span><span>CATALOG</span>
         </div>
-        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#Domserver-部署"><span class="toc-number">1.</span> <span class="toc-text">Domserver 部署</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#PHP-timezone"><span class="toc-number">1.1.</span> <span class="toc-text">PHP timezone</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#MySQL-maximum-connections"><span class="toc-number">1.2.</span> <span class="toc-text">MySQL maximum connections</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#数据导入"><span class="toc-number">2.</span> <span class="toc-text">数据导入</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#测试数据导入"><span class="toc-number">2.1.</span> <span class="toc-text">测试数据导入</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#队伍账号导入"><span class="toc-number">2.2.</span> <span class="toc-text">队伍账号导入</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#评测机"><span class="toc-number">3.</span> <span class="toc-text">评测机</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Unprivileged-user-and-group"><span class="toc-number">3.1.</span> <span class="toc-text">Unprivileged user and group</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Linux-Control-Groups"><span class="toc-number">3.2.</span> <span class="toc-text">Linux Control Groups</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#问题集锦"><span class="toc-number">4.</span> <span class="toc-text">问题集锦</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-比赛正常需要几台机器？"><span class="toc-number">4.1.</span> <span class="toc-text">1. 比赛正常需要几台机器？</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-气球状态页面返回-500-错误"><span class="toc-number">4.2.</span> <span class="toc-text">2. 气球状态页面返回 500 错误</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-测试数据上传失败"><span class="toc-number">4.3.</span> <span class="toc-text">3. 测试数据上传失败</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4-如何让-DOMJudge-支持多台打印机？"><span class="toc-number">4.4.</span> <span class="toc-text">4. 如何让 DOMJudge 支持多台打印机？</span></a></li></ol></li></ol>
+        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#Domserver-部署"><span class="toc-number">1.</span> <span class="toc-text">Domserver 部署</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#PHP-timezone"><span class="toc-number">1.1.</span> <span class="toc-text">PHP timezone</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#MySQL-maximum-connections"><span class="toc-number">1.2.</span> <span class="toc-text">MySQL maximum connections</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#数据导入"><span class="toc-number">2.</span> <span class="toc-text">数据导入</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#测试数据导入"><span class="toc-number">2.1.</span> <span class="toc-text">测试数据导入</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#队伍账号导入"><span class="toc-number">2.2.</span> <span class="toc-text">队伍账号导入</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#评测机"><span class="toc-number">3.</span> <span class="toc-text">评测机</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#Unprivileged-user-and-group"><span class="toc-number">3.0.1.</span> <span class="toc-text">Unprivileged user and group</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Linux-Control-Groups"><span class="toc-number">3.0.2.</span> <span class="toc-text">Linux Control Groups</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#问题集锦"><span class="toc-number">4.</span> <span class="toc-text">问题集锦</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-比赛正常需要几台机器？"><span class="toc-number">4.1.</span> <span class="toc-text">1. 比赛正常需要几台机器？</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-气球状态页面返回-500-错误"><span class="toc-number">4.2.</span> <span class="toc-text">2. 气球状态页面返回 500 错误</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-测试数据上传失败"><span class="toc-number">4.3.</span> <span class="toc-text">3. 测试数据上传失败</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4-如果让-DOMJudge-支持多台打印机？"><span class="toc-number">4.4.</span> <span class="toc-text">4. 如果让 DOMJudge 支持多台打印机？</span></a></li></ol></li></ol>
     </div>
     
     <div class="back-top iconfont-archer">&#xe639;</div>
@@ -782,12 +781,12 @@ top:50vh;
     
     
         <li class="archive-post-item">
-            <span class="archive-post-date">05/12</span><a class="archive-post-title" href= "" >ICPC Resolver 踩坑</a>
+            <span class="archive-post-date">05/12</span><a class="archive-post-title" href= "../../../05/12/ICPC-Resolver-踩坑/" >ICPC Resolver 踩坑</a>
         </li>
     
     
         <li class="archive-post-item">
-            <span class="archive-post-date">04/03</span><a class="archive-post-title" href= "../../../04/03/斜率优化/" >斜率优化</a>
+            <span class="archive-post-date">04/03</span><a class="archive-post-title" href= "" >斜率优化</a>
         </li>
     
     
