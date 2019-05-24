@@ -346,6 +346,43 @@
     
     
     <article class="index-post">
+        <a class="abstract-title" href = "../../../2019/05/24/Knuth-Morris-Pratt-Algorithm/" >
+            
+                <span>Knuth-Morris-Pratt Algorithm</span>
+        </a>
+        <div class="abstract-content">
+            KMP 算法解决在文本串（text）快速找出单词（word）的所有出现位置。
+暴力匹配的时间复杂度为 $O(|T||W|)$，而 KMP 算法通过引入最长前后缀，将检索的时间复杂度降至线性。
+最长前后缀
+lps indicates longest proper prefix which is also suffix.
+
+最长前后缀（LPS, Longest proper Prefix and Suffix）表示既是原串 $S$ 的真前缀也是后缀的最长子串 $T$，其中 $|T|\lt |S|$。
+
+LPS(aaa) = aa \\
+LPS(abcdab)=ab检索过程假设已知单词串的每个...
+        </div>
+        <div class="abstract-post-meta">
+            <!-- date  -->
+            <div class="abstract-date">
+                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2019/05/24</span>
+            </div>
+            <!-- tags  -->
+            
+            <div class= abstract-tags >
+    
+        <a class="post-tag" href="javascript:void(0);" data-tags = "KMP">KMP</a>
+    
+</div>
+            
+        </div>
+    </article>
+    
+    
+    
+    
+    
+    
+    <article class="index-post">
         <a class="abstract-title" href = "../../../2019/05/12/ICPC-Resolver-踩坑/" >
             
                 <span>ICPC Resolver 踩坑</span>
@@ -578,9 +615,22 @@ Resolver 版本：2.0.1798。如果使用 DOMjudge 评测，建议使用 2.1 及
     
     
     
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
     <div class="total-and-search">
         <div class="total-archive">
-        Total : 10
+        Total : 11
         </div>
         <!-- search  -->
         
@@ -596,7 +646,12 @@ Resolver 版本：2.0.1798。如果使用 DOMjudge 评测，建议使用 2.1 及
     
     
         <li class="archive-post-item">
-            <span class="archive-post-date">05/12</span><a class="archive-post-title" href= "" >ICPC Resolver 踩坑</a>
+            <span class="archive-post-date">05/24</span><a class="archive-post-title" href= "" >Knuth-Morris-Pratt Algorithm</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">05/12</span><a class="archive-post-title" href= "../../12/ICPC-Resolver-踩坑/" >ICPC Resolver 踩坑</a>
         </li>
     
     
@@ -658,13 +713,15 @@ Resolver 版本：2.0.1798。如果使用 DOMjudge 评测，建议使用 2.1 及
         <div class="sidebar-panel-tags">
     <div class="sidebar-tags-name">
     
+        <span class="sidebar-tag-name" data-tags="domjudge"><span class="iconfont-archer">&#xe606;</span>domjudge</span>
+    
         <span class="sidebar-tag-name" data-tags="ICPC"><span class="iconfont-archer">&#xe606;</span>ICPC</span>
     
         <span class="sidebar-tag-name" data-tags="贪心"><span class="iconfont-archer">&#xe606;</span>贪心</span>
     
-        <span class="sidebar-tag-name" data-tags="domjudge"><span class="iconfont-archer">&#xe606;</span>domjudge</span>
-    
         <span class="sidebar-tag-name" data-tags="斜率优化"><span class="iconfont-archer">&#xe606;</span>斜率优化</span>
+    
+        <span class="sidebar-tag-name" data-tags="KMP"><span class="iconfont-archer">&#xe606;</span>KMP</span>
     
     </div>
     <div class="iconfont-archer sidebar-tags-empty">&#xe678;</div>
