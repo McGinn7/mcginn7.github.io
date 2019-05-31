@@ -272,7 +272,7 @@ height:50vh;
                 
                 
                     <div class="post-intro-read">
-                        <span>字数统计: <span class="post-count word-count">545</span>阅读时长: <span class="post-count reading-time">2 min</span></span>
+                        <span>字数统计: <span class="post-count word-count">550</span>阅读时长: <span class="post-count reading-time">2 min</span></span>
                     </div>
                 
                 <div class="post-intro-meta">
@@ -409,7 +409,7 @@ height:50vh;
 <p>最长前后缀（<strong>LPS, Longest proper Prefix and Suffix</strong>）表示既是原串 $S$ 的真前缀也是后缀的最长子串 $T$，其中 $|T|\lt |S|$。</p>
 <script type="math/tex; mode=display">
 LPS(aaa) = aa \\
-LPS(abcdab)=ab</script><h2 id="检索过程"><a href="#检索过程" class="headerlink" title="检索过程"></a>检索过程</h2><p>假设已知单词串的每个前缀 $W[0: i]$ 的最长前后缀长度 $lps(i)$，且已经匹配 $T[i - j: i] = W[0:j]$。继续匹配有两种情形：</p>
+LPS(abcdab)=ab</script><h2 id="检索过程"><a href="#检索过程" class="headerlink" title="检索过程"></a>检索过程</h2><p>假设已知<strong>单词串</strong>的每个前缀 $W[0: i]$ 的最长前后缀长度 $lps(i)$，且已经匹配 $T[i - j: i] = W[0:j]$。继续匹配有两种情形：</p>
 <ol>
 <li>$T[i+1]=W[j + 1]$，则匹配长度 +1。</li>
 <li>$T[i+ 1] \neq W[j+1]$，此时显然要重新找单词串的一个<strong>最长</strong>前缀 $W[0:k], k\lt j$，使得 $T[i-k:i]=W[0:k]$ 且 $T[i + 1]=W[k+ 1]$，继续与 $i+1$ 结尾的文本串匹配。</li>
@@ -417,11 +417,11 @@ LPS(abcdab)=ab</script><h2 id="检索过程"><a href="#检索过程" class="head
 <img src="/2019/05/24/Knuth-Morris-Pratt-Algorithm/1555835282553.png" title="情形 2 示意图">
 <center>图 1. 情形 2 示意图。虚线框表示相同部分。</center>
 
-<p>此时 $W[0:k]$ 是 $W[0:j]$ 的后缀，同时也是前缀。</p>
-<p>令 $k=lsp(j)$，若 $T[i+1]=W[k+1]$，则继续匹配。否则将 $k$ 视为新的 $j$，则转化成情形 2 相同的子问题。</p>
+<p>此时 $W[0:k]$ 是 $W[0:j]$ 的后缀，同时其本身是前缀。</p>
+<p>令 $k=lps(j)$，若 $T[i+1]=W[k+1]$，则继续匹配。否则将 $k$ 视为新的 $j$，则转化成情形 2 相同的子问题。</p>
 <p><strong>时间复杂度</strong>：匹配成功的复杂度是线性的。而匹配失败时会减小单词串的前缀长度，减一长度<strong>至少</strong>对应一次的成功匹配，此时时间复杂度也是线性的。故算法总的时间复杂度是线性的。</p>
-<h2 id="预处理"><a href="#预处理" class="headerlink" title="预处理"></a>预处理</h2><p>对于单词串的最长前后缀 $lsp(i)$，本质上是单词串的自我匹配，即<strong>此时文本串为单词串</strong>。对应于检索过程中的两种情形，可以很容易地完成 $lsp(i)$ 的构造。</p>
-<h2 id="参考代码"><a href="#参考代码" class="headerlink" title="参考代码"></a>参考代码</h2><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// n = |T|, m = |W|</span></span><br><span class="line">lps[<span class="number">0</span>] = <span class="number">-1</span>;</span><br><span class="line"><span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">1</span>, j = <span class="number">-1</span>; i &lt; m; ++i) &#123;</span><br><span class="line">	<span class="keyword">while</span> (j &gt;= <span class="number">0</span> &amp;&amp; W[i] != W[j + <span class="number">1</span>])</span><br><span class="line">		j = lps[j];</span><br><span class="line">	j += W[i] == W[j + <span class="number">1</span>];</span><br><span class="line">	lps[i] = j;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>, j = <span class="number">-1</span>; i &lt; n; ++i) &#123;</span><br><span class="line">	<span class="keyword">while</span> (j &gt;= <span class="number">0</span> &amp;&amp; T[i] != W[j + <span class="number">1</span>])</span><br><span class="line">		j = lps[j];</span><br><span class="line">	j += T[i] == W[j + <span class="number">1</span>];</span><br><span class="line">	<span class="keyword">if</span> (j == m - <span class="number">1</span>) &#123;</span><br><span class="line">		<span class="comment">// match successfully</span></span><br><span class="line">		j = lps[j];</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="预处理"><a href="#预处理" class="headerlink" title="预处理"></a>预处理</h2><p>对于单词串的最长前后缀 $lps(i)$，本质上是单词串的自我匹配，即<strong>此时文本串为单词串</strong>。对应于检索过程中的两种情形，可以很容易地完成 $lps(i)$ 的构造。</p>
+<h2 id="参考代码"><a href="#参考代码" class="headerlink" title="参考代码"></a>参考代码</h2><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// n = |T|, m = |W|, index = [0, n)</span></span><br><span class="line">lps[<span class="number">0</span>] = <span class="number">-1</span>;</span><br><span class="line"><span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">1</span>, j = <span class="number">-1</span>; i &lt; m; ++i) &#123;</span><br><span class="line">	<span class="keyword">while</span> (j &gt;= <span class="number">0</span> &amp;&amp; W[i] != W[j + <span class="number">1</span>])</span><br><span class="line">		j = lps[j];</span><br><span class="line">	j += W[i] == W[j + <span class="number">1</span>];</span><br><span class="line">	lps[i] = j;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>, j = <span class="number">-1</span>; i &lt; n; ++i) &#123;</span><br><span class="line">	<span class="keyword">while</span> (j &gt;= <span class="number">0</span> &amp;&amp; T[i] != W[j + <span class="number">1</span>])</span><br><span class="line">		j = lps[j];</span><br><span class="line">	j += T[i] == W[j + <span class="number">1</span>];</span><br><span class="line">	<span class="keyword">if</span> (j == m - <span class="number">1</span>) &#123;</span><br><span class="line">		<span class="comment">// match successfully</span></span><br><span class="line">		j = lps[j];</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
     </article>
     <!-- license  -->
     
@@ -429,7 +429,7 @@ LPS(abcdab)=ab</script><h2 id="检索过程"><a href="#检索过程" class="head
             <p>原文作者：<a href="http://mcginn7.github.io">Mcginn</a>
             <p>原文链接：<a href="http://mcginn7.github.io/2019/05/24/Knuth-Morris-Pratt-Algorithm/">http://mcginn7.github.io/2019/05/24/Knuth-Morris-Pratt-Algorithm/</a>
             <p>发表日期：<a href="http://mcginn7.github.io/2019/05/24/Knuth-Morris-Pratt-Algorithm/">May 24th 2019, 11:39:27 pm</a>
-            <p>更新日期：<a href="http://mcginn7.github.io/2019/05/24/Knuth-Morris-Pratt-Algorithm/">May 24th 2019, 11:48:21 pm</a>
+            <p>更新日期：<a href="http://mcginn7.github.io/2019/05/24/Knuth-Morris-Pratt-Algorithm/">May 31st 2019, 9:54:04 am</a>
             <p>版权声明：本文采用<a rel="license" href="http://creativecommons.org/licenses/by-nc/4.0/">知识共享署名-非商业性使用 4.0 国际许可协议</a>进行许可</p>
         </div>
     
@@ -687,16 +687,6 @@ top:50vh;
     
     
     
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
     <div class="total-and-search">
         <div class="total-archive">
         Total : 11
@@ -784,13 +774,13 @@ top:50vh;
     
         <span class="sidebar-tag-name" data-tags="domjudge"><span class="iconfont-archer">&#xe606;</span>domjudge</span>
     
+        <span class="sidebar-tag-name" data-tags="KMP"><span class="iconfont-archer">&#xe606;</span>KMP</span>
+    
         <span class="sidebar-tag-name" data-tags="ICPC"><span class="iconfont-archer">&#xe606;</span>ICPC</span>
     
         <span class="sidebar-tag-name" data-tags="贪心"><span class="iconfont-archer">&#xe606;</span>贪心</span>
     
         <span class="sidebar-tag-name" data-tags="斜率优化"><span class="iconfont-archer">&#xe606;</span>斜率优化</span>
-    
-        <span class="sidebar-tag-name" data-tags="KMP"><span class="iconfont-archer">&#xe606;</span>KMP</span>
     
     </div>
     <div class="iconfont-archer sidebar-tags-empty">&#xe678;</div>
