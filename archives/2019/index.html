@@ -346,6 +346,43 @@
     
     
     <article class="index-post">
+        <a class="abstract-title" href = "../../2019/05/31/AhoCorasick-Algorithm/" >
+            
+                <span>AhoCorasick Algorithm</span>
+        </a>
+        <div class="abstract-content">
+            简介AhoCorasick 算法（简称 AC 自动机），解决多模式串的字符匹配问题，即给定若干个单词串 $W_i$，求在文本串 $T$ 中的出现位置。KMP 算法解决单模式串的字符匹配，所以 AC 自动机可认为是 KMP 算法的扩展。
+预备知识
+字典树（Trie）：树上任意节点到根的路径所构成的子串，记为 $S(u)$，都是某个插入串的前缀。
+KMP 算法：利用最长前后缀完成线性匹配。
+
+核心思想AhoCorasick 本质上与 KMP 算法是一样的，都是通过相同前后缀减少重复计算问题，只是数据结构不同。
+对应于 KMP，AC 自动机需要构建最长公共前后缀（LCPS，Longese Co...
+        </div>
+        <div class="abstract-post-meta">
+            <!-- date  -->
+            <div class="abstract-date">
+                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2019/05/31</span>
+            </div>
+            <!-- tags  -->
+            
+            <div class= abstract-tags >
+    
+        <a class="post-tag" href="javascript:void(0);" data-tags = "AhoCorasick">AhoCorasick</a>
+    
+        <a class="post-tag" href="javascript:void(0);" data-tags = "AC自动机">AC自动机</a>
+    
+</div>
+            
+        </div>
+    </article>
+    
+    
+    
+    
+    
+    
+    <article class="index-post">
         <a class="abstract-title" href = "../../2019/05/24/Knuth-Morris-Pratt-Algorithm/" >
             
                 <span>Knuth-Morris-Pratt Algorithm</span>
@@ -693,9 +730,18 @@ $A_i, B_i \le ...
     
     
     
+    
+    
+    
+    
+    
+    
+    
+    
+    
     <div class="total-and-search">
         <div class="total-archive">
-        Total : 11
+        Total : 12
         </div>
         <!-- search  -->
         
@@ -711,7 +757,12 @@ $A_i, B_i \le ...
     
     
         <li class="archive-post-item">
-            <span class="archive-post-date">05/24</span><a class="archive-post-title" href= "" >Knuth-Morris-Pratt Algorithm</a>
+            <span class="archive-post-date">05/31</span><a class="archive-post-title" href= "" >AhoCorasick Algorithm</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">05/24</span><a class="archive-post-title" href= "../../24/Knuth-Morris-Pratt-Algorithm/" >Knuth-Morris-Pratt Algorithm</a>
         </li>
     
     
@@ -778,9 +829,13 @@ $A_i, B_i \le ...
         <div class="sidebar-panel-tags">
     <div class="sidebar-tags-name">
     
-        <span class="sidebar-tag-name" data-tags="domjudge"><span class="iconfont-archer">&#xe606;</span>domjudge</span>
+        <span class="sidebar-tag-name" data-tags="AhoCorasick"><span class="iconfont-archer">&#xe606;</span>AhoCorasick</span>
+    
+        <span class="sidebar-tag-name" data-tags="AC自动机"><span class="iconfont-archer">&#xe606;</span>AC自动机</span>
     
         <span class="sidebar-tag-name" data-tags="KMP"><span class="iconfont-archer">&#xe606;</span>KMP</span>
+    
+        <span class="sidebar-tag-name" data-tags="domjudge"><span class="iconfont-archer">&#xe606;</span>domjudge</span>
     
         <span class="sidebar-tag-name" data-tags="ICPC"><span class="iconfont-archer">&#xe606;</span>ICPC</span>
     
