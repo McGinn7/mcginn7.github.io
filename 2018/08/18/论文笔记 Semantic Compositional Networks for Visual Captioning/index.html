@@ -10,18 +10,18 @@
 
 
 
-<head>
+<head><meta name="generator" content="Hexo 3.8.0">
     <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no" >
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
     <meta name="author" content="Mcginn">
     <meta name="renderer" content="webkit">
     <meta name="copyright" content="Mcginn">
     
-    <meta name="keywords" content="hexo,mcginn,ICPC,hexo-theme,hexo-blog">
+    <meta name="keywords" content="hexo,mcginn,mcginn7,ICPC,hexo-theme,hexo-blog">
     
-    <meta name="description" content="">
+    <meta name="description" content>
     <meta http-equiv="Cache-control" content="no-cache">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
     <title>论文笔记 Semantic Compositional Networks for Visual Captioning · Mcginn&#39;s Blog</title>
     <style type="text/css">
     @font-face {
@@ -75,10 +75,10 @@
 
 </style>
 
-    <link rel="preload" href= "../../../../css/style.css?v=20180824" as="style" onload="this.onload=null;this.rel='stylesheet'" />
-    <link rel="stylesheet" href= "../../../../css/mobile.css?v=20180824" media="(max-width: 980px)">
+    <link rel="preload" href="../../../../css/style.css?v=20180824" as="style" onload="this.onload=null;this.rel='stylesheet'">
+    <link rel="stylesheet" href="../../../../css/mobile.css?v=20180824" media="(max-width: 980px)">
     
-    <link rel="preload" href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.2.5/jquery.fancybox.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'" />
+    <link rel="preload" href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.2.5/jquery.fancybox.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
     
     <!-- /*! loadCSS. [c]2017 Filament Group, Inc. MIT License */
 /* This file is meant as a standalone workflow for
@@ -187,10 +187,10 @@
 }( typeof global !== "undefined" ? global : this ) );
 </script>
 
-    <link rel="icon" href= "../../../../assets/m.ico" />
-    <link rel="preload" href="https://cdn.jsdelivr.net/npm/webfontloader@1.6.28/webfontloader.min.js" as="script" />
-    <link rel="preload" href="https://cdn.jsdelivr.net/npm/jquery@3.3.1/dist/jquery.min.js" as="script" />
-    <link rel="preload" href="../../../../scripts/main.js" as="script" />
+    <link rel="icon" href="../../../../assets/m.ico">
+    <link rel="preload" href="https://cdn.jsdelivr.net/npm/webfontloader@1.6.28/webfontloader.min.js" as="script">
+    <link rel="preload" href="https://cdn.jsdelivr.net/npm/jquery@3.3.1/dist/jquery.min.js" as="script">
+    <link rel="preload" href="../../../../scripts/main.js" as="script">
     <link rel="preload" as="font" href="../../../../font/Oswald-Regular.ttf" crossorigin>
     <link rel="preload" as="font" href="https://at.alicdn.com/t/font_327081_1dta1rlogw17zaor.woff" crossorigin>
     
@@ -214,14 +214,14 @@
     
     <div class="banner">
             <div class="blog-title">
-                <a href="../../../../index.html" >Mcginn&#39;s Blog</a>
+                <a href="../../../../index.html">Mcginn&#39;s Blog</a>
             </div>
             <div class="post-title">
                 <a href="#" class="post-name">论文笔记 Semantic Compositional Networks for Visual Captioning</a>
             </div>
     </div>
     
-    <a class="home-link" href=/>Mcginn's Blog</a>
+    <a class="home-link" href="/">Mcginn's Blog</a>
 </header>
     <div class="wrapper">
         <div class="site-intro" style="
@@ -396,8 +396,8 @@ height:50vh;
             <main class="main post-page">
     <article class="article-entry">
         <h3 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h3><p>​    该论文提出了语义组合网络(Semantic Compositional Network, SCN)，其有效利用语义概念（标签）来达到效果比较好的图文生成。</p>
-<p><img src="https://github.com/McGinn7/mcginn7.github.io/blob/master/img/temp/1534597565116.png?raw=true" alt=""></p>
-<h3 id="Semantic-compositional-networks"><a href="#Semantic-compositional-networks" class="headerlink" title="Semantic compositional networks"></a>Semantic compositional networks</h3><p><img src="https://github.com/McGinn7/mcginn7.github.io/blob/master/img/temp/1534597459535.png?raw=true" alt=""></p>
+<p><img src="https://github.com/McGinn7/mcginn7.github.io/blob/master/img/temp/1534597565116.png?raw=true" alt></p>
+<h3 id="Semantic-compositional-networks"><a href="#Semantic-compositional-networks" class="headerlink" title="Semantic compositional networks"></a>Semantic compositional networks</h3><p><img src="https://github.com/McGinn7/mcginn7.github.io/blob/master/img/temp/1534597459535.png?raw=true" alt></p>
 <ul>
 <li><p><strong>模型基础</strong></p>
 <p>使用CNN提取图像特征，RNN作文字生成。</p>
@@ -421,7 +421,7 @@ s_i = \sigma(MLP(v_i))</script><p>$s_i$表示每个标签的概率，也可以�
 \frac 1N\sum_{i=1}^N \sum_{k=1}^K {(y_{ik}\log s_{ik}+(1-y_{ik}\log(1-s_{ik})))}</script></li>
 <li><p><strong>SCN-RNN</strong></p>
 <p>这一步就是将语义标签嵌入到RNN中。 </p>
-<p><img src="https://github.com/McGinn7/mcginn7.github.io/blob/master/img/temp/1534596069120.png?raw=true" alt=""></p>
+<p><img src="https://github.com/McGinn7/mcginn7.github.io/blob/master/img/temp/1534596069120.png?raw=true" alt></p>
 <p>嵌入相关公式：</p>
 <script type="math/tex; mode=display">
 \hat x_{t-1}=W_bs\bigodot W_cx_{t-1} \\
@@ -435,18 +435,18 @@ h_t = \sigma(W_a\hat x_{t-1} + U_a\hat h_{t-1} + z)</script></li>
 <h3 id="结果"><a href="#结果" class="headerlink" title="结果"></a>结果</h3><ul>
 <li>在数据集COCO和Youtube2Text的各个评估指标全面提升。</li>
 </ul>
-<p><img src="https://github.com/McGinn7/mcginn7.github.io/blob/master/img/temp/1534596916958.png?raw=true" alt=""></p>
-<p><img src="https://github.com/McGinn7/mcginn7.github.io/blob/master/img/temp/1534596858609.png?raw=true" alt=""></p>
+<p><img src="https://github.com/McGinn7/mcginn7.github.io/blob/master/img/temp/1534596916958.png?raw=true" alt></p>
+<p><img src="https://github.com/McGinn7/mcginn7.github.io/blob/master/img/temp/1534596858609.png?raw=true" alt></p>
 
     </article>
     <!-- license  -->
     
         <div class="license-wrapper">
             <p>原文作者：<a href="http://mcginn7.github.io">Mcginn</a>
-            <p>原文链接：<a href="http://mcginn7.github.io/2018/08/18/论文笔记 Semantic Compositional Networks for Visual Captioning/">http://mcginn7.github.io/2018/08/18/论文笔记 Semantic Compositional Networks for Visual Captioning/</a>
-            <p>发表日期：<a href="http://mcginn7.github.io/2018/08/18/论文笔记 Semantic Compositional Networks for Visual Captioning/">August 18th 2018, 8:58:18 pm</a>
-            <p>更新日期：<a href="http://mcginn7.github.io/2018/08/18/论文笔记 Semantic Compositional Networks for Visual Captioning/">October 8th 2018, 8:55:41 pm</a>
-            <p>版权声明：本文采用<a rel="license" href="http://creativecommons.org/licenses/by-nc/4.0/">知识共享署名-非商业性使用 4.0 国际许可协议</a>进行许可</p>
+            </p><p>原文链接：<a href="http://mcginn7.github.io/2018/08/18/论文笔记 Semantic Compositional Networks for Visual Captioning/">http://mcginn7.github.io/2018/08/18/论文笔记 Semantic Compositional Networks for Visual Captioning/</a>
+            </p><p>发表日期：<a href="http://mcginn7.github.io/2018/08/18/论文笔记 Semantic Compositional Networks for Visual Captioning/">August 18th 2018, 8:58:18 pm</a>
+            </p><p>更新日期：<a href="http://mcginn7.github.io/2018/08/18/论文笔记 Semantic Compositional Networks for Visual Captioning/">October 8th 2018, 8:55:41 pm</a>
+            </p><p>版权声明：本文采用<a rel="license" href="http://creativecommons.org/licenses/by-nc/4.0/">知识共享署名-非商业性使用 4.0 国际许可协议</a>进行许可</p>
         </div>
     
     <!-- paginator  -->
@@ -454,7 +454,7 @@ h_t = \sigma(W_a\hat x_{t-1} + U_a\hat h_{t-1} + z)</script></li>
         <li class="next">
             
                 <div class="nextSlogan">Next Post</div>
-                <a href= "../../../10/04/DOMjudge配置/" title= "DOMjudge 配置">
+                <a href="../../../10/04/DOMjudge配置/" title="DOMjudge 配置">
                     <div class="nextTitle">DOMjudge 配置</div>
                 </a>
             
@@ -462,7 +462,7 @@ h_t = \sigma(W_a\hat x_{t-1} + U_a\hat h_{t-1} + z)</script></li>
         <li class="previous">
             
                 <div class="prevSlogan">Previous Post</div>
-                <a href= "../../../07/19/The Binding of Isaac Afterbirth+总结/" title= "The Binding of Isaac:Afterbirth+总结">
+                <a href="../../../07/19/The Binding of Isaac Afterbirth+总结/" title="The Binding of Isaac:Afterbirth+总结">
                     <div class="prevTitle">The Binding of Isaac:Afterbirth+总结</div>
                 </a>
             
@@ -474,6 +474,23 @@ h_t = \sigma(W_a\hat x_{t-1} + U_a\hat h_{t-1} + z)</script></li>
 <!-- City版安装代码已完成 -->
     
     
+<div id="container"></div>
+<link rel="stylesheet" href="https://imsun.github.io/gitment/style/default.css">
+<script src="https://imsun.github.io/gitment/dist/gitment.browser.js"></script>
+<script>
+    var gitment = new Gitment({
+        // id: "论文笔记 Semantic Compositional Networks for Visual Captioning", // 可选。默认为 location.href
+        owner: 'mcginn7',
+        repo: 'https://github.com/McGinn7/mcginn7.github.io.git',
+        oauth: {
+            client_id: '38ea5d8ced7dd6f7499f',
+            client_secret: 'ec2ab733801f235f78cd1d8016be50f7b92dd808',
+        },
+    })
+    gitment.render('container')
+
+</script>
+
     <!-- partial('_partial/comment/changyan') -->
     <!--PC版-->
 
@@ -494,13 +511,13 @@ h_t = \sigma(W_a\hat x_{t-1} + U_a\hat h_{t-1} + z)</script></li>
     
         
             
-                <a href="mailto:mingqinchen@foxmail.com" class="iconfont-archer email" title=email ></a>
+                <a href="mailto:mingqinchen@foxmail.com" class="iconfont-archer email" title="email"></a>
             
         
     
         
             
-                <a href="//github.com/mcginn7" class="iconfont-archer github" target="_blank" title=github></a>
+                <a href="//github.com/mcginn7" class="iconfont-archer github" target="_blank" title="github"></a>
             
         
     
@@ -715,10 +732,6 @@ top:50vh;
     
     
     
-    
-    
-    
-    
     <div class="total-and-search">
         <div class="total-archive">
         Total : 12
@@ -737,27 +750,27 @@ top:50vh;
     
     
         <li class="archive-post-item">
-            <span class="archive-post-date">05/31</span><a class="archive-post-title" href= "" >AhoCorasick Algorithm</a>
+            <span class="archive-post-date">05/31</span><a class="archive-post-title" href>AhoCorasick Algorithm</a>
         </li>
     
     
         <li class="archive-post-item">
-            <span class="archive-post-date">05/24</span><a class="archive-post-title" href= "../../24/Knuth-Morris-Pratt-Algorithm/" >Knuth-Morris-Pratt Algorithm</a>
+            <span class="archive-post-date">05/24</span><a class="archive-post-title" href="../../24/Knuth-Morris-Pratt-Algorithm/">Knuth-Morris-Pratt Algorithm</a>
         </li>
     
     
         <li class="archive-post-item">
-            <span class="archive-post-date">05/12</span><a class="archive-post-title" href= "../../12/ICPC-Resolver-踩坑/" >ICPC Resolver 踩坑</a>
+            <span class="archive-post-date">05/12</span><a class="archive-post-title" href="../../12/ICPC-Resolver-踩坑/">ICPC Resolver 踩坑</a>
         </li>
     
     
         <li class="archive-post-item">
-            <span class="archive-post-date">04/03</span><a class="archive-post-title" href= "../../../04/03/斜率优化/" >斜率优化</a>
+            <span class="archive-post-date">04/03</span><a class="archive-post-title" href="../../../04/03/斜率优化/">斜率优化</a>
         </li>
     
     
         <li class="archive-post-item">
-            <span class="archive-post-date">03/31</span><a class="archive-post-title" href= "../../../03/31/Nowcoder-出题人的数组/" >Nowcoder-出题人的数组</a>
+            <span class="archive-post-date">03/31</span><a class="archive-post-title" href="../../../03/31/Nowcoder-出题人的数组/">Nowcoder-出题人的数组</a>
         </li>
     
     
@@ -771,65 +784,65 @@ top:50vh;
     
     
         <li class="archive-post-item">
-            <span class="archive-post-date">10/09</span><a class="archive-post-title" href= "../../../../2018/10/09/论文笔记-Tips-and-Tricks-for-Visual-Question-Answering/" >论文笔记 Tips and Tricks for Visual Question Answering</a>
+            <span class="archive-post-date">10/09</span><a class="archive-post-title" href="../../../../2018/10/09/论文笔记-Tips-and-Tricks-for-Visual-Question-Answering/">论文笔记 Tips and Tricks for Visual Question Answering</a>
         </li>
     
     
         <li class="archive-post-item">
-            <span class="archive-post-date">10/08</span><a class="archive-post-title" href= "../../../../2018/10/08/Vim-for-windows-配置/" >Windows 下使用 Vim</a>
+            <span class="archive-post-date">10/08</span><a class="archive-post-title" href="../../../../2018/10/08/Vim-for-windows-配置/">Windows 下使用 Vim</a>
         </li>
     
     
         <li class="archive-post-item">
-            <span class="archive-post-date">10/04</span><a class="archive-post-title" href= "../../../../2018/10/04/DOMjudge配置/" >DOMjudge 配置</a>
+            <span class="archive-post-date">10/04</span><a class="archive-post-title" href="../../../../2018/10/04/DOMjudge配置/">DOMjudge 配置</a>
         </li>
     
     
         <li class="archive-post-item">
-            <span class="archive-post-date">08/18</span><a class="archive-post-title" href= "../../../../2018/08/18/论文笔记 Semantic Compositional Networks for Visual Captioning/" >论文笔记 Semantic Compositional Networks for Visual Captioning</a>
+            <span class="archive-post-date">08/18</span><a class="archive-post-title" href="../../../../2018/08/18/论文笔记 Semantic Compositional Networks for Visual Captioning/">论文笔记 Semantic Compositional Networks for Visual Captioning</a>
         </li>
     
     
         <li class="archive-post-item">
-            <span class="archive-post-date">07/19</span><a class="archive-post-title" href= "../../../../2018/07/19/The Binding of Isaac Afterbirth+总结/" >The Binding of Isaac:Afterbirth+总结</a>
+            <span class="archive-post-date">07/19</span><a class="archive-post-title" href="../../../../2018/07/19/The Binding of Isaac Afterbirth+总结/">The Binding of Isaac:Afterbirth+总结</a>
         </li>
     
     
         <li class="archive-post-item">
-            <span class="archive-post-date">07/17</span><a class="archive-post-title" href= "../../../../2018/07/17/论文阅读记录/" >论文阅读记录</a>
+            <span class="archive-post-date">07/17</span><a class="archive-post-title" href="../../../../2018/07/17/论文阅读记录/">论文阅读记录</a>
         </li>
     
     
         <li class="archive-post-item">
-            <span class="archive-post-date">06/05</span><a class="archive-post-title" href= "../../../../2018/06/05/apt-offline管理Ubuntu离线安装软件包/" >Ubuntu离线安装软件包</a>
+            <span class="archive-post-date">06/05</span><a class="archive-post-title" href="../../../../2018/06/05/apt-offline管理Ubuntu离线安装软件包/">Ubuntu离线安装软件包</a>
         </li>
     
-    </div>
+    </ul></div>
   </div>
         <div class="sidebar-panel-tags">
     <div class="sidebar-tags-name">
-    
-        <span class="sidebar-tag-name" data-tags="domjudge"><span class="iconfont-archer">&#xe606;</span>domjudge</span>
     
         <span class="sidebar-tag-name" data-tags="AhoCorasick"><span class="iconfont-archer">&#xe606;</span>AhoCorasick</span>
     
         <span class="sidebar-tag-name" data-tags="AC自动机"><span class="iconfont-archer">&#xe606;</span>AC自动机</span>
     
-        <span class="sidebar-tag-name" data-tags="KMP"><span class="iconfont-archer">&#xe606;</span>KMP</span>
+        <span class="sidebar-tag-name" data-tags="domjudge"><span class="iconfont-archer">&#xe606;</span>domjudge</span>
     
         <span class="sidebar-tag-name" data-tags="ICPC"><span class="iconfont-archer">&#xe606;</span>ICPC</span>
     
         <span class="sidebar-tag-name" data-tags="贪心"><span class="iconfont-archer">&#xe606;</span>贪心</span>
+    
+        <span class="sidebar-tag-name" data-tags="KMP"><span class="iconfont-archer">&#xe606;</span>KMP</span>
     
         <span class="sidebar-tag-name" data-tags="斜率优化"><span class="iconfont-archer">&#xe606;</span>斜率优化</span>
     
     </div>
     <div class="iconfont-archer sidebar-tags-empty">&#xe678;</div>
     <div class="tag-load-fail" style="display: none; color: #ccc; font-size: 0.6rem;">
-    缺失模块。<br/>
-    1、请确保node版本大于6.2<br/>
-    2、在博客根目录（注意不是archer根目录）执行以下命令：<br/>
-    <span style="color: #f75357; font-size: 1rem; line-height: 2rem;">npm i hexo-generator-json-content --save</span><br/>
+    缺失模块。<br>
+    1、请确保node版本大于6.2<br>
+    2、在博客根目录（注意不是archer根目录）执行以下命令：<br>
+    <span style="color: #f75357; font-size: 1rem; line-height: 2rem;">npm i hexo-generator-json-content --save</span><br>
     3、在根目录_config.yml里添加配置：
     <pre style="color: #787878; font-size: 0.6rem;">
 jsonContent:
