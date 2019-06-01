@@ -274,7 +274,7 @@ height:50vh;
                 
                 
                     <div class="post-intro-read">
-                        <span>字数统计: <span class="post-count word-count">680</span>阅读时长: <span class="post-count reading-time">3 min</span></span>
+                        <span>字数统计: <span class="post-count word-count">687</span>阅读时长: <span class="post-count reading-time">3 min</span></span>
                     </div>
                 
                 <div class="post-intro-meta">
@@ -412,6 +412,9 @@ height:50vh;
 <p>对应于 KMP，AC 自动机需要构建<strong>最长公共前后缀</strong>（LCPS，Longese Common proper Prefix and Suffix），即对于树上任意节点 $u$，找出<strong>最大树深</strong>的节点 $v$，满足 $S(v)$ 是 $S(u)$ 的<strong>真后缀</strong>。因为字典树上的任意节点 $x$ 所表示的 $S(x)$ 都是前缀，故起名最长公共前后缀。</p>
 <p>通常将节点 $v$ 记为 $fail(u)$，表示串 $S(u)$ 失配时的跳转节点，出于可读性的考虑，本文记为 $lcps(u)$。</p>
 <p>$lcps(u)$  的<strong>构建过程</strong>：记节点 $u$ 的父节点为 $f(u)$，与其连边的字符为 $c$。若 $lcps(f(u))$ 存在 $c$ 的出边，则 $lcps(u)=trans(lcps(f(u)), c)$。否则继续找 $lcps(lcps(f(u)))$，直至找到或到达根节点（说明未找到）。</p>
+<img src="/2019/05/31/AhoCorasick-Algorithm/20190601092923.png">
+<center>图 1. lcps(u) 的构建</center>
+
 <h2 id="检索过程"><a href="#检索过程" class="headerlink" title="检索过程"></a>检索过程</h2><p>假设已知 $lcps(u)$，且字典树节点 $u$ 与文本串 $T[0:i]$ 匹配，即 $T[i-|S(u)|+1:i] = S(u)$。继续匹配有两种情形：</p>
 <ol>
 <li><p>$trans(u, T[i+1]) \neq NULL$，则匹配长度 +1。</p>
@@ -429,7 +432,7 @@ height:50vh;
             <p>原文作者：<a href="http://mcginn7.github.io">Mcginn</a>
             <p>原文链接：<a href="http://mcginn7.github.io/2019/05/31/AhoCorasick-Algorithm/">http://mcginn7.github.io/2019/05/31/AhoCorasick-Algorithm/</a>
             <p>发表日期：<a href="http://mcginn7.github.io/2019/05/31/AhoCorasick-Algorithm/">May 31st 2019, 10:23:33 am</a>
-            <p>更新日期：<a href="http://mcginn7.github.io/2019/05/31/AhoCorasick-Algorithm/">May 31st 2019, 2:06:53 pm</a>
+            <p>更新日期：<a href="http://mcginn7.github.io/2019/05/31/AhoCorasick-Algorithm/">June 1st 2019, 9:30:30 am</a>
             <p>版权声明：本文采用<a rel="license" href="http://creativecommons.org/licenses/by-nc/4.0/">知识共享署名-非商业性使用 4.0 国际许可协议</a>进行许可</p>
         </div>
     
@@ -568,6 +571,12 @@ top:50vh;
     <div class="sidebar-content sidebar-content-show-archive">
           <div class="sidebar-panel-archives">
     <!-- 在ejs中将archive按照时间排序 -->
+    
+    
+    
+    
+    
+    
     
     
     
