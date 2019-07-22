@@ -346,6 +346,39 @@
     
     
     <article class="index-post">
+        <a class="abstract-title" href="../../2019/07/22/B-Tree/">
+            
+                <span>B-Tree</span>
+        </a>
+        <div class="abstract-content">
+            简介简单来说，B-Tree 是针对大数据存取的平衡树，考虑了磁盘读取对查找效率的影响。
+B-Tree 的主要思想是通过减少磁盘读取次数来提高数据存取性能，而磁盘读取次数与树高相关。故B-Tree 允许每个节点拥有多于 2 个的子节点来减小树高。
+与二叉平衡树类似，B-Tree 中的每个节点存储若干键值（keys）以及子节点地址。
+
+图 1. B-Tree 结构图
+
+定义和性质阶（order）：将子节点的允许最大数量定义为阶，如图 1 为 5 阶树。
+$m$ 阶的 B-Tree 满足以下定义：
+
+每个节点最多能有 $m$ 个子节点。
+每个内部节点至少有 $\lceil \frac m2\r...
+        </div>
+        <div class="abstract-post-meta">
+            <!-- date  -->
+            <div class="abstract-date">
+                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2019/07/22</span>
+            </div>
+            <!-- tags  -->
+            
+        </div>
+    </article>
+    
+    
+    
+    
+    
+    
+    <article class="index-post">
         <a class="abstract-title" href="../../2019/05/31/AhoCorasick-Algorithm/">
             
                 <span>AhoCorasick Algorithm</span>
@@ -741,9 +774,12 @@ $A_i, B_i \le ...
     
     
     
+    
+    
+    
     <div class="total-and-search">
         <div class="total-archive">
-        Total : 12
+        Total : 13
         </div>
         <!-- search  -->
         
@@ -759,17 +795,22 @@ $A_i, B_i \le ...
     
     
         <li class="archive-post-item">
-            <span class="archive-post-date">05/31</span><a class="archive-post-title" href>AhoCorasick Algorithm</a>
+            <span class="archive-post-date">07/22</span><a class="archive-post-title" href>B-Tree</a>
         </li>
     
     
         <li class="archive-post-item">
-            <span class="archive-post-date">05/24</span><a class="archive-post-title" href="../../24/Knuth-Morris-Pratt-Algorithm/">Knuth-Morris-Pratt Algorithm</a>
+            <span class="archive-post-date">05/31</span><a class="archive-post-title" href="../../../05/31/AhoCorasick-Algorithm/">AhoCorasick Algorithm</a>
         </li>
     
     
         <li class="archive-post-item">
-            <span class="archive-post-date">05/12</span><a class="archive-post-title" href="../../12/ICPC-Resolver-踩坑/">ICPC Resolver 踩坑</a>
+            <span class="archive-post-date">05/24</span><a class="archive-post-title" href="../../../05/24/Knuth-Morris-Pratt-Algorithm/">Knuth-Morris-Pratt Algorithm</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">05/12</span><a class="archive-post-title" href="../../../05/12/ICPC-Resolver-踩坑/">ICPC Resolver 踩坑</a>
         </li>
     
     
@@ -831,11 +872,11 @@ $A_i, B_i \le ...
         <div class="sidebar-panel-tags">
     <div class="sidebar-tags-name">
     
+        <span class="sidebar-tag-name" data-tags="domjudge"><span class="iconfont-archer">&#xe606;</span>domjudge</span>
+    
         <span class="sidebar-tag-name" data-tags="AhoCorasick"><span class="iconfont-archer">&#xe606;</span>AhoCorasick</span>
     
         <span class="sidebar-tag-name" data-tags="AC自动机"><span class="iconfont-archer">&#xe606;</span>AC自动机</span>
-    
-        <span class="sidebar-tag-name" data-tags="domjudge"><span class="iconfont-archer">&#xe606;</span>domjudge</span>
     
         <span class="sidebar-tag-name" data-tags="KMP"><span class="iconfont-archer">&#xe606;</span>KMP</span>
     

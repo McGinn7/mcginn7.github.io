@@ -359,6 +359,39 @@ height:50vh;
     
     
     <article class="index-post">
+        <a class="abstract-title" href="2019/07/22/B-Tree/">
+            
+                <span>B-Tree</span>
+        </a>
+        <div class="abstract-content">
+            简介简单来说，B-Tree 是针对大数据存取的平衡树，考虑了磁盘读取对查找效率的影响。
+B-Tree 的主要思想是通过减少磁盘读取次数来提高数据存取性能，而磁盘读取次数与树高相关。故B-Tree 允许每个节点拥有多于 2 个的子节点来减小树高。
+与二叉平衡树类似，B-Tree 中的每个节点存储若干键值（keys）以及子节点地址。
+
+图 1. B-Tree 结构图
+
+定义和性质阶（order）：将子节点的允许最大数量定义为阶，如图 1 为 5 阶树。
+$m$ 阶的 B-Tree 满足以下定义：
+
+每个节点最多能有 $m$ 个子节点。
+每个内部节点至少有 $\lceil \frac m2\r...
+        </div>
+        <div class="abstract-post-meta">
+            <!-- date  -->
+            <div class="abstract-date">
+                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2019/07/22</span>
+            </div>
+            <!-- tags  -->
+            
+        </div>
+    </article>
+    
+    
+    
+    
+    
+    
+    <article class="index-post">
         <a class="abstract-title" href="2019/05/31/AhoCorasick-Algorithm/">
             
                 <span>AhoCorasick Algorithm</span>
@@ -687,48 +720,6 @@ h_t ...
         </div>
     </article>
     
-    
-    
-    
-    
-    
-    <article class="index-post">
-        <a class="abstract-title" href="2018/07/19/The Binding of Isaac Afterbirth+总结/">
-            
-                <span>The Binding of Isaac:Afterbirth+总结</span>
-        </a>
-        <div class="abstract-content">
-            
-
-献血袋：扣半颗红心（子宫层一颗），掉落随机数量（通常1）的硬币。献血袋很强，很容易刷起来。
-
-
-手术刀：在地上制造褐色和蓝色两个通道并传送，传送出来时有短暂无敌，可以做到：
-
-白嫖卖血机，喂黑小孩，进出刺房等；
-进BOSS房和挑战房时，开箱子后直接传出去。
-
-
-在白心的隐藏房，使用存血罐可以吐出白心。配合1+1和肉刀可以生成N多肉哥。
-
-钥匙通常留给商店使用。
-
-睫毛膏是负面道具，不要拿。
-
-商店高概率刷出复眼（复制本房间的道具，未购买的道具也可以复制），最好等出了打折券再用。
-
-20分钟内打败妈腿会开Boss Rush房；30分钟内打败妈心开启Blue Womb(蓝色子宫，打hus...
-        </div>
-        <div class="abstract-post-meta">
-            <!-- date  -->
-            <div class="abstract-date">
-                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2018/07/19</span>
-            </div>
-            <!-- tags  -->
-            
-        </div>
-    </article>
-    
     <!-- paginator  -->
     
     <nav class="page-nav">
@@ -1040,9 +1031,12 @@ h_t ...
     
     
     
+    
+    
+    
     <div class="total-and-search">
         <div class="total-archive">
-        Total : 12
+        Total : 13
         </div>
         <!-- search  -->
         
@@ -1058,17 +1052,22 @@ h_t ...
     
     
         <li class="archive-post-item">
-            <span class="archive-post-date">05/31</span><a class="archive-post-title" href>AhoCorasick Algorithm</a>
+            <span class="archive-post-date">07/22</span><a class="archive-post-title" href>B-Tree</a>
         </li>
     
     
         <li class="archive-post-item">
-            <span class="archive-post-date">05/24</span><a class="archive-post-title" href="../../24/Knuth-Morris-Pratt-Algorithm/">Knuth-Morris-Pratt Algorithm</a>
+            <span class="archive-post-date">05/31</span><a class="archive-post-title" href="../../../05/31/AhoCorasick-Algorithm/">AhoCorasick Algorithm</a>
         </li>
     
     
         <li class="archive-post-item">
-            <span class="archive-post-date">05/12</span><a class="archive-post-title" href="../../12/ICPC-Resolver-踩坑/">ICPC Resolver 踩坑</a>
+            <span class="archive-post-date">05/24</span><a class="archive-post-title" href="../../../05/24/Knuth-Morris-Pratt-Algorithm/">Knuth-Morris-Pratt Algorithm</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">05/12</span><a class="archive-post-title" href="../../../05/12/ICPC-Resolver-踩坑/">ICPC Resolver 踩坑</a>
         </li>
     
     
@@ -1130,11 +1129,11 @@ h_t ...
         <div class="sidebar-panel-tags">
     <div class="sidebar-tags-name">
     
+        <span class="sidebar-tag-name" data-tags="domjudge"><span class="iconfont-archer">&#xe606;</span>domjudge</span>
+    
         <span class="sidebar-tag-name" data-tags="AhoCorasick"><span class="iconfont-archer">&#xe606;</span>AhoCorasick</span>
     
         <span class="sidebar-tag-name" data-tags="AC自动机"><span class="iconfont-archer">&#xe606;</span>AC自动机</span>
-    
-        <span class="sidebar-tag-name" data-tags="domjudge"><span class="iconfont-archer">&#xe606;</span>domjudge</span>
     
         <span class="sidebar-tag-name" data-tags="KMP"><span class="iconfont-archer">&#xe606;</span>KMP</span>
     
