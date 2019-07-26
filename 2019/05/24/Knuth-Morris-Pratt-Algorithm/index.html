@@ -272,7 +272,7 @@ height:50vh;
                 
                 
                     <div class="post-intro-read">
-                        <span>字数统计: <span class="post-count word-count">550</span>阅读时长: <span class="post-count reading-time">2 min</span></span>
+                        <span>字数统计: <span class="post-count word-count">552</span>阅读时长: <span class="post-count reading-time">2 min</span></span>
                     </div>
                 
                 <div class="post-intro-meta">
@@ -415,9 +415,7 @@ LPS(abcdab)=ab</script><h2 id="检索过程"><a href="#检索过程" class="head
 <li>$T[i+ 1] \neq W[j+1]$，此时显然要重新找单词串的一个<strong>最长</strong>前缀 $W[0:k], k\lt j$，使得 $T[i-k:i]=W[0:k]$ 且 $T[i + 1]=W[k+ 1]$，继续与 $i+1$ 结尾的文本串匹配。</li>
 </ol>
 <img src="/2019/05/24/Knuth-Morris-Pratt-Algorithm/1555835282553.png" title="情形 2 示意图">
-<center>图 1. 情形 2 示意图。虚线框表示相同部分。</center>
-
-<p>此时 $W[0:k]$ 是 $W[0:j]$ 的后缀，同时其本身是前缀。</p>
+<p><center>图 1. 情形 2 示意图。虚线框表示相同部分。</center><br>此时 $W[0:k]$ 与 $W[0:j]$ 的后缀相同，同时其本身是前缀。</p>
 <p>令 $k=lps(j)$，若 $T[i+1]=W[k+1]$，则继续匹配。否则将 $k$ 视为新的 $j$，则转化成情形 2 相同的子问题。</p>
 <p><strong>时间复杂度</strong>：匹配成功的复杂度是线性的。而匹配失败时会减小单词串的前缀长度，减一长度<strong>至少</strong>对应一次的成功匹配，此时时间复杂度也是线性的。故算法总的时间复杂度是线性的。</p>
 <h2 id="预处理"><a href="#预处理" class="headerlink" title="预处理"></a>预处理</h2><p>对于单词串的最长前后缀 $lps(i)$，本质上是单词串的自我匹配，即<strong>此时文本串为单词串</strong>。对应于检索过程中的两种情形，可以很容易地完成 $lps(i)$ 的构造。</p>
@@ -825,13 +823,13 @@ top:50vh;
         <div class="sidebar-panel-tags">
     <div class="sidebar-tags-name">
     
+        <span class="sidebar-tag-name" data-tags="KMP"><span class="iconfont-archer">&#xe606;</span>KMP</span>
+    
         <span class="sidebar-tag-name" data-tags="AhoCorasick"><span class="iconfont-archer">&#xe606;</span>AhoCorasick</span>
     
         <span class="sidebar-tag-name" data-tags="AC自动机"><span class="iconfont-archer">&#xe606;</span>AC自动机</span>
     
         <span class="sidebar-tag-name" data-tags="domjudge"><span class="iconfont-archer">&#xe606;</span>domjudge</span>
-    
-        <span class="sidebar-tag-name" data-tags="KMP"><span class="iconfont-archer">&#xe606;</span>KMP</span>
     
         <span class="sidebar-tag-name" data-tags="ICPC"><span class="iconfont-archer">&#xe606;</span>ICPC</span>
     
