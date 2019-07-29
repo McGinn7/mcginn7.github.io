@@ -162,6 +162,32 @@ dp(i)=\min _{
   </entry>
   
   <entry>
+    <title>Windows 下使用 Vim</title>
+    <link href="http://mcginn7.github.io/2018/10/10/Vim-for-windows-%E9%85%8D%E7%BD%AE/"/>
+    <id>http://mcginn7.github.io/2018/10/10/Vim-for-windows-配置/</id>
+    <published>2018-10-10T13:18:19.537Z</published>
+    <updated>2019-07-29T13:15:07.819Z</updated>
+    
+    <content type="html"><![CDATA[<h2 id="简要说明"><a href="#简要说明" class="headerlink" title="简要说明"></a>简要说明</h2><p>主要针对 ACM/ICPC 竞赛选手在 Windows 10 系统下使用 vim 编写 C/C++ 代码。</p><p>功能配置：</p><ol><li>编译和运行 *.cpp 文件；</li><li>一键复制代码;</li><li>记事本打开代码。</li></ol><img src="/2018/10/10/Vim-for-windows-配置/1539090544618.png" title="效果图"><p>git bash 和 gvim 都配置了一遍。gvim 使用 Windows 自带的 cmd 运行的话，鼠标是没办法移动光标的，并且配置相对 git bash 较麻烦，所以推荐使用 git bash。</p><h2 id="Vimrc-配置"><a href="#Vimrc-配置" class="headerlink" title="Vimrc 配置"></a>Vimrc 配置</h2><ul><li><p>编辑安装路径下的 vimrc 文件，例如 “D:\Git\etc\vimrc”，配置快捷键。</p><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">set nu ai ci si mouse=a ts=4 sts=4 sw=4</span><br><span class="line">nmap&lt;F2&gt; :vs %&lt;.in &lt;CR&gt;</span><br><span class="line">nmap&lt;F3&gt; :w !clip.exe &lt;CR&gt; &lt;CR&gt;</span><br><span class="line">nmap&lt;F4&gt; :!write % &lt;CR&gt;</span><br><span class="line">nmap&lt;F8&gt; :!./%&lt; &lt; %&lt;.in &lt;CR&gt;</span><br><span class="line">nmap&lt;F9&gt; :!g++ % -o %&lt; -O2 -g -Wall -std=c++11 &lt;CR&gt;</span><br></pre></td></tr></table></figure></li></ul><h2 id="额外配置"><a href="#额外配置" class="headerlink" title="额外配置"></a>额外配置</h2><ul><li><p>vimrc 文件默认有一些配置，可根据需要修改。</p><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">set vb             "这个不关的话，触发某些条件会闪屏</span><br><span class="line">set laststatus=1   "窗口底部状态栏的行数（默认是2），这里设置成1。</span><br><span class="line">au FileType c,cpp setlocal comments-=:// comments+=f:// "取消换行自动注释</span><br></pre></td></tr></table></figure></li></ul><ul><li><p>设置 Ctrl + Alt + T 快捷键启动 Git Bash 终端。</p><ol><li>创建 “git-bash.exe” 的快捷方式，打开快捷方式的属性窗口，修改<strong>起始位置</strong>，并设置快捷键。</li><li>打开<strong>控制面板</strong>，找到 “管理工具”， 将快捷方式复制到该文件夹中。</li></ol></li></ul>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;h2 id=&quot;简要说明&quot;&gt;&lt;a href=&quot;#简要说明&quot; class=&quot;headerlink&quot; title=&quot;简要说明&quot;&gt;&lt;/a&gt;简要说明&lt;/h2&gt;&lt;p&gt;主要针对 ACM/ICPC 竞赛选手在 Windows 10 系统下使用 vim 编写 C/C++ 代码。&lt;/p&gt;
+&lt;p&gt;功
+      
+    
+    </summary>
+    
+    
+      <category term="vim" scheme="http://mcginn7.github.io/tags/vim/"/>
+    
+      <category term="git bash" scheme="http://mcginn7.github.io/tags/git-bash/"/>
+    
+  </entry>
+  
+  <entry>
     <title>论文笔记 Tips and Tricks for Visual Question Answering</title>
     <link href="http://mcginn7.github.io/2018/10/09/%E8%AE%BA%E6%96%87%E7%AC%94%E8%AE%B0-Tips-and-Tricks-for-Visual-Question-Answering/"/>
     <id>http://mcginn7.github.io/2018/10/09/论文笔记-Tips-and-Tricks-for-Visual-Question-Answering/</id>
@@ -175,28 +201,6 @@ dp(i)=\min _{
       
       
         &lt;h2 id=&quot;简介&quot;&gt;&lt;a href=&quot;#简介&quot; class=&quot;headerlink&quot; title=&quot;简介&quot;&gt;&lt;/a&gt;简介&lt;/h2&gt;&lt;p&gt;​    该论文作者取得了 2017 VQA Challenge 的第一，总结一些 tips 和 tricks 来提升 VQA 的表现。&lt;/
-      
-    
-    </summary>
-    
-    
-  </entry>
-  
-  <entry>
-    <title>Windows 下使用 Vim</title>
-    <link href="http://mcginn7.github.io/2018/10/08/Vim-for-windows-%E9%85%8D%E7%BD%AE/"/>
-    <id>http://mcginn7.github.io/2018/10/08/Vim-for-windows-配置/</id>
-    <published>2018-10-08T11:43:06.000Z</published>
-    <updated>2019-04-03T13:44:50.000Z</updated>
-    
-    <content type="html"><![CDATA[<h2 id="简要说明"><a href="#简要说明" class="headerlink" title="简要说明"></a>简要说明</h2><p>主要针对 ACM/ICPC 竞赛选手在 Windows 10 系统下使用 vim 编写 C/C++ 代码。</p><p>功能配置：</p><ol><li>编译和运行 *.cpp 文件；</li><li>一键复制代码;</li><li>记事本打开代码。</li></ol><img src="/2018/10/08/Vim-for-windows-配置/1539090544618.png" title="效果图"><p>git bash 和 gvim 都配置了一遍。gvim 使用 Windows 自带的 cmd 运行的话，鼠标是没办法移动光标的，并且配置相对 git bash 较麻烦，所以推荐使用 git bash。</p><h2 id="Git-bash-配置"><a href="#Git-bash-配置" class="headerlink" title="Git bash 配置"></a>Git bash 配置</h2><ul><li><p>搜索并下载 “git for windows”。</p></li><li><p>编辑安装路径下的 vimrc 文件，例如 “D:\Git\etc\vimrc”，配置快捷键。</p><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">set nu ai ci si mouse=a ts=4 sts=4 sw=4</span><br><span class="line">nmap&lt;F2&gt; :vs %&lt;.in &lt;CR&gt;</span><br><span class="line">nmap&lt;F3&gt; :w !clip.exe &lt;CR&gt; &lt;CR&gt;</span><br><span class="line">nmap&lt;F4&gt; :!write % &lt;CR&gt;</span><br><span class="line">nmap&lt;F8&gt; :!./%&lt; &lt; %&lt;.in &lt;CR&gt;</span><br><span class="line">nmap&lt;F9&gt; :!g++ % -o %&lt; -O2 -g -Wall -std=c++11 &lt;CR&gt;</span><br><span class="line">au FileType c,cpp setlocal comments-=:// comments+=f://</span><br></pre></td></tr></table></figure><p><code>au FileType c,cpp setlocal comments-=:// comments+=f://</code> —— 取消换行自动注释。</p></li><li><p>vimrc 文件默认有一些配置，可根据需要修改。</p><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">set vb             "这个不关的话，触发某些条件会闪屏</span><br><span class="line">set laststatus=1   "窗口底部状态栏的行数（默认是2），这里设置成1。</span><br></pre></td></tr></table></figure></li></ul>]]></content>
-    
-    <summary type="html">
-    
-      
-      
-        &lt;h2 id=&quot;简要说明&quot;&gt;&lt;a href=&quot;#简要说明&quot; class=&quot;headerlink&quot; title=&quot;简要说明&quot;&gt;&lt;/a&gt;简要说明&lt;/h2&gt;&lt;p&gt;主要针对 ACM/ICPC 竞赛选手在 Windows 10 系统下使用 vim 编写 C/C++ 代码。&lt;/p&gt;
-&lt;p&gt;功
       
     
     </summary>

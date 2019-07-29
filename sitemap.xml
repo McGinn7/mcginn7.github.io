@@ -2,6 +2,13 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>http://mcginn7.github.io/2018/10/10/Vim-for-windows-%E9%85%8D%E7%BD%AE/</loc>
+    
+    <lastmod>2019-07-29T13:15:07.819Z</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>http://mcginn7.github.io/2019/05/24/Knuth-Morris-Pratt-Algorithm/</loc>
     
     <lastmod>2019-07-26T08:50:05.817Z</lastmod>
@@ -40,13 +47,6 @@
     <loc>http://mcginn7.github.io/2019/03/31/Nowcoder-%E5%87%BA%E9%A2%98%E4%BA%BA%E7%9A%84%E6%95%B0%E7%BB%84/</loc>
     
     <lastmod>2019-04-03T14:01:43.000Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>http://mcginn7.github.io/2018/10/08/Vim-for-windows-%E9%85%8D%E7%BD%AE/</loc>
-    
-    <lastmod>2019-04-03T13:44:50.000Z</lastmod>
     
   </url>
   
