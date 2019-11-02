@@ -453,7 +453,7 @@ Answer = \frac 1 n \sum_{0\le i \lt n} |C(\rho_n^i)|
 <p><strong>分析</strong> 由于中心点的大珠子与所有小珠子均相邻，因此可从 $k$ 种颜色中选一种颜色对大珠子着色，问题转化为使用 $k-1$ 种颜色对普通项链着色。</p>
 <p>进而本问题与“POJ 2888 Magic Bracelet” 类似，问题进一步转化成长为 $L$ 的项链相邻珠子不同色的着色方案数。使用动态规划思想解决，$dp(i, j)$ 表示前 $i$ 个珠子最后一个颜色为 $j$ 的方案数，转移方程为</p>
 <script type="math/tex; mode=display">
-dp(i, j) = \sum{dp(i-1,k)} - dp(i-1, j)</script><p>项链需要首尾相接问题，此时通过 $O(k)$ 枚举第一个元素的颜色解决。由于颜色数 $k$ 很大，因此不能使用线性递推的动态规划做法。</p>
+dp(i, j) = \sum{dp(i-1,k)} - dp(i-1, j)</script><p>项链需要解决首尾相接问题，此时通过 $O(k)$ 枚举第一个元素的颜色解决。由于颜色数 $k$ 很大，因此不能使用线性递推的动态规划做法。</p>
 <p>在枚举第一个元素的颜色时，不失一般性，假设第一个元素的颜色为 1，颜色 2,…,k 是等价的。换句话说，$dp(i, j)$ 只有两种值 $dp(i, 1)$ 和 $dp(i, c), c=2,\dots, k$，因此转移方程可写成</p>
 <script type="math/tex; mode=display">
 dp(i, 1) = dp(i-1, 1)+(k-1)dp(i, c) - dp(i-1,1) \\
@@ -868,26 +868,6 @@ top:50vh;
     
     
     
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
     <div class="total-and-search">
         <div class="total-archive">
         Total : 14
@@ -988,23 +968,23 @@ top:50vh;
         <div class="sidebar-panel-tags">
     <div class="sidebar-tags-name">
     
-        <span class="sidebar-tag-name" data-tags="AhoCorasick"><span class="iconfont-archer">&#xe606;</span>AhoCorasick</span>
-    
-        <span class="sidebar-tag-name" data-tags="AC自动机"><span class="iconfont-archer">&#xe606;</span>AC自动机</span>
-    
         <span class="sidebar-tag-name" data-tags="domjudge"><span class="iconfont-archer">&#xe606;</span>domjudge</span>
     
         <span class="sidebar-tag-name" data-tags="KMP"><span class="iconfont-archer">&#xe606;</span>KMP</span>
+    
+        <span class="sidebar-tag-name" data-tags="ICPC"><span class="iconfont-archer">&#xe606;</span>ICPC</span>
+    
+        <span class="sidebar-tag-name" data-tags="贪心"><span class="iconfont-archer">&#xe606;</span>贪心</span>
     
         <span class="sidebar-tag-name" data-tags="vim"><span class="iconfont-archer">&#xe606;</span>vim</span>
     
         <span class="sidebar-tag-name" data-tags="git bash"><span class="iconfont-archer">&#xe606;</span>git bash</span>
     
+        <span class="sidebar-tag-name" data-tags="AhoCorasick"><span class="iconfont-archer">&#xe606;</span>AhoCorasick</span>
+    
+        <span class="sidebar-tag-name" data-tags="AC自动机"><span class="iconfont-archer">&#xe606;</span>AC自动机</span>
+    
         <span class="sidebar-tag-name" data-tags="polya"><span class="iconfont-archer">&#xe606;</span>polya</span>
-    
-        <span class="sidebar-tag-name" data-tags="ICPC"><span class="iconfont-archer">&#xe606;</span>ICPC</span>
-    
-        <span class="sidebar-tag-name" data-tags="贪心"><span class="iconfont-archer">&#xe606;</span>贪心</span>
     
         <span class="sidebar-tag-name" data-tags="斜率优化"><span class="iconfont-archer">&#xe606;</span>斜率优化</span>
     
