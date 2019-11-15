@@ -266,7 +266,7 @@ height:50vh;
                 
                 
                     <div class="post-intro-read">
-                        <span>字数统计: <span class="post-count word-count">461</span>阅读时长: <span class="post-count reading-time">1 min</span></span>
+                        <span>字数统计: <span class="post-count word-count">466</span>阅读时长: <span class="post-count reading-time">1 min</span></span>
                     </div>
                 
                 <div class="post-intro-meta">
@@ -396,38 +396,28 @@ height:50vh;
             <main class="main post-page">
     <article class="article-entry">
         <h1 id="计划"><a href="#计划" class="headerlink" title="计划"></a>计划</h1><p>计划一年内（截止 2021 年 1 月 1 日）把 SGU 500 刷完，形式以所有题目给出翻译后的简要题意和解题思路概要，代码贴 CodeForces 链接。</p>
-<h1 id="题目"><a href="#题目" class="headerlink" title="题目"></a>题目</h1><ol>
-<li><strong>Domino</strong></li>
-</ol>
+<h1 id="题目"><a href="#题目" class="headerlink" title="题目"></a>题目</h1><p>101 <strong>Domino</strong></p>
 <p><strong>题意</strong> 多米诺牌两端标有 0 至 6 的数字，以 <a, b> 形式表示，每张牌均可翻转。要求将 100 个多米诺牌横向放置成一排，相邻的多米诺牌数字需要相同。如 <1, 2><2, 4>。判断是否存在方案，存在的话给出一种排列。</2,></1,></a,></p>
 <p><strong>分析</strong> 将数字 0 至 6 视为图上的点，多米诺牌视为无向边，则问题转化成找出一条欧拉路径，而欧拉路径使用搜索+剪枝解决。</p>
 <p><strong>代码</strong></p>
 <hr>
-<ol>
-<li><strong>Coprimes</strong></li>
-</ol>
+<p>102 <strong>Coprimes</strong></p>
 <p><strong>题意</strong> 给定 $1\le N \le 10^4$，求 $[1, N)$ 范围内与 $N$  互质的整数个数。</p>
 <p><strong>分析</strong> 求欧拉函数值 $φ(N)=N\prod (1 - \frac {1} {p_i})$，$O(\sqrt N)$ 枚举质因子求解即可。</p>
 <p><strong>代码</strong> <a href="https://codeforces.com/problemsets/acmsguru/submission/99999/65037511" target="_blank" rel="noopener">参考代码</a></p>
 <hr>
-<ol>
-<li><strong>Traffic Lights</strong></li>
-</ol>
+<p>103 <strong>Traffic Lights</strong></p>
 <p><strong>题意</strong></p>
 <p><strong>分析</strong> </p>
 <p><strong>代码</strong></p>
 <hr>
-<ol>
-<li><strong>Little shop of flowers</strong></li>
-</ol>
+<p>104 <strong>Little shop of flowers</strong></p>
 <p><strong>题意</strong> 给 $1\le V \le 100$ 个花瓶和 $1\le F\le 100$ 朵花，以及第 $i$ 朵花放入第 $j$ 个花瓶的美观度 $A_{ij}$。在不改变花的相对顺序条件下，将所有花插入到花瓶中，求最大的美观度之和且输出一种方案。</p>
 <p><strong>分析</strong> 经典的动态规划题目。$dp(i, j)$ 表示前 $i$ 个花瓶中已插入前 $j$ 朵花的最大美观度之和，转移方程：</p>
 <script type="math/tex; mode=display">
 dp(i, j) = \max\{dp(i - 1, j), dp(i - 1, j - 1) + A_{ji}\}</script><p><strong>代码</strong> <a href="https://codeforces.com/problemsets/acmsguru/submission/99999/65038994" target="_blank" rel="noopener">参考代码</a></p>
 <hr>
-<ol>
-<li><strong>Div 3</strong></li>
-</ol>
+<p>105 <strong>Div 3</strong></p>
 <p><strong>题意</strong> 给出 1, 12, 123, 1234, …, 12345678910, … 的序列，求前 $1\le N \le 2^{31}-1$ 个元素中是 3 的倍数的个数。</p>
 <p><strong>分析</strong> 打表找规律，余数序列为 100100…，即每 3 个元素中有 2 个是 3 的倍数。</p>
 <p><strong>代码</strong> <a href="https://codeforces.com/problemsets/acmsguru/submission/99999/65039892" target="_blank" rel="noopener">参考代码</a></p>
@@ -767,6 +757,8 @@ top:50vh;
     
     
     
+    
+    
     <div class="total-and-search">
         <div class="total-archive">
         Total : 15
@@ -785,12 +777,12 @@ top:50vh;
     
     
         <li class="archive-post-item">
-            <span class="archive-post-date">11/15</span><a class="archive-post-title" href= "../../../11/15/SGU-计划/" >SGU 计划</a>
+            <span class="archive-post-date">11/15</span><a class="archive-post-title" href= "" >SGU 计划</a>
         </li>
     
     
         <li class="archive-post-item">
-            <span class="archive-post-date">10/31</span><a class="archive-post-title" href= "" >Pólya计数法</a>
+            <span class="archive-post-date">10/31</span><a class="archive-post-title" href= "../../../10/31/polya/" >Pólya计数法</a>
         </li>
     
     
@@ -876,21 +868,21 @@ top:50vh;
     
         <span class="sidebar-tag-name" data-tags="AC自动机"><span class="iconfont-archer">&#xe606;</span>AC自动机</span>
     
-        <span class="sidebar-tag-name" data-tags="domjudge"><span class="iconfont-archer">&#xe606;</span>domjudge</span>
-    
         <span class="sidebar-tag-name" data-tags="KMP"><span class="iconfont-archer">&#xe606;</span>KMP</span>
     
         <span class="sidebar-tag-name" data-tags="ICPC"><span class="iconfont-archer">&#xe606;</span>ICPC</span>
     
         <span class="sidebar-tag-name" data-tags="贪心"><span class="iconfont-archer">&#xe606;</span>贪心</span>
     
+        <span class="sidebar-tag-name" data-tags="domjudge"><span class="iconfont-archer">&#xe606;</span>domjudge</span>
+    
         <span class="sidebar-tag-name" data-tags="vim"><span class="iconfont-archer">&#xe606;</span>vim</span>
     
         <span class="sidebar-tag-name" data-tags="git bash"><span class="iconfont-archer">&#xe606;</span>git bash</span>
     
-        <span class="sidebar-tag-name" data-tags="polya"><span class="iconfont-archer">&#xe606;</span>polya</span>
-    
         <span class="sidebar-tag-name" data-tags="斜率优化"><span class="iconfont-archer">&#xe606;</span>斜率优化</span>
+    
+        <span class="sidebar-tag-name" data-tags="polya"><span class="iconfont-archer">&#xe606;</span>polya</span>
     
     </div>
     <div class="iconfont-archer sidebar-tags-empty">&#xe678;</div>
