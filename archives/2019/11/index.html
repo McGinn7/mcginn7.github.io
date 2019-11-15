@@ -11,7 +11,7 @@
 
 
 <head><meta name="generator" content="Hexo 3.9.0">
-    <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="utf-8">
+    <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
     <meta name="author" content="Mcginn">
     <meta name="renderer" content="webkit">
@@ -22,11 +22,11 @@
     <meta name="description" content>
     <meta http-equiv="Cache-control" content="no-cache">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-    <title>Knuth-Morris-Pratt Algorithm · Mcginn&#39;s Blog</title>
+    <title>Mcginn&#39;s Blog</title>
     <style type="text/css">
     @font-face {
         font-family: 'Oswald-Regular';
-        src: url("../../../../font/Oswald-Regular.ttf");
+        src: url("../../../font/Oswald-Regular.ttf");
     }
 
     body {
@@ -75,8 +75,8 @@
 
 </style>
 
-    <link rel="preload" href="../../../../css/style.css?v=20180824" as="style" onload="this.onload=null;this.rel='stylesheet'">
-    <link rel="stylesheet" href="../../../../css/mobile.css?v=20180824" media="(max-width: 980px)">
+    <link rel="preload" href="../../../css/style.css?v=20180824" as="style" onload="this.onload=null;this.rel='stylesheet'">
+    <link rel="stylesheet" href="../../../css/mobile.css?v=20180824" media="(max-width: 980px)">
     
     <link rel="preload" href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.2.5/jquery.fancybox.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
     
@@ -187,39 +187,28 @@
 }( typeof global !== "undefined" ? global : this ) );
 </script>
 
-    <link rel="icon" href="../../../../assets/m.ico">
+    <link rel="icon" href="../../../assets/m.ico">
     <link rel="preload" href="https://cdn.jsdelivr.net/npm/webfontloader@1.6.28/webfontloader.min.js" as="script">
     <link rel="preload" href="https://cdn.jsdelivr.net/npm/jquery@3.3.1/dist/jquery.min.js" as="script">
-    <link rel="preload" href="../../../../scripts/main.js" as="script">
-    <link rel="preload" as="font" href="../../../../font/Oswald-Regular.ttf" crossorigin>
+    <link rel="preload" href="../../../scripts/main.js" as="script">
+    <link rel="preload" as="font" href="../../../font/Oswald-Regular.ttf" crossorigin>
     <link rel="preload" as="font" href="https://at.alicdn.com/t/font_327081_1dta1rlogw17zaor.woff" crossorigin>
     
     <!-- fancybox -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.2.5/jquery.fancybox.min.js" defer></script>
     <!-- 百度统计  -->
     
-    <!-- 谷歌统计  --><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+    <!-- 谷歌统计  -->
     
 </head>
 
     
-        <body class="post-body">
     
-    
-<!-- hexo-inject:begin --><!-- hexo-inject:end --><header class="header">
+<header class="header">
 
     <div class="read-progress"></div>
     <div class="header-sidebar-menu">&#xe775;</div>
     <!-- post页的toggle banner  -->
-    
-    <div class="banner">
-            <div class="blog-title">
-                <a href="../../../../index.html" >Mcginn&#39;s Blog</a>
-            </div>
-            <div class="post-title">
-                <a href="#" class="post-name">Knuth-Morris-Pratt Algorithm</a>
-            </div>
-    </div>
     
     <a class="home-link" href=/>Mcginn's Blog</a>
 </header>
@@ -231,74 +220,24 @@
 
 
 
-
-height:50vh;
 ">
     
     <!-- 主页  -->
-    
-    
-    <!-- 404页  -->
             
     <div class="site-intro-placeholder"></div>
-    <div class="site-intro-img" style="background-image: url(../../../../intro/post-bg.jpg)"></div>
+    <div class="site-intro-img" style="background-image: url(../../../index.html)"></div>
     <div class="site-intro-meta">
         <!-- 标题  -->
         <h1 class="intro-title">
             <!-- 主页  -->
-            
-            Knuth-Morris-Pratt Algorithm
-            <!-- 404 -->
             
         </h1>
         <!-- 副标题 -->
         <p class="intro-subtitle">
             <!-- 主页副标题  -->
             
-            
-            <!-- 404 -->
-            
         </p>
         <!-- 文章页meta -->
-        
-            <div class="post-intros">
-                <!-- 文章页标签  -->
-                
-                    <div class= post-intro-tags >
-    
-        <a class="post-tag" href="javascript:void(0);" data-tags = "KMP">KMP</a>
-    
-</div>
-                
-                
-                    <div class="post-intro-read">
-                        <span>字数统计: <span class="post-count word-count">552</span>阅读时长: <span class="post-count reading-time">2 min</span></span>
-                    </div>
-                
-                <div class="post-intro-meta">
-                    <span class="post-intro-calander iconfont-archer">&#xe676;</span>
-                    <span class="post-intro-time">2019/05/24</span>
-                    
-                    <span id="busuanzi_container_page_pv" class="busuanzi-pv">
-                        <span class="iconfont-archer">&#xe602;</span>
-                        <span id="busuanzi_value_page_pv"></span>
-                    </span>
-                    
-                    <span class="shareWrapper">
-                        <span class="iconfont-archer shareIcon">&#xe71d;</span>
-                        <span class="shareText">Share</span>
-                        <ul class="shareList">
-                            <li class="iconfont-archer share-qr" data-type="qr">&#xe75b;
-                                <div class="share-qrcode"></div>
-                            </li>
-                            <li class="iconfont-archer" data-type="weibo">&#xe619;</li>
-                            <li class="iconfont-archer" data-type="qzone">&#xe62e;</li>
-                            <li class="iconfont-archer" data-type="twitter">&#xe634;</li>
-                            <li class="iconfont-archer" data-type="facebook">&#xe67a;</li>
-                        </ul>
-                    </span>
-                </div>
-            </div>
         
     </div>
 </div>
@@ -394,86 +333,49 @@ height:50vh;
   asyncLoadWithFallBack([
     "https://cdn.jsdelivr.net/npm/webfontloader@1.6.28/webfontloader.min.js", 
     "https://cdn.bootcss.com/webfont/1.6.28/webfontloader.js",
-    "../../../../lib/webfontloader.min.js"
+    "../../../lib/webfontloader.min.js"
   ], asyncCb, asyncErr)
 </script>        
-        <img class="loading" src="../../../../assets/loading.svg" style="display: block; margin: 6rem auto 0 auto; width: 6rem; height: 6rem;" />
+        <img class="loading" src="../../../assets/loading.svg" style="display: block; margin: 6rem auto 0 auto; width: 6rem; height: 6rem;" />
         <div class="container container-unloaded">
-            <main class="main post-page">
-    <article class="article-entry">
-        <p>KMP 算法解决在文本串（text）快速找出单词（word）的所有出现位置。</p>
-<p>暴力匹配的时间复杂度为 $O(|T||W|)$，而 KMP 算法通过引入<strong>最长前后缀</strong>，将检索的时间复杂度降至线性。</p>
-<h2 id="最长前后缀"><a href="#最长前后缀" class="headerlink" title="最长前后缀"></a>最长前后缀</h2><blockquote>
-<p>lps indicates longest proper prefix which is also suffix.</p>
-</blockquote>
-<p>最长前后缀（<strong>LPS, Longest proper Prefix and Suffix</strong>）表示既是原串 $S$ 的真前缀也是后缀的最长子串 $T$，其中 $|T|\lt |S|$。</p>
-<script type="math/tex; mode=display">
-LPS(aaa) = aa \\
-LPS(abcdab)=ab</script><h2 id="检索过程"><a href="#检索过程" class="headerlink" title="检索过程"></a>检索过程</h2><p>假设已知<strong>单词串</strong>的每个前缀 $W[0: i]$ 的最长前后缀长度 $lps(i)$，且已经匹配 $T[i - j: i] = W[0:j]$。继续匹配有两种情形：</p>
-<ol>
-<li>$T[i+1]=W[j + 1]$，则匹配长度 +1。</li>
-<li>$T[i+ 1] \neq W[j+1]$，此时显然要重新找单词串的一个<strong>最长</strong>前缀 $W[0:k], k\lt j$，使得 $T[i-k:i]=W[0:k]$ 且 $T[i + 1]=W[k+ 1]$，继续与 $i+1$ 结尾的文本串匹配。</li>
-</ol>
-<img src="/2019/05/24/Knuth-Morris-Pratt-Algorithm/1555835282553.png" title="情形 2 示意图">
-<p><center>图 1. 情形 2 示意图。虚线框表示相同部分。</center><br>此时 $W[0:k]$ 与 $W[0:j]$ 的后缀相同，同时其本身是前缀。</p>
-<p>令 $k=lps(j)$，若 $T[i+1]=W[k+1]$，则继续匹配。否则将 $k$ 视为新的 $j$，则转化成情形 2 相同的子问题。</p>
-<p><strong>时间复杂度</strong>：匹配成功的复杂度是线性的。而匹配失败时会减小单词串的前缀长度，减一长度<strong>至少</strong>对应一次的成功匹配，此时时间复杂度也是线性的。故算法总的时间复杂度是线性的。</p>
-<h2 id="预处理"><a href="#预处理" class="headerlink" title="预处理"></a>预处理</h2><p>对于单词串的最长前后缀 $lps(i)$，本质上是单词串的自我匹配，即<strong>此时文本串为单词串</strong>。对应于检索过程中的两种情形，可以很容易地完成 $lps(i)$ 的构造。</p>
-<h2 id="参考代码"><a href="#参考代码" class="headerlink" title="参考代码"></a>参考代码</h2><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// n = |T|, m = |W|, index = [0, n)</span></span><br><span class="line">lps[<span class="number">0</span>] = <span class="number">-1</span>;</span><br><span class="line"><span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">1</span>, j = <span class="number">-1</span>; i &lt; m; ++i) &#123;</span><br><span class="line">	<span class="keyword">while</span> (j &gt;= <span class="number">0</span> &amp;&amp; W[i] != W[j + <span class="number">1</span>])</span><br><span class="line">		j = lps[j];</span><br><span class="line">	j += W[i] == W[j + <span class="number">1</span>];</span><br><span class="line">	lps[i] = j;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>, j = <span class="number">-1</span>; i &lt; n; ++i) &#123;</span><br><span class="line">	<span class="keyword">while</span> (j &gt;= <span class="number">0</span> &amp;&amp; T[i] != W[j + <span class="number">1</span>])</span><br><span class="line">		j = lps[j];</span><br><span class="line">	j += T[i] == W[j + <span class="number">1</span>];</span><br><span class="line">	<span class="keyword">if</span> (j == m - <span class="number">1</span>) &#123;</span><br><span class="line">		<span class="comment">// match successfully</span></span><br><span class="line">		j = lps[j];</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+            <main class="main index-page">
+    
+    
+    
+    
+    
+    
+    <article class="index-post">
+        <a class="abstract-title" href = "../../../2019/11/15/SGU-计划/" >
+            
+                <span>SGU 计划</span>
+        </a>
+        <div class="abstract-content">
+            计划计划一年内（截止 2021 年 1 月 1 日）把 SGU 500 刷完，形式以所有题目给出翻译后的简要题意和解题思路概要，代码贴 CodeForces 链接。
+题目
+Domino
+
+题意 多米诺牌两端标有 0 至 6 的数字，以  形式表示，每张牌均可翻转。要求将 100 个多米诺牌横向放置成一排，相邻的多米诺牌数字需要相同。如 。判断是否存在方案，存在的话给出一种排列。
+分析 将数字 0 至 6 视为图上的点，多米诺牌视为无向边，则问题转化成找出一条欧拉路径，而欧拉路径使用搜索+剪枝解决。
+代码
+
+
+Coprimes
+
+题意 给定 $1\le N \le 10^4$，求 $[1,...
+        </div>
+        <div class="abstract-post-meta">
+            <!-- date  -->
+            <div class="abstract-date">
+                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2019/11/15</span>
+            </div>
+            <!-- tags  -->
+            
+        </div>
     </article>
-    <!-- license  -->
     
     <!-- paginator  -->
-    <ul class="post-paginator">
-        <li class="next">
-            
-                <div class="nextSlogan">Next Post</div>
-                <a href= "../../31/AhoCorasick-Algorithm/" title= "AhoCorasick Algorithm">
-                    <div class="nextTitle">AhoCorasick Algorithm</div>
-                </a>
-            
-        </li>
-        <li class="previous">
-            
-                <div class="prevSlogan">Previous Post</div>
-                <a href= "../../12/ICPC-Resolver-踩坑/" title= "ICPC Resolver 踩坑">
-                    <div class="prevTitle">ICPC Resolver 踩坑</div>
-                </a>
-            
-        </li>
-    </ul>
-    <!-- 评论插件 -->
-    <!-- 来必力City版安装代码 -->
-
-<!-- City版安装代码已完成 -->
     
-    
-
-    <!-- partial('_partial/comment/changyan') -->
-    <!--PC版-->
-
-
-    
-<div id="gitalk-container"></div>
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.css">
-<script src="https://cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.min.js"></script>
-<script>
-	const gitalk = new Gitalk({
-		clientID: '38ea5d8ced7dd6f7499f',
-		clientSecret: 'ec2ab733801f235f78cd1d8016be50f7b92dd808',
-		repo: 'mcginn7.github.io',
-		owner: 'mcginn7',
-		admin: ['mcginn7'],
-		id: location.pathname,      // Ensure uniqueness and length less than 50
-		distractionFreeMode: false  // Facebook-like distraction free mode
-	})
-	gitalk.render('gitalk-container')
-</script>
-
-
-    
-
-    <!-- 评论 -->
 </main>
             <!-- profile -->
             
@@ -552,24 +454,6 @@ LPS(abcdab)=ab</script><h2 id="检索过程"><a href="#检索过程" class="head
 
     </div>
     <!-- toc -->
-    
-    <div class="toc-wrapper" style=
-    
-
-
-
-
-
-
-
-top:50vh;
-
-    >
-        <div class="toc-catalog">
-            <span class="iconfont-archer catalog-icon">&#xe613;</span><span>CATALOG</span>
-        </div>
-        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#最长前后缀"><span class="toc-number">1.</span> <span class="toc-text">最长前后缀</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#检索过程"><span class="toc-number">2.</span> <span class="toc-text">检索过程</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#预处理"><span class="toc-number">3.</span> <span class="toc-text">预处理</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#参考代码"><span class="toc-number">4.</span> <span class="toc-text">参考代码</span></a></li></ol>
-    </div>
     
     <div class="back-top iconfont-archer">&#xe639;</div>
     <div class="sidebar sidebar-hide">
@@ -936,10 +820,10 @@ jsonContent:
         if (typeof window.$ === 'undefined')
         {
             console.warn('jquery load from jsdelivr failed, will load local script')
-            document.write('<script src="../../../../lib/jquery.min.js">\x3C/script>')
+            document.write('<script src="../../../lib/jquery.min.js">\x3C/script>')
         }
     </script>
-    <script src="../../../../scripts/main.js"></script>
+    <script src="../../../scripts/main.js"></script>
     <!-- algolia -->
     
     <!-- busuanzi  -->
@@ -950,8 +834,6 @@ jsonContent:
     
     </div>
     <!-- async load share.js -->
-    
-        <script src="../../../../scripts/share.js" async></script>    
      
     <script type="text/x-mathjax-config">
     MathJax.Hub.Config({
@@ -967,7 +849,7 @@ jsonContent:
             all[i].SourceElement().parentNode.className += ' has-jax';
     });
 </script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML"></script><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML"></script>
 
 
 </body>
