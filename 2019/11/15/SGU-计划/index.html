@@ -440,8 +440,8 @@ dp(i, j) = \max\{dp(i - 1, j), dp(i - 1, j - 1) + A_{ji}\}</script><p><strong>�
         <li class="next">
             
                 <div class="nextSlogan">Next Post</div>
-                <a href= "../../20/回文分解算法/" title= "A Subquadratic Algorithm for Minimum Palindromic Factorization">
-                    <div class="nextTitle">A Subquadratic Algorithm for Minimum Palindromic Factorization</div>
+                <a href= "../../20/Palindromic-Factorization/" title= "回文分解算法">
+                    <div class="nextTitle">回文分解算法</div>
                 </a>
             
         </li>
@@ -779,6 +779,16 @@ top:50vh;
     
     
     
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
     <div class="total-and-search">
         <div class="total-archive">
         Total : 16
@@ -797,12 +807,12 @@ top:50vh;
     
     
         <li class="archive-post-item">
-            <span class="archive-post-date">11/20</span><a class="archive-post-title" href= "" >A Subquadratic Algorithm for Minimum Palindromic Factorization</a>
+            <span class="archive-post-date">11/20</span><a class="archive-post-title" href= "../../20/Palindromic-Factorization/" >回文分解算法</a>
         </li>
     
     
         <li class="archive-post-item">
-            <span class="archive-post-date">11/15</span><a class="archive-post-title" href= "../../15/SGU-计划/" >SGU 计划</a>
+            <span class="archive-post-date">11/15</span><a class="archive-post-title" href= "" >SGU 计划</a>
         </li>
     
     
@@ -895,11 +905,11 @@ top:50vh;
     
         <span class="sidebar-tag-name" data-tags="KMP"><span class="iconfont-archer">&#xe606;</span>KMP</span>
     
-        <span class="sidebar-tag-name" data-tags="domjudge"><span class="iconfont-archer">&#xe606;</span>domjudge</span>
-    
         <span class="sidebar-tag-name" data-tags="ICPC"><span class="iconfont-archer">&#xe606;</span>ICPC</span>
     
         <span class="sidebar-tag-name" data-tags="贪心"><span class="iconfont-archer">&#xe606;</span>贪心</span>
+    
+        <span class="sidebar-tag-name" data-tags="domjudge"><span class="iconfont-archer">&#xe606;</span>domjudge</span>
     
         <span class="sidebar-tag-name" data-tags="vim"><span class="iconfont-archer">&#xe606;</span>vim</span>
     
@@ -975,9 +985,26 @@ jsonContent:
     </div>
     <!-- async load share.js -->
     
-        <script src="../../../../scripts/share.js" async></script><!-- hexo-inject:begin --><!-- hexo-inject:end -->    
+        <script src="../../../../scripts/share.js" async></script>    
      
-    </body>
+    <script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+        tex2jax: {
+            inlineMath: [ ["$","$"], ["\\(","\\)"] ],
+            skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'],
+            processEscapes: true
+        }
+    });
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax();
+        for (var i = 0; i < all.length; ++i)
+            all[i].SourceElement().parentNode.className += ' has-jax';
+    });
+</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML"></script><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+
+
+</body>
 </html>
 
 

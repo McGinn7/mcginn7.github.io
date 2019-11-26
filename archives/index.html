@@ -346,9 +346,9 @@
     
     
     <article class="index-post">
-        <a class="abstract-title" href = "../2019/11/20/回文分解算法/" >
+        <a class="abstract-title" href = "../2019/11/20/Palindromic-Factorization/" >
             
-                <span>A Subquadratic Algorithm for Minimum Palindromic Factorization</span>
+                <span>回文分解算法</span>
         </a>
         <div class="abstract-content">
             内容基本是翻译自论文《A Subquadratic Algorithm for Minimum Palindromic Factorization》，主要对文章进行翻译，力图简化算法的证明过程并给出相应的结论。简化证明过程可能存在不严谨的地方，如有需要可自行查看参考资料中的论文原文。
@@ -966,6 +966,16 @@ Vimrc 配置
     
     
     
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
     <div class="total-and-search">
         <div class="total-archive">
         Total : 16
@@ -984,12 +994,12 @@ Vimrc 配置
     
     
         <li class="archive-post-item">
-            <span class="archive-post-date">11/20</span><a class="archive-post-title" href= "" >A Subquadratic Algorithm for Minimum Palindromic Factorization</a>
+            <span class="archive-post-date">11/20</span><a class="archive-post-title" href= "../../20/Palindromic-Factorization/" >回文分解算法</a>
         </li>
     
     
         <li class="archive-post-item">
-            <span class="archive-post-date">11/15</span><a class="archive-post-title" href= "../../15/SGU-计划/" >SGU 计划</a>
+            <span class="archive-post-date">11/15</span><a class="archive-post-title" href= "" >SGU 计划</a>
         </li>
     
     
@@ -1082,11 +1092,11 @@ Vimrc 配置
     
         <span class="sidebar-tag-name" data-tags="KMP"><span class="iconfont-archer">&#xe606;</span>KMP</span>
     
-        <span class="sidebar-tag-name" data-tags="domjudge"><span class="iconfont-archer">&#xe606;</span>domjudge</span>
-    
         <span class="sidebar-tag-name" data-tags="ICPC"><span class="iconfont-archer">&#xe606;</span>ICPC</span>
     
         <span class="sidebar-tag-name" data-tags="贪心"><span class="iconfont-archer">&#xe606;</span>贪心</span>
+    
+        <span class="sidebar-tag-name" data-tags="domjudge"><span class="iconfont-archer">&#xe606;</span>domjudge</span>
     
         <span class="sidebar-tag-name" data-tags="vim"><span class="iconfont-archer">&#xe606;</span>vim</span>
     
@@ -1162,7 +1172,24 @@ jsonContent:
     </div>
     <!-- async load share.js -->
      
-    </body>
+    <script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+        tex2jax: {
+            inlineMath: [ ["$","$"], ["\\(","\\)"] ],
+            skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'],
+            processEscapes: true
+        }
+    });
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax();
+        for (var i = 0; i < all.length; ++i)
+            all[i].SourceElement().parentNode.className += ' has-jax';
+    });
+</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML"></script>
+
+
+</body>
 </html>
 
 
