@@ -266,7 +266,7 @@ height:50vh;
                 
                 
                     <div class="post-intro-read">
-                        <span>字数统计: <span class="post-count word-count">1.1k</span>阅读时长: <span class="post-count reading-time">4 min</span></span>
+                        <span>字数统计: <span class="post-count word-count">1.2k</span>阅读时长: <span class="post-count reading-time">5 min</span></span>
                     </div>
                 
                 <div class="post-intro-meta">
@@ -396,6 +396,13 @@ height:50vh;
             <main class="main post-page">
     <article class="article-entry">
         <p>内容基本是翻译自论文《A Subquadratic Algorithm for Minimum Palindromic Factorization》，主要对文章进行翻译，力图简化算法的证明过程并给出相应的结论。简化证明过程可能存在不严谨的地方，如有需要可自行查看参考资料中的论文原文。</p>
+<h2 id="太长不看版"><a href="#太长不看版" class="headerlink" title="太长不看版"></a>太长不看版</h2><p>给定一字符串，对于每个右端点为 $r$ 的回文子串，将左端点记为 $l_1\lt l_2\lt \dots \lt l_k$，记间距 $Δ_i=l_i-l_{i-1}$，结论有：</p>
+<ol>
+<li>间距 $Δ_i$ 构成单调递减序列（严格来说，是单调非增序列），即 $\forall i&gt;1,Δ_i\ge Δ_{i-1}$。</li>
+<li>间距 $Δ_i$ 不超过 $\log(r)$ 种。</li>
+</ol>
+<p>基于上述 2 点结论，可以在 $\log(r)$ 时间内利用端点 $r-1$ 的信息计算得到 $r$ 的回文左端点，进而对字符串进行回文分解。 </p>
+<p>时间复杂度 $O(N\log N)$，空间复杂度 $O(N)$。</p>
 <h2 id="问题背景"><a href="#问题背景" class="headerlink" title="问题背景"></a>问题背景</h2><p>给定长为 $N$  的字符串 $S$，在 $O(N\log N)$ 时间内对字符串 $S$ 分解为最少数量的回文子串，即最小回文分解：</p>
 <script type="math/tex; mode=display">
 S = S_1S_2\dots S_l</script><p>其中，$S_i$ 都是<strong>回文串</strong>。</p>
@@ -478,7 +485,7 @@ G'_j =\{(i-1, Δ,k):(i, Δ,k)\in G_{j-1},i>1,and\ S[i-1]=S[j]\}</script><p>注�
 <p><center>图 4. 假设成立的结果图</center><br><strong>引理9</strong>说明位置 $m$ 在右端点范围 $[j-Δ,j]$ 中只会被 $j-Δ$ 和 $j$ 更新和使用，因此可将 $PL_{j-Δ,Δ}$ 的结果存放在 $GPL[m]$ 中，从而将空间复杂度降低至 $O(N)$。</p>
 <h2 id="题目"><a href="#题目" class="headerlink" title="题目"></a>题目</h2><h3 id="Palindrome-Partition"><a href="#Palindrome-Partition" class="headerlink" title="Palindrome Partition"></a>Palindrome Partition</h3><p><strong>来源</strong>  <a href="codeforces.com/problemset/problem/932/G">Codeforces 932G</a></p>
 <p><strong>题意</strong>  给一字符串 $s(2\le s\le10^6)$，且 $|s|$ 是偶数。现要将串 $s$ 划分成<strong>偶数</strong>个子串 $(p_1,p_2,\dots,p_{2k})$，满足 $\forall i\in [1,2k], p_i=p_{2k-i+1}$。求满足条件的方案数，结果对 $10^9+7$ 取模。</p>
-<p><strong>分析</strong>  串长 $|s| $ 是偶数，子串数量也是偶数，因此将串 $s$ 折半并按 $s_1s_ns_2s_{n-1}…s_{n/2}s_{n/2+1}$ 构造新串，便将原问题转换成将原串分解为若干偶数长度子串的方案数。</p>
+<p><strong>分析</strong>  串长 $|s| $ 是偶数，子串数量也是偶数，因此将串 $s$ 折半并按 $s_1s_ns_2s_{n-1}…s_{n/2}s_{n/2+1}$ 构造新串，便将原问题转换成将原串分解为若干偶数长度子回文串的方案数。</p>
 <hr>
 <h3 id="Reverses"><a href="#Reverses" class="headerlink" title="Reverses"></a>Reverses</h3><p><strong>来源</strong>  <a href="codeforces.com/problemset/problem/906/E">Codeforces 906E</a></p>
 <p><strong>题意</strong>   给定两个字符串 $s, t(1\le |s|=|t| \le 5\times 10^5)$，允许翻转串 $t$ 若干<strong>不相交</strong>子串，使得翻转后串 $t$ 等于 $s$，求最少需要子串个数，并给出任一方案。</p>
@@ -633,7 +640,7 @@ top:50vh;
         <div class="toc-catalog">
             <span class="iconfont-archer catalog-icon">&#xe613;</span><span>CATALOG</span>
         </div>
-        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#问题背景"><span class="toc-number">1.</span> <span class="toc-text">问题背景</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#论文摘录"><span class="toc-number">2.</span> <span class="toc-text">论文摘录</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#引言"><span class="toc-number">2.1.</span> <span class="toc-text">引言</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#引理1"><span class="toc-number">2.2.</span> <span class="toc-text">引理1</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#引理2"><span class="toc-number">2.3.</span> <span class="toc-text">引理2</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#引理3"><span class="toc-number">2.4.</span> <span class="toc-text">引理3</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#引理4"><span class="toc-number">2.5.</span> <span class="toc-text">引理4</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#引理5"><span class="toc-number">2.6.</span> <span class="toc-text">引理5</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#引理6"><span class="toc-number">2.7.</span> <span class="toc-text">引理6</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#引理8"><span class="toc-number">2.8.</span> <span class="toc-text">引理8</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#引理9"><span class="toc-number">2.9.</span> <span class="toc-text">引理9</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#题目"><span class="toc-number">3.</span> <span class="toc-text">题目</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Palindrome-Partition"><span class="toc-number">3.1.</span> <span class="toc-text">Palindrome Partition</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Reverses"><span class="toc-number">3.2.</span> <span class="toc-text">Reverses</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#参考代码"><span class="toc-number">4.</span> <span class="toc-text">参考代码</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#回文分解模板"><span class="toc-number">4.1.</span> <span class="toc-text">回文分解模板</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Palindrome-Partition-1"><span class="toc-number">4.2.</span> <span class="toc-text">Palindrome Partition</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Reverses-1"><span class="toc-number">4.3.</span> <span class="toc-text">Reverses</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#参考资料"><span class="toc-number">5.</span> <span class="toc-text">参考资料</span></a></li></ol>
+        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#太长不看版"><span class="toc-number">1.</span> <span class="toc-text">太长不看版</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#问题背景"><span class="toc-number">2.</span> <span class="toc-text">问题背景</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#论文摘录"><span class="toc-number">3.</span> <span class="toc-text">论文摘录</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#引言"><span class="toc-number">3.1.</span> <span class="toc-text">引言</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#引理1"><span class="toc-number">3.2.</span> <span class="toc-text">引理1</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#引理2"><span class="toc-number">3.3.</span> <span class="toc-text">引理2</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#引理3"><span class="toc-number">3.4.</span> <span class="toc-text">引理3</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#引理4"><span class="toc-number">3.5.</span> <span class="toc-text">引理4</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#引理5"><span class="toc-number">3.6.</span> <span class="toc-text">引理5</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#引理6"><span class="toc-number">3.7.</span> <span class="toc-text">引理6</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#引理8"><span class="toc-number">3.8.</span> <span class="toc-text">引理8</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#引理9"><span class="toc-number">3.9.</span> <span class="toc-text">引理9</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#题目"><span class="toc-number">4.</span> <span class="toc-text">题目</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Palindrome-Partition"><span class="toc-number">4.1.</span> <span class="toc-text">Palindrome Partition</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Reverses"><span class="toc-number">4.2.</span> <span class="toc-text">Reverses</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#参考代码"><span class="toc-number">5.</span> <span class="toc-text">参考代码</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#回文分解模板"><span class="toc-number">5.1.</span> <span class="toc-text">回文分解模板</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Palindrome-Partition-1"><span class="toc-number">5.2.</span> <span class="toc-text">Palindrome Partition</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Reverses-1"><span class="toc-number">5.3.</span> <span class="toc-text">Reverses</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#参考资料"><span class="toc-number">6.</span> <span class="toc-text">参考资料</span></a></li></ol>
     </div>
     
     <div class="back-top iconfont-archer">&#xe639;</div>
@@ -646,24 +653,6 @@ top:50vh;
     <div class="sidebar-content sidebar-content-show-archive">
           <div class="sidebar-panel-archives">
     <!-- 在ejs中将archive按照时间排序 -->
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
     
     
     
@@ -956,21 +945,21 @@ top:50vh;
     
         <span class="sidebar-tag-name" data-tags="AC自动机"><span class="iconfont-archer">&#xe606;</span>AC自动机</span>
     
+        <span class="sidebar-tag-name" data-tags="domjudge"><span class="iconfont-archer">&#xe606;</span>domjudge</span>
+    
         <span class="sidebar-tag-name" data-tags="KMP"><span class="iconfont-archer">&#xe606;</span>KMP</span>
     
         <span class="sidebar-tag-name" data-tags="ICPC"><span class="iconfont-archer">&#xe606;</span>ICPC</span>
     
         <span class="sidebar-tag-name" data-tags="贪心"><span class="iconfont-archer">&#xe606;</span>贪心</span>
     
-        <span class="sidebar-tag-name" data-tags="domjudge"><span class="iconfont-archer">&#xe606;</span>domjudge</span>
-    
         <span class="sidebar-tag-name" data-tags="vim"><span class="iconfont-archer">&#xe606;</span>vim</span>
     
         <span class="sidebar-tag-name" data-tags="git bash"><span class="iconfont-archer">&#xe606;</span>git bash</span>
     
-        <span class="sidebar-tag-name" data-tags="polya"><span class="iconfont-archer">&#xe606;</span>polya</span>
-    
         <span class="sidebar-tag-name" data-tags="斜率优化"><span class="iconfont-archer">&#xe606;</span>斜率优化</span>
+    
+        <span class="sidebar-tag-name" data-tags="polya"><span class="iconfont-archer">&#xe606;</span>polya</span>
     
     </div>
     <div class="iconfont-archer sidebar-tags-empty">&#xe678;</div>

@@ -352,10 +352,9 @@
         </a>
         <div class="abstract-content">
             内容基本是翻译自论文《A Subquadratic Algorithm for Minimum Palindromic Factorization》，主要对文章进行翻译，力图简化算法的证明过程并给出相应的结论。简化证明过程可能存在不严谨的地方，如有需要可自行查看参考资料中的论文原文。
-问题背景给定长为 $N$  的字符串 $S$，在 $O(N\log N)$ 时间内对字符串 $S$ 分解为最少数量的回文子串，即最小回文分解：
+太长不看版给定一字符串，对于每个右端点为 $r$ 的回文子串，将左端点记为 $l_1\lt l_2\lt \dots \lt l_k$，记间距 $Δ_i=l_i-l_{i-1}$，结论有：
 
-S = S_1S_2\dots S_l其中，$S_i$ 都是回文串。
-论文摘录引言首先，定义 $PL(S)$ 表示字符串 $S$ 的最小回文分解的子串数量。如 $...
+间距 $Δ_i$ 构成单调递减序列（严格来说，是单调非增序列），即 $\forall i&gt;1,Δ_i\ge Δ...
         </div>
         <div class="abstract-post-meta">
             <!-- date  -->
@@ -661,24 +660,6 @@ S = S_1S_2\dots S_l其中，$S_i$ 都是回文串。
     
     
     
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
     <div class="total-and-search">
         <div class="total-archive">
         Total : 16
@@ -793,21 +774,21 @@ S = S_1S_2\dots S_l其中，$S_i$ 都是回文串。
     
         <span class="sidebar-tag-name" data-tags="AC自动机"><span class="iconfont-archer">&#xe606;</span>AC自动机</span>
     
+        <span class="sidebar-tag-name" data-tags="domjudge"><span class="iconfont-archer">&#xe606;</span>domjudge</span>
+    
         <span class="sidebar-tag-name" data-tags="KMP"><span class="iconfont-archer">&#xe606;</span>KMP</span>
     
         <span class="sidebar-tag-name" data-tags="ICPC"><span class="iconfont-archer">&#xe606;</span>ICPC</span>
     
         <span class="sidebar-tag-name" data-tags="贪心"><span class="iconfont-archer">&#xe606;</span>贪心</span>
     
-        <span class="sidebar-tag-name" data-tags="domjudge"><span class="iconfont-archer">&#xe606;</span>domjudge</span>
-    
         <span class="sidebar-tag-name" data-tags="vim"><span class="iconfont-archer">&#xe606;</span>vim</span>
     
         <span class="sidebar-tag-name" data-tags="git bash"><span class="iconfont-archer">&#xe606;</span>git bash</span>
     
-        <span class="sidebar-tag-name" data-tags="polya"><span class="iconfont-archer">&#xe606;</span>polya</span>
-    
         <span class="sidebar-tag-name" data-tags="斜率优化"><span class="iconfont-archer">&#xe606;</span>斜率优化</span>
+    
+        <span class="sidebar-tag-name" data-tags="polya"><span class="iconfont-archer">&#xe606;</span>polya</span>
     
     </div>
     <div class="iconfont-archer sidebar-tags-empty">&#xe678;</div>
