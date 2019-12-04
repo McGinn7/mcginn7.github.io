@@ -266,7 +266,7 @@ height:50vh;
                 
                 
                     <div class="post-intro-read">
-                        <span>字数统计: <span class="post-count word-count">882</span>阅读时长: <span class="post-count reading-time">4 min</span></span>
+                        <span>字数统计: <span class="post-count word-count">1.9k</span>阅读时长: <span class="post-count reading-time">8 min</span></span>
                     </div>
                 
                 <div class="post-intro-meta">
@@ -396,41 +396,125 @@ height:50vh;
             <main class="main post-page">
     <article class="article-entry">
         <h1 id="计划"><a href="#计划" class="headerlink" title="计划"></a>计划</h1><p>计划一年内（截止 2021 年 1 月 1 日）把 SGU 500 刷完，形式以所有题目给出翻译后的简要题意和解题思路概要。</p>
-<p>代码头文件</p>
-<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;bits/stdc++.h&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</span><br><span class="line"><span class="keyword">typedef</span> <span class="keyword">double</span> db;</span><br><span class="line"><span class="keyword">typedef</span> <span class="keyword">long</span> <span class="keyword">long</span> ll;</span><br><span class="line"><span class="keyword">typedef</span> <span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; vi;</span><br><span class="line"><span class="keyword">typedef</span> pair&lt;<span class="keyword">int</span>, <span class="keyword">int</span>&gt; pii;</span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> fi first</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> se second</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> pb push_back</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> mp make_pair</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> sz(x) ((int)(x).size())</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> all(x) begin(x),end(x)</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> rep(i,l,r) for(int i=(l);i&lt;(r);++i)</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> per(i,l,r) for(int i=(r)-1;i&gt;=(l);--i)</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> dd(x) cout &lt;&lt; #x &lt;&lt; <span class="meta-string">"="</span> &lt;&lt; x &lt;&lt; <span class="meta-string">", "</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> de(x) cout &lt;&lt; #x &lt;&lt; <span class="meta-string">"="</span> &lt;&lt; x &lt;&lt; endl</span></span><br></pre></td></tr></table></figure>
+<p><a href="https://github.com/McGinn7/ACMSGURU-Code" target="_blank" rel="noopener">AC 代码库</a></p>
 <h1 id="题目"><a href="#题目" class="headerlink" title="题目"></a>题目</h1><p>101 <strong>Domino</strong></p>
-<p><strong>题意</strong> 多米诺牌两端标有 0 至 6 的数字，以 <a, b> 形式表示，每张牌均可翻转。要求将 100 个多米诺牌横向放置成一排，相邻的多米诺牌数字需要相同。如 <1, 2><2, 4>。判断是否存在方案，存在的话给出一种排列。</2,></1,></a,></p>
-<p><strong>分析</strong> 将数字 0 至 6 视为图上的点，多米诺牌视为无向边，则问题转化成找出一条欧拉路径，而欧拉路径使用搜索+剪枝解决。</p>
-<p><strong>代码</strong></p>
+<p><strong>题意</strong>  多米诺牌两端标有 0 至 6 的数字，以 <a, b> 形式表示，每张牌均可翻转。要求将 100 个多米诺牌横向放置成一排，相邻的多米诺牌数字需要相同。如 <1, 2><2, 4>。判断是否存在方案，存在的话给出一种排列。</2,></1,></a,></p>
+<p><strong>分析</strong>  将数字 0 至 6 视为图上的点，多米诺牌视为无向边，则问题转化成找出一条欧拉路径，而欧拉路径使用搜索+剪枝解决。</p>
 <hr>
 <p>102 <strong>Coprimes</strong></p>
-<p><strong>题意</strong> 给定 $1\le N \le 10^4$，求 $[1, N)$ 范围内与 $N$  互质的整数个数。</p>
-<p><strong>分析</strong> 求欧拉函数值 $φ(N)=N\prod (1 - \frac {1} {p_i})$，$O(\sqrt N)$ 枚举质因子求解即可。</p>
-<p><strong>代码</strong></p>
-<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">phi</span><span class="params">(<span class="keyword">int</span> n)</span> </span>&#123;</span><br><span class="line">	<span class="keyword">int</span> ret = n;</span><br><span class="line">	<span class="keyword">for</span> (<span class="keyword">int</span> x = <span class="number">2</span>; x * x &lt;= n; ++x) &#123;</span><br><span class="line">		<span class="keyword">if</span> (n % x) <span class="keyword">continue</span>;</span><br><span class="line">		ret -= ret / x;	</span><br><span class="line">		<span class="keyword">while</span> (n % x == <span class="number">0</span>) n /= x;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">if</span> (n &gt; <span class="number">1</span>) ret -= ret / n;</span><br><span class="line">	<span class="keyword">return</span> ret;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span> </span>&#123;</span><br><span class="line">	<span class="keyword">int</span> n; <span class="built_in">scanf</span>(<span class="string">"%d"</span>, &amp;n);</span><br><span class="line">	<span class="built_in">printf</span>(<span class="string">"%d"</span>, phi(n));</span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p><strong>题意</strong>  给定 $1\le N \le 10^4$，求 $[1, N)$ 范围内与 $N$  互质的整数个数。</p>
+<p><strong>分析</strong>  求欧拉函数值 $φ(N)=N\prod (1 - \frac {1} {p_i})$，$O(\sqrt N)$ 枚举质因子求解即可。</p>
 <hr>
 <p>103 <strong>Traffic Lights</strong></p>
 <p><strong>题意</strong></p>
 <p><strong>分析</strong> </p>
-<p><strong>代码</strong></p>
 <hr>
 <p>104 <strong>Little shop of flowers</strong></p>
-<p><strong>题意</strong> 给 $1\le V \le 100$ 个花瓶和 $1\le F\le 100$ 朵花，以及第 $i$ 朵花放入第 $j$ 个花瓶的美观度 $A_{ij}$。在不改变花的相对顺序条件下，将所有花插入到花瓶中，求最大的美观度之和且输出一种方案。</p>
-<p><strong>分析</strong> 经典的动态规划题目。$dp(i, j)$ 表示前 $i$ 个花瓶中已插入前 $j$ 朵花的最大美观度之和，转移方程：</p>
+<p><strong>题意</strong>  给 $1\le V \le 100$ 个花瓶和 $1\le F\le 100$ 朵花，以及第 $i$ 朵花放入第 $j$ 个花瓶的美观度 $A_{ij}$。在不改变花的相对顺序条件下，将所有花插入到花瓶中，求最大的美观度之和且输出一种方案。</p>
+<p><strong>分析</strong>  经典的动态规划题目。$dp(i, j)$ 表示前 $i$ 个花瓶中已插入前 $j$ 朵花的最大美观度之和，转移方程：</p>
 <script type="math/tex; mode=display">
-dp(i, j) = \max\{dp(i - 1, j), dp(i - 1, j - 1) + A_{ji}\}</script><p><strong>代码</strong></p>
-<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> <span class="keyword">int</span> MAXF = <span class="number">101</span>;</span><br><span class="line"><span class="keyword">const</span> <span class="keyword">int</span> MAXV = <span class="number">101</span>;</span><br><span class="line"> </span><br><span class="line"><span class="keyword">int</span> F, V, A[MAXF][MAXV];</span><br><span class="line"><span class="keyword">int</span> pos[MAXF], dp[MAXF][MAXV], go[MAXF][MAXV];</span><br><span class="line"> </span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span> </span>&#123;</span><br><span class="line">	ios::sync_with_stdio(<span class="literal">false</span>);</span><br><span class="line">	<span class="built_in">cin</span> &gt;&gt; F &gt;&gt; V;</span><br><span class="line">	rep(i, <span class="number">0</span>, F) rep(j, <span class="number">0</span>, V)</span><br><span class="line">		<span class="built_in">cin</span> &gt;&gt; A[i][j];</span><br><span class="line"> </span><br><span class="line">	rep(i, <span class="number">1</span>, V + <span class="number">1</span>) rep(j, <span class="number">0</span>, min(i, F) + <span class="number">1</span>) &#123;</span><br><span class="line">		dp[i][j] = j &lt; i ? dp[i - <span class="number">1</span>][go[i][j] = j] : INT_MIN; 		</span><br><span class="line">		<span class="keyword">if</span> (j &gt; <span class="number">0</span> &amp;&amp; dp[i][j] &lt; dp[i - <span class="number">1</span>][j - <span class="number">1</span>] + A[j - <span class="number">1</span>][i - <span class="number">1</span>]) </span><br><span class="line">			dp[i][j] = dp[i - <span class="number">1</span>][go[i][j] = j - <span class="number">1</span>] + A[j - <span class="number">1</span>][i - <span class="number">1</span>];</span><br><span class="line">	&#125;</span><br><span class="line"> </span><br><span class="line">	<span class="keyword">for</span> (<span class="keyword">int</span> i = V, j = F; i &gt; <span class="number">0</span>; --i) &#123;</span><br><span class="line">		<span class="keyword">if</span> (go[i][j] != j)</span><br><span class="line">			pos[j - <span class="number">1</span>] = i;</span><br><span class="line">		j = go[i][j];</span><br><span class="line">	&#125;</span><br><span class="line">	</span><br><span class="line">	<span class="built_in">cout</span> &lt;&lt; dp[V][F] &lt;&lt; <span class="built_in">endl</span>;</span><br><span class="line">	rep(i, <span class="number">0</span>, F) &#123;</span><br><span class="line">		<span class="keyword">if</span> (i) <span class="built_in">cout</span> &lt;&lt; <span class="string">' '</span>;</span><br><span class="line">		<span class="built_in">cout</span> &lt;&lt; pos[i];</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<hr>
+dp(i, j) = \max\{dp(i - 1, j), dp(i - 1, j - 1) + A_{ji}\}</script><hr>
 <p>105 <strong>Div 3</strong></p>
-<p><strong>题意</strong> 给出 1, 12, 123, 1234, …, 12345678910, … 的序列，求前 $1\le N \le 2^{31}-1$ 个元素中是 3 的倍数的个数。</p>
-<p><strong>分析</strong> 打表找规律，余数序列为 100100…，即每 3 个元素中有 2 个是 3 的倍数。</p>
-<p><strong>代码</strong></p>
-<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span> </span>&#123;</span><br><span class="line">	<span class="keyword">int</span> n; <span class="built_in">cin</span> &gt;&gt; n;</span><br><span class="line">	<span class="keyword">int</span> ans = n / <span class="number">3</span> * <span class="number">2</span>;</span><br><span class="line">	ans += (n % <span class="number">3</span>) &gt; <span class="number">1</span>;	</span><br><span class="line">	<span class="built_in">cout</span> &lt;&lt; ans &lt;&lt; <span class="built_in">endl</span>;</span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p><strong>题意</strong>  给出 1, 12, 123, 1234, …, 12345678910, … 的序列，求前 $1\le N \le 2^{31}-1$ 个元素中是 3 的倍数的个数。</p>
+<p><strong>分析</strong>  打表找规律，余数序列为 100100…，即每 3 个元素中有 2 个是 3 的倍数。</p>
 <hr>
 <p>106 <strong>The equaion</strong></p>
-<p><strong>题意</strong> 给定二元一次方程 $ax+by+c=0$，已知 $a,b,c$ 和解 $(x, y)$ 的范围 $x \in [x_1, x_2],y\in [y_1, y_2] $。数据保证所有的数字绝对值小于 $10^8$，求解 $(x, y)$ 的个数。</p>
-<p><strong>分析</strong> </p>
-<p><strong>代码</strong></p>
+<p><strong>题意</strong>  给定二元一次方程 $ax+by+c=0$，已知 $a,b,c$ 和解 $(x, y)$ 的范围 $x \in [x_1, x_2],y\in [y_1, y_2] $。数据保证所有的数字绝对值小于 $10^8$，求解 $(x, y)$ 的个数。</p>
+<p><strong>分析</strong>  使用扩展欧几里得算法计算 $ax_0+by_0=\gcd(a,b)$ 的一组特解 $(x_0, y_0)$，通过乘上缩放因子 $-c/\gcd(a,b)$ 得到 $ax_0+by_0+c=0$ 的特解，通解为</p>
+<script type="math/tex; mode=display">
+x=x_0+k\frac{b}{\gcd(a,b)} \\
+y=y_0-k\frac{a}{\gcd(a, b)}</script><p>利用 $[x_1, x_2]$ 和 $[y_1, y_2]$ 分别计算 $k$ 的范围取交集即为解的个数。</p>
+<p>需要注意的是：</p>
+<ol>
+<li>$a$ 或 $b$ 有可能为 0 而导致方程转换为一元一次方程和常数方程；</li>
+<li>系数有可能为负数，注意上取整和下取整计算。</li>
+</ol>
+<hr>
+<p>107 <strong>987654321 problem</strong></p>
+<p><strong>题意</strong>  给定数字 $1\le N \le 10^6$，请求出数字位数为 $N$ 的数 $x$ 的数量，满足 $x^2$ 的末尾为 987654321。</p>
+<p><strong>分析</strong>  本质上求 $x^2\mod 10^9=987654321$，且 $x=v\times 10^9+m$。因为 $v\times 10^9 \equiv 0\pmod {10^9}$，所以只有 $x$ 末尾 9 个数字对结果有影响。此外，通过最后一位为 1 可推断 $x$ 的个位数是 1 或 9，剩下前 8 位可在 $10^8$ 枚举计算，最终有 8 个 9 位数字 $m$ 满足条件。最后分位数 $N<9,n=9,n>9$ 的三种情况讨论输出即可。</9,n=9,n></p>
+<hr>
+<p>108 <strong>Self-numbers 2</strong></p>
+<p><strong>题意</strong>  定义函数 $d(n)$ 为数字 $n$ + 数位和，如 $d(123)=123+1+2+3$。如果一个数 $x$，不存在数 $n$ 使得 $x=d(n)$，则数 $x$ 为 self-number。给定 $1\le N\le 10^7$ 和 $1\le K\le 5000$，进行 $K$ 次询问，第 $i$ 次询问第 $s_i$ 个 self-number，数据保证询问的 self-number 在 $[1,N]$ 中。</p>
+<p><strong>分析</strong>  </p>
+<hr>
+<p>110 <strong>Dundeon</strong></p>
+<p><strong>题意</strong>  给 $1\le N\le 50$ 个三维空间中的球体以及一道激光，球体表面会发射激光。求前 10 个反射激光的球体编号。数据保证激光源在球体外部。</p>
+<p><strong>分析</strong>  </p>
+<hr>
+<p>111 <strong>Very simple problem</strong></p>
+<p><strong>题意</strong>  给定数 $1\le X\le 10^{1000}$，求最大整数 $n$ 满足 $n^2\le X$。</p>
+<p><strong>分析</strong>  </p>
+<hr>
+<p>112 <strong>$a^b-b^a$</strong></p>
+<p><strong>题意</strong>  给定数 $1\le a, b\le 100$，求出 $a^b-b^a$。</p>
+<p><strong>分析</strong>  </p>
+<hr>
+<p>113 <strong>Nearly prime numbers</strong></p>
+<p><strong>题意</strong>  给定 10 个不超过 $10^9$ 的数，判断每个数是否能拆分两个质数之积，即 $n=p_1\times p_2$，其中 $p_1,p_2$ 是质数。</p>
+<p><strong>分析</strong>  根据题意，只需找出 $n$ 的一个约数 $f_1$，则另一个约数即为 $n/f_1$，判断两个约数是否为质数即可，总的时间复杂度 $O(\sqrt n)$。</p>
+<hr>
+<p>114 <strong>Telecasting station</strong></p>
+<p><strong>题意</strong> 一维数轴上有 $1\le N\le 1.5\times 10^4$ 个城镇， 城镇坐标为 $0\lt X_i \lt 5\times 10^4$，其人口数为 $0\lt P_i \lt 5\times 10^4$。现要修建一电视站 $Y$，使得居民的不满程度 $\sum_i P_i|X_i-Y|$ 最小。</p>
+<p><strong>分析</strong>  带权中位数经典题。</p>
+<hr>
+<p>115 <strong>Calendar</strong></p>
+<p><strong>题意</strong>  输入 2001 年 $M$ 月 $N$ 日，输出该天是周几？</p>
+<p><strong>分析</strong>  模拟。</p>
+<hr>
+<p>116 <strong>Index of super-prime</strong></p>
+<p><strong>题意</strong>  定义素数序列为 $P_1\lt P_2\lt \dots\lt P_m\lt\dots$，<strong>超素数</strong>为素数序列中下标也是素数的数，例如3 的下标是 2，7 的下标是 4，因此 3 是超素数，7 不是超素数。现给定一正整数 $N\le 10^4$，将 $N$ 分解成最少数量的超素数之和，并将超素数从大到小输出。若 $N$ 无法由超素数之和表示，则输出 0。</p>
+<p><strong>分析</strong>  现将 $N$ 以内的素数筛选出来，进一步筛选出超素数，个数约 200 个。剩下的问题为<strong>完全背包问题</strong>，动态规划解决即可。</p>
+<hr>
+<p>117 <strong>Counting</strong></p>
+<p><strong>题意</strong>  给定三个整数 $0\lt N, M, K \lt 10001$，询问 $N$ 次：判断给定的数 $x_i^M$ 是否是 $K$ 的倍数。</p>
+<p><strong>分析</strong>  快速幂。</p>
+<hr>
+<p>118 <strong>Digital root</strong></p>
+<p><strong>题意</strong>  求 $A_1+A_1A_2+\dots+A_1A_2\dots A_N$ 的数根，其中 $1\le N\le 1000,0\le A_i\le 10^9$。</p>
+<p><strong>分析</strong>  数根公式：</p>
+<script type="math/tex; mode=display">
+DigitRoot(x)=\begin{cases}
+0,  & \text{if $n = 0$} \\[2ex]
+9, & \text{if $n \neq 0 , n \equiv 0 \pmod 9$} \\[2ex]
+n \mod 9, & \text{if $n \not \equiv 0 \pmod 9$}
+\end{cases}</script><p><strong>原理</strong>  数 $x$ 可表示成</p>
+<script type="math/tex; mode=display">
+x=\sum_i a_i10^i\tag 1</script><p>因为 $10^i \equiv 1\pmod 9$，所以有如下等式：</p>
+<script type="math/tex; mode=display">
+x\equiv \sum_i a_i\pmod 9\tag 2</script><p>定义数位和函数 $f(x)=\sum a_i$，则等式 2 可写成：</p>
+<script type="math/tex; mode=display">
+f(x)\equiv x \pmod 9 \tag 3</script><p>数根 $DigitRoot(x)$ 使用 $f(x)$ 表示为：</p>
+<script type="math/tex; mode=display">
+DigitRoot(x)=f(f(\dots f(x))) \tag 4</script><p>根据等式 3 可得</p>
+<script type="math/tex; mode=display">
+DigitRoot(x) \equiv x\pmod 9\tag 5</script><hr>
+<p>119 <strong>Magic pairs</strong></p>
+<p><strong>题意</strong>  给定三个正整数 $N, A_0,B_0\le 10^4$，求出所有的 $0\le A, B\lt N$ 对，满足：对于所有的 $(x, y)$，如果 $A_0x+B_0y$ 能被 $N$ 整除，则 $Ax+By$ 也能被 $N$ 整除。</p>
+<p><strong>分析</strong>  根据题意可得</p>
+<script type="math/tex; mode=display">
+A_0x+B_0y=K_0N\tag 1</script><script type="math/tex; mode=display">
+Ax+By=KN\tag 2</script><p>联立公式 1 和公式 2 可得</p>
+<script type="math/tex; mode=display">
+(A_0B-AB_0)x=(BK_0-B_0K)N \tag 3</script><p>两边同时对 $N$ 取模</p>
+<script type="math/tex; mode=display">
+(A_0B-AB_0)x\equiv 0\pmod N \tag 4</script><p>该等式对于所有的 $x$ 均成立，即与 $x$ 无关，所以</p>
+<script type="math/tex; mode=display">
+A_0B-AB_0\equiv 0\pmod N \tag 5</script><p>根据公式 5 可知 $A:B$ 值等于 $A_0：B_0$，这缩小了解的搜索范围。然而这只说明了必要性，还需要进一步证明充分性。</p>
+<p>利用扩展欧几里得定理，可求得</p>
+<script type="math/tex; mode=display">
+A_0x_0+B_0y_0=\gcd(A_0, B_0) \tag 6</script><p>要使右式为 $N$ 的倍数，可两边同时乘上 $ N / \gcd(\gcd(A_0, B_0), N)$</p>
+<script type="math/tex; mode=display">
+A_0X_0+B_0Y_0=\frac{\gcd(A_0, B_0)}{\gcd(\gcd(A_0, B_0), N)} N \tag 7</script><p>其中，$X_0=x_0N / \gcd(\gcd(A_0, B_0), N)$，$Y_0=y_0N / \gcd(\gcd(A_0, B_0), N)$。</p>
+<p>等式两侧同时除以 $\frac{\gcd(A_0, B_0)}{\gcd(\gcd(A_0, B_0), N)}$</p>
+<script type="math/tex; mode=display">
+AX_0+BY_0=N\tag 8</script><p>其中，$A=A_0\frac{\gcd(\gcd(A_0, B_0), N)}{\gcd(A_0, B_0)},B=B_0\frac{\gcd(\gcd(A_0, B_0), N)}{\gcd(A_0, B_0)}$。</p>
+<p>上述过程可将 $X_0, Y_0$ 替换成通解形式，结论仍然成立。</p>
+<p>则 $\forall i\in [0, N)$, $(iA\mod N, iB\mod N)$ 均是解，但是可能存在重复。</p>
+<hr>
+<p>xxx</p>
+<p><strong>题意</strong>  </p>
+<p><strong>分析</strong>  </p>
 
     </article>
     <!-- license  -->
@@ -771,6 +855,22 @@ top:50vh;
     
     
     
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
     <div class="total-and-search">
         <div class="total-archive">
         Total : 16
@@ -789,12 +889,12 @@ top:50vh;
     
     
         <li class="archive-post-item">
-            <span class="archive-post-date">11/20</span><a class="archive-post-title" href= "../../20/Palindromic-Factorization/" >回文分解算法</a>
+            <span class="archive-post-date">11/20</span><a class="archive-post-title" href= "" >回文分解算法</a>
         </li>
     
     
         <li class="archive-post-item">
-            <span class="archive-post-date">11/15</span><a class="archive-post-title" href= "" >SGU 计划</a>
+            <span class="archive-post-date">11/15</span><a class="archive-post-title" href= "../../15/SGU-Plan/" >SGU 计划</a>
         </li>
     
     
@@ -843,12 +943,12 @@ top:50vh;
     
     
         <li class="archive-post-item">
-            <span class="archive-post-date">10/10</span><a class="archive-post-title" href= "../../../../2018/10/10/Vim-for-windows-配置/" >Windows 下使用 Vim</a>
+            <span class="archive-post-date">10/09</span><a class="archive-post-title" href= "../../../../2018/10/09/论文笔记-Tips-and-Tricks-for-Visual-Question-Answering/" >论文笔记 Tips and Tricks for Visual Question Answering</a>
         </li>
     
     
         <li class="archive-post-item">
-            <span class="archive-post-date">10/09</span><a class="archive-post-title" href= "../../../../2018/10/09/论文笔记-Tips-and-Tricks-for-Visual-Question-Answering/" >论文笔记 Tips and Tricks for Visual Question Answering</a>
+            <span class="archive-post-date">10/08</span><a class="archive-post-title" href= "../../../../2018/10/08/Vim-for-windows-配置/" >Windows 下使用 Vim</a>
         </li>
     
     
@@ -885,21 +985,21 @@ top:50vh;
     
         <span class="sidebar-tag-name" data-tags="AC自动机"><span class="iconfont-archer">&#xe606;</span>AC自动机</span>
     
-        <span class="sidebar-tag-name" data-tags="domjudge"><span class="iconfont-archer">&#xe606;</span>domjudge</span>
-    
         <span class="sidebar-tag-name" data-tags="KMP"><span class="iconfont-archer">&#xe606;</span>KMP</span>
+    
+        <span class="sidebar-tag-name" data-tags="domjudge"><span class="iconfont-archer">&#xe606;</span>domjudge</span>
     
         <span class="sidebar-tag-name" data-tags="ICPC"><span class="iconfont-archer">&#xe606;</span>ICPC</span>
     
         <span class="sidebar-tag-name" data-tags="贪心"><span class="iconfont-archer">&#xe606;</span>贪心</span>
+    
+        <span class="sidebar-tag-name" data-tags="polya"><span class="iconfont-archer">&#xe606;</span>polya</span>
     
         <span class="sidebar-tag-name" data-tags="vim"><span class="iconfont-archer">&#xe606;</span>vim</span>
     
         <span class="sidebar-tag-name" data-tags="git bash"><span class="iconfont-archer">&#xe606;</span>git bash</span>
     
         <span class="sidebar-tag-name" data-tags="斜率优化"><span class="iconfont-archer">&#xe606;</span>斜率优化</span>
-    
-        <span class="sidebar-tag-name" data-tags="polya"><span class="iconfont-archer">&#xe606;</span>polya</span>
     
     </div>
     <div class="iconfont-archer sidebar-tags-empty">&#xe678;</div>
