@@ -266,7 +266,7 @@ height:50vh;
                 
                 
                     <div class="post-intro-read">
-                        <span>字数统计: <span class="post-count word-count">1.9k</span>阅读时长: <span class="post-count reading-time">8 min</span></span>
+                        <span>字数统计: <span class="post-count word-count">4.7k</span>阅读时长: <span class="post-count reading-time">19 min</span></span>
                     </div>
                 
                 <div class="post-intro-meta">
@@ -511,6 +511,144 @@ A_0X_0+B_0Y_0=\frac{\gcd(A_0, B_0)}{\gcd(\gcd(A_0, B_0), N)} N \tag 7</script><p
 AX_0+BY_0=N\tag 8</script><p>其中，$A=A_0\frac{\gcd(\gcd(A_0, B_0), N)}{\gcd(A_0, B_0)},B=B_0\frac{\gcd(\gcd(A_0, B_0), N)}{\gcd(A_0, B_0)}$。</p>
 <p>上述过程可将 $X_0, Y_0$ 替换成通解形式，结论仍然成立。</p>
 <p>则 $\forall i\in [0, N)$, $(iA\mod N, iB\mod N)$ 均是解，但是可能存在重复。</p>
+<hr>
+<p>120 <strong>Archipelago</strong></p>
+<p><strong>题意</strong>  给出正 $3\le N\le 150$ 边形的第 $N_1$ 个点坐标和第 $N_2$ 个点坐标，按序求出所有点的坐标。</p>
+<p><strong>分析</strong>  </p>
+<hr>
+<p>121 <strong>Bridges painting</strong></p>
+<p><strong>题意</strong>  给点数为 $1\le N\le 100$ 的无向图，给图中的每条边进行黑白染色，要求当顶点度数大于 1 时，该顶点至少与一条白边和一条黑边相连接。</p>
+<p><strong>分析</strong>  </p>
+<hr>
+<p>122 <strong>The book</strong></p>
+<p><strong>题意</strong>  给点数为 $2\le N\le 10^3$ 的无向图，每个点至少与 $[\frac {N+1}{2}]$ 个点相连，求一条<strong>哈密顿回路</strong>。</p>
+<p><strong>分析</strong>  </p>
+<hr>
+<p>123 <strong>The sum</strong></p>
+<p><strong>题意</strong>  求前 40 个斐波那契值的和。</p>
+<p><strong>分析</strong>  模拟。</p>
+<hr>
+<p>124 <strong>Broken line</strong></p>
+<p><strong>题意</strong>  给一边数为 $4\le K\le 10^4$ 的多边形，以及一个二维坐标点 $(X_0, Y_0)$，判断该点在多边形的内部、外部亦或边界上。数据保证多边形顶点坐标为整数，$X_0, Y_0$ 也为整数。</p>
+<p><strong>分析</strong>   </p>
+<hr>
+<p>125 <strong>Shtirlits</strong></p>
+<p><strong>题意</strong>  </p>
+<p><strong>分析</strong>  </p>
+<hr>
+<p>126 <strong>Boxes</strong></p>
+<p><strong>题意</strong>  有两个盒子，两个盒子分别有 $A,B$ 个球，在移动球时要放入盒中已有的等量的球，即操作一次后两个盒子的球数可能为 $2A, B-A$ 或 $A -B, 2B$  两种情况。求最少的操作次数使得一个盒子为空。数据保证 $0\lt A+B\lt 2147483648$。</p>
+<p><strong>分析</strong>  考虑反向操作，记 $S=A+B$，则判断状态 $(0, S)$ 是否能导出 $(A, B)$。<strong>逆操作</strong>从状态 $(A, B)$ 可推出 $(\frac A2, B+\frac A2)$。</p>
+<p>因为总和<strong>固定</strong>为 $S$，对于一个状态可以用<strong>两者的最小值</strong>表示，则状态有</p>
+<script type="math/tex; mode=display">
+0→\frac S2→\frac S4→\frac S8,\frac {3S}8→\frac {S}{16},\frac {3S}{16},\frac {5S}{16},\frac {7S}{16}→\dots</script><p>可以发现有效状态构成了一棵高度最大为 $\log(S)$ 的二叉树。反过来考虑，对于任一有效状态转移到根状态 $(0, S)$ 的操作数不超过 $\log(S)$。因此对于初始状态 $(A, B)$ 在 32 步内判断是否根状态 $(0, S)$ 即可。</p>
+<hr>
+<p>127 <strong>Telephone directory</strong></p>
+<p><strong>题意</strong>  给 $0\lt N\lt 8000$ 个号码，电话本每页能记录 $0\lt K \lt 255$ 个电话号码，要求号码按序记录在电话本上，并且首位不同的号码记录记录在不同页，要求计算记录号码的页数。</p>
+<p><strong>分析</strong>  模拟。</p>
+<hr>
+<p>128 <strong>Snake</strong></p>
+<p><strong>题意</strong>  给定 $4\le N\le 10^4$ 个整点 $-10^4\le x_i,y_i\le 10^4$，要求构造满足以下条件的多边形：</p>
+<ol>
+<li>$N$ 个点均为多边形的顶点；</li>
+<li>每个顶点均构成一个直角；</li>
+<li>多边形的边与坐标轴平行；</li>
+<li>多边形无自交；</li>
+<li>多边形的周长最短。</li>
+</ol>
+<p>如果能构成多边形，则输出多边形的周长，否则输出 0。</p>
+<p><strong>分析</strong>  考虑 $y$ 坐标相同的若干个点 $(x_1, y), (x_2, y),\dots, (x_m, y)$。因为每个点连接一水平线段和一竖直线段，所以第一个点 $(x_1, y)$ 只能与 $(x_2, y)$ 相连，$(x_3, y)$ 与 $(x_4, y)$ 相连，以此类推。这要求 $m$ 必须是偶数，否则无解。</p>
+<p>上述步骤完成后，需要判断所有点是否联通以及是否存在线段相交。对于线段相交问题，可以使用扫描线+线段树/树状数组解决。</p>
+<hr>
+<p>129 <strong>Inheritance</strong></p>
+<p><strong>题意</strong>  给有 $3\le N \le 400$ 个点的凸包，以及 $2\le M\le 1000$ 条线段，判断每条线段被凸包包含的长度。</p>
+<p><strong>分析</strong>  </p>
+<hr>
+<p>130 <strong>Circle</strong></p>
+<p><strong>题意</strong>  圆上有 $2k$ 个点，其中 $1\le k \le 30$。现要求将点用线连接起来，使得：每个点都有线连接；圆被划分的区域数量最少，求不同的划分方案数以及最小区域数。</p>
+<p><strong>分析</strong>  显然，最少区域为 $k+1$，每条连线不能有交点，根据该性质则连一条边后就生成两个子问题，于是使用动态规划解决。$dp(i)$ 表示 $2i$ 个点划分成最少区域的方案数，枚举该连线的左右两部分的规模进行转移：</p>
+<script type="math/tex; mode=display">
+dp(i)=\sum_{j=0}^{i-1}dp(j)\times dp(i-1-j)</script><hr>
+<p>131 <strong>Hardwood floor</strong></p>
+<p><strong>题意</strong>  有一个 $N\times M$ 的网格，现使用 1×2 和 2×2 的方块填满网格（方块可旋转放置），求铺满网格的方案数，其中 $1\le N,M\le 9$。</p>
+<p><strong>分析</strong>  状压 DP。</p>
+<hr>
+<p>132 <strong>Another Chocolate Maniac</strong></p>
+<p><strong>题意</strong>  给定 $M\times N$  的网格，使用 1×2 和 2×1 的方块填充，其中 $1\le M\le 70, 1\le N\le 7$。网格部分格子不能与方块重叠，求使用最少数量的方块填充网格，使得网格不存在相邻的空白格子，即不能再放置方块。</p>
+<p><strong>分析</strong>  轮廓线 DP。对于每个格子有 3 种状态：可放置、不可放置，必须放置。假设当前格子为 $(i, j)$ 且为空，上方的格子 $(i-1,j)$ 也为空，此时有两种方案：1. 在 $(i-1,j)$ 和 $(i, j)$ 中放方块；2. 不放方块，但是 $(i, j)$ 和 $(i+1,j)$ 必须放置方块。因此每个格子有 3 种状态，总的时间复杂度为 $O(NM3^N)$。</p>
+<hr>
+<p>133 <strong>Border</strong></p>
+<p><strong>题意</strong>  给 $1\le N\le 16000$ 个一维区间 $[A_i, B_i]$。若一个区间 $[A_i, B_i]$ 被另一个区间 $[A_j, B_j]$ 完全覆盖，即 $A_j\lt A_i$ 且 $B_i \lt B_j$，则去除该区间。求被去除区间的数量。 </p>
+<p><strong>分析</strong>  按 $A_i$ 为第一关键字，$B_i$ 为第二关键字排序，按 $A_i$ 划分阶段，实时维护最大 $B_j$，若 $B_i&lt;B_j$ 则去除当前区间。</p>
+<hr>
+<p>134 <strong>Centroid</strong></p>
+<p><strong>题意</strong>  求树的重心。</p>
+<p><strong>分析</strong>  遍历一遍树即可。</p>
+<hr>
+<p>135 <strong>Drawing Lines</strong></p>
+<p><strong>题意</strong>  在无限平面上画 $N$ 条直线，求平面划分的区域数。</p>
+<p><strong>分析</strong>  画图找规律，直线两两相交，结论为 $1+\frac {N(N+1)}2$。</p>
+<hr>
+<p>136 <strong>Erasing Edges</strong></p>
+<p><strong>题意</strong>  给定 $3\le N \le 10^4$ 点多边形的边的中点 $(x_i, y_i)$，判断是否能够根据边中点复原多边形顶点，如果能复原按序给出顶点坐标。</p>
+<p><strong>分析</strong>  </p>
+<hr>
+<p>138 <strong>Games of Chess</strong></p>
+<p><strong>题意</strong>  有 $2\le N \le 100$ 个人轮流下象棋，每次两个人下棋并且胜者可继续下棋直至输棋。现已知每个人下棋的总局数，要求构造符合规则的一种方案，其胜者在第一个。数据保证有解，且所有人的总局数小于 $10^4$。</p>
+<p><strong>分析</strong>  构造。总棋局数为每个人的总局数之和除以二。然后按每个人的局数从大到小排序，假设顺序为 $(r_1, c_1), (r_2, c_2),\dots$，其中 $r_i$ 表示 $id = c_i$ 的棋局数。构造方案为 $(c_1, ?),(c_1,?),\dots,(c_2, c1),(c_2,?),\dots$，优先排列胜者，最后一局输给下一个胜者完成衔接，剩余的棋手则安排在败者局中。</p>
+<hr>
+<p>139 <strong>Help Needed!</strong></p>
+<p><strong>题意</strong>  十五数码问题。</p>
+<p><strong>分析</strong>  </p>
+<hr>
+<p>140 <strong>Integer Sequences</strong></p>
+<p><strong>题意</strong>  给定长为 $1\le N \le 100$ 的序列 $0\le A_i\le 2\times 10^9$，判断是否存在序列 $X_i$ 满足</p>
+<script type="math/tex; mode=display">
+\sum A_iX_i \equiv B \pmod P</script><p>其中， $0\le B\lt P\le 10^4$。</p>
+<p><strong>分析</strong>  扩展欧几里得算法。</p>
+<hr>
+<p>141 <strong>Jumping Joe</strong></p>
+<p><strong>题意</strong>  一只青蛙在一维数轴的整数点上跳，每次能够向负轴或正轴方向跳 $x_1$ 或 $x_2$ 个整数距离，求能否<strong>刚好</strong> $0\le K\le 2\times 10^9$ 次跳到整点 $-4\times 10^4 \lt P\lt 4\times 10^4$ 位置上。如果能到达位置 $P$，给出一种方案 $(P_1, N_1, P_2, N_2)$，$P_i$ 表示往正轴方向跳 $x_i$ ，$N_i$ 则表示往负轴方向跳 $x_i$。</p>
+<p><strong>分析</strong>  扩展欧几里得算法。</p>
+<hr>
+<p>142 <strong>Keyword</strong></p>
+<p><strong>题意</strong>  给长为 $1\le N \le 5\times 10^5$ 的字符串，该串只由 $a$ 和 $b$ 构成，求最短的不是该串子串的字符串，并给出一个解。如 $aba$ 的子串有 $a,b,ab,ba,aba$，因此最短非子串长度为 2，一种解为 $aa$。</p>
+<p><strong>分析</strong>  因为 $2^{19} &gt; 5\times 10^5$，所以答案不超过 19，枚举长度并枚举该长度所有子串即可。后缀数组和后缀自动机也可以做。</p>
+<hr>
+<p>145 <strong>Long Live the Queen</strong></p>
+<p><strong>题意</strong>  给定有 $1\le N \le 16\times 10^4$ 的树，每个点的权值为 $-10^3\le w_i\le 10^3$，求一棵子树使得权重和最大。</p>
+<p><strong>分析</strong>  树 DP。</p>
+<hr>
+<p>144 <strong>Meeting</strong></p>
+<p><strong>题意</strong>  两个人约在 $[X,Y]$ 时间内碰面，约定先到的人等另一个人的时间不超过 $0\lt Z\le 60*(Y-X)$ 分钟，求两个人能碰面的概率。</p>
+<p><strong>题意</strong>  </p>
+<p><strong>分析</strong>  。</p>
+<hr>
+<p>148 <strong>B-Station</strong></p>
+<p><strong>题意</strong>  背景中有 $1\le N\le 15000$ 级蓄水池，每级蓄水池目前有 $0\le W_i\le 15000$ 重的水量，最大蓄水量为 $0\le L_i\le 15000$。释放第 $i$ 级蓄水池的代价为 $0\le P_i \le 15000$，且第 $i$ 级的水会流入第 $i+1$ 级的水池中。如果水池中的水超过了容量，则水池中的所有水会继续流入下一级。现在 kbfz 想要释放第 $N$ 级的水，求最小代价以及一种方案。 </p>
+<p><strong>分析</strong>  为了释放第 $N$ 级的水，一种是直接花费 $P_N$ 的代价，另一种则是释放前面的水池，通过超容量来释放。假设第一个花费代价 $P_j$ 释放水池 $j$，则下一个必须花费代价的水池满足：</p>
+<script type="math/tex; mode=display">
+\sum_{i=j}^k W_i \le L_k</script><p>即堆积的总水量不超过容量的第一个位置 $k$，该位置必须花费 $P_k$ 的代价释放水。</p>
+<p>使用前缀和 $S_i$ 表示，则有</p>
+<script type="math/tex; mode=display">
+S_k-S_{j-1}\le L_k \\
+\Rightarrow S_k-L_k\le S_{j-1}</script><p>当固定第一个花钱释放的水池 $j$ 后，在 $[j, N]$ 中必须花钱的水池满足 $S_k-L_k \le S_{j-1}$，其中 $S_k-L_k$ 是定值。之后使用数据结构维护 $S_k-L_k$ 所对应的代价即可。</p>
+<hr>
+<p>149 <strong>Computer Network</strong></p>
+<p><strong>题意</strong>  给 $1\le N\le 10^4$ 个点的树，求每个点 $i$ 到其他点的最远距离 $S_i$。</p>
+<p><strong>分析</strong>  每个点到树直径的端点的距离之一等于最远距离。</p>
+<hr>
+<p>150 <strong>Mr. Beetle II</strong></p>
+<p><strong>题意</strong>  给定起点 $(x_1, y_1)$ 和终点 $(x_2, y_2)$，求起点和终点构成的线段穿过的第 $1\le n\le 10^5$ 个格子左下角坐标，只经过角点不算穿越该格子。每个格子可使用 $(x, y),(x,y+1),(x+1,y+1),(x+1, y)$ 表示，其中左下角点坐标为 $(x, y)$。</p>
+<p><strong>分析</strong>  假设已知当前穿越的格子，则下一个可能穿越的格子为前进方向的相邻 3 个格子。线段穿越格子的充要条件：线段和格子的其中一条对角线严格相交。</p>
+<hr>
+<p>!!! 151 <strong>Construct a triangle</strong></p>
+<p><strong>题意</strong>  对于三角形 ABC，已知长度 $|AB|=c,|AC|=b,|AM|=m$，其中 M​ 是线段 BC 的中点。求三个顶点的坐标，满足上述长度关系。</p>
+<p>这道题<strong>数据有问题</strong>，允许三点共线。</p>
+<p><strong>分析</strong>  固定点 A 在原点，点 B 为 $(c, 0)$，设点 C 坐标为 $(x, y)$。根据长度关系可得：</p>
+<script type="math/tex; mode=display">
+x^2+y^2=b^2 \\
+(x+c)^2+y^2=4m^2</script><p>利用这个等式可以很容易求出一组解，注意判断方程有解即可。</p>
 <hr>
 <p>xxx</p>
 <p><strong>题意</strong>  </p>
@@ -871,6 +1009,8 @@ top:50vh;
     
     
     
+    
+    
     <div class="total-and-search">
         <div class="total-archive">
         Total : 16
@@ -985,19 +1125,19 @@ top:50vh;
     
         <span class="sidebar-tag-name" data-tags="AC自动机"><span class="iconfont-archer">&#xe606;</span>AC自动机</span>
     
-        <span class="sidebar-tag-name" data-tags="KMP"><span class="iconfont-archer">&#xe606;</span>KMP</span>
-    
         <span class="sidebar-tag-name" data-tags="domjudge"><span class="iconfont-archer">&#xe606;</span>domjudge</span>
     
         <span class="sidebar-tag-name" data-tags="ICPC"><span class="iconfont-archer">&#xe606;</span>ICPC</span>
     
         <span class="sidebar-tag-name" data-tags="贪心"><span class="iconfont-archer">&#xe606;</span>贪心</span>
     
-        <span class="sidebar-tag-name" data-tags="polya"><span class="iconfont-archer">&#xe606;</span>polya</span>
+        <span class="sidebar-tag-name" data-tags="KMP"><span class="iconfont-archer">&#xe606;</span>KMP</span>
     
         <span class="sidebar-tag-name" data-tags="vim"><span class="iconfont-archer">&#xe606;</span>vim</span>
     
         <span class="sidebar-tag-name" data-tags="git bash"><span class="iconfont-archer">&#xe606;</span>git bash</span>
+    
+        <span class="sidebar-tag-name" data-tags="polya"><span class="iconfont-archer">&#xe606;</span>polya</span>
     
         <span class="sidebar-tag-name" data-tags="斜率优化"><span class="iconfont-archer">&#xe606;</span>斜率优化</span>
     
