@@ -11,7 +11,7 @@
 
 
 <head><meta name="generator" content="Hexo 3.9.0">
-    <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="utf-8">
+    <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
     <meta name="author" content="Mcginn">
     <meta name="renderer" content="webkit">
@@ -77,6 +77,8 @@
 
     <link rel="preload" href="../../css/style.css?v=20180824" as="style" onload="this.onload=null;this.rel='stylesheet'">
     <link rel="stylesheet" href="../../css/mobile.css?v=20180824" media="(max-width: 980px)">
+    
+    <link rel="preload" href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.2.5/jquery.fancybox.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
     
     <!-- /*! loadCSS. [c]2017 Filament Group, Inc. MIT License */
 /* This file is meant as a standalone workflow for
@@ -196,15 +198,13 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.2.5/jquery.fancybox.min.js" defer></script>
     <!-- 百度统计  -->
     
-    <!-- 谷歌统计  --><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+    <!-- 谷歌统计  -->
     
 </head>
 
     
-        <body class="home-body">
     
-    
-<!-- hexo-inject:begin --><!-- hexo-inject:end --><header class="header index-header">
+<header class="header">
 
     <div class="read-progress"></div>
     <div class="header-sidebar-menu">&#xe775;</div>
@@ -220,34 +220,21 @@
 
 
 
-
-height:50vh;
 ">
     
     <!-- 主页  -->
-    
-    
-    <!-- 文章页  -->
             
     <div class="site-intro-placeholder"></div>
-    <div class="site-intro-img" style="background-image: url(../../intro/index-bg.jpg)"></div>
+    <div class="site-intro-img" style="background-image: url(../../index.html)"></div>
     <div class="site-intro-meta">
         <!-- 标题  -->
         <h1 class="intro-title">
             <!-- 主页  -->
             
-            Mcginn's Blog
-            <!-- 文章页  -->
-            
         </h1>
         <!-- 副标题 -->
         <p class="intro-subtitle">
             <!-- 主页副标题  -->
-            
-            
-                make a better version of self
-            
-            <!-- 文章页  -->
             
         </p>
         <!-- 文章页meta -->
@@ -359,260 +346,23 @@ height:50vh;
     
     
     <article class="index-post">
-        <a class="abstract-title" href = "../../2018/10/10/Vim-for-windows-配置/" >
+        <a class="abstract-title" href = "../../2020/02/13/SGU-153-252/" >
             
-                <span>Windows 下使用 Vim</span>
+                <span class="stick-top iconfont-archer">&#xe63d;</span>
+                
+                <span>SGU 153-252</span>
         </a>
         <div class="abstract-content">
-            简要说明主要针对 ACM/ICPC 竞赛选手在 Windows 10 系统下使用 vim 编写 C/C++ 代码。
-功能配置：
-
-编译和运行 *.cpp 文件；
-一键复制代码;
-记事本打开代码。
-
-
-git bash 和 gvim 都配置了一遍。gvim 使用 Windows 自带的 cmd 运行的话，鼠标是没办法移动光标的，并且配置相对 git bash 较麻烦，所以推荐使用 git bash。
-Vimrc 配置
-编辑安装路径下的 vimrc 文件，例如 “D:\Git\etc\vimrc”，配置快捷键。
-123456set nu ai ci si mouse=a ts=4 sts=4...
+            计划计划一年内（截止 2021 年 1 月 1 日）把 SGU 500 刷完，形式以所有题目给出翻译后的简要题意和解题思路概要。
+AC 代码库
+题目153 Playing with matches
+题意  有 $1\le N \le 10^9$ 根火柴，Little 和 Petya 轮流取，每次能取 $1, P_1, P_2, \dots , P_m(2\le P_i \le 9, 0\le m \le 8)$ 根火柴，判断先/后手必胜。
+分析 当 $N$ 较小时，可用 dp 计算火柴为 $n$ 时状态（必胜/必败）。由于 $P_i\le 9$，每个点的状态只与前面的 9 个状态有关，从...
         </div>
         <div class="abstract-post-meta">
             <!-- date  -->
             <div class="abstract-date">
-                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2018/10/10</span>
-            </div>
-            <!-- tags  -->
-            
-            <div class= abstract-tags >
-    
-        <a class="post-tag" href="javascript:void(0);" data-tags = "vim">vim</a>
-    
-        <a class="post-tag" href="javascript:void(0);" data-tags = "git bash">git bash</a>
-    
-</div>
-            
-        </div>
-    </article>
-    
-    
-    
-    
-    
-    
-    <article class="index-post">
-        <a class="abstract-title" href = "../../2018/10/09/论文笔记-Tips-and-Tricks-for-Visual-Question-Answering/" >
-            
-                <span>论文笔记 Tips and Tricks for Visual Question Answering</span>
-        </a>
-        <div class="abstract-content">
-            简介​    该论文作者取得了 2017 VQA Challenge 的第一，总结一些 tips 和 tricks 来提升 VQA 的表现。
-​    这篇论文的每个实验使用不同的随机种子重复3次实验来统计结果。
-
-模型
-
-一些细节
-所有问题的长度固定 14。
-
-问题特征 $q$ 与图像特征 $\hat v$ 的融合使用 Hadamard product（逐项相乘）。
-
-h = f_q(q) \circ f_v(\hat v)
-目标函数（损失函数）
-
-L=-\sum_i^M\sum_j^N s_{ij}\log (\hat s_{ij})-(1-s_{ij})\log(1-\hat s_...
-        </div>
-        <div class="abstract-post-meta">
-            <!-- date  -->
-            <div class="abstract-date">
-                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2018/10/09</span>
-            </div>
-            <!-- tags  -->
-            
-        </div>
-    </article>
-    
-    
-    
-    
-    
-    
-    <article class="index-post">
-        <a class="abstract-title" href = "../../2018/10/04/DOMjudge配置/" >
-            
-                <span>DOMjudge 配置</span>
-        </a>
-        <div class="abstract-content">
-            Domserver 部署PHP timezone
-php.ini 文件位置
-
-CentOS/RedHat/Fedora = /etc/php.ini
-Ubuntu/Debian/LinuxMint = /etc/php5/apache2/php.ini
-
-
-选择时区，通常定位为 “Asia/Shanghai”
-
-PHP: List of Supported Timezones
-
-
-编辑 php.ini 文件
-1date.timezone = "Asia/Shanghai"
-
-重启 Apache Service。
-1sudo service apache2 restart
-
-
-MySQL ...
-        </div>
-        <div class="abstract-post-meta">
-            <!-- date  -->
-            <div class="abstract-date">
-                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2018/10/04</span>
-            </div>
-            <!-- tags  -->
-            
-            <div class= abstract-tags >
-    
-        <a class="post-tag" href="javascript:void(0);" data-tags = "domjudge">domjudge</a>
-    
-</div>
-            
-        </div>
-    </article>
-    
-    
-    
-    
-    
-    
-    <article class="index-post">
-        <a class="abstract-title" href = "../../2018/08/18/论文笔记 Semantic Compositional Networks for Visual Captioning/" >
-            
-                <span>论文笔记 Semantic Compositional Networks for Visual Captioning</span>
-        </a>
-        <div class="abstract-content">
-            简介​    该论文提出了语义组合网络(Semantic Compositional Network, SCN)，其有效利用语义概念（标签）来达到效果比较好的图文生成。
-
-Semantic compositional networks
-
-模型基础
-使用CNN提取图像特征，RNN作文字生成。
-文字生成的概率公式：
-
-p(\bold X | \bold I) = \prod _{t=1}^Tp(x_t|x_0, \dots , x_{t-1}, v) $ \bold X = (x_1, \dots , x_T)$ 表示文字序列，$v$ 为提取的图像特征。
-  LSTM的转换函数：
-
-h_t ...
-        </div>
-        <div class="abstract-post-meta">
-            <!-- date  -->
-            <div class="abstract-date">
-                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2018/08/18</span>
-            </div>
-            <!-- tags  -->
-            
-        </div>
-    </article>
-    
-    
-    
-    
-    
-    
-    <article class="index-post">
-        <a class="abstract-title" href = "../../2018/07/19/The Binding of Isaac Afterbirth+总结/" >
-            
-                <span>The Binding of Isaac:Afterbirth+总结</span>
-        </a>
-        <div class="abstract-content">
-            
-
-献血袋：扣半颗红心（子宫层一颗），掉落随机数量（通常1）的硬币。献血袋很强，很容易刷起来。
-
-
-手术刀：在地上制造褐色和蓝色两个通道并传送，传送出来时有短暂无敌，可以做到：
-
-白嫖卖血机，喂黑小孩，进出刺房等；
-进BOSS房和挑战房时，开箱子后直接传出去。
-
-
-在白心的隐藏房，使用存血罐可以吐出白心。配合1+1和肉刀可以生成N多肉哥。
-
-钥匙通常留给商店使用。
-
-睫毛膏是负面道具，不要拿。
-
-商店高概率刷出复眼（复制本房间的道具，未购买的道具也可以复制），最好等出了打折券再用。
-
-20分钟内打败妈腿会开Boss Rush房；30分钟内打败妈心开启Blue Womb(蓝色子宫，打hus...
-        </div>
-        <div class="abstract-post-meta">
-            <!-- date  -->
-            <div class="abstract-date">
-                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2018/07/19</span>
-            </div>
-            <!-- tags  -->
-            
-        </div>
-    </article>
-    
-    
-    
-    
-    
-    
-    <article class="index-post">
-        <a class="abstract-title" href = "../../2018/07/17/论文阅读记录/" >
-            
-                <span>论文阅读记录</span>
-        </a>
-        <div class="abstract-content">
-            2014
-Generative Adversarial Networks
-An Annotated Proof of Generative Adversarial Networks with Implementation Notes
-
-
-Conditional Generative Adversarial Nets
-
-2016
-Conditional Image Synthesis With Auxiliary Classifier GANs
-InfoGAN: Interpretable Representation Learning by Information Maximizing ...
-        </div>
-        <div class="abstract-post-meta">
-            <!-- date  -->
-            <div class="abstract-date">
-                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2018/07/17</span>
-            </div>
-            <!-- tags  -->
-            
-        </div>
-    </article>
-    
-    
-    
-    
-    
-    
-    <article class="index-post">
-        <a class="abstract-title" href = "../../2018/06/05/apt-offline管理Ubuntu离线安装软件包/" >
-            
-                <span>Ubuntu离线安装软件包</span>
-        </a>
-        <div class="abstract-content">
-            参考链接
-apt-offline离线安装指南
-https://blog.sleeplessbeastie.eu/2014/01/30/how-to-manage-packages-on-an-off-line-debian-system/
-http://manpages.ubuntu.com/manpages/precise/man8/apt-offline.8.html#contenttoc4
-https://www.debian.org/
-https://camicri.github.io/camicri-cube/#/
-
-应用场景
-需要升级/安装软件的电脑无网络。
-软件要安装到多台...
-        </div>
-        <div class="abstract-post-meta">
-            <!-- date  -->
-            <div class="abstract-date">
-                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2018/06/05</span>
+                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2020/02/13</span>
             </div>
             <!-- tags  -->
             
@@ -621,108 +371,8 @@ https://camicri.github.io/camicri-cube/#/
     
     <!-- paginator  -->
     
-    <nav class="page-nav">
-        <a class="extend prev" rel="prev" href="../../">&#60; PREV</a><a class="page-number" href="../../">1</a><span class="page-number current">2</span>
-    </nav>
-    
 </main>
             <!-- profile -->
-            
-            <div class="profile">
-    <img class="profile-avatar" alt="avatar" src= ../../avatar/1762F801C12DE30600BFC0B530A1004D.png >
-    <div class="profile-name">Mcginn</div>
-    
-    <div class="profile-signature">
-        just go
-    </div>
-    
-    
-    <div class="profile-social">
-        
-    
-        
-            
-                <a href="mailto:mingqinchen@foxmail.com" class="iconfont-archer email" title=email ></a>
-            
-        
-    
-        
-            
-                <a href="//github.com/mcginn7" class="iconfont-archer github" target="_blank" title=github></a>
-            
-        
-    
-        
-    
-        
-    
-        
-    
-        
-    
-        
-    
-        
-    
-        
-    
-        
-    
-        
-    
-        
-    
-        
-    
-        
-    
-        
-    
-        
-    
-        
-    
-        
-    
-        
-    
-        
-    
-
-    </div>
-    
-    
-        <div class="friends">
-            <div>FRIENDS</div>
-            
-                
-                    <span>
-                        <a href= https://zyf0729.github.io/ target="_black">DarkDi</a>
-                    </span>
-                
-            
-                
-                    <span>
-                        <a href= https://sil256.github.io/ target="_black">Siil</a>
-                    </span>
-                
-            
-                
-                    <span>
-                        <a href= https://moonshoter.github.io/ target="_black">liyaochi</a>
-                    </span>
-                
-            
-                
-                    <span>
-                        <a href= http://jalan.space/ target="_black">Jalan</a>
-                    </span>
-                
-            
-        </div>
-    
-    
-</div>
             
         </div>
         <footer class="footer footer-unloaded">
@@ -1237,7 +887,7 @@ jsonContent:
             all[i].SourceElement().parentNode.className += ' has-jax';
     });
 </script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML"></script><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML"></script>
 
 
 </body>
