@@ -22,7 +22,7 @@
     <meta name="description" content>
     <meta http-equiv="Cache-control" content="no-cache">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-    <title>Nowcoder-出题人的数组 · Mcginn&#39;s Blog</title>
+    <title>CSAPP - datalab · Mcginn&#39;s Blog</title>
     <style type="text/css">
     @font-face {
         font-family: 'Oswald-Regular';
@@ -217,7 +217,7 @@
                 <a href="../../../../index.html" >Mcginn&#39;s Blog</a>
             </div>
             <div class="post-title">
-                <a href="#" class="post-name">Nowcoder-出题人的数组</a>
+                <a href="#" class="post-name">CSAPP - datalab</a>
             </div>
     </div>
     
@@ -247,7 +247,7 @@ height:50vh;
         <h1 class="intro-title">
             <!-- 主页  -->
             
-            Nowcoder-出题人的数组
+            CSAPP - datalab
             <!-- 404 -->
             
         </h1>
@@ -264,22 +264,14 @@ height:50vh;
             <div class="post-intros">
                 <!-- 文章页标签  -->
                 
-                    <div class= post-intro-tags >
-    
-        <a class="post-tag" href="javascript:void(0);" data-tags = "ICPC">ICPC</a>
-    
-        <a class="post-tag" href="javascript:void(0);" data-tags = "贪心">贪心</a>
-    
-</div>
-                
                 
                     <div class="post-intro-read">
-                        <span>字数统计: <span class="post-count word-count">797</span>阅读时长: <span class="post-count reading-time">3 min</span></span>
+                        <span>字数统计: <span class="post-count word-count">1.5k</span>阅读时长: <span class="post-count reading-time">6 min</span></span>
                     </div>
                 
                 <div class="post-intro-meta">
                     <span class="post-intro-calander iconfont-archer">&#xe676;</span>
-                    <span class="post-intro-time">2019/03/31</span>
+                    <span class="post-intro-time">2020/02/14</span>
                     
                     <span id="busuanzi_container_page_pv" class="busuanzi-pv">
                         <span class="iconfont-archer">&#xe602;</span>
@@ -403,22 +395,74 @@ height:50vh;
         <div class="container container-unloaded">
             <main class="main post-page">
     <article class="article-entry">
-        <p>链接：<a href="https://ac.nowcoder.com/acm/contest/545/C" target="_blank" rel="noopener">https://ac.nowcoder.com/acm/contest/545/C</a><br>来源：牛客网</p>
-<h4 id="题目描述"><a href="#题目描述" class="headerlink" title="题目描述"></a>题目描述</h4><p>出题人有两个数组 $A, B$，请你把两个数组归并起来使得 $Cost=∑i∗C_i$ 最小，要求两个原数组的顺序在新数组中保持不变。 </p>
-<h4 id="输入描述"><a href="#输入描述" class="headerlink" title="输入描述"></a>输入描述</h4><p>第一行输入两个正整数 $n,m$，分别表示数组 $A, B$ 的长度。<br>第二行输入 $n$ 个正整数，表示数组 $A$。<br>第二行输入 $m$ 个正整数，表示数组 $B$ 。</p>
-<h4 id="输出描述"><a href="#输出描述" class="headerlink" title="输出描述"></a>输出描述</h4><p>一个正整数，表示最小代价 $Cost$。</p>
-<h4 id="示例-1"><a href="#示例-1" class="headerlink" title="示例 1"></a>示例 1</h4><table style="border-collapse:collapse;border-spacing:0;border-color:#999" class="tg"><tr><th style="font-family:Arial, sans-serif;font-size:14px;font-weight:normal;padding:10px 10px;border-style:solid;border-width:1px;overflow:hidden;word-break:normal;border-color:#fd6864;color:#fff;background-color:#fd6864;text-align:left">输入</th><th style="font-family:Arial, sans-serif;font-size:14px;font-weight:normal;padding:10px 10px;border-style:solid;border-width:1px;overflow:hidden;word-break:normal;border-color:#fd6864;color:#fff;background-color:#fd6864;text-align:left">输出</th></tr><tr><td style="font-family:Arial, sans-serif;font-size:14px;padding:10px 10px;border-style:solid;border-width:1px;overflow:hidden;word-break:normal;border-color:#fd6864;color:#444;background-color:#F7FDFA;text-align:left">3 3<br>1 3 5<br>2 6 4</td><td style="font-family:Arial, sans-serif;font-size:14px;padding:10px 10px;border-style:solid;border-width:1px;overflow:hidden;word-break:normal;border-color:#fd6864;color:#444;background-color:#F7FDFA;text-align:left">75</td></tr></table>
-
-<h4 id="备注"><a href="#备注" class="headerlink" title="备注"></a>备注</h4><p>$n, m \le 100000$</p>
-<p>$A_i, B_i \le 100000$</p>
-<h4 id="解题思路"><a href="#解题思路" class="headerlink" title="解题思路"></a>解题思路</h4><p>$O(nm)$ 动态规划很容易想到，但是复杂度太高且没有方法优化，那么就考虑贪心解法。</p>
-<p>显然，合并后的数组 $C$ 格式为 $\dots ABABA\dots$，即一段 $A$ 接一段 $B$ 。</p>
-<p>常见的贪心策略为，考虑相邻元素的交换是否会导致更优的结果。由于不能打乱原先的顺序，故总是后段的前缀替换前段的后缀，不失一般性，我们可以假设前段为 $A$，后段为 $B$。</p>
-<p>记 $Cost(A) = \sum_{i = 1} ^ {|A|}i\times A_i$，则原先的贡献值为 $Cost(A)+Cost(B)+|A|\times Sum(B)$，交换后的贡献值为 $Cost(A)+Cost(B)+|B|\times Sum(A)$，则当 $|B|\times Sum(A) \lt |A|\times Sum(B)$，即</p>
+        <h2 id="自动测试"><a href="#自动测试" class="headerlink" title="自动测试"></a>自动测试</h2><ol>
+<li><p>使用 dlc 检测代码是否符合题目要求</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">unix&gt; ./dlc bits.c</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>编译并调用自动测试程序</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">unix&gt; make</span><br><span class="line">unix&gt; ./btest</span><br></pre></td></tr></table></figure>
+</li>
+</ol>
+<h2 id="题目"><a href="#题目" class="headerlink" title="题目"></a>题目</h2><h3 id="bitXor-x-y"><a href="#bitXor-x-y" class="headerlink" title="bitXor(x, y)"></a>bitXor(x, y)</h3><p><strong>要求</strong>：仅使用 ~ 和 &amp; 完成异或运算。</p>
+<p><strong>运算</strong>：~ &amp;</p>
+<p><strong>做法</strong>：画出 &amp; 运算符的真值表，配合 ~ 运算符易得。</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">bitXor</span><span class="params">(<span class="keyword">int</span> x, <span class="keyword">int</span> y)</span> </span>&#123;</span><br><span class="line">  <span class="keyword">return</span> ~(x&amp;y)&amp;~(~x&amp;~y);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="tmin"><a href="#tmin" class="headerlink" title="tmin()"></a>tmin()</h3><p><strong>要求</strong>：返回二进制补码表示的<strong>最小整数</strong>。</p>
+<p><strong>运算</strong>： ! ~ &amp; ^ | + &lt;&lt; &gt;&gt;</p>
+<p><strong>做法</strong>：补码表示的最小整数为 $10\dots 0$，即符号位为 1，其余位为 0。</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">tmin</span><span class="params">(<span class="keyword">void</span>)</span> </span>&#123;</span><br><span class="line">  <span class="keyword">return</span> <span class="number">1</span> &lt;&lt; <span class="number">31</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="isTmax-x"><a href="#isTmax-x" class="headerlink" title="isTmax(x)"></a>isTmax(x)</h3><p><strong>要求</strong>：判断 x 是否为补码表示的最大整数。</p>
+<p><strong>运算</strong>：! ~ &amp; ^ | +</p>
+<p><strong>做法</strong>：当 x 为最大整数时，补码表示为 $01\dots 1$，即符号位为 0，其余位为 1，可得 x + 1 = ~x。</p>
+<p>然而当 x = -1 时，前述等式也成立，因此需要排除掉这种情况。</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">isTmax</span><span class="params">(<span class="keyword">int</span> x)</span> </span>&#123;</span><br><span class="line">  <span class="keyword">return</span> !((~x^(x+<span class="number">1</span>)) | !(x + <span class="number">1</span>));</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="allOddBits-x"><a href="#allOddBits-x" class="headerlink" title="allOddBits(x)"></a>allOddBits(x)</h3><p><strong>要求</strong>：判断 x 二进制表示下的奇数位是否全为 1。</p>
+<p><strong>运算</strong>：! ~ &amp; ^ | + &lt;&lt; &gt;&gt;</p>
+<p><strong>做法</strong>：规则允许使用最大为 0xFF 的整数，因此可使用 &amp; 运算每 8 位合并 x 的所有位，然后使用 ^ 运算判断奇数位是否全为 1。</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">allOddBits</span><span class="params">(<span class="keyword">int</span> x)</span> </span>&#123;</span><br><span class="line">  <span class="keyword">return</span> !(((x &gt;&gt; <span class="number">24</span>) &amp; (x &gt;&gt; <span class="number">16</span>) &amp; (x &gt;&gt; <span class="number">8</span>) &amp; x &amp; <span class="number">0xAA</span>) ^ <span class="number">0xAA</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="negate-x"><a href="#negate-x" class="headerlink" title="negate(x)"></a>negate(x)</h3><p><strong>要求</strong>：计算返回 -x。</p>
+<p><strong>运算</strong>：! ~ &amp; ^ | + &lt;&lt; &gt;&gt;</p>
+<p><strong>做法</strong>：首先将有符号数转换成<strong>无符号数</strong>以便于位运算处理。</p>
+<p>相互转换的规则是：数值可能会改变，但<strong>位模式不变</strong>。因此，补码转换为无符号数为：</p>
 <script type="math/tex; mode=display">
-\frac{Sum(A)}{|A|} \lt \frac{Sum(B)}{|B|}</script><p>也就是说，<strong>均值越大的段需要优先选择</strong>。</p>
-<p>剩下的就是如何构造这些段，我们假设串 $A=A_1A_2$，当 $Average(A_1)\lt Average(A_2)$ 时，在数组 $C$ 中总会合并成一段，根据这一性质在原数组中利用<strong>单调栈</strong>即可构造初始的段，之后就是从数组 $A,B​$ 贪心选择均值较大的段。</p>
-<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;bits/stdc++.h&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</span><br><span class="line"><span class="keyword">typedef</span> <span class="keyword">double</span> db;</span><br><span class="line"><span class="keyword">typedef</span> <span class="keyword">long</span> <span class="keyword">long</span> ll;</span><br><span class="line"><span class="keyword">typedef</span> <span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; vi;</span><br><span class="line"><span class="keyword">typedef</span> pair&lt;<span class="keyword">int</span>, <span class="keyword">int</span>&gt; pii;</span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> fi first</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> se second</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> pb push_back</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> sz(x) ((int)(x).size())</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> all(x) begin(x),end(x)</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> rep(i,l,r) for(int i=(l);i&lt;(r);++i)</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> per(i,l,r) for(int i=(r)-1;i&gt;=(l);--i)</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> dd(x) cout &lt;&lt; #x &lt;&lt; <span class="meta-string">"="</span> &lt;&lt; x &lt;&lt; <span class="meta-string">", "</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> de(x) cout &lt;&lt; #x &lt;&lt; <span class="meta-string">"="</span> &lt;&lt; x &lt;&lt; endl</span></span><br><span class="line"><span class="comment">//-------</span></span><br><span class="line"><span class="keyword">const</span> <span class="keyword">int</span> N = <span class="number">1e5</span> + <span class="number">7</span>;</span><br><span class="line"><span class="keyword">int</span> n, m, A[N], B[N];</span><br><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">Node</span> &#123;</span></span><br><span class="line">    <span class="keyword">int</span> num; ll sum;</span><br><span class="line">    Node() &#123;&#125;</span><br><span class="line">    Node(<span class="keyword">int</span> _num, ll _sum) &#123;</span><br><span class="line">        num = _num, sum = _sum;</span><br><span class="line">    &#125;</span><br><span class="line">    Node <span class="keyword">operator</span>+(<span class="keyword">const</span> Node &amp;p) <span class="keyword">const</span> &#123;</span><br><span class="line">        <span class="keyword">return</span> Node(num + p.num, sum + p.sum);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">bool</span> <span class="keyword">operator</span>&lt;(<span class="keyword">const</span> Node &amp;p) <span class="keyword">const</span> &#123;</span><br><span class="line">        <span class="keyword">return</span> sum * p.num &lt; p.sum * num; </span><br><span class="line">    &#125;</span><br><span class="line">&#125; a[N], b[N];</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">gao</span><span class="params">(<span class="keyword">int</span> n, <span class="keyword">int</span> *r, Node *a)</span> </span>&#123;</span><br><span class="line">	<span class="keyword">int</span> top = <span class="number">0</span>;</span><br><span class="line">    rep(i, <span class="number">0</span>, n) &#123;</span><br><span class="line">        <span class="built_in">scanf</span>(<span class="string">"%d"</span>, r + i);</span><br><span class="line">        <span class="function">Node <span class="title">v</span><span class="params">(<span class="number">1</span>, r[i])</span></span>;    </span><br><span class="line">        <span class="keyword">while</span> (top &gt; <span class="number">0</span> &amp;&amp; a[top - <span class="number">1</span>] &lt; v)</span><br><span class="line">            v = a[--top] + v;</span><br><span class="line">        a[top++] = v;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> top;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    <span class="built_in">scanf</span>(<span class="string">"%d%d"</span>, &amp;n, &amp;m);</span><br><span class="line">	<span class="keyword">int</span> la = gao(n, A, a), lb = gao(m, B, b);</span><br><span class="line">    n = m = <span class="number">0</span>;</span><br><span class="line">    ll ans = <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>, j = <span class="number">0</span>; i &lt; la || j &lt; lb; ) &#123;</span><br><span class="line">        <span class="keyword">while</span> (i &lt; la &amp;&amp; (j == lb || !(a[i] &lt; b[j]))) &#123;</span><br><span class="line">            rep(k, n, n + a[i].num) ans += <span class="number">1l</span>l * (k + m + <span class="number">1</span>) * A[k];    </span><br><span class="line">            n += a[i++].num;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">while</span> (j &lt; lb &amp;&amp; (i == la || !(b[j] &lt; a[i]))) &#123;</span><br><span class="line">            rep(k, m, m + b[j].num) ans += <span class="number">1l</span>l * (k + n + <span class="number">1</span>) * B[k];</span><br><span class="line">            m += b[j++].num;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">"%lld\n"</span>, ans);</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+T2U_w(x)=\left\{\begin{array}{lr}x+2^w, && x < 0 \\ x, && x\ge 0\end{array}\right.</script><p>假设 $x \neq 0$，有 $x+(-x)=0$，两侧同加上 $2^w$ 并移项得</p>
+<script type="math/tex; mode=display">
+-x + 2^w = 2^w - x = (2^w-1-x)+1=\sim x +1</script><p>在 $x &gt; 0$ 时，$-x$ 的补码表示与 $-x+2^w$ 的位模式相同，等于 $\sim x + 1$。</p>
+<p>在 $x \le 0$ 时，$-x + 2^w$ 超出 $w$ 位二进制的表示范围，其结果为 $-x$ 的二进制表示。</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">negate</span><span class="params">(<span class="keyword">int</span> x)</span> </span>&#123;</span><br><span class="line">  <span class="keyword">return</span> ~x + <span class="number">1</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="isAsciiDigit-x"><a href="#isAsciiDigit-x" class="headerlink" title="isAsciiDigit(x)"></a>isAsciiDigit(x)</h3><p><strong>要求</strong>：判断值 x 是否在范围 [0x30, 0x39] 中。</p>
+<p><strong>运算</strong>： ! ~ &amp; ^ | + &lt;&lt; &gt;&gt;</p>
+<p><strong>做法</strong>：首先前 $w - 4$ 位的值必须为 3，该判断容易实现。</p>
+<p>剩余 4 位划分成 [0, 7] 和 [8, 9] 的两个区间来处理。</p>
+<p>第 4 位为 0 时，剩余 3 位可为任意值，表示区间 [0, 7]。</p>
+<p>第 4 位为 1 时，8 和 9 的二进制表示分别为 1000 和 1001，即高 3 位必须为 100。</p>
+<p>利用<strong>掩码表示</strong>的思想，x 为 110111(0x37) 的子集或是 111001(0x39) 的子集。</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">isAsciiDigit</span><span class="params">(<span class="keyword">int</span> x)</span> </span>&#123;</span><br><span class="line">  <span class="keyword">return</span> (!((x&gt;&gt;<span class="number">4</span>)^<span class="number">3</span>)) &amp; (!(x^(x&amp;<span class="number">0x37</span>)) | !(x^(x&amp;<span class="number">0x39</span>)));</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="conditional-x-y-z"><a href="#conditional-x-y-z" class="headerlink" title="conditional(x, y, z)"></a>conditional(x, y, z)</h3><p><strong>要求</strong>：执行三目运算符 x ? y : z：当 x 不为 0 时，返回 y；否则返回 z。</p>
+<p><strong>运算</strong>：! ~ &amp; ^ | + &lt;&lt; &gt;&gt;</p>
+<p><strong>做法</strong>：核心思想是利用 x 得出位模式等于 -1（全为 1）的值，使用 &amp; 运算和 ~ 运算得到 y 或 z 的位模式，最后使用 | 得到结果。</p>
+<p>! 运算将 x 映射到 [0, 1] 区间，使用函数 $f(x)=!x + (-1)$ 取出 y，则 $\sim f(x)$ 取出 z。</p>
+<p>当 $x \neq 0$ 时，$f(x)=-1$，其位模式全为 1，因此 $f(x) \&amp; y = y$。</p>
+<p>当 $x = 0$ 时，$f(x)=0$，其位模式全为 0，因此 $f(x)\&amp;y=0$。</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">conditional</span><span class="params">(<span class="keyword">int</span> x, <span class="keyword">int</span> y, <span class="keyword">int</span> z)</span> </span>&#123;</span><br><span class="line">  x = !x + ~<span class="number">0</span>;</span><br><span class="line">  <span class="keyword">return</span> (y &amp; x) | (z &amp; ~x);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="isLessOrEqual-x-y"><a href="#isLessOrEqual-x-y" class="headerlink" title="isLessOrEqual(x, y)"></a>isLessOrEqual(x, y)</h3><p><strong>要求</strong>：判断 x &lt;= y。</p>
+<p><strong>运算</strong>：! ~ &amp; ^ | + &lt;&lt; &gt;&gt;</p>
+<p><strong>做法</strong>：将问题转换成判断 $a + b \le0$，新问题下需要注意<strong>溢出问题</strong>。</p>
+<p>当 $a+b&lt;0$ 时，其符号位为 1，因此执行 $a+b$ 并取出符号位可解决问题。但是，存在 $a+b$ <strong>上溢出</strong>导致其符号位也为 1 的情况。</p>
+<p>进一步地，当 $a$ 和 $b$ 符号位相同时，$a+b&lt;0$ 当且仅当符号位均为 1。符号位不同时，$a+b$ 不存在溢出问题。</p>
+<p>$a+b=0$ 特判 $x=y$ 即可。</p>
+<p>注意取符号位是 &amp;1 操作不可省略，因为机器使用了<strong>算术右移</strong>。</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">isLessOrEqual</span><span class="params">(<span class="keyword">int</span> x, <span class="keyword">int</span> y)</span> </span>&#123;</span><br><span class="line">  <span class="keyword">return</span> (!(x^y)) | ((x&amp;~y)&gt;&gt;<span class="number">31</span>&amp;<span class="number">1</span>) | ((!((x^y)&gt;&gt;<span class="number">31</span>))&amp;((x+(~y+<span class="number">1</span>))&gt;&gt;<span class="number">31</span>));</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="logicalNeg-x"><a href="#logicalNeg-x" class="headerlink" title="logicalNeg(x)"></a>logicalNeg(x)</h3><p><strong>要求</strong>：计算 !x：当 x = 0 时返回 1；当 x ≠ 0 时返回 0。</p>
+<p><strong>运算</strong>：~ &amp; ^ | + &lt;&lt; &gt;&gt;</p>
+<p><strong>做法</strong>：当 $x \neq 0$ 时，$x|(-x)$ 的符号位必然为 1。</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">logicalNeg</span><span class="params">(<span class="keyword">int</span> x)</span> </span>&#123;</span><br><span class="line">  <span class="keyword">return</span> ~(x|(~x+<span class="number">1</span>))&gt;&gt;<span class="number">31</span>&amp;<span class="number">1</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="howManyBits-x"><a href="#howManyBits-x" class="headerlink" title="howManyBits(x)"></a>howManyBits(x)</h3><p><strong>要求</strong>：使用二进制补码表示 x 的最少位数。</p>
+<p><strong>运算</strong>：! ~ &amp; ^ | + &lt;&lt; &gt;&gt;</p>
+<p><strong>做法</strong>：当 $x \ge 0$ 时，位数取决于 1 的最高位数；当 $x &lt; 0$ 时，位数则取决于 0 的最高位数（根据补码表示的定义，符号位起连续的 1 可合并起来用一个位表示）。</p>
+<p>首先考虑将负数取反，将问题统一成计算 1 的最高位，利用<strong>算术右移</strong>即可完成， 即 $x=x \oplus (x &gt;&gt;31)$。</p>
+<p>然后使用<strong>二分法</strong>计算 1 的最高位：判断高 16 位是否大于 0，若大于 0 说明高 16 位中存在 1，否则 1 在低 16 位中。使用 conditional 函数更新 x（取出高 16 位或低 16 位）。迭代判断 8 位、4 位等等。</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">howManyBits</span><span class="params">(<span class="keyword">int</span> x)</span> </span>&#123;</span><br><span class="line">  <span class="keyword">int</span> cnd;</span><br><span class="line">  <span class="keyword">int</span> neg = ~<span class="number">0</span>;</span><br><span class="line">  <span class="keyword">int</span> res = <span class="number">1</span>;</span><br><span class="line">  x = x ^ (x &gt;&gt; <span class="number">31</span>);</span><br><span class="line"></span><br><span class="line">  cnd = !(x &gt;&gt; <span class="number">16</span>) + neg;</span><br><span class="line">  res = res + (<span class="number">16</span> &amp; cnd);</span><br><span class="line">  x = ((x &gt;&gt; <span class="number">16</span>) &amp; cnd) | (x &amp; ~cnd);</span><br><span class="line"></span><br><span class="line">  cnd = !(x &gt;&gt; <span class="number">8</span>) + neg;</span><br><span class="line">  res = res + (<span class="number">8</span> &amp; cnd);</span><br><span class="line">  x = ((x &gt;&gt; <span class="number">8</span>) &amp; cnd) | (x &amp; ~cnd);</span><br><span class="line"></span><br><span class="line">  cnd = !(x &gt;&gt; <span class="number">4</span>) + neg;</span><br><span class="line">  res = res + (<span class="number">4</span> &amp; cnd);</span><br><span class="line">  x = ((x &gt;&gt; <span class="number">4</span>) &amp; cnd) | (x &amp; ~cnd);</span><br><span class="line"></span><br><span class="line">  cnd = !(x &gt;&gt; <span class="number">2</span>) + neg;</span><br><span class="line">  res = res + (<span class="number">2</span> &amp; cnd);</span><br><span class="line">  x = ((x &gt;&gt; <span class="number">2</span>) &amp; cnd) | (x &amp; ~cnd);</span><br><span class="line"></span><br><span class="line">  cnd = !(x &gt;&gt; <span class="number">1</span>) + neg;</span><br><span class="line">  res = res + (<span class="number">1</span> &amp; cnd);</span><br><span class="line">  x = ((x &gt;&gt; <span class="number">1</span>) &amp; cnd) | (x &amp; ~cnd);</span><br><span class="line"></span><br><span class="line">  <span class="keyword">return</span> x + res;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
     </article>
     <!-- license  -->
@@ -427,17 +471,12 @@ height:50vh;
     <ul class="post-paginator">
         <li class="next">
             
-                <div class="nextSlogan">Next Post</div>
-                <a href= "../../../04/03/斜率优化/" title= "斜率优化">
-                    <div class="nextTitle">斜率优化</div>
-                </a>
-            
         </li>
         <li class="previous">
             
                 <div class="prevSlogan">Previous Post</div>
-                <a href= "../../../../2018/10/10/Vim-for-windows-配置/" title= "Windows 下使用 Vim">
-                    <div class="prevTitle">Windows 下使用 Vim</div>
+                <a href= "../../13/SGU-153-252/" title= "SGU 153-252">
+                    <div class="prevTitle">SGU 153-252</div>
                 </a>
             
         </li>
@@ -568,7 +607,7 @@ top:50vh;
         <div class="toc-catalog">
             <span class="iconfont-archer catalog-icon">&#xe613;</span><span>CATALOG</span>
         </div>
-        <ol class="toc"><li class="toc-item toc-level-4"><a class="toc-link" href="#题目描述"><span class="toc-number">1.</span> <span class="toc-text">题目描述</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#输入描述"><span class="toc-number">2.</span> <span class="toc-text">输入描述</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#输出描述"><span class="toc-number">3.</span> <span class="toc-text">输出描述</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#示例-1"><span class="toc-number">4.</span> <span class="toc-text">示例 1</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#备注"><span class="toc-number">5.</span> <span class="toc-text">备注</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#解题思路"><span class="toc-number">6.</span> <span class="toc-text">解题思路</span></a></li></ol>
+        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#自动测试"><span class="toc-number">1.</span> <span class="toc-text">自动测试</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#题目"><span class="toc-number">2.</span> <span class="toc-text">题目</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#bitXor-x-y"><span class="toc-number">2.1.</span> <span class="toc-text">bitXor(x, y)</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#tmin"><span class="toc-number">2.2.</span> <span class="toc-text">tmin()</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#isTmax-x"><span class="toc-number">2.3.</span> <span class="toc-text">isTmax(x)</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#allOddBits-x"><span class="toc-number">2.4.</span> <span class="toc-text">allOddBits(x)</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#negate-x"><span class="toc-number">2.5.</span> <span class="toc-text">negate(x)</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#isAsciiDigit-x"><span class="toc-number">2.6.</span> <span class="toc-text">isAsciiDigit(x)</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#conditional-x-y-z"><span class="toc-number">2.7.</span> <span class="toc-text">conditional(x, y, z)</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#isLessOrEqual-x-y"><span class="toc-number">2.8.</span> <span class="toc-text">isLessOrEqual(x, y)</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#logicalNeg-x"><span class="toc-number">2.9.</span> <span class="toc-text">logicalNeg(x)</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#howManyBits-x"><span class="toc-number">2.10.</span> <span class="toc-text">howManyBits(x)</span></a></li></ol></li></ol>
     </div>
     
     <div class="back-top iconfont-archer">&#xe639;</div>
