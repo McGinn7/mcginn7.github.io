@@ -346,6 +346,38 @@
     
     
     <article class="index-post">
+        <a class="abstract-title" href = "../2020/02/19/CSAPP-attacklab/" >
+            
+                <span>CSAPP - attacklab</span>
+        </a>
+        <div class="abstract-content">
+            知识点
+在这个实验中，学习利用缓存溢出（buffer overflow）来改变程序的行为，即完成攻击者的目的效果。
+
+需要掌握 x86-64 的栈和参数传递机制，其结构如下图所示。
+
+其中函数 P 调用了函数 Q，返回地址为函数 P 调用位置的下一条指令。实验攻击均修改该返回地址来完成攻击目的。
+
+
+题目实验中的程序 CTARGET 和 RTARGET 都调用了函数 test：
+12345void test() &#123;    int val;    val = getbuf();    printf("No exploit. Getbuf returned 0x%x\n", val...
+        </div>
+        <div class="abstract-post-meta">
+            <!-- date  -->
+            <div class="abstract-date">
+                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2020/02/19</span>
+            </div>
+            <!-- tags  -->
+            
+        </div>
+    </article>
+    
+    
+    
+    
+    
+    
+    <article class="index-post">
         <a class="abstract-title" href = "../2020/02/16/CSAPP-bomblab/" >
             
                 <span>CSAPP - bomblab</span>
@@ -628,37 +660,6 @@ LPS(abcdab)=ab检索过程假设已知单词串的每个...
         <a class="post-tag" href="javascript:void(0);" data-tags = "KMP">KMP</a>
     
 </div>
-            
-        </div>
-    </article>
-    
-    
-    
-    
-    
-    
-    <article class="index-post">
-        <a class="abstract-title" href = "../2019/05/12/ICPC-Resolver-踩坑/" >
-            
-                <span>ICPC Resolver 踩坑</span>
-        </a>
-        <div class="abstract-content">
-            应用场景从 DOMjudge 系统中导出数据，使用 ICPC Tools/Resolver 滚榜。
-DOMjudge 版本：7.0.1。
-Resolver 版本：2.0.1798。如果使用 DOMjudge 评测，建议使用 2.1 及以上版本。
-数据操作
-搜索 ICPC Tools，下载 ICPC Resolver.rar。
-
-运行 award.sh，通过 REST 导入 event feed（一场比赛的所有信息流）。
-123URL: http://59.77.134.102/domjudge/api/contests/5USER: amdinPassword: *******
-点击 s...
-        </div>
-        <div class="abstract-post-meta">
-            <!-- date  -->
-            <div class="abstract-date">
-                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2019/05/12</span>
-            </div>
-            <!-- tags  -->
             
         </div>
     </article>
@@ -983,9 +984,10 @@ Resolver 版本：2.0.1798。如果使用 DOMjudge 评测，建议使用 2.1 及
     
     
     
+    
     <div class="total-and-search">
         <div class="total-archive">
-        Total : 19
+        Total : 20
         </div>
         <!-- search  -->
         
@@ -1001,7 +1003,12 @@ Resolver 版本：2.0.1798。如果使用 DOMjudge 评测，建议使用 2.1 及
     
     
         <li class="archive-post-item">
-            <span class="archive-post-date">02/16</span><a class="archive-post-title" href= "" >CSAPP - bomblab</a>
+            <span class="archive-post-date">02/19</span><a class="archive-post-title" href= "" >CSAPP - attacklab</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">02/16</span><a class="archive-post-title" href= "../../16/CSAPP-bomblab/" >CSAPP - bomblab</a>
         </li>
     
     
