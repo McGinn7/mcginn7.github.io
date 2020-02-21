@@ -1,0 +1,1144 @@
+<!DOCTYPE html>
+<html lang="">
+    <!-- title -->
+
+
+
+
+<!-- keywords -->
+
+
+
+
+<head><meta name="generator" content="Hexo 3.9.0">
+    <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <meta name="author" content="Mcginn">
+    <meta name="renderer" content="webkit">
+    <meta name="copyright" content="Mcginn">
+    
+    <meta name="keywords" content="hexo,mcginn,mcginn7,ICPC,hexo-theme,hexo-blog">
+    
+    <meta name="description" content>
+    <meta http-equiv="Cache-control" content="no-cache">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <title>CSAPP - archlab · Mcginn&#39;s Blog</title>
+    <style type="text/css">
+    @font-face {
+        font-family: 'Oswald-Regular';
+        src: url("../../../../font/Oswald-Regular.ttf");
+    }
+
+    body {
+        margin: 0;
+    }
+
+    header,
+    footer,
+    .back-top,
+    .sidebar,
+    .container,
+    .site-intro-meta,
+    .toc-wrapper {
+        display: none;
+    }
+
+    .site-intro {
+        position: relative;
+        z-index: 3;
+        width: 100%;
+        /* height: 50vh; */
+        overflow: hidden;
+    }
+
+    .site-intro-placeholder {
+        position: absolute;
+        z-index: -2;
+        top: 0;
+        left: 0;
+        width: calc(100% + 300px);
+        height: 100%;
+        background: repeating-linear-gradient(-45deg, #444 0, #444 80px, #333 80px, #333 160px);
+        background-position: center center;
+        transform: translate3d(-226px, 0, 0);
+        animation: gradient-move 2.5s ease-out 0s infinite;
+    }
+
+    @keyframes gradient-move {
+        0% {
+            transform: translate3d(-226px, 0, 0);
+        }
+        100% {
+            transform: translate3d(0, 0, 0);
+        }
+    }
+
+</style>
+
+    <link rel="preload" href="../../../../css/style.css?v=20180824" as="style" onload="this.onload=null;this.rel='stylesheet'">
+    <link rel="stylesheet" href="../../../../css/mobile.css?v=20180824" media="(max-width: 980px)">
+    
+    <link rel="preload" href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.2.5/jquery.fancybox.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+    
+    <!-- /*! loadCSS. [c]2017 Filament Group, Inc. MIT License */
+/* This file is meant as a standalone workflow for
+- testing support for link[rel=preload]
+- enabling async CSS loading in browsers that do not support rel=preload
+- applying rel preload css once loaded, whether supported or not.
+*/ -->
+<script>
+(function( w ){
+	"use strict";
+	// rel=preload support test
+	if( !w.loadCSS ){
+		w.loadCSS = function(){};
+	}
+	// define on the loadCSS obj
+	var rp = loadCSS.relpreload = {};
+	// rel=preload feature support test
+	// runs once and returns a function for compat purposes
+	rp.support = (function(){
+		var ret;
+		try {
+			ret = w.document.createElement( "link" ).relList.supports( "preload" );
+		} catch (e) {
+			ret = false;
+		}
+		return function(){
+			return ret;
+		};
+	})();
+
+	// if preload isn't supported, get an asynchronous load by using a non-matching media attribute
+	// then change that media back to its intended value on load
+	rp.bindMediaToggle = function( link ){
+		// remember existing media attr for ultimate state, or default to 'all'
+		var finalMedia = link.media || "all";
+
+		function enableStylesheet(){
+			link.media = finalMedia;
+		}
+
+		// bind load handlers to enable media
+		if( link.addEventListener ){
+			link.addEventListener( "load", enableStylesheet );
+		} else if( link.attachEvent ){
+			link.attachEvent( "onload", enableStylesheet );
+		}
+
+		// Set rel and non-applicable media type to start an async request
+		// note: timeout allows this to happen async to let rendering continue in IE
+		setTimeout(function(){
+			link.rel = "stylesheet";
+			link.media = "only x";
+		});
+		// also enable media after 3 seconds,
+		// which will catch very old browsers (android 2.x, old firefox) that don't support onload on link
+		setTimeout( enableStylesheet, 3000 );
+	};
+
+	// loop through link elements in DOM
+	rp.poly = function(){
+		// double check this to prevent external calls from running
+		if( rp.support() ){
+			return;
+		}
+		var links = w.document.getElementsByTagName( "link" );
+		for( var i = 0; i < links.length; i++ ){
+			var link = links[ i ];
+			// qualify links to those with rel=preload and as=style attrs
+			if( link.rel === "preload" && link.getAttribute( "as" ) === "style" && !link.getAttribute( "data-loadcss" ) ){
+				// prevent rerunning on link
+				link.setAttribute( "data-loadcss", true );
+				// bind listeners to toggle media back
+				rp.bindMediaToggle( link );
+			}
+		}
+	};
+
+	// if unsupported, run the polyfill
+	if( !rp.support() ){
+		// run once at least
+		rp.poly();
+
+		// rerun poly on an interval until onload
+		var run = w.setInterval( rp.poly, 500 );
+		if( w.addEventListener ){
+			w.addEventListener( "load", function(){
+				rp.poly();
+				w.clearInterval( run );
+			} );
+		} else if( w.attachEvent ){
+			w.attachEvent( "onload", function(){
+				rp.poly();
+				w.clearInterval( run );
+			} );
+		}
+	}
+
+
+	// commonjs
+	if( typeof exports !== "undefined" ){
+		exports.loadCSS = loadCSS;
+	}
+	else {
+		w.loadCSS = loadCSS;
+	}
+}( typeof global !== "undefined" ? global : this ) );
+</script>
+
+    <link rel="icon" href="../../../../assets/m.ico">
+    <link rel="preload" href="https://cdn.jsdelivr.net/npm/webfontloader@1.6.28/webfontloader.min.js" as="script">
+    <link rel="preload" href="https://cdn.jsdelivr.net/npm/jquery@3.3.1/dist/jquery.min.js" as="script">
+    <link rel="preload" href="../../../../scripts/main.js" as="script">
+    <link rel="preload" as="font" href="../../../../font/Oswald-Regular.ttf" crossorigin>
+    <link rel="preload" as="font" href="https://at.alicdn.com/t/font_327081_1dta1rlogw17zaor.woff" crossorigin>
+    
+    <!-- fancybox -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.2.5/jquery.fancybox.min.js" defer></script>
+    <!-- 百度统计  -->
+    
+    <!-- 谷歌统计  --><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+    
+</head>
+
+    
+        <body class="post-body">
+    
+    
+<!-- hexo-inject:begin --><!-- hexo-inject:end --><header class="header">
+
+    <div class="read-progress"></div>
+    <div class="header-sidebar-menu">&#xe775;</div>
+    <!-- post页的toggle banner  -->
+    
+    <div class="banner">
+            <div class="blog-title">
+                <a href="../../../../index.html" >Mcginn&#39;s Blog</a>
+            </div>
+            <div class="post-title">
+                <a href="#" class="post-name">CSAPP - archlab</a>
+            </div>
+    </div>
+    
+    <a class="home-link" href=/>Mcginn's Blog</a>
+</header>
+    <div class="wrapper">
+        <div class="site-intro" style="
+
+
+
+
+
+
+
+height:50vh;
+">
+    
+    <!-- 主页  -->
+    
+    
+    <!-- 404页  -->
+            
+    <div class="site-intro-placeholder"></div>
+    <div class="site-intro-img" style="background-image: url(../../../../intro/post-bg.jpg)"></div>
+    <div class="site-intro-meta">
+        <!-- 标题  -->
+        <h1 class="intro-title">
+            <!-- 主页  -->
+            
+            CSAPP - archlab
+            <!-- 404 -->
+            
+        </h1>
+        <!-- 副标题 -->
+        <p class="intro-subtitle">
+            <!-- 主页副标题  -->
+            
+            
+            <!-- 404 -->
+            
+        </p>
+        <!-- 文章页meta -->
+        
+            <div class="post-intros">
+                <!-- 文章页标签  -->
+                
+                
+                    <div class="post-intro-read">
+                        <span>字数统计: <span class="post-count word-count">2.5k</span>阅读时长: <span class="post-count reading-time">12 min</span></span>
+                    </div>
+                
+                <div class="post-intro-meta">
+                    <span class="post-intro-calander iconfont-archer">&#xe676;</span>
+                    <span class="post-intro-time">2020/02/21</span>
+                    
+                    <span id="busuanzi_container_page_pv" class="busuanzi-pv">
+                        <span class="iconfont-archer">&#xe602;</span>
+                        <span id="busuanzi_value_page_pv"></span>
+                    </span>
+                    
+                    <span class="shareWrapper">
+                        <span class="iconfont-archer shareIcon">&#xe71d;</span>
+                        <span class="shareText">Share</span>
+                        <ul class="shareList">
+                            <li class="iconfont-archer share-qr" data-type="qr">&#xe75b;
+                                <div class="share-qrcode"></div>
+                            </li>
+                            <li class="iconfont-archer" data-type="weibo">&#xe619;</li>
+                            <li class="iconfont-archer" data-type="qzone">&#xe62e;</li>
+                            <li class="iconfont-archer" data-type="twitter">&#xe634;</li>
+                            <li class="iconfont-archer" data-type="facebook">&#xe67a;</li>
+                        </ul>
+                    </span>
+                </div>
+            </div>
+        
+    </div>
+</div>
+        <script>
+ 
+  // get user agent
+  var browser = {
+    versions: function () {
+      var u = window.navigator.userAgent;
+      return {
+        userAgent: u,
+        trident: u.indexOf('Trident') > -1, //IE内核
+        presto: u.indexOf('Presto') > -1, //opera内核
+        webKit: u.indexOf('AppleWebKit') > -1, //苹果、谷歌内核
+        gecko: u.indexOf('Gecko') > -1 && u.indexOf('KHTML') == -1, //火狐内核
+        mobile: !!u.match(/AppleWebKit.*Mobile.*/), //是否为移动终端
+        ios: !!u.match(/\(i[^;]+;( U;)? CPU.+Mac OS X/), //ios终端
+        android: u.indexOf('Android') > -1 || u.indexOf('Linux') > -1, //android终端或者uc浏览器
+        iPhone: u.indexOf('iPhone') > -1 || u.indexOf('Mac') > -1, //是否为iPhone或者安卓QQ浏览器
+        iPad: u.indexOf('iPad') > -1, //是否为iPad
+        webApp: u.indexOf('Safari') == -1, //是否为web应用程序，没有头部与底部
+        weixin: u.indexOf('MicroMessenger') == -1, //是否为微信浏览器
+        uc: u.indexOf('UCBrowser') > -1 //是否为android下的UC浏览器
+      };
+    }()
+  }
+  console.log("userAgent:" + browser.versions.userAgent);
+
+  // callback
+  function fontLoaded() {
+    console.log('font loaded');
+    if (document.getElementsByClassName('site-intro-meta')) {
+      document.getElementsByClassName('intro-title')[0].classList.add('intro-fade-in');
+      document.getElementsByClassName('intro-subtitle')[0].classList.add('intro-fade-in');
+      var postIntros = document.getElementsByClassName('post-intros')[0]
+      if (postIntros) {
+        postIntros.classList.add('post-fade-in');
+      }
+    }
+  }
+
+  // UC不支持跨域，所以直接显示
+  function asyncCb(){
+    if (browser.versions.uc) {
+      console.log("UCBrowser");
+      fontLoaded();
+    } else {
+      WebFont.load({
+        custom: {
+          families: ['Oswald-Regular']
+        },
+        loading: function () {  //所有字体开始加载
+          // console.log('loading');
+        },
+        active: function () {  //所有字体已渲染
+          fontLoaded();
+        },
+        inactive: function () { //字体预加载失败，无效字体或浏览器不支持加载
+          console.log('inactive: timeout');
+          fontLoaded();
+        },
+        timeout: 5000 // Set the timeout to two seconds
+      });
+    }
+  }
+
+  function asyncErr(){
+    console.warn('script load from CDN failed, will load local script')
+  }
+
+  // load webfont-loader async, and add callback function
+  function async(u, cb, err) {
+    var d = document, t = 'script',
+      o = d.createElement(t),
+      s = d.getElementsByTagName(t)[0];
+    o.src = u;
+    if (cb) { o.addEventListener('load', function (e) { cb(null, e); }, false); }
+    if (err) { o.addEventListener('error', function (e) { err(null, e); }, false); }
+    s.parentNode.insertBefore(o, s);
+  }
+
+  var asyncLoadWithFallBack = function(arr, success, reject) {
+      var currReject = function(){
+        reject()
+        arr.shift()
+        if(arr.length)
+          async(arr[0], success, currReject)
+        }
+
+      async(arr[0], success, currReject)
+  }
+
+  asyncLoadWithFallBack([
+    "https://cdn.jsdelivr.net/npm/webfontloader@1.6.28/webfontloader.min.js", 
+    "https://cdn.bootcss.com/webfont/1.6.28/webfontloader.js",
+    "../../../../lib/webfontloader.min.js"
+  ], asyncCb, asyncErr)
+</script>        
+        <img class="loading" src="../../../../assets/loading.svg" style="display: block; margin: 6rem auto 0 auto; width: 6rem; height: 6rem;" />
+        <div class="container container-unloaded">
+            <main class="main post-page">
+    <article class="article-entry">
+        <h2 id="知识点"><a href="#知识点" class="headerlink" title="知识点"></a>知识点</h2><ul>
+<li>学习流水线化的 Y86-64 处理器的设计和实现，深刻理解<strong>流水线冒险</strong>。</li>
+<li>学习<strong>循环展开</strong>，理解其对程序性能的影响。</li>
+</ul>
+<h2 id="题目"><a href="#题目" class="headerlink" title="题目"></a>题目</h2><h3 id="Part-A"><a href="#Part-A" class="headerlink" title="Part A"></a>Part A</h3><h4 id="要求"><a href="#要求" class="headerlink" title="要求"></a>要求</h4><p>使用 Y86-64 指令集，编写关于 sum_list, rsum_list 和 copy_block 函数的 Y86-64 程序。</p>
+<h4 id="做法"><a href="#做法" class="headerlink" title="做法"></a>做法</h4><p>参考书本<strong>图 4-7</strong> 即可，实现也较为简单。</p>
+<h3 id="Part-B"><a href="#Part-B" class="headerlink" title="Part B"></a>Part B</h3><h4 id="要求-1"><a href="#要求-1" class="headerlink" title="要求"></a>要求</h4><p>使用硬件控制语言（HCL）修改 sim/seq/seq-full.hcl，使得处理器支持 iaddq 指令。</p>
+<h4 id="做法-1"><a href="#做法-1" class="headerlink" title="做法"></a>做法</h4><p>iaddq 指令将立即数和寄存器相加，并将结果写回寄存器。</p>
+<p>具体参考 irmovq 指令的实现即可。</p>
+<h3 id="Part-C"><a href="#Part-C" class="headerlink" title="Part C"></a>Part C</h3><h4 id="要求-2"><a href="#要求-2" class="headerlink" title="要求"></a>要求</h4><p>在 ncopy.ys 中用 Y86-64 指令实现函数 ncopy：复制 src 到 dst，同时统计并返回其中正数的数量。</p>
+<p>满分要求达到 CPE &lt; 7.50。</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/* </span></span><br><span class="line"><span class="comment"> * ncopy - copy src to dst, returning number of positive ints</span></span><br><span class="line"><span class="comment"> * contained in src array.</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="keyword">word_t</span> ncopy(<span class="keyword">word_t</span> *src, <span class="keyword">word_t</span> *dst, <span class="keyword">word_t</span> len) &#123;</span><br><span class="line">	<span class="keyword">word_t</span> count = <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">word_t</span> val;</span><br><span class="line">    <span class="keyword">while</span> (len &gt; <span class="number">0</span>) &#123;</span><br><span class="line">		val = *src++;</span><br><span class="line">        *dst = val;</span><br><span class="line">        <span class="keyword">if</span> (val &gt; <span class="number">0</span>) </span><br><span class="line">            count++;</span><br><span class="line">        len--;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> count;    </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h4 id="做法-2"><a href="#做法-2" class="headerlink" title="做法"></a>做法</h4><p>首先实现最朴素的循环体：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"># %rdi = src, %rsi = dst, %rdx = len</span><br><span class="line">ncopy:</span><br><span class="line">	xorq %rax,%rax</span><br><span class="line">	andq %rdx,%rdx				# len &gt; 0?</span><br><span class="line">	jle Done</span><br><span class="line">Loop:</span><br><span class="line">	mrmovq (%rdi), %r10			# get *src</span><br><span class="line">	rmmovq %r10, (%rsi)			# set *dst</span><br><span class="line">	andq %r10, %r10				# val &gt; 0?</span><br><span class="line">	jle Npos</span><br><span class="line">	iaddq $1, %rax				# count++</span><br><span class="line">Npos:</span><br><span class="line">	iaddq $8, %rdi				# src++</span><br><span class="line">	iaddq $8, %rsi				# dst++</span><br><span class="line">	iaddq $-1, %rdx				# len--</span><br><span class="line">	jne Loop</span><br></pre></td></tr></table></figure>
+<p>该实现使用 <code>./benchmark.pl</code> 测试， CPE = 11.70。该实现需要经过优化来达到满分要求。</p>
+<p>先简单介绍<strong>循环展开（Loop Unrolling）</strong>，通过增加每次迭代计算的元素数量，从而减少循环的迭代次数：</p>
+<ol>
+<li><p>减少循环不直接有助于计算的操作数量，比如循环索引。</p>
+<p>不严谨地说，就是关键操作（比如乘法操作）数量不变，但是循环变量的加法减少了，这样就可以减少不必要的操作数量。</p>
+</li>
+<li><p>循环展开可以改变代码，有可能减少流水线冒险。</p>
+</li>
+</ol>
+<p>在朴素版本中，<code>mrmovq (%rdi), %r10</code> 和 <code>rmmovq %r10, (%rsi)</code> 存在数据相关：需要先将 *src 读取到寄存器 %r10 中，进而才能读取 %r10 值保存到 *dst。处理器通过暂停指令来处理该情况，参考下图情形：</p>
+<img src="/2020/02/21/CSAPP-archlab/bubble.png" title="流水线暂停">
+<p>由于有<strong>转发</strong>机制，流水线处理器可以减少暂停的周期数，而不是图上的 3 个周期。</p>
+<p>下面实现 2×1 循环展开：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br></pre></td><td class="code"><pre><span class="line">ncopy:</span><br><span class="line">	xorq %rax, %rax</span><br><span class="line">	iaddq $-2, %rdx			# len - 2 &gt;= 0?</span><br><span class="line">	jl Rem</span><br><span class="line">Loop:</span><br><span class="line">	mrmovq (%rdi), %r8		# get *src</span><br><span class="line">	mrmovq 8(%rdi), %r9		# get *(src + 1)</span><br><span class="line">	rmmovq %r8, (%rsi)		# set *dst</span><br><span class="line">	rmmovq %r9, 8(%rsi)		# set *(dst + 1)</span><br><span class="line">	andq %r8, %r8			# val &gt; 0?</span><br><span class="line">	jle LNP8</span><br><span class="line">	iaddq $1, %rax			# count++</span><br><span class="line">LNP8:</span><br><span class="line">	andq %r9, %r9			# val &gt; 0?</span><br><span class="line">	jle LNP9</span><br><span class="line">	iaddq $1, %rax			# count++</span><br><span class="line">LNP9:</span><br><span class="line">	iaddq $16, %rdi			# src += 2</span><br><span class="line">	iaddq $16, %rsi			# dst += 2</span><br><span class="line">	iaddq $-2, %rdx			# len -= 2</span><br><span class="line">	jge Loop</span><br><span class="line"></span><br><span class="line">Rem:</span><br><span class="line">	iaddq $2, %rdx</span><br><span class="line">	jle Done</span><br><span class="line"></span><br><span class="line">	mrmovq (%rdi), %r8</span><br><span class="line">	rmmovq %r8, (%rsi)</span><br><span class="line">	andq %r8, %r8</span><br><span class="line">	jle Done</span><br><span class="line">	iaddq $1, %rax</span><br></pre></td></tr></table></figure>
+<p>该实现使用 <code>./benchmark.pl</code> 测试， CPE = 8.87。</p>
+<p>注意，此处将余数放到最后处理，可以去掉 %rdi, %rsi 和 %rdx 的加法操作，从而提高 CPE。</p>
+<p>其中，将 <code>iaddq $16, %rdi</code> 置于 <code>mrmovq 8(%rdi), %r9</code>  和 <code>rmmovq %r8, (%rsi)</code> 之间，CPE 不会提升。此外，插入到 <code>andq</code> 和 <code>jle</code> 之间也不会提升 CPE。</p>
+<p>因此，可得出结论 <code>mrmovq</code> 和 <code>rmmovq</code> 如果存在数据相关，只会<strong>暂停一个周期</strong>（即插入一个 bubble）。</p>
+<p>进一步的优化考虑使用更多的寄存器来展开循环。因为 Y86-64 指令集仅支持 15 个寄存器，去掉已使用的寄存器和栈寄存器，剩余 10 个寄存器可用。所以最多能够编写 10×1 循环展开程序。</p>
+<p>参考 2×1 展开，余数部分<strong>手动处理</strong>而不依赖循环结构，可以进一步减少循环索引和循环指针的加法操作。手动处理的话，需要知道余数大小，然后跳转到相应的位置进行处理。这里可以使用<strong>类似二分查找</strong>思想：条件跳转指令有 <code>jl</code>, <code>je</code> 和 <code>jg</code>，可以确定 2 个区间和 1 个值。</p>
+<p>知道余数大小后，类似 C 语言中 switch 选择语句依次处理剩余部分：</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">switch</span> (Remainder) &#123;</span><br><span class="line">    <span class="keyword">case</span> <span class="number">9</span>: val=*src++; *dst++=val; count += val&gt;<span class="number">0</span>;</span><br><span class="line">    <span class="keyword">case</span> <span class="number">8</span>: val=*src++; *dst++=val; count += val&gt;<span class="number">0</span>;</span><br><span class="line">       ...</span><br><span class="line">    <span class="keyword">case</span> <span class="number">1</span>: val=*src++; *dst++=val; count += val&gt;<span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>10×1 循环展开+余数手动处理版本</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br><span class="line">123</span><br><span class="line">124</span><br><span class="line">125</span><br><span class="line">126</span><br><span class="line">127</span><br><span class="line">128</span><br><span class="line">129</span><br><span class="line">130</span><br><span class="line">131</span><br><span class="line">132</span><br><span class="line">133</span><br><span class="line">134</span><br><span class="line">135</span><br><span class="line">136</span><br><span class="line">137</span><br><span class="line">138</span><br><span class="line">139</span><br><span class="line">140</span><br><span class="line">141</span><br><span class="line">142</span><br><span class="line">143</span><br><span class="line">144</span><br><span class="line">145</span><br></pre></td><td class="code"><pre><span class="line">ncopy:</span><br><span class="line">	iaddq $-10, %rdx</span><br><span class="line">	jl Rem</span><br><span class="line"></span><br><span class="line">Loop:</span><br><span class="line">	mrmovq (%rdi), %r8</span><br><span class="line">	mrmovq 8(%rdi), %r9</span><br><span class="line">	mrmovq 16(%rdi), %r10</span><br><span class="line">	mrmovq 24(%rdi), %r11</span><br><span class="line">	mrmovq 32(%rdi), %r12</span><br><span class="line">	mrmovq 40(%rdi), %r13</span><br><span class="line">	mrmovq 48(%rdi), %r14</span><br><span class="line">	mrmovq 56(%rdi), %rcx</span><br><span class="line">	mrmovq 64(%rdi), %rbx</span><br><span class="line">	mrmovq 72(%rdi), %rbp</span><br><span class="line">	rmmovq %r8, (%rsi)</span><br><span class="line">	rmmovq %r9, 8(%rsi)</span><br><span class="line">	rmmovq %r10, 16(%rsi)</span><br><span class="line">	rmmovq %r11, 24(%rsi)</span><br><span class="line">	rmmovq %r12, 32(%rsi)</span><br><span class="line">	rmmovq %r13, 40(%rsi)</span><br><span class="line">	rmmovq %r14, 48(%rsi)</span><br><span class="line">	rmmovq %rcx, 56(%rsi)</span><br><span class="line">	rmmovq %rbx, 64(%rsi)</span><br><span class="line">	rmmovq %rbp, 72(%rsi)</span><br><span class="line">	andq %r8, %r8</span><br><span class="line">	jle R10N8</span><br><span class="line">	iaddq $1, %rax</span><br><span class="line">R10N8:</span><br><span class="line">	andq %r9, %r9</span><br><span class="line">	jle R10N9</span><br><span class="line">	iaddq $1, %rax</span><br><span class="line">R10N9:</span><br><span class="line">	andq %r10, %r10</span><br><span class="line">	jle R10N10</span><br><span class="line">	iaddq $1, %rax</span><br><span class="line">R10N10:</span><br><span class="line">	andq %r11, %r11</span><br><span class="line">	jle R10N11</span><br><span class="line">	iaddq $1, %rax</span><br><span class="line">R10N11:</span><br><span class="line">	andq %r12, %r12</span><br><span class="line">	jle R10N12</span><br><span class="line">	iaddq $1, %rax</span><br><span class="line">R10N12:</span><br><span class="line">	andq %r13, %r13</span><br><span class="line">	jle R10N13</span><br><span class="line">	iaddq $1, %rax</span><br><span class="line">R10N13:</span><br><span class="line">	andq %r14, %r14</span><br><span class="line">	jle R10N14</span><br><span class="line">	iaddq $1, %rax</span><br><span class="line">R10N14:</span><br><span class="line">	andq %rcx, %rcx</span><br><span class="line">	jle R10N15</span><br><span class="line">	iaddq $1, %rax</span><br><span class="line">R10N15:</span><br><span class="line">	andq %rbx, %rbx</span><br><span class="line">	jle R10N16</span><br><span class="line">	iaddq $1, %rax</span><br><span class="line">R10N16:</span><br><span class="line">	andq %rbp, %rbp</span><br><span class="line">	jle R10N17</span><br><span class="line">	iaddq $1, %rax</span><br><span class="line">R10N17:</span><br><span class="line">	iaddq $80, %rdi</span><br><span class="line">	iaddq $80, %rsi</span><br><span class="line">	iaddq $-10, %rdx</span><br><span class="line">	jge Loop</span><br><span class="line"></span><br><span class="line">Rem:</span><br><span class="line">	iaddq $10, %rdx</span><br><span class="line">	jle Done</span><br><span class="line">	iaddq $-4, %rdx</span><br><span class="line"></span><br><span class="line">	jge GE4</span><br><span class="line">	iaddq $2, %rdx</span><br><span class="line">	jl R1</span><br><span class="line">	je R2</span><br><span class="line">	jmp R3</span><br><span class="line"></span><br><span class="line">GE4:</span><br><span class="line">	je R4</span><br><span class="line">	iaddq $-2, %rdx</span><br><span class="line">	jl R5</span><br><span class="line">	je R6</span><br><span class="line"></span><br><span class="line">	iaddq $-2, %rdx</span><br><span class="line">	jl R7</span><br><span class="line">	je R8</span><br><span class="line"></span><br><span class="line">R9:</span><br><span class="line">	mrmovq 64(%rdi), %r8</span><br><span class="line">	rmmovq %r8, 64(%rsi)</span><br><span class="line">	andq %r8, %r8</span><br><span class="line">	jle R8</span><br><span class="line">	iaddq $1, %rax</span><br><span class="line">R8:</span><br><span class="line">	mrmovq 56(%rdi), %r8</span><br><span class="line">	rmmovq %r8, 56(%rsi)</span><br><span class="line">	andq %r8, %r8</span><br><span class="line">	jle R7</span><br><span class="line">	iaddq $1, %rax</span><br><span class="line">R7:</span><br><span class="line">	mrmovq 48(%rdi), %r8</span><br><span class="line">	rmmovq %r8, 48(%rsi)</span><br><span class="line">	andq %r8, %r8</span><br><span class="line">	jle R6</span><br><span class="line">	iaddq $1, %rax</span><br><span class="line">R6:</span><br><span class="line">	mrmovq 40(%rdi), %r8</span><br><span class="line">	rmmovq %r8, 40(%rsi)</span><br><span class="line">	andq %r8, %r8</span><br><span class="line">	jle R5</span><br><span class="line">	iaddq $1, %rax</span><br><span class="line">R5:</span><br><span class="line">	mrmovq 32(%rdi), %r8</span><br><span class="line">	rmmovq %r8, 32(%rsi)</span><br><span class="line">	andq %r8, %r8</span><br><span class="line">	jle R4</span><br><span class="line">	iaddq $1, %rax</span><br><span class="line">R4:</span><br><span class="line">	mrmovq 24(%rdi), %r8</span><br><span class="line">	rmmovq %r8, 24(%rsi)</span><br><span class="line">	andq %r8, %r8</span><br><span class="line">	jle R3</span><br><span class="line">	iaddq $1, %rax</span><br><span class="line">R3:</span><br><span class="line">	mrmovq 16(%rdi), %r8</span><br><span class="line">	rmmovq %r8, 16(%rsi)</span><br><span class="line">	andq %r8, %r8</span><br><span class="line">	jle R2</span><br><span class="line">	iaddq $1, %rax</span><br><span class="line">R2:</span><br><span class="line">	mrmovq 8(%rdi), %r8</span><br><span class="line">	rmmovq %r8, 8(%rsi)</span><br><span class="line">	andq %r8, %r8</span><br><span class="line">	jle R1</span><br><span class="line">	iaddq $1, %rax</span><br><span class="line">R1:</span><br><span class="line">	mrmovq (%rdi), %r8</span><br><span class="line">	rmmovq %r8, (%rsi)</span><br><span class="line">	andq %r8, %r8</span><br><span class="line">	jle Done</span><br><span class="line">	iaddq $1, %rax</span><br></pre></td></tr></table></figure>
+<p>该实现使用 <code>./benchmark.pl</code> 测试， CPE = 8.02。</p>
+<p>继续观察上述代码，还有 2 处可以优化：</p>
+<ol>
+<li>每个 case 下，<code>mrmovq</code> 和 <code>rmmovq</code> 存在数据相关。</li>
+<li>余数为 0 时，单独特判。假设每个余数等概率出现，那么很大概率这个条件跳转不会发生，从而增加了 CPE。所以，余数二分查找时要把 0 考虑进去。</li>
+</ol>
+<p>针对 1 的优化，从 <code>mrmovq</code> 和 <code>rmmovq</code> 不会设置<strong>条件码</strong>入手，将这两条指令插入到 <code>andq %r8, %r8</code> 和 <code>jle</code> 之间，从而避免流水线暂停（这两条指令相邻时暂停一周期）。解决方法是：将前一个数的正负判断延迟到当前模块处理。具体实现为：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">Rn:</span><br><span class="line">	andq %r8, %r8				# %r8=src[n - 1]</span><br><span class="line">	mrmovq 8n(%rdi), %r8		# 加载src[n]到%r8</span><br><span class="line">	jle EnNP</span><br><span class="line">	iaddq $1, %rax</span><br><span class="line">EnNP:</span><br><span class="line">	rmmovq %r8, 8n(%rsi)		# 设置dst[n]=%r8</span><br></pre></td></tr></table></figure>
+<p>该做法要求进入一个模块前，需要先加载一个数到寄存器 %r8 中。除了余数为 0 时，其他情形都需要 src[0]，所以考虑加载 src[0] 到 %r8 中。</p>
+<p>针对 2 的优化，要注意二分查找的分界点，该过程可通过动态规划来计算最少的指令数：</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;bits/stdc++.h&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> mp make_pair</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> rep(i,l,r) for(int i=(l);i&lt;(r);++i)</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> per(i,l,r) for(int i=(r)-1;i&gt;=(l);--i)</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> dd(x) cout &lt;&lt; #x &lt;&lt; <span class="meta-string">" = "</span> &lt;&lt; x &lt;&lt; <span class="meta-string">", "</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> de(x) cout &lt;&lt; #x &lt;&lt; <span class="meta-string">" = "</span> &lt;&lt; x &lt;&lt; endl</span></span><br><span class="line"><span class="comment">//-------</span></span><br><span class="line"></span><br><span class="line"><span class="built_in">map</span>&lt;pair&lt;<span class="keyword">int</span>,<span class="keyword">int</span>&gt;, <span class="keyword">int</span>&gt; dp;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">dfs</span><span class="params">(pair&lt;<span class="keyword">int</span>, <span class="keyword">int</span>&gt; ij)</span> </span>&#123;</span><br><span class="line">	<span class="keyword">if</span> (ij.first &gt;= ij.second) <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">	<span class="keyword">if</span> (dp.count(ij)) <span class="keyword">return</span> dp[ij];</span><br><span class="line">	<span class="keyword">int</span> l, r;</span><br><span class="line">	tie(l, r) = ij;</span><br><span class="line">	pair&lt;<span class="keyword">int</span>, <span class="keyword">int</span>&gt; ret(INT_MAX, INT_MAX);</span><br><span class="line">	rep(m, l, r + <span class="number">1</span>) &#123;</span><br><span class="line">		<span class="keyword">int</span> sum = <span class="number">1</span> + <span class="number">1</span>;	<span class="comment">// test; je</span></span><br><span class="line">		<span class="keyword">if</span> (l &lt;= m - <span class="number">1</span>) 	<span class="comment">// jl, 左分支</span></span><br><span class="line">			sum += (l &lt; m - <span class="number">1</span>) + (m - l) + dfs(mp(l, m - <span class="number">1</span>));</span><br><span class="line">		<span class="keyword">if</span> (m + <span class="number">1</span> &lt;= r)		<span class="comment">// jg, 右分支</span></span><br><span class="line">			sum += (m + <span class="number">1</span> &lt; r) + (r - m) + dfs(mp(m + <span class="number">1</span>, r));</span><br><span class="line">		ret = min(ret, mp(sum, m));</span><br><span class="line">	&#125;</span><br><span class="line">	dd(l), dd(r), dd(ret.first), de(ret.second);</span><br><span class="line">	<span class="keyword">return</span> dp[ij] = ret.first;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span> </span>&#123;</span><br><span class="line">	<span class="keyword">int</span> l, r; <span class="built_in">cin</span> &gt;&gt; l &gt;&gt; r;</span><br><span class="line">	dd(l), de(r);</span><br><span class="line">	<span class="keyword">int</span> ans = dfs(mp(l, r));</span><br><span class="line">	de(ans);</span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>在区间为 [0, 9] 时，关键输出为：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">l = 7, r = 9, ret.first = 4, ret.second = 8</span><br><span class="line">l = 4, r = 5, ret.first = 3, ret.second = 4</span><br><span class="line">l = 4, r = 9, ret.first = 16, ret.second = 6</span><br><span class="line">l = 0, r = 2, ret.first = 4, ret.second = 1</span><br><span class="line">l = 0, r = 9, ret.first = 33, ret.second = 3</span><br></pre></td></tr></table></figure>
+<p>查找的关键点为：1，3，4，6，8。</p>
+<p>在实现过程反复测试中，发现处理器更倾向于总是跳转，结合具体的查找实现，最终的关键点定位：1，3，5，7， 8。</p>
+<img src="/2020/02/21/CSAPP-archlab/binarysearch.png" title="二分查找">
+<p>优化后的版本：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br><span class="line">123</span><br><span class="line">124</span><br><span class="line">125</span><br><span class="line">126</span><br><span class="line">127</span><br><span class="line">128</span><br><span class="line">129</span><br><span class="line">130</span><br><span class="line">131</span><br><span class="line">132</span><br><span class="line">133</span><br><span class="line">134</span><br><span class="line">135</span><br><span class="line">136</span><br><span class="line">137</span><br><span class="line">138</span><br><span class="line">139</span><br><span class="line">140</span><br><span class="line">141</span><br><span class="line">142</span><br><span class="line">143</span><br><span class="line">144</span><br><span class="line">145</span><br><span class="line">146</span><br><span class="line">147</span><br><span class="line">148</span><br><span class="line">149</span><br><span class="line">150</span><br><span class="line">151</span><br><span class="line">152</span><br><span class="line">153</span><br><span class="line">154</span><br><span class="line">155</span><br><span class="line">156</span><br><span class="line">157</span><br><span class="line">158</span><br><span class="line">159</span><br><span class="line">160</span><br></pre></td><td class="code"><pre><span class="line">ncopy:</span><br><span class="line">	iaddq $-10, %rdx</span><br><span class="line">	jl Rem</span><br><span class="line"></span><br><span class="line">Loop:</span><br><span class="line">	mrmovq (%rdi), %r8</span><br><span class="line">	mrmovq 8(%rdi), %r9</span><br><span class="line">	mrmovq 16(%rdi), %r10</span><br><span class="line">	mrmovq 24(%rdi), %r11</span><br><span class="line">	mrmovq 32(%rdi), %r12</span><br><span class="line">	mrmovq 40(%rdi), %r13</span><br><span class="line">	mrmovq 48(%rdi), %r14</span><br><span class="line">	mrmovq 56(%rdi), %rcx</span><br><span class="line">	mrmovq 64(%rdi), %rbx</span><br><span class="line">	mrmovq 72(%rdi), %rbp</span><br><span class="line">	rmmovq %r8, (%rsi)</span><br><span class="line">	rmmovq %r9, 8(%rsi)</span><br><span class="line">	rmmovq %r10, 16(%rsi)</span><br><span class="line">	rmmovq %r11, 24(%rsi)</span><br><span class="line">	rmmovq %r12, 32(%rsi)</span><br><span class="line">	rmmovq %r13, 40(%rsi)</span><br><span class="line">	rmmovq %r14, 48(%rsi)</span><br><span class="line">	rmmovq %rcx, 56(%rsi)</span><br><span class="line">	rmmovq %rbx, 64(%rsi)</span><br><span class="line">	rmmovq %rbp, 72(%rsi)</span><br><span class="line">	andq %r8, %r8</span><br><span class="line">	jle R10N8</span><br><span class="line">	iaddq $1, %rax</span><br><span class="line">R10N8:</span><br><span class="line">	andq %r9, %r9</span><br><span class="line">	jle R10N9</span><br><span class="line">	iaddq $1, %rax</span><br><span class="line">R10N9:</span><br><span class="line">	andq %r10, %r10</span><br><span class="line">	jle R10N10</span><br><span class="line">	iaddq $1, %rax</span><br><span class="line">R10N10:</span><br><span class="line">	andq %r11, %r11</span><br><span class="line">	jle R10N11</span><br><span class="line">	iaddq $1, %rax</span><br><span class="line">R10N11:</span><br><span class="line">	andq %r12, %r12</span><br><span class="line">	jle R10N12</span><br><span class="line">	iaddq $1, %rax</span><br><span class="line">R10N12:</span><br><span class="line">	andq %r13, %r13</span><br><span class="line">	jle R10N13</span><br><span class="line">	iaddq $1, %rax</span><br><span class="line">R10N13:</span><br><span class="line">	andq %r14, %r14</span><br><span class="line">	jle R10N14</span><br><span class="line">	iaddq $1, %rax</span><br><span class="line">R10N14:</span><br><span class="line">	andq %rcx, %rcx</span><br><span class="line">	jle R10N15</span><br><span class="line">	iaddq $1, %rax</span><br><span class="line">R10N15:</span><br><span class="line">	andq %rbx, %rbx</span><br><span class="line">	jle R10N16</span><br><span class="line">	iaddq $1, %rax</span><br><span class="line">R10N16:</span><br><span class="line">	andq %rbp, %rbp</span><br><span class="line">	jle R10N17</span><br><span class="line">	iaddq $1, %rax</span><br><span class="line">R10N17:</span><br><span class="line">	iaddq $80, %rdi</span><br><span class="line">	iaddq $80, %rsi</span><br><span class="line">	iaddq $-10, %rdx</span><br><span class="line">	jge Loop</span><br><span class="line"></span><br><span class="line">Rem:</span><br><span class="line">	mrmovq (%rdi), %r8</span><br><span class="line">	iaddq $7, %rdx</span><br><span class="line">	jge RGE3</span><br><span class="line">R02:</span><br><span class="line">	iaddq $2, %rdx</span><br><span class="line">	jl Done</span><br><span class="line">	rmmovq %r8, (%rsi)</span><br><span class="line">	je R1</span><br><span class="line">	jmp R2</span><br><span class="line"></span><br><span class="line">R46:</span><br><span class="line">	iaddq $2, %rdx</span><br><span class="line">	jl R4</span><br><span class="line">	je R5</span><br><span class="line">	jmp R6</span><br><span class="line"></span><br><span class="line">RGE3:</span><br><span class="line">	rmmovq %r8, (%rsi)</span><br><span class="line">	je R3</span><br><span class="line"></span><br><span class="line">R49:	</span><br><span class="line">	iaddq $-4, %rdx</span><br><span class="line">	jl R46</span><br><span class="line">	je R7</span><br><span class="line"></span><br><span class="line">R89:</span><br><span class="line">	iaddq $-1, %rdx</span><br><span class="line">	je R8</span><br><span class="line"></span><br><span class="line">R9:</span><br><span class="line">	andq %r8, %r8</span><br><span class="line">	mrmovq 64(%rdi), %r8</span><br><span class="line">	jle R9NP</span><br><span class="line">	iaddq $1, %rax</span><br><span class="line">	R9NP:</span><br><span class="line">	rmmovq %r8, 64(%rsi)</span><br><span class="line">R8:</span><br><span class="line">	andq %r8, %r8</span><br><span class="line">	mrmovq 56(%rdi), %r8</span><br><span class="line">	jle R8NP</span><br><span class="line">	iaddq $1, %rax</span><br><span class="line">	R8NP:</span><br><span class="line">	rmmovq %r8, 56(%rsi)</span><br><span class="line">R7:</span><br><span class="line">	andq %r8, %r8</span><br><span class="line">	mrmovq 48(%rdi), %r8</span><br><span class="line">	jle R7NP</span><br><span class="line">	iaddq $1, %rax</span><br><span class="line">	R7NP:</span><br><span class="line">	rmmovq %r8, 48(%rsi)</span><br><span class="line">R6:</span><br><span class="line">	andq %r8, %r8</span><br><span class="line">	mrmovq 40(%rdi), %r8</span><br><span class="line">	jle R6NP</span><br><span class="line">	iaddq $1, %rax</span><br><span class="line">	R6NP:</span><br><span class="line">	rmmovq %r8, 40(%rsi)</span><br><span class="line">R5:</span><br><span class="line">	andq %r8, %r8</span><br><span class="line">	mrmovq 32(%rdi), %r8</span><br><span class="line">	jle R5NP</span><br><span class="line">	iaddq $1, %rax</span><br><span class="line">	R5NP:</span><br><span class="line">	rmmovq %r8, 32(%rsi)</span><br><span class="line">R4:</span><br><span class="line">	andq %r8, %r8</span><br><span class="line">	mrmovq 24(%rdi), %r8</span><br><span class="line">	jle R4NP</span><br><span class="line">	iaddq $1, %rax</span><br><span class="line">	R4NP:</span><br><span class="line">	rmmovq %r8, 24(%rsi)</span><br><span class="line">R3:</span><br><span class="line">	andq %r8, %r8</span><br><span class="line">	mrmovq 16(%rdi), %r8</span><br><span class="line">	jle R3NP</span><br><span class="line">	iaddq $1, %rax</span><br><span class="line">	R3NP:</span><br><span class="line">	rmmovq %r8, 16(%rsi)</span><br><span class="line">R2:</span><br><span class="line">	andq %r8, %r8</span><br><span class="line">	mrmovq 8(%rdi), %r8</span><br><span class="line">	jle R2NP</span><br><span class="line">	iaddq $1, %rax</span><br><span class="line">	R2NP:</span><br><span class="line">	rmmovq %r8, 8(%rsi)</span><br><span class="line">R1:</span><br><span class="line">	andq %r8, %r8</span><br><span class="line">	jle Done</span><br><span class="line">	iaddq $1, %rax</span><br></pre></td></tr></table></figure>
+<p>注意，该版本去掉了 <code>xorq %rax, %rax</code>。</p>
+<p>测试结果：</p>
+<img src="/2020/02/21/CSAPP-archlab/result.png" title="正确性结果">
+<img src="/2020/02/21/CSAPP-archlab/CPE.png" title="CPE">
+<h2 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h2><ol>
+<li><a href="https://zhuanlan.zhihu.com/p/33751460" target="_blank" rel="noopener">csapp archlab Part C</a></li>
+<li><a href="https://zhuanlan.zhihu.com/p/77072339" target="_blank" rel="noopener">csapp archlab 60分解答</a></li>
+</ol>
+
+    </article>
+    <!-- license  -->
+    
+    <!-- paginator  -->
+    <ul class="post-paginator">
+        <li class="next">
+            
+        </li>
+        <li class="previous">
+            
+                <div class="prevSlogan">Previous Post</div>
+                <a href= "../../19/CSAPP-attacklab/" title= "CSAPP - attacklab">
+                    <div class="prevTitle">CSAPP - attacklab</div>
+                </a>
+            
+        </li>
+    </ul>
+    <!-- 评论插件 -->
+    <!-- 来必力City版安装代码 -->
+
+<!-- City版安装代码已完成 -->
+    
+    
+
+    <!-- partial('_partial/comment/changyan') -->
+    <!--PC版-->
+
+
+    
+<div id="gitalk-container"></div>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.css">
+<script src="https://cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.min.js"></script>
+<script>
+	const gitalk = new Gitalk({
+		clientID: '38ea5d8ced7dd6f7499f',
+		clientSecret: 'ec2ab733801f235f78cd1d8016be50f7b92dd808',
+		repo: 'mcginn7.github.io',
+		owner: 'mcginn7',
+		admin: ['mcginn7'],
+		id: location.pathname,      // Ensure uniqueness and length less than 50
+		distractionFreeMode: false  // Facebook-like distraction free mode
+	})
+	gitalk.render('gitalk-container')
+</script>
+
+
+    
+
+    <!-- 评论 -->
+</main>
+            <!-- profile -->
+            
+        </div>
+        <footer class="footer footer-unloaded">
+    <!-- social  -->
+    
+    <div class="social">
+        
+    
+        
+            
+                <a href="mailto:mingqinchen@foxmail.com" class="iconfont-archer email" title=email ></a>
+            
+        
+    
+        
+            
+                <a href="//github.com/mcginn7" class="iconfont-archer github" target="_blank" title=github></a>
+            
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+
+    </div>
+    
+    <!-- powered by Hexo  -->
+    <div class="copyright">
+        <span id="hexo-power">Powered by <a href="https://hexo.io/" target="_blank">Hexo</a></span><span class="iconfont-archer power">&#xe635;</span><span id="theme-info">theme <a href="https://github.com/fi3ework/hexo-theme-archer" target="_blank">Archer</a></span>
+    </div>
+    <!-- 不蒜子  -->
+    
+    <div class="busuanzi-container">
+    
+     
+    <span id="busuanzi_container_site_pv">PV: <span id="busuanzi_value_site_pv"></span> :)</span>
+    
+    </div>
+    
+</footer>
+
+    </div>
+    <!-- toc -->
+    
+    <div class="toc-wrapper" style=
+    
+
+
+
+
+
+
+
+top:50vh;
+
+    >
+        <div class="toc-catalog">
+            <span class="iconfont-archer catalog-icon">&#xe613;</span><span>CATALOG</span>
+        </div>
+        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#知识点"><span class="toc-number">1.</span> <span class="toc-text">知识点</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#题目"><span class="toc-number">2.</span> <span class="toc-text">题目</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Part-A"><span class="toc-number">2.1.</span> <span class="toc-text">Part A</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#要求"><span class="toc-number">2.1.1.</span> <span class="toc-text">要求</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#做法"><span class="toc-number">2.1.2.</span> <span class="toc-text">做法</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Part-B"><span class="toc-number">2.2.</span> <span class="toc-text">Part B</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#要求-1"><span class="toc-number">2.2.1.</span> <span class="toc-text">要求</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#做法-1"><span class="toc-number">2.2.2.</span> <span class="toc-text">做法</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Part-C"><span class="toc-number">2.3.</span> <span class="toc-text">Part C</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#要求-2"><span class="toc-number">2.3.1.</span> <span class="toc-text">要求</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#做法-2"><span class="toc-number">2.3.2.</span> <span class="toc-text">做法</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#参考"><span class="toc-number">3.</span> <span class="toc-text">参考</span></a></li></ol>
+    </div>
+    
+    <div class="back-top iconfont-archer">&#xe639;</div>
+    <div class="sidebar sidebar-hide">
+    <ul class="sidebar-tabs sidebar-tabs-active-0">
+        <li class="sidebar-tab-archives"><span class="iconfont-archer">&#xe67d;</span><span class="tab-name">Archive</span></li>
+        <li class="sidebar-tab-tags"><span class="iconfont-archer">&#xe61b;</span><span class="tab-name">Tag</span></li>
+        <li class="sidebar-tab-categories"><span class="iconfont-archer">&#xe666;</span><span class="tab-name">Cate</span></li>
+    </ul>
+    <div class="sidebar-content sidebar-content-show-archive">
+          <div class="sidebar-panel-archives">
+    <!-- 在ejs中将archive按照时间排序 -->
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    <div class="total-and-search">
+        <div class="total-archive">
+        Total : 21
+        </div>
+        <!-- search  -->
+        
+    </div>
+    
+    <div class="post-archive">
+    
+    
+    
+    
+    <div class="archive-year"> 2020 </div>
+    <ul class="year-list">
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">02/21</span><a class="archive-post-title" href= "" >CSAPP - archlab</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">02/19</span><a class="archive-post-title" href= "../../19/CSAPP-attacklab/" >CSAPP - attacklab</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">02/16</span><a class="archive-post-title" href= "../../16/CSAPP-bomblab/" >CSAPP - bomblab</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">02/14</span><a class="archive-post-title" href= "../../14/CSAPP-datalab/" >CSAPP - datalab</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">02/13</span><a class="archive-post-title" href= "../../13/SGU-153-252/" >SGU 153-252</a>
+        </li>
+    
+    
+    
+    
+    
+        </ul>
+    
+    <div class="archive-year"> 2019 </div>
+    <ul class="year-list">
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">11/20</span><a class="archive-post-title" href= "../../../../2019/11/20/Palindromic-Factorization/" >回文分解算法</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">11/15</span><a class="archive-post-title" href= "../../../../2019/11/15/SGU-100-152/" >SGU 100~152</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">10/31</span><a class="archive-post-title" href= "../../../../2019/10/31/polya/" >Pólya计数法</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">07/22</span><a class="archive-post-title" href= "../../../../2019/07/22/B-Tree/" >B-Tree</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">05/31</span><a class="archive-post-title" href= "../../../../2019/05/31/AhoCorasick-Algorithm/" >AhoCorasick Algorithm</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">05/24</span><a class="archive-post-title" href= "../../../../2019/05/24/Knuth-Morris-Pratt-Algorithm/" >Knuth-Morris-Pratt Algorithm</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">05/12</span><a class="archive-post-title" href= "../../../../2019/05/12/ICPC-Resolver-踩坑/" >ICPC Resolver 踩坑</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">04/03</span><a class="archive-post-title" href= "../../../../2019/04/03/斜率优化/" >斜率优化</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">03/31</span><a class="archive-post-title" href= "../../../../2019/03/31/Nowcoder-出题人的数组/" >Nowcoder-出题人的数组</a>
+        </li>
+    
+    
+    
+    
+    
+        </ul>
+    
+    <div class="archive-year"> 2018 </div>
+    <ul class="year-list">
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">10/10</span><a class="archive-post-title" href= "../../../../2018/10/10/Vim-for-windows-配置/" >Windows 下使用 Vim</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">10/09</span><a class="archive-post-title" href= "../../../../2018/10/09/论文笔记-Tips-and-Tricks-for-Visual-Question-Answering/" >论文笔记 Tips and Tricks for Visual Question Answering</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">10/04</span><a class="archive-post-title" href= "../../../../2018/10/04/DOMjudge配置/" >DOMjudge 配置</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">08/18</span><a class="archive-post-title" href= "../../../../2018/08/18/论文笔记 Semantic Compositional Networks for Visual Captioning/" >论文笔记 Semantic Compositional Networks for Visual Captioning</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">07/19</span><a class="archive-post-title" href= "../../../../2018/07/19/The Binding of Isaac Afterbirth+总结/" >The Binding of Isaac:Afterbirth+总结</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">07/17</span><a class="archive-post-title" href= "../../../../2018/07/17/论文阅读记录/" >论文阅读记录</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">06/05</span><a class="archive-post-title" href= "../../../../2018/06/05/apt-offline管理Ubuntu离线安装软件包/" >Ubuntu离线安装软件包</a>
+        </li>
+    
+    </div>
+  </div>
+        <div class="sidebar-panel-tags">
+    <div class="sidebar-tags-name">
+    
+        <span class="sidebar-tag-name" data-tags="AhoCorasick"><span class="iconfont-archer">&#xe606;</span>AhoCorasick</span>
+    
+        <span class="sidebar-tag-name" data-tags="AC自动机"><span class="iconfont-archer">&#xe606;</span>AC自动机</span>
+    
+        <span class="sidebar-tag-name" data-tags="domjudge"><span class="iconfont-archer">&#xe606;</span>domjudge</span>
+    
+        <span class="sidebar-tag-name" data-tags="ICPC"><span class="iconfont-archer">&#xe606;</span>ICPC</span>
+    
+        <span class="sidebar-tag-name" data-tags="贪心"><span class="iconfont-archer">&#xe606;</span>贪心</span>
+    
+        <span class="sidebar-tag-name" data-tags="KMP"><span class="iconfont-archer">&#xe606;</span>KMP</span>
+    
+        <span class="sidebar-tag-name" data-tags="vim"><span class="iconfont-archer">&#xe606;</span>vim</span>
+    
+        <span class="sidebar-tag-name" data-tags="git bash"><span class="iconfont-archer">&#xe606;</span>git bash</span>
+    
+        <span class="sidebar-tag-name" data-tags="polya"><span class="iconfont-archer">&#xe606;</span>polya</span>
+    
+        <span class="sidebar-tag-name" data-tags="斜率优化"><span class="iconfont-archer">&#xe606;</span>斜率优化</span>
+    
+    </div>
+    <div class="iconfont-archer sidebar-tags-empty">&#xe678;</div>
+    <div class="tag-load-fail" style="display: none; color: #ccc; font-size: 0.6rem;">
+    缺失模块。<br/>
+    1、请确保node版本大于6.2<br/>
+    2、在博客根目录（注意不是archer根目录）执行以下命令：<br/>
+    <span style="color: #f75357; font-size: 1rem; line-height: 2rem;">npm i hexo-generator-json-content --save</span><br/>
+    3、在根目录_config.yml里添加配置：
+    <pre style="color: #787878; font-size: 0.6rem;">
+jsonContent:
+  meta: false
+  pages: false
+  posts:
+    title: true
+    date: true
+    path: true
+    text: false
+    raw: false
+    content: false
+    slug: false
+    updated: false
+    comments: false
+    link: false
+    permalink: false
+    excerpt: false
+    categories: true
+    tags: true</pre>
+    </div> 
+    <div class="sidebar-tags-list"></div>
+</div>
+        <div class="sidebar-panel-categories">
+    <div class="sidebar-categories-name">
+    
+    </div>
+    <div class="iconfont-archer sidebar-categories-empty">&#xe678;</div>
+    <div class="sidebar-categories-list"></div>
+</div>
+    </div>
+</div> 
+    <script>
+    var siteMeta = {
+        root: "/",
+        author: "Mcginn"
+    }
+</script>
+    <!-- CDN failover -->
+    <script src="https://cdn.jsdelivr.net/npm/jquery@3.3.1/dist/jquery.min.js"></script>
+    <script type="text/javascript">
+        if (typeof window.$ === 'undefined')
+        {
+            console.warn('jquery load from jsdelivr failed, will load local script')
+            document.write('<script src="../../../../lib/jquery.min.js">\x3C/script>')
+        }
+    </script>
+    <script src="../../../../scripts/main.js"></script>
+    <!-- algolia -->
+    
+    <!-- busuanzi  -->
+    
+    <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+    
+    <!-- CNZZ  -->
+    
+    </div>
+    <!-- async load share.js -->
+    
+        <script src="../../../../scripts/share.js" async></script>    
+     
+    <script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+        tex2jax: {
+            inlineMath: [ ["$","$"], ["\\(","\\)"] ],
+            skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'],
+            processEscapes: true
+        }
+    });
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax();
+        for (var i = 0; i < all.length; ++i)
+            all[i].SourceElement().parentNode.className += ' has-jax';
+    });
+</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML"></script><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+
+
+</body>
+</html>
+
+

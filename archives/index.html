@@ -346,6 +346,38 @@
     
     
     <article class="index-post">
+        <a class="abstract-title" href = "../2020/02/21/CSAPP-archlab/" >
+            
+                <span>CSAPP - archlab</span>
+        </a>
+        <div class="abstract-content">
+            知识点
+学习流水线化的 Y86-64 处理器的设计和实现，深刻理解流水线冒险。
+学习循环展开，理解其对程序性能的影响。
+
+题目Part A要求使用 Y86-64 指令集，编写关于 sum_list, rsum_list 和 copy_block 函数的 Y86-64 程序。
+做法参考书本图 4-7 即可，实现也较为简单。
+Part B要求使用硬件控制语言（HCL）修改 sim/seq/seq-full.hcl，使得处理器支持 iaddq 指令。
+做法iaddq 指令将立即数和寄存器相加，并将结果写回寄存器。
+具体参考 irmovq 指令的实现即可。
+Part C要求在 ncopy.ys ...
+        </div>
+        <div class="abstract-post-meta">
+            <!-- date  -->
+            <div class="abstract-date">
+                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2020/02/21</span>
+            </div>
+            <!-- tags  -->
+            
+        </div>
+    </article>
+    
+    
+    
+    
+    
+    
+    <article class="index-post">
         <a class="abstract-title" href = "../2020/02/19/CSAPP-attacklab/" >
             
                 <span>CSAPP - attacklab</span>
@@ -627,47 +659,10 @@ KMP 算法：利用最长前后缀完成线性匹配。
         </div>
     </article>
     
-    
-    
-    
-    
-    
-    <article class="index-post">
-        <a class="abstract-title" href = "../2019/05/24/Knuth-Morris-Pratt-Algorithm/" >
-            
-                <span>Knuth-Morris-Pratt Algorithm</span>
-        </a>
-        <div class="abstract-content">
-            KMP 算法解决在文本串（text）快速找出单词（word）的所有出现位置。
-暴力匹配的时间复杂度为 $O(|T||W|)$，而 KMP 算法通过引入最长前后缀，将检索的时间复杂度降至线性。
-最长前后缀
-lps indicates longest proper prefix which is also suffix.
-
-最长前后缀（LPS, Longest proper Prefix and Suffix）表示既是原串 $S$ 的真前缀也是后缀的最长子串 $T$，其中 $|T|\lt |S|$。
-
-LPS(aaa) = aa \\
-LPS(abcdab)=ab检索过程假设已知单词串的每个...
-        </div>
-        <div class="abstract-post-meta">
-            <!-- date  -->
-            <div class="abstract-date">
-                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2019/05/24</span>
-            </div>
-            <!-- tags  -->
-            
-            <div class= abstract-tags >
-    
-        <a class="post-tag" href="javascript:void(0);" data-tags = "KMP">KMP</a>
-    
-</div>
-            
-        </div>
-    </article>
-    
     <!-- paginator  -->
     
     <nav class="page-nav">
-        <span class="page-number current">1</span><a class="page-number" href="page/2/">2</a><a class="extend next" rel="next" href="page/2/">NEXT &#62;</a>
+        <span class="page-number current">1</span><a class="page-number" href="page/2/">2</a><a class="page-number" href="page/3/">3</a><a class="extend next" rel="next" href="page/2/">NEXT &#62;</a>
     </nav>
     
 </main>
@@ -985,9 +980,56 @@ LPS(abcdab)=ab检索过程假设已知单词串的每个...
     
     
     
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
     <div class="total-and-search">
         <div class="total-archive">
-        Total : 20
+        Total : 21
         </div>
         <!-- search  -->
         
@@ -1003,7 +1045,12 @@ LPS(abcdab)=ab检索过程假设已知单词串的每个...
     
     
         <li class="archive-post-item">
-            <span class="archive-post-date">02/19</span><a class="archive-post-title" href= "" >CSAPP - attacklab</a>
+            <span class="archive-post-date">02/21</span><a class="archive-post-title" href= "" >CSAPP - archlab</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">02/19</span><a class="archive-post-title" href= "../../19/CSAPP-attacklab/" >CSAPP - attacklab</a>
         </li>
     
     
@@ -1130,11 +1177,11 @@ LPS(abcdab)=ab检索过程假设已知单词串的每个...
     
         <span class="sidebar-tag-name" data-tags="domjudge"><span class="iconfont-archer">&#xe606;</span>domjudge</span>
     
-        <span class="sidebar-tag-name" data-tags="KMP"><span class="iconfont-archer">&#xe606;</span>KMP</span>
-    
         <span class="sidebar-tag-name" data-tags="ICPC"><span class="iconfont-archer">&#xe606;</span>ICPC</span>
     
         <span class="sidebar-tag-name" data-tags="贪心"><span class="iconfont-archer">&#xe606;</span>贪心</span>
+    
+        <span class="sidebar-tag-name" data-tags="KMP"><span class="iconfont-archer">&#xe606;</span>KMP</span>
     
         <span class="sidebar-tag-name" data-tags="vim"><span class="iconfont-archer">&#xe606;</span>vim</span>
     
