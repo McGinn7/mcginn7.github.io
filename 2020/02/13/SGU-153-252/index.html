@@ -266,7 +266,7 @@ height:50vh;
                 
                 
                     <div class="post-intro-read">
-                        <span>字数统计: <span class="post-count word-count">408</span>阅读时长: <span class="post-count reading-time">1 min</span></span>
+                        <span>字数统计: <span class="post-count word-count">1.2k</span>阅读时长: <span class="post-count reading-time">4 min</span></span>
                     </div>
                 
                 <div class="post-intro-meta">
@@ -408,9 +408,44 @@ height:50vh;
 \frac N p + \frac N {p^2} + \dots</script><p>显然， 5 的个数少于 2 的个数，因此尾数 0 只与 5 的个数相关。</p>
 <p>上述公式具有<strong>非递减</strong>性质，因此可以<strong>二分</strong>计算最小自然数 $N$。</p>
 <hr>
-<p>154 <strong>Cartesian Tree</strong></p>
+<p>155 <strong>Cartesian Tree</strong></p>
 <p><strong>题意</strong>  给定 $1\le N\le 50000$ 个 <key, value> 对，要求利用 key 值构造一棵<strong>二叉搜索树</strong>，并且满足<strong>小根堆</strong>的性质：如果 y 是 x 的父节点，则有 y.value &lt; x.value。数据保证 key 值和 value 值两两不同。</key,></p>
 <p><strong>分析</strong>  Cartisian Tree 模板题。 </p>
+<hr>
+<p>156 <strong>Strange Graph</strong></p>
+<p><strong>题意</strong>  给 $3\le N \le 10^4$ 个点 $M\le 10^5$ 条边的无向图，该图满足以下性质：</p>
+<ol>
+<li>所有点的度数 $deg(v)\ge 2$。</li>
+<li>当 $deg(v)=2$ 时，与 $v$ 相邻的两个点不相连。</li>
+<li>当 $deg(v)&gt;2$ 时，存在点 $u\in N(v)$，满足：$deg(u)=2$；$\forall w_1, w_2\in N(v), (w_1, w_2)\in E$。其中，$N(v)$ 表示与 $v$ 相邻的点集。</li>
+</ol>
+<p>数据保证无重边和自环。</p>
+<p>判断该图是否存在<strong>哈密顿回路</strong>，不存在时输出 -1；否则输出一种方案。</p>
+<p><strong>分析</strong> </p>
+<p>当 $deg(v)&gt;2$ 时，点集 $N(v)/u$ 构成完全图，因此总是能构造出<strong>哈密顿路</strong>。</p>
+<p>将点集 $N(v)/u$ 缩点，构造的新图中所有点的度数均为 2，问题可以转化成在新图中找出<strong>欧拉回路</strong>。</p>
+<p>而度数均为 2 的图，只可能是多个环。因此剩余问题仅需判断新图是否联通即可。</p>
+<hr>
+<p>157 <strong>Patience</strong></p>
+<p><strong>题意</strong>  纸牌接龙游戏，A~K（共 13 张牌）放置到 14 个格子中，其中一个为空格且 A 固定到第 1 个格子中。在前 $14-n$ 张牌有序的前提下，求能够将牌排好序且最后一格为空格的方案数。</p>
+<p>移牌规则为：当空格<strong>左侧</strong>为 $x$ 时，可将 $x+1$ 直接移动到空格上。</p>
+<p><strong>分析</strong>  最后局面为 A23…JQK_，反向构造合法序列即可。注意正向移牌时，$x+1$ 的前一个数为 $x$。因此反向构造时只有当 $a[i+1]=a[i]+1$ 时，才能将 $a[i+1]$ 和空格交换形成新合法序列。</p>
+<hr>
+<p>158 <strong>Commuter Train</strong></p>
+<p><strong>题意</strong>  有长为 $0&lt;L\le 5000$ 的公交路线。有 $0&lt;M\le 300$ 个乘客，乘客在坐标 $P_i$ 处，坐标非递减排序（$0\le P_1 \le \dots \le P_M \le L$）。有 $0&lt; N\le 300$ 个站点，每个站点距离第 1 个站点的距离为 $D_i(0=D_1&lt;D_2&lt;\dots &lt; D_N\le L)$。</p>
+<p>第 1 个站点位置 $S$ 未确定，要求求出 $S$ 使得每个乘客距离其<strong>最近</strong>的站点距离之和<strong>最大</strong>。</p>
+<p><strong>分析</strong>  在确定 $S$ 后，乘客与最近站点的距离和可表示为关于 $S$ 的一次函数。随着 $S$ 的增大，每个乘客的最近站点会发生变化，但新的距离和仍可表示为一次函数，且在一段距离范围内该函数不会改变。</p>
+<p>距离和函数改变点在于其中一个乘客的最近站点变化。由于乘客的最近站点随 $S$ 增大的增大，因此总的变化次数为 $O(NM)$，且站点变化只会 +1。</p>
+<hr>
+<p>159 <strong>Self-Replicating Numbers</strong></p>
+<p><strong>题意</strong>  在 $2\le b \le 36$ 进制下，求 $1\le n\le 2000$ 个位的数满足 $x^2\equiv x\pmod {b^n}$。</p>
+<p><strong>分析</strong> 爆搜。  </p>
+<hr>
+<p>160 <strong>Magic Multiplying Machine</strong></p>
+<p><strong>题意</strong>  给 $1\le N \le 10^4$ 个数 $1\le a_i\le M(2\le M \le 10^3)$，求最大得分 score：</p>
+<script type="math/tex; mode=display">
+score=\prod a_i \mod M</script><p>并给出任意一种方案，按<strong>递增</strong>顺序输出取出值的下标。</p>
+<p><strong>分析</strong>  背包问题。</p>
 <hr>
 <p>xxx</p>
 <p><strong>题意</strong>  </p>
@@ -845,6 +880,10 @@ top:50vh;
     
     
     
+    
+    
+    
+    
     <div class="total-and-search">
         <div class="total-archive">
         Total : 22
@@ -998,13 +1037,13 @@ top:50vh;
     
         <span class="sidebar-tag-name" data-tags="AC自动机"><span class="iconfont-archer">&#xe606;</span>AC自动机</span>
     
-        <span class="sidebar-tag-name" data-tags="ICPC"><span class="iconfont-archer">&#xe606;</span>ICPC</span>
-    
-        <span class="sidebar-tag-name" data-tags="贪心"><span class="iconfont-archer">&#xe606;</span>贪心</span>
-    
         <span class="sidebar-tag-name" data-tags="domjudge"><span class="iconfont-archer">&#xe606;</span>domjudge</span>
     
         <span class="sidebar-tag-name" data-tags="KMP"><span class="iconfont-archer">&#xe606;</span>KMP</span>
+    
+        <span class="sidebar-tag-name" data-tags="ICPC"><span class="iconfont-archer">&#xe606;</span>ICPC</span>
+    
+        <span class="sidebar-tag-name" data-tags="贪心"><span class="iconfont-archer">&#xe606;</span>贪心</span>
     
         <span class="sidebar-tag-name" data-tags="vim"><span class="iconfont-archer">&#xe606;</span>vim</span>
     
