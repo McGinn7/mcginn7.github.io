@@ -22,7 +22,7 @@
     <meta name="description" content>
     <meta http-equiv="Cache-control" content="no-cache">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-    <title>Windows 下使用 Vim · Mcginn&#39;s Blog</title>
+    <title>SGU 153-252 · Mcginn&#39;s Blog</title>
     <style type="text/css">
     @font-face {
         font-family: 'Oswald-Regular';
@@ -217,7 +217,7 @@
                 <a href="../../../../index.html" >Mcginn&#39;s Blog</a>
             </div>
             <div class="post-title">
-                <a href="#" class="post-name">Windows 下使用 Vim</a>
+                <a href="#" class="post-name">SGU 153-252</a>
             </div>
     </div>
     
@@ -247,7 +247,7 @@ height:50vh;
         <h1 class="intro-title">
             <!-- 主页  -->
             
-            Windows 下使用 Vim
+            SGU 153-252
             <!-- 404 -->
             
         </h1>
@@ -264,22 +264,14 @@ height:50vh;
             <div class="post-intros">
                 <!-- 文章页标签  -->
                 
-                    <div class= post-intro-tags >
-    
-        <a class="post-tag" href="javascript:void(0);" data-tags = "vim">vim</a>
-    
-        <a class="post-tag" href="javascript:void(0);" data-tags = "git bash">git bash</a>
-    
-</div>
-                
                 
                     <div class="post-intro-read">
-                        <span>字数统计: <span class="post-count word-count">350</span>阅读时长: <span class="post-count reading-time">1 min</span></span>
+                        <span>字数统计: <span class="post-count word-count">2.5k</span>阅读时长: <span class="post-count reading-time">10 min</span></span>
                     </div>
                 
                 <div class="post-intro-meta">
                     <span class="post-intro-calander iconfont-archer">&#xe676;</span>
-                    <span class="post-intro-time">2018/10/10</span>
+                    <span class="post-intro-time">2020/04/15</span>
                     
                     <span id="busuanzi_container_page_pv" class="busuanzi-pv">
                         <span class="iconfont-archer">&#xe602;</span>
@@ -403,33 +395,129 @@ height:50vh;
         <div class="container container-unloaded">
             <main class="main post-page">
     <article class="article-entry">
-        <h2 id="简要说明"><a href="#简要说明" class="headerlink" title="简要说明"></a>简要说明</h2><p>主要针对 ACM/ICPC 竞赛选手在 Windows 10 系统下使用 vim 编写 C/C++ 代码。</p>
-<p>功能配置：</p>
+        <h1 id="计划"><a href="#计划" class="headerlink" title="计划"></a>计划</h1><p>计划一年内（截止 2021 年 1 月 1 日）把 SGU 500 刷完，形式以所有题目给出翻译后的简要题意和解题思路概要。</p>
+<p><a href="https://github.com/McGinn7/ACMSGURU-Code" target="_blank" rel="noopener">AC 代码库</a></p>
+<h1 id="题目"><a href="#题目" class="headerlink" title="题目"></a>题目</h1><p>153 <strong>Playing with matches</strong></p>
+<p><strong>题意</strong>  有 $1\le N \le 10^9$ 根火柴，Little 和 Petya 轮流取，每次能取 $1, P_1, P_2, \dots , P_m(2\le P_i \le 9, 0\le m \le 8)$ 根火柴，判断先/后手必胜。</p>
+<p><strong>分析</strong> 当 $N$ 较小时，可用 dp 计算火柴为 $n$ 时状态（必胜/必败）。由于 $P_i\le 9$，每个点的状态只与前面的 9 个状态有关，从而每个状态的 SG 值最大为 10。并且根据 SG 值的定义，前面 9 个状态的 SG 值两两不同，因此 9 个状态的总数约为 $10!=3,628,800‬$。通过找出循环节，即可计算 $N$ 的 SG 值，从而判断胜负态。</p>
+<hr>
+<p>154 <strong>Factorial</strong></p>
+<p><strong>题意</strong>  求最小自然数 $N$，满足 $N!$ 有 $0 \le Q \le 10^8$ 个尾数 0。</p>
+<p><strong>分析</strong>  尾数 0 只与 $N!$ 的质因子 2 和 5 有关。求 $N!$ 中质因子 $p$ 的个数：</p>
+<script type="math/tex; mode=display">
+\frac N p + \frac N {p^2} + \dots</script><p>显然， 5 的个数少于 2 的个数，因此尾数 0 只与 5 的个数相关。</p>
+<p>上述公式具有<strong>非递减</strong>性质，因此可以<strong>二分</strong>计算最小自然数 $N$。</p>
+<hr>
+<p>155 <strong>Cartesian Tree</strong></p>
+<p><strong>题意</strong>  给定 $1\le N\le 50000$ 个 <key, value> 对，要求利用 key 值构造一棵<strong>二叉搜索树</strong>，并且满足<strong>小根堆</strong>的性质：如果 y 是 x 的父节点，则有 y.value &lt; x.value。数据保证 key 值和 value 值两两不同。</key,></p>
+<p><strong>分析</strong>  Cartisian Tree 模板题。 </p>
+<hr>
+<p>156 <strong>Strange Graph</strong></p>
+<p><strong>题意</strong>  给 $3\le N \le 10^4$ 个点 $M\le 10^5$ 条边的无向图，该图满足以下性质：</p>
 <ol>
-<li>编译和运行 *.cpp 文件；</li>
-<li>一键复制代码;</li>
-<li>记事本打开代码。</li>
+<li>所有点的度数 $deg(v)\ge 2$。</li>
+<li>当 $deg(v)=2$ 时，与 $v$ 相邻的两个点不相连。</li>
+<li>当 $deg(v)&gt;2$ 时，存在点 $u\in N(v)$，满足：$deg(u)=2$；$\forall w_1, w_2\in N(v), (w_1, w_2)\in E$。其中，$N(v)$ 表示与 $v$ 相邻的点集。</li>
 </ol>
-<img src="/2018/10/10/Vim-for-windows-配置/1539090544618.png" title="效果图">
-<p>git bash 和 gvim 都配置了一遍。gvim 使用 Windows 自带的 cmd 运行的话，鼠标是没办法移动光标的，并且配置相对 git bash 较麻烦，所以推荐使用 git bash。</p>
-<h2 id="Vimrc-配置"><a href="#Vimrc-配置" class="headerlink" title="Vimrc 配置"></a>Vimrc 配置</h2><ul>
-<li><p>编辑安装路径下的 vimrc 文件，例如 “D:\Git\etc\vimrc”，配置快捷键。</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">set nu ai ci si mouse=a ts=4 sts=4 sw=4</span><br><span class="line">nmap&lt;F2&gt; :vs %&lt;.in &lt;CR&gt;</span><br><span class="line">nmap&lt;F3&gt; :w !clip.exe &lt;CR&gt; &lt;CR&gt;</span><br><span class="line">nmap&lt;F4&gt; :!write % &lt;CR&gt;</span><br><span class="line">nmap&lt;F8&gt; :!./%&lt; &lt; %&lt;.in &lt;CR&gt;</span><br><span class="line">nmap&lt;F9&gt; :!g++ % -o %&lt; -O2 -g -Wall -std=c++11 &lt;CR&gt;</span><br></pre></td></tr></table></figure>
-</li>
-</ul>
-<h2 id="额外配置"><a href="#额外配置" class="headerlink" title="额外配置"></a>额外配置</h2><ul>
-<li><p>vimrc 文件默认有一些配置，可根据需要修改。</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">set vb             "这个不关的话，触发某些条件会闪屏</span><br><span class="line">set laststatus=1   "窗口底部状态栏的行数（默认是2），这里设置成1。</span><br><span class="line">au FileType c,cpp setlocal comments-=:// comments+=f:// "取消换行自动注释</span><br></pre></td></tr></table></figure>
-</li>
-</ul>
-<ul>
-<li><p>设置 Ctrl + Alt + T 快捷键启动 Git Bash 终端。</p>
-<ol>
-<li>创建 “git-bash.exe” 的快捷方式，打开快捷方式的属性窗口，修改<strong>起始位置</strong>，并设置快捷键。</li>
-<li>打开<strong>控制面板</strong>，找到 “管理工具”， 将快捷方式复制到该文件夹中。</li>
-</ol>
-</li>
-</ul>
+<p>数据保证无重边和自环。</p>
+<p>判断该图是否存在<strong>哈密顿回路</strong>，不存在时输出 -1；否则输出一种方案。</p>
+<p><strong>分析</strong> </p>
+<p>当 $deg(v)&gt;2$ 时，点集 $N(v)/u$ 构成完全图，因此总是能构造出<strong>哈密顿路</strong>。</p>
+<p>将点集 $N(v)/u$ 缩点，构造的新图中所有点的度数均为 2，问题可以转化成在新图中找出<strong>欧拉回路</strong>。</p>
+<p>而度数均为 2 的图，只可能是多个环。因此剩余问题仅需判断新图是否联通即可。</p>
+<hr>
+<p>157 <strong>Patience</strong></p>
+<p><strong>题意</strong>  纸牌接龙游戏，A~K（共 13 张牌）放置到 14 个格子中，其中一个为空格且 A 固定到第 1 个格子中。在前 $14-n$ 张牌有序的前提下，求能够将牌排好序且最后一格为空格的方案数。</p>
+<p>移牌规则为：当空格<strong>左侧</strong>为 $x$ 时，可将 $x+1$ 直接移动到空格上。</p>
+<p><strong>分析</strong>  最后局面为 A23…JQK_，反向构造合法序列即可。注意正向移牌时，$x+1$ 的前一个数为 $x$。因此反向构造时只有当 $a[i+1]=a[i]+1$ 时，才能将 $a[i+1]$ 和空格交换形成新合法序列。</p>
+<hr>
+<p>158 <strong>Commuter Train</strong></p>
+<p><strong>题意</strong>  有长为 $0&lt;L\le 5000$ 的公交路线。有 $0&lt;M\le 300$ 个乘客，乘客在坐标 $P_i$ 处，坐标非递减排序（$0\le P_1 \le \dots \le P_M \le L$）。有 $0&lt; N\le 300$ 个站点，每个站点距离第 1 个站点的距离为 $D_i(0=D_1&lt;D_2&lt;\dots &lt; D_N\le L)$。</p>
+<p>第 1 个站点位置 $S$ 未确定，要求求出 $S$ 使得每个乘客距离其<strong>最近</strong>的站点距离之和<strong>最大</strong>。</p>
+<p><strong>分析</strong>  在确定 $S$ 后，乘客与最近站点的距离和可表示为关于 $S$ 的一次函数。随着 $S$ 的增大，每个乘客的最近站点会发生变化，但新的距离和仍可表示为一次函数，且在一段距离范围内该函数不会改变。</p>
+<p>距离和函数改变点在于其中一个乘客的最近站点变化。由于乘客的最近站点随 $S$ 增大的增大，因此总的变化次数为 $O(NM)$，且站点变化只会 +1。</p>
+<hr>
+<p>159 <strong>Self-Replicating Numbers</strong></p>
+<p><strong>题意</strong>  在 $2\le b \le 36$ 进制下，求 $1\le n\le 2000$ 个位的数满足 $x^2\equiv x\pmod {b^n}$。</p>
+<p><strong>分析</strong> 爆搜。  </p>
+<hr>
+<p>160 <strong>Magic Multiplying Machine</strong></p>
+<p><strong>题意</strong>  给 $1\le N \le 10^4$ 个数 $1\le a_i\le M(2\le M \le 10^3)$，求最大得分 score：</p>
+<script type="math/tex; mode=display">
+score=\prod a_i \mod M</script><p>并给出任意一种方案，按<strong>递增</strong>顺序输出取出值的下标。</p>
+<p><strong>分析</strong>  背包问题。</p>
+<hr>
+<p>161</p>
+<p><strong>题意</strong>  </p>
+<p><strong>分析</strong></p>
+<hr>
+<p>162 <strong>Pyramids</strong></p>
+<p><strong>题意</strong>  给定四面体各边（AB, AC, AD, BC, BD, CD）长度，求体积。</p>
+<p><strong>分析</strong> 建个坐标系，强算各个点坐标。</p>
+<hr>
+<p>163 <strong>Wise King</strong></p>
+<p><strong>题意</strong>  给 $1 \le N\le 100$ 个数 $a_i, |a_i|\le 3$，以及一个指数 $0&lt;E\le 3$。从 $N$ 个数中取若干个数，使得 $\sum a_i ^E$ 最大。</p>
+<p><strong>分析</strong> 模拟。</p>
+<hr>
+<p>164 <strong>Airlines</strong></p>
+<p><strong>题意</strong>  有 $1\le N\le 200$ 座城市，每两个城市都有一条航线（双向飞行），每条航线属于 $M$ 家公司中的其中一家。现要求收购不超过 $\lfloor \frac{M+1}2\rfloor$ 家公司，使得<strong>任意</strong>两个城市<strong>最多</strong>飞 3 条航线可达。</p>
+<p><strong>分析</strong> 根据抽屉原理，至少有一座城市所有航线关联的公司为 $\lfloor\frac {2M}N \rfloor \le \lfloor \frac{M+1}2\rfloor$，因此以城市为中心，收购该城市所有公司即可满足任意两座城市之间最多飞 2 条航线即可到达。</p>
+<hr>
+<p>165 <strong>Basketball</strong></p>
+<p><strong>题意</strong> 有 $1\le N \le 6000$ 名球员，每名球员的身高 $h_i$ 在 [1.95, 2.05] 范围内。现要求给球员排序，使得任意两个球员之间满足 $|\sum_{i=1}^{K} (h_i - 2)| \le 0.1$。给出一种球员顺序或判断无解。</p>
+<p><strong>分析</strong> 将所有球员的身高 - 2，将球员身高分成负数和正数。从最小负数（或最大正数）开始取，根据前缀和的正负取异号身高的球员即可。由于球员身高限定在 [1.95, 2.05] 之间，因此不会违反限定条件。</p>
+<hr>
+<p>166</p>
+<p><strong>题意</strong>  </p>
+<p><strong>分析</strong></p>
+<hr>
+<p>167 <strong>I-country</strong></p>
+<p><strong>题意</strong> 给 $N\times M(1\le N, M\le 15)$ 的网格，每个网格有个价值 $0 \le V_{ij}\le 10^3 $ 。允许占领其中 $K$ 个网格，要求任意两个格子之间使用上下左右四个方向中的<strong>两个</strong>方向可达，求最大的价值和并给出一种方案。 </p>
+<p><strong>分析</strong> 最后占领的形状为菱形，使用 dp 解决上半部分（三角形）：$dp(i,j,k)$ 表示前 i 行共占领了 k 个网格且第 i 行占领的格子数为 j 的最大价值和。状态转移时保持 j 非递减即可。最后枚举中间行，将上下两个三角形合并成菱形。</p>
+<hr>
+<p>168 <strong>Matrix</strong></p>
+<p><strong>题意</strong> 给定 $N\times M(1\le N, M\le 1000)$ 大小的矩阵 $A$，求矩阵 $B$ 满足</p>
+<script type="math/tex; mode=display">
+B_{ij}=\min_{y\ge j\and x\ge i+j-y} A_{xy}</script><p><strong>分析</strong> 随便做。</p>
+<hr>
+<p>169 <strong>Numbers</strong></p>
+<p><strong>题意</strong> 定义 $P(n)$ 为 $n$ 的所有数位之积；如果 $P(n)\neq 0 \and P(n)|n$ 定义 $n$ 是 good number; 如果 $n$ 和 $n+1$ 都是 good number 定义 $n$ 是 prefect number。给定 $1\le K \le 10^6$，求所有 $K$ 位的 perfect number 数量。</p>
+<p><strong>分析</strong> 显然的事实是 $n$ 的个位数在 [1, 8] 范围内，如果 $n = 10x+y$，则 $n+1=10x+y$ 且 $P(n)=y\times P(x), P(n+1)=(y+1)\times P(x)$。因为 $n,n+1$ 都是 good number，所以有 $P(n)|n\and P(n+1)|(n+1)$，推断出 $P(x)|n\and P(x)|(n+1)$。又因为 $n,n+1$ 是互质的，所以 $\gcd(n, n+1)=1$，进而得出 $P(x)=1$。最后 $n=11\dots1w$ 的形式。</p>
+<hr>
+<p>170 <strong>Particles</strong></p>
+<p><strong>题意</strong> 有两个 5000 长度的 +- 序列，每次操作可以交换相邻的 +- 粒子。求最少操作次数将序列 1 转变为序列 2。</p>
+<p><strong>分析</strong> （<em>猜测</em>）按序匹配 -/+，计算其距离之和即可。</p>
+<hr>
+<p>171 <strong>Sarov zones</strong></p>
+<p><strong>题意</strong> 有 $1\le K\le 100$ 赛区，每个赛区选 $N_i$ 个人，总共 $\sum N_i$ 个人，每个人有个能力值 $P_i$ 以及权重 $W_i$，相应的赛区有强度值 $Q_i$。若选手能力值大于赛区强度 $P_i &gt; Q_j$ 则晋级。求一种方案使得晋级选手的权重和最大。</p>
+<p><strong>分析</strong> 先选权重大的选手，选取最大 $Q_j &lt; P_i$ 即可。</p>
+<hr>
+<p>172 <strong>eXam</strong></p>
+<p><strong>题意</strong> $1\le M \le 30000$ 学生从 $1\le N \le 200$ 门课中选 2 门考试，学校安排所有考试在两日内，求一种方案或判断不可能。所有学生的考试课程不同在同一天考试。</p>
+<p><strong>分析</strong> 二分图染色。</p>
+<hr>
+<p>173</p>
+<p><strong>题意</strong></p>
+<p><strong>分析</strong></p>
+<hr>
+<p>174 <strong>Walls</strong></p>
+<p><strong>题意</strong> 给定 $1\le M \le 200000$ 条线段，坐标范围 $|x_i|,|y_i|\le 10^9$，保证线段只在端点相交。求第几条线段加入后有封闭多边形。</p>
+<p><strong>分析</strong> 并查集。</p>
+<hr>
+<p>175 <strong>Encoding</strong></p>
+<p><strong>题意</strong> 假设有字符串 $W=w_1w_2\dots w_n$，编码函数 $phi(W)$ 如下：</p>
+<script type="math/tex; mode=display">
+phi(W) = \begin{cases} 1,& len(W)=1\\ phi(w_Nw_{N-1}\dots w_{K+1}+phi(w_Kw_{K-1}\dots w_1)),&else   \end{cases}</script><p>其中 $K = \lfloor \frac {len(W)}2 \rfloor$。</p>
+<p>先给定 $1\le len(W)\le 10^9$ 长度以及原字符串的位置 $q$，求编码字符串中对应原位置 $q$ 的位置。</p>
+<p><strong>分析</strong> 判断 $q$ 在左右哪个子串中，划分成子问题求解即可。</p>
+<hr>
+<p>176 <strong>Flow construction</strong></p>
+<p><strong>题意</strong> 有 $1\le N\le 100$ 个结点和 $M$ 条管道，管道从结点 $U_i$ 流向 $V_i$ 且容量上限为 $Z_i$。化学物质从结点 1 经过若干管道流进结点 $N$，现要求部分管道<strong>必须流满</strong>($C_i = 1$)的前提下，该管道网络的最小流量。</p>
+<p><strong>分析</strong> 有源汇上下界最小流。</p>
+<hr>
+<p>xxx</p>
+<p><strong>题意</strong>  </p>
+<p><strong>分析</strong></p>
 
     </article>
     <!-- license  -->
@@ -438,17 +526,12 @@ height:50vh;
     <ul class="post-paginator">
         <li class="next">
             
-                <div class="nextSlogan">Next Post</div>
-                <a href= "../../../../2019/03/31/Nowcoder-出题人的数组/" title= "Nowcoder-出题人的数组">
-                    <div class="nextTitle">Nowcoder-出题人的数组</div>
-                </a>
-            
         </li>
         <li class="previous">
             
                 <div class="prevSlogan">Previous Post</div>
-                <a href= "../../09/论文笔记-Tips-and-Tricks-for-Visual-Question-Answering/" title= "论文笔记 Tips and Tricks for Visual Question Answering">
-                    <div class="prevTitle">论文笔记 Tips and Tricks for Visual Question Answering</div>
+                <a href= "../../../02/23/CSAPP-cachelab/" title= "CSAPP - cachelab">
+                    <div class="prevTitle">CSAPP - cachelab</div>
                 </a>
             
         </li>
@@ -579,7 +662,7 @@ top:50vh;
         <div class="toc-catalog">
             <span class="iconfont-archer catalog-icon">&#xe613;</span><span>CATALOG</span>
         </div>
-        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#简要说明"><span class="toc-number">1.</span> <span class="toc-text">简要说明</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Vimrc-配置"><span class="toc-number">2.</span> <span class="toc-text">Vimrc 配置</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#额外配置"><span class="toc-number">3.</span> <span class="toc-text">额外配置</span></a></li></ol>
+        <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#计划"><span class="toc-number">1.</span> <span class="toc-text">计划</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#题目"><span class="toc-number">2.</span> <span class="toc-text">题目</span></a></li></ol>
     </div>
     
     <div class="back-top iconfont-archer">&#xe639;</div>
@@ -592,26 +675,6 @@ top:50vh;
     <div class="sidebar-content sidebar-content-show-archive">
           <div class="sidebar-panel-archives">
     <!-- 在ejs中将archive按照时间排序 -->
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
     
     
     
@@ -882,32 +945,32 @@ top:50vh;
     
     
         <li class="archive-post-item">
-            <span class="archive-post-date">02/23</span><a class="archive-post-title" href= "" >CSAPP - cachelab</a>
+            <span class="archive-post-date">04/15</span><a class="archive-post-title" href= "" >SGU 153-252</a>
         </li>
     
     
         <li class="archive-post-item">
-            <span class="archive-post-date">02/21</span><a class="archive-post-title" href= "../../21/CSAPP-archlab/" >CSAPP - archlab</a>
+            <span class="archive-post-date">02/23</span><a class="archive-post-title" href= "../../../02/23/CSAPP-cachelab/" >CSAPP - cachelab</a>
         </li>
     
     
         <li class="archive-post-item">
-            <span class="archive-post-date">02/19</span><a class="archive-post-title" href= "../../19/CSAPP-attacklab/" >CSAPP - attacklab</a>
+            <span class="archive-post-date">02/21</span><a class="archive-post-title" href= "../../../02/21/CSAPP-archlab/" >CSAPP - archlab</a>
         </li>
     
     
         <li class="archive-post-item">
-            <span class="archive-post-date">02/16</span><a class="archive-post-title" href= "../../16/CSAPP-bomblab/" >CSAPP - bomblab</a>
+            <span class="archive-post-date">02/19</span><a class="archive-post-title" href= "../../../02/19/CSAPP-attacklab/" >CSAPP - attacklab</a>
         </li>
     
     
         <li class="archive-post-item">
-            <span class="archive-post-date">02/14</span><a class="archive-post-title" href= "../../14/CSAPP-datalab/" >CSAPP - datalab</a>
+            <span class="archive-post-date">02/16</span><a class="archive-post-title" href= "../../../02/16/CSAPP-bomblab/" >CSAPP - bomblab</a>
         </li>
     
     
         <li class="archive-post-item">
-            <span class="archive-post-date">02/13</span><a class="archive-post-title" href= "../../13/SGU-153-252/" >SGU 153-252</a>
+            <span class="archive-post-date">02/14</span><a class="archive-post-title" href= "../../../02/14/CSAPP-datalab/" >CSAPP - datalab</a>
         </li>
     
     
@@ -932,6 +995,11 @@ top:50vh;
     
         <li class="archive-post-item">
             <span class="archive-post-date">10/31</span><a class="archive-post-title" href= "../../../../2019/10/31/polya/" >Pólya计数法</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">07/29</span><a class="archive-post-title" href= "../../../../2019/07/29/Vim-for-windows-配置/" >Windows 下使用 Vim</a>
         </li>
     
     
@@ -972,11 +1040,6 @@ top:50vh;
     
     <div class="archive-year"> 2018 </div>
     <ul class="year-list">
-    
-    
-        <li class="archive-post-item">
-            <span class="archive-post-date">10/10</span><a class="archive-post-title" href= "../../../../2018/10/10/Vim-for-windows-配置/" >Windows 下使用 Vim</a>
-        </li>
     
     
         <li class="archive-post-item">

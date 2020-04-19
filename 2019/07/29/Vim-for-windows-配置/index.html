@@ -22,7 +22,7 @@
     <meta name="description" content>
     <meta http-equiv="Cache-control" content="no-cache">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-    <title>SGU 153-252 · Mcginn&#39;s Blog</title>
+    <title>Windows 下使用 Vim · Mcginn&#39;s Blog</title>
     <style type="text/css">
     @font-face {
         font-family: 'Oswald-Regular';
@@ -217,7 +217,7 @@
                 <a href="../../../../index.html" >Mcginn&#39;s Blog</a>
             </div>
             <div class="post-title">
-                <a href="#" class="post-name">SGU 153-252</a>
+                <a href="#" class="post-name">Windows 下使用 Vim</a>
             </div>
     </div>
     
@@ -247,7 +247,7 @@ height:50vh;
         <h1 class="intro-title">
             <!-- 主页  -->
             
-            SGU 153-252
+            Windows 下使用 Vim
             <!-- 404 -->
             
         </h1>
@@ -264,14 +264,22 @@ height:50vh;
             <div class="post-intros">
                 <!-- 文章页标签  -->
                 
+                    <div class= post-intro-tags >
+    
+        <a class="post-tag" href="javascript:void(0);" data-tags = "vim">vim</a>
+    
+        <a class="post-tag" href="javascript:void(0);" data-tags = "git bash">git bash</a>
+    
+</div>
+                
                 
                     <div class="post-intro-read">
-                        <span>字数统计: <span class="post-count word-count">1.2k</span>阅读时长: <span class="post-count reading-time">4 min</span></span>
+                        <span>字数统计: <span class="post-count word-count">350</span>阅读时长: <span class="post-count reading-time">1 min</span></span>
                     </div>
                 
                 <div class="post-intro-meta">
                     <span class="post-intro-calander iconfont-archer">&#xe676;</span>
-                    <span class="post-intro-time">2020/02/13</span>
+                    <span class="post-intro-time">2019/07/29</span>
                     
                     <span id="busuanzi_container_page_pv" class="busuanzi-pv">
                         <span class="iconfont-archer">&#xe602;</span>
@@ -395,61 +403,33 @@ height:50vh;
         <div class="container container-unloaded">
             <main class="main post-page">
     <article class="article-entry">
-        <h1 id="计划"><a href="#计划" class="headerlink" title="计划"></a>计划</h1><p>计划一年内（截止 2021 年 1 月 1 日）把 SGU 500 刷完，形式以所有题目给出翻译后的简要题意和解题思路概要。</p>
-<p><a href="https://github.com/McGinn7/ACMSGURU-Code" target="_blank" rel="noopener">AC 代码库</a></p>
-<h1 id="题目"><a href="#题目" class="headerlink" title="题目"></a>题目</h1><p>153 <strong>Playing with matches</strong></p>
-<p><strong>题意</strong>  有 $1\le N \le 10^9$ 根火柴，Little 和 Petya 轮流取，每次能取 $1, P_1, P_2, \dots , P_m(2\le P_i \le 9, 0\le m \le 8)$ 根火柴，判断先/后手必胜。</p>
-<p><strong>分析</strong> 当 $N$ 较小时，可用 dp 计算火柴为 $n$ 时状态（必胜/必败）。由于 $P_i\le 9$，每个点的状态只与前面的 9 个状态有关，从而每个状态的 SG 值最大为 10。并且根据 SG 值的定义，前面 9 个状态的 SG 值两两不同，因此 9 个状态的总数约为 $10!=3,628,800‬$。通过找出循环节，即可计算 $N$ 的 SG 值，从而判断胜负态。</p>
-<hr>
-<p>154 <strong>Factorial</strong></p>
-<p><strong>题意</strong>  求最小自然数 $N$，满足 $N!$ 有 $0 \le Q \le 10^8$ 个尾数 0。</p>
-<p><strong>分析</strong>  尾数 0 只与 $N!$ 的质因子 2 和 5 有关。求 $N!$ 中质因子 $p$ 的个数：</p>
-<script type="math/tex; mode=display">
-\frac N p + \frac N {p^2} + \dots</script><p>显然， 5 的个数少于 2 的个数，因此尾数 0 只与 5 的个数相关。</p>
-<p>上述公式具有<strong>非递减</strong>性质，因此可以<strong>二分</strong>计算最小自然数 $N$。</p>
-<hr>
-<p>155 <strong>Cartesian Tree</strong></p>
-<p><strong>题意</strong>  给定 $1\le N\le 50000$ 个 <key, value> 对，要求利用 key 值构造一棵<strong>二叉搜索树</strong>，并且满足<strong>小根堆</strong>的性质：如果 y 是 x 的父节点，则有 y.value &lt; x.value。数据保证 key 值和 value 值两两不同。</key,></p>
-<p><strong>分析</strong>  Cartisian Tree 模板题。 </p>
-<hr>
-<p>156 <strong>Strange Graph</strong></p>
-<p><strong>题意</strong>  给 $3\le N \le 10^4$ 个点 $M\le 10^5$ 条边的无向图，该图满足以下性质：</p>
+        <h2 id="简要说明"><a href="#简要说明" class="headerlink" title="简要说明"></a>简要说明</h2><p>主要针对 ACM/ICPC 竞赛选手在 Windows 10 系统下使用 vim 编写 C/C++ 代码。</p>
+<p>功能配置：</p>
 <ol>
-<li>所有点的度数 $deg(v)\ge 2$。</li>
-<li>当 $deg(v)=2$ 时，与 $v$ 相邻的两个点不相连。</li>
-<li>当 $deg(v)&gt;2$ 时，存在点 $u\in N(v)$，满足：$deg(u)=2$；$\forall w_1, w_2\in N(v), (w_1, w_2)\in E$。其中，$N(v)$ 表示与 $v$ 相邻的点集。</li>
+<li>编译和运行 *.cpp 文件；</li>
+<li>一键复制代码;</li>
+<li>记事本打开代码。</li>
 </ol>
-<p>数据保证无重边和自环。</p>
-<p>判断该图是否存在<strong>哈密顿回路</strong>，不存在时输出 -1；否则输出一种方案。</p>
-<p><strong>分析</strong> </p>
-<p>当 $deg(v)&gt;2$ 时，点集 $N(v)/u$ 构成完全图，因此总是能构造出<strong>哈密顿路</strong>。</p>
-<p>将点集 $N(v)/u$ 缩点，构造的新图中所有点的度数均为 2，问题可以转化成在新图中找出<strong>欧拉回路</strong>。</p>
-<p>而度数均为 2 的图，只可能是多个环。因此剩余问题仅需判断新图是否联通即可。</p>
-<hr>
-<p>157 <strong>Patience</strong></p>
-<p><strong>题意</strong>  纸牌接龙游戏，A~K（共 13 张牌）放置到 14 个格子中，其中一个为空格且 A 固定到第 1 个格子中。在前 $14-n$ 张牌有序的前提下，求能够将牌排好序且最后一格为空格的方案数。</p>
-<p>移牌规则为：当空格<strong>左侧</strong>为 $x$ 时，可将 $x+1$ 直接移动到空格上。</p>
-<p><strong>分析</strong>  最后局面为 A23…JQK_，反向构造合法序列即可。注意正向移牌时，$x+1$ 的前一个数为 $x$。因此反向构造时只有当 $a[i+1]=a[i]+1$ 时，才能将 $a[i+1]$ 和空格交换形成新合法序列。</p>
-<hr>
-<p>158 <strong>Commuter Train</strong></p>
-<p><strong>题意</strong>  有长为 $0&lt;L\le 5000$ 的公交路线。有 $0&lt;M\le 300$ 个乘客，乘客在坐标 $P_i$ 处，坐标非递减排序（$0\le P_1 \le \dots \le P_M \le L$）。有 $0&lt; N\le 300$ 个站点，每个站点距离第 1 个站点的距离为 $D_i(0=D_1&lt;D_2&lt;\dots &lt; D_N\le L)$。</p>
-<p>第 1 个站点位置 $S$ 未确定，要求求出 $S$ 使得每个乘客距离其<strong>最近</strong>的站点距离之和<strong>最大</strong>。</p>
-<p><strong>分析</strong>  在确定 $S$ 后，乘客与最近站点的距离和可表示为关于 $S$ 的一次函数。随着 $S$ 的增大，每个乘客的最近站点会发生变化，但新的距离和仍可表示为一次函数，且在一段距离范围内该函数不会改变。</p>
-<p>距离和函数改变点在于其中一个乘客的最近站点变化。由于乘客的最近站点随 $S$ 增大的增大，因此总的变化次数为 $O(NM)$，且站点变化只会 +1。</p>
-<hr>
-<p>159 <strong>Self-Replicating Numbers</strong></p>
-<p><strong>题意</strong>  在 $2\le b \le 36$ 进制下，求 $1\le n\le 2000$ 个位的数满足 $x^2\equiv x\pmod {b^n}$。</p>
-<p><strong>分析</strong> 爆搜。  </p>
-<hr>
-<p>160 <strong>Magic Multiplying Machine</strong></p>
-<p><strong>题意</strong>  给 $1\le N \le 10^4$ 个数 $1\le a_i\le M(2\le M \le 10^3)$，求最大得分 score：</p>
-<script type="math/tex; mode=display">
-score=\prod a_i \mod M</script><p>并给出任意一种方案，按<strong>递增</strong>顺序输出取出值的下标。</p>
-<p><strong>分析</strong>  背包问题。</p>
-<hr>
-<p>xxx</p>
-<p><strong>题意</strong>  </p>
-<p><strong>分析</strong>  </p>
+<img src="/2019/07/29/Vim-for-windows-配置/1539090544618.png" title="效果图">
+<p>git bash 和 gvim 都配置了一遍。gvim 使用 Windows 自带的 cmd 运行的话，鼠标是没办法移动光标的，并且配置相对 git bash 较麻烦，所以推荐使用 git bash。</p>
+<h2 id="Vimrc-配置"><a href="#Vimrc-配置" class="headerlink" title="Vimrc 配置"></a>Vimrc 配置</h2><ul>
+<li><p>编辑安装路径下的 vimrc 文件，例如 “D:\Git\etc\vimrc”，配置快捷键。</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">set nu ai ci si mouse=a ts=4 sts=4 sw=4</span><br><span class="line">nmap&lt;F2&gt; :vs %&lt;.in &lt;CR&gt;</span><br><span class="line">nmap&lt;F3&gt; :w !clip.exe &lt;CR&gt; &lt;CR&gt;</span><br><span class="line">nmap&lt;F4&gt; :!write % &lt;CR&gt;</span><br><span class="line">nmap&lt;F8&gt; :!./%&lt; &lt; %&lt;.in &lt;CR&gt;</span><br><span class="line">nmap&lt;F9&gt; :!g++ % -o %&lt; -O2 -g -Wall -std=c++11 &lt;CR&gt;</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<h2 id="额外配置"><a href="#额外配置" class="headerlink" title="额外配置"></a>额外配置</h2><ul>
+<li><p>vimrc 文件默认有一些配置，可根据需要修改。</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">set vb             "这个不关的话，触发某些条件会闪屏</span><br><span class="line">set laststatus=1   "窗口底部状态栏的行数（默认是2），这里设置成1。</span><br><span class="line">au FileType c,cpp setlocal comments-=:// comments+=f:// "取消换行自动注释</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<ul>
+<li><p>设置 Ctrl + Alt + T 快捷键启动 Git Bash 终端。</p>
+<ol>
+<li>创建 “git-bash.exe” 的快捷方式，打开快捷方式的属性窗口，修改<strong>起始位置</strong>，并设置快捷键。</li>
+<li>打开<strong>控制面板</strong>，找到 “管理工具”， 将快捷方式复制到该文件夹中。</li>
+</ol>
+</li>
+</ul>
 
     </article>
     <!-- license  -->
@@ -459,16 +439,16 @@ score=\prod a_i \mod M</script><p>并给出任意一种方案，按<strong>递�
         <li class="next">
             
                 <div class="nextSlogan">Next Post</div>
-                <a href= "../../14/CSAPP-datalab/" title= "CSAPP - datalab">
-                    <div class="nextTitle">CSAPP - datalab</div>
+                <a href= "../../../10/31/polya/" title= "Pólya计数法">
+                    <div class="nextTitle">Pólya计数法</div>
                 </a>
             
         </li>
         <li class="previous">
             
                 <div class="prevSlogan">Previous Post</div>
-                <a href= "../../../../2019/11/20/Palindromic-Factorization/" title= "回文分解算法">
-                    <div class="prevTitle">回文分解算法</div>
+                <a href= "../../22/B-Tree/" title= "B-Tree">
+                    <div class="prevTitle">B-Tree</div>
                 </a>
             
         </li>
@@ -599,7 +579,7 @@ top:50vh;
         <div class="toc-catalog">
             <span class="iconfont-archer catalog-icon">&#xe613;</span><span>CATALOG</span>
         </div>
-        <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#计划"><span class="toc-number">1.</span> <span class="toc-text">计划</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#题目"><span class="toc-number">2.</span> <span class="toc-text">题目</span></a></li></ol>
+        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#简要说明"><span class="toc-number">1.</span> <span class="toc-text">简要说明</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Vimrc-配置"><span class="toc-number">2.</span> <span class="toc-text">Vimrc 配置</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#额外配置"><span class="toc-number">3.</span> <span class="toc-text">额外配置</span></a></li></ol>
     </div>
     
     <div class="back-top iconfont-archer">&#xe639;</div>
@@ -612,26 +592,6 @@ top:50vh;
     <div class="sidebar-content sidebar-content-show-archive">
           <div class="sidebar-panel-archives">
     <!-- 在ejs中将archive按照时间排序 -->
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
     
     
     
@@ -902,32 +862,32 @@ top:50vh;
     
     
         <li class="archive-post-item">
-            <span class="archive-post-date">02/23</span><a class="archive-post-title" href= "" >CSAPP - cachelab</a>
+            <span class="archive-post-date">04/15</span><a class="archive-post-title" href= "" >SGU 153-252</a>
         </li>
     
     
         <li class="archive-post-item">
-            <span class="archive-post-date">02/21</span><a class="archive-post-title" href= "../../21/CSAPP-archlab/" >CSAPP - archlab</a>
+            <span class="archive-post-date">02/23</span><a class="archive-post-title" href= "../../../02/23/CSAPP-cachelab/" >CSAPP - cachelab</a>
         </li>
     
     
         <li class="archive-post-item">
-            <span class="archive-post-date">02/19</span><a class="archive-post-title" href= "../../19/CSAPP-attacklab/" >CSAPP - attacklab</a>
+            <span class="archive-post-date">02/21</span><a class="archive-post-title" href= "../../../02/21/CSAPP-archlab/" >CSAPP - archlab</a>
         </li>
     
     
         <li class="archive-post-item">
-            <span class="archive-post-date">02/16</span><a class="archive-post-title" href= "../../16/CSAPP-bomblab/" >CSAPP - bomblab</a>
+            <span class="archive-post-date">02/19</span><a class="archive-post-title" href= "../../../02/19/CSAPP-attacklab/" >CSAPP - attacklab</a>
         </li>
     
     
         <li class="archive-post-item">
-            <span class="archive-post-date">02/14</span><a class="archive-post-title" href= "../../14/CSAPP-datalab/" >CSAPP - datalab</a>
+            <span class="archive-post-date">02/16</span><a class="archive-post-title" href= "../../../02/16/CSAPP-bomblab/" >CSAPP - bomblab</a>
         </li>
     
     
         <li class="archive-post-item">
-            <span class="archive-post-date">02/13</span><a class="archive-post-title" href= "../../13/SGU-153-252/" >SGU 153-252</a>
+            <span class="archive-post-date">02/14</span><a class="archive-post-title" href= "../../../02/14/CSAPP-datalab/" >CSAPP - datalab</a>
         </li>
     
     
@@ -952,6 +912,11 @@ top:50vh;
     
         <li class="archive-post-item">
             <span class="archive-post-date">10/31</span><a class="archive-post-title" href= "../../../../2019/10/31/polya/" >Pólya计数法</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">07/29</span><a class="archive-post-title" href= "../../../../2019/07/29/Vim-for-windows-配置/" >Windows 下使用 Vim</a>
         </li>
     
     
@@ -992,11 +957,6 @@ top:50vh;
     
     <div class="archive-year"> 2018 </div>
     <ul class="year-list">
-    
-    
-        <li class="archive-post-item">
-            <span class="archive-post-date">10/10</span><a class="archive-post-title" href= "../../../../2018/10/10/Vim-for-windows-配置/" >Windows 下使用 Vim</a>
-        </li>
     
     
         <li class="archive-post-item">
