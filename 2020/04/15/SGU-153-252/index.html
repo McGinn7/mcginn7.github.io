@@ -266,7 +266,7 @@ height:50vh;
                 
                 
                     <div class="post-intro-read">
-                        <span>字数统计: <span class="post-count word-count">2.5k</span>阅读时长: <span class="post-count reading-time">10 min</span></span>
+                        <span>字数统计: <span class="post-count word-count">5.1k</span>阅读时长: <span class="post-count reading-time">20 min</span></span>
                     </div>
                 
                 <div class="post-intro-meta">
@@ -515,9 +515,111 @@ phi(W) = \begin{cases} 1,& len(W)=1\\ phi(w_Nw_{N-1}\dots w_{K+1}+phi(w_Kw_{K-1}
 <p><strong>题意</strong> 有 $1\le N\le 100$ 个结点和 $M$ 条管道，管道从结点 $U_i$ 流向 $V_i$ 且容量上限为 $Z_i$。化学物质从结点 1 经过若干管道流进结点 $N$，现要求部分管道<strong>必须流满</strong>($C_i = 1$)的前提下，该管道网络的最小流量。</p>
 <p><strong>分析</strong> 有源汇上下界最小流。</p>
 <hr>
-<p>xxx</p>
-<p><strong>题意</strong>  </p>
+<p>177 <strong>Square</strong></p>
+<p><strong>题意</strong>  给 $1000×1000$ 的矩形，进行 $5000$ 次染色，每次将一个子矩形染成黑色或白色。初始所有格子都是白色的情况下，染色完后的白色格子数。</p>
+<p><strong>分析</strong> 扫描线+线段树；bitset。</p>
+<hr>
+<p>178 <strong>Golden chain</strong></p>
+<p><strong>题意</strong>  给长为 $1\le N\le 10^{16}$ 长的金链条，Peter 每天需要支付 1 长度的金条，支付的方式有两种：一种是直接支付 1 长度金条；另一种是支付大于 1 长度的金条并使用之前支付的金条找零。零钱的组成由 Peter 指定。Peter 每次可以从长金条上切掉 1 长度的金条，将长金条切分成 3 段。现想知道最少切几次可以满足 $N$ 天的支出。 </p>
+<p><strong>分析</strong> 假设最终切出 k 个 1 长度金条，那么将剩下的 N - k 长度视为完整的金条，允许切 k 刀划分成 k + 1 段。前 k 天直接支付 1 长度即可。第 k + 1 天切出 k + 1 长度金条，找零 k 个 1 长度从而k + 2 ~ 2k + 1 天继续每天支付 1 长度。第 2k + 2 天切出 2k + 2 长度金条，兑换出之前支付的金条又开始循环（假设切不出 2k + 2 长度，那么也能找出类似的策略来满足每天 1 长度的支付）。因此切 k 次的最多能满足 $k + (k + 1) + 2(k + 1) + … + 2^k(k+1)=2^{k+1}(k+1)-1$ 天的支付需求，枚举 k 即可。 </p>
+<hr>
+<p>179 <strong>Brackets light</strong></p>
+<p><strong>题意</strong>  给长为 10000 合法的括号序列(仅包含 ‘(‘ 和 ‘)’，并且字典序 ‘(‘ &lt; ‘)’)，求下一个字典序的合法括号序列。 </p>
+<p><strong>分析</strong> 从后往前找第一个能 ‘(‘ 转为 ‘)’ 的位置，之后尽量填 ‘(‘ 来保证中间不会有更小字典序且满足题意的括号序列。尽量的意思就是在该位置填 ‘(‘ 后仍有足够的位置放置 ‘)’，这个可以通过前缀和思想解决。</p>
+<hr>
+<p>180 <strong>Inversions</strong></p>
+<p><strong>题意</strong>  $1\le N\le 65537$ 个数 $0\le A_i\le 10^9$ 的逆序对数。</p>
+<p><strong>分析</strong> 。</p>
+<hr>
+<p>181 <strong>X-Sequence</strong></p>
+<p><strong>题意</strong>  。</p>
+<p><strong>分析</strong> 找循环节。</p>
+<hr>
+<p>182 <strong>Open the brackets</strong></p>
+<p><strong>题意</strong>  给由 10 个变量组成的布尔表达式，运算符包括：!, (), ||, &amp;, &lt;=&gt;, =&gt;, #，变量名从 ‘a’ 到 ‘j’ 共 10 个。要求去掉括号 () 运算符的等价布尔表达式，字符数量小于 32768。</p>
+<p><strong>分析</strong> 10 个布尔变量的组合数为 2^10 = 1024 种，仅使用 !, ||, &amp; 来枚举所有情况的字符数不会超过 32768：使用 || 拼接不同组合，数量为 2 <em> 2^10 = 2048；! 的数量为 10 </em> 2^9 = 5120；&amp; 组合 10 个变量的数量为 9 <em> 2^10 = 9216，变量名的数量为 10 </em> 2^10 = 10240。</p>
+<hr>
+<p>183 <strong>Painting the balls</strong></p>
+<p><strong>题意</strong>  初始有 $2\le N\le 10^4$ 个白球，可花费 $1\le C_i\le 10^4$ 染料将第 i 个球染成黑球。现要求在<strong>任意连续</strong> $2\le M\le 100$ 个球中至少有 2 个黑球，求最少需要花费多少染料。</p>
+<p><strong>分析</strong> $dp(i, j)$ 表示将第 $i$ 个位置染黑的前提下，前一个黑球位置 $p \ge i-j$ 的最小代价。</p>
+<p>状态转移方程为</p>
+<script type="math/tex; mode=display">
+dp(i, j) = \min_{i - j - k \ge i - M} {dp(i - j, k)} + C_i</script><hr>
+<p>185 <strong>Two shortest</strong></p>
+<p><strong>题意</strong>  给 $2\le N\le 400$ 个点带边权的无向图，找出两条无共用边的两条最短路（允许有交点）。</p>
+<p><strong>分析</strong> 最小费用流。</p>
+<hr>
+<p>187 <strong>Twist and whirl - want to cheat</strong></p>
+<p><strong>题意</strong>  （splay 模板题）</p>
+<hr>
+<p>188 <strong>Factory guard</strong></p>
+<p><strong>题意</strong>  有 $1\le N\le 20$ 个人站在 1000 长度圆环上的整数点位置，每个人有行走速度 $-100\le V_i \le 100$ 以及两两不同的位置 $0\le L_i\le 999$。$V_i \lt 0$ 表示逆时针行走，$V_i \gt 0$ 则表示顺时针行走。每个人会向对面走来的人打招呼，求 $1\le T\le 50$ 时间后每个人打招呼的次数。</p>
+<p><strong>分析</strong> 可以求顺时针和逆时针第一次碰面的时间，之后再相遇的时间是固定的。</p>
+<p><strong>todo</strong> 数据范围能否变大？</p>
+<hr>
+<p>190 Dominoes</p>
+<p><strong>题意</strong>  $40×40$ 的棋盘上有 $P$ 个格子被移除，判断能否用 1×2 或 2×1 的多米诺覆盖所有未被移除的格子且不相交。</p>
+<p><strong>分析</strong> 相邻格子的 x+y 奇偶性不同，因此原问题可以转变为二分图的最大匹配。</p>
+<hr>
+<p>192 RGB</p>
+<p><strong>题意</strong>  给 300 条线段，每条线段的颜色为 RGB 三种中的一种，任意两条线段至多一个交点。将线段投影到 X 轴，每段投影的颜色为离 X 轴最近线段的颜色。求投影后每种颜色的长度之和。</p>
+<p><strong>分析</strong> 求出所有交点后划分投影线段区间，每段区间取中点并判断中点所在线段的颜色。</p>
+<hr>
+<p>193 <strong>Chinese Girls’ Amusement</strong></p>
+<p><strong>题意</strong>  有 $3\le N\le 10^{2000}$ 玩丢手绢游戏，手持手绢的人将手绢传递给顺时针方向的第 $1\le K\le \lfloor\frac N2\rfloor$ 个人，当手绢丢回第一个人时游戏结束。要求游戏过程中每个人都要拿过手绢，求最大满足要求的 $K$ 值。 </p>
+<p><strong>分析</strong> 假设经过 $p$ 次传回第一个人，那么有 $pK \mod N = 0$，而要求每个人都要拿过手绢，因此 $p=N$，也就是说 $NK = lcm(K, N)$，等价于 $\gcd (K, N) = 1$ 即 $K$ 和 $N$ 互质。</p>
+<p>假设 $N= 2n+1$，当 $K=\lfloor\frac N2\rfloor=n$ 时，$\gcd (K, N)=\gcd(n, 2n+1)=\gcd(n, n+1)=1$。所以当 $N$ 是奇数时，能取到上限 $\lfloor\frac N2\rfloor$。</p>
+<p>当 $N=2n$ 时，若 $K = \lfloor\frac N2\rfloor=n$，则 $\gcd(K, N) = \gcd(n, 2n) = n &gt; 1$； 若 $K=n-1$，则 $\gcd(K, N)=\gcd(n-1, 2n)=\gcd(n-1, 2)$，当 $n$ 是偶数时，gcd = 1；若 $K=n-2$，则 $\gcd(K, N)=\gcd(n-2, 2n)=\gcd(n-2, 4)$，当 $n$ 是奇数时，gcd = 1。</p>
+<p>综上，$K$ 的取值仅三种情况，分类讨论即可。</p>
+<p>PS：上述结论可通过小数据打表辅助观察得到。</p>
+<hr>
+<p>194 <strong>Reactor Cooling</strong></p>
+<p><strong>题意</strong>  。</p>
+<p><strong>分析</strong> 无源汇上下界最大流。</p>
+<hr>
+<p>195 <strong>New Year Bonus Grant</strong></p>
+<p><strong>题意</strong>  有 $2\le N\le 5×10^5$ 名员工，每名员工有<strong>唯一</strong>上级（即上下级关系构成一棵树）。每名员工可以分配拨款给其中一名下属，或接受来自上级的拨款，但是不能同时分配和接受拨款。求拨款总和可能的最大值。</p>
+<p><strong>分析</strong> 树形 dp，每名员工根据是否分配了拨款划分成两个状态，分别记录最大拨款值即可。</p>
+<hr>
+<p>196 <strong>Matrix Multiplication</strong></p>
+<p><strong>题意</strong>  。</p>
+<p><strong>分析</strong> 模拟。</p>
+<hr>
+<p>197 <strong>Nice Patterns Strike Back</strong></p>
+<p><strong>题意</strong>  对长 $1\le N\le 10^{100}$ 宽 $1\le M\le 5$ 的矩形黑白染色，要求任意 2×2 的子矩形不能完全同色（即 4 白色或 4 黑色）。求合理的方案数，结果对 $1\le P\le 10000$  取模。</p>
+<p><strong>分析</strong> 按行染色，显然就是矩阵 + 快速幂，对于 $N$ 的处理需要大数或者手动模拟整数除法。</p>
+<hr>
+<p>198 <strong>Get Out!</strong></p>
+<p><strong>题意</strong>  给平面上 $1\le N\le 300$ 个圆 $(x_i, y_i, r_i)$ 表示岛屿，一个圆 $(X, Y,R)$ 表示船。判断这艘船能否自由航行，即不被岛屿与岛屿之间的缝隙卡住而无法走出群岛区域。</p>
+<p><strong>分析</strong> 将每个岛屿的半径增加 $R$，当两个新圆相交（不包括相切）时，船只无法通过这两个岛屿之间的缝隙。<del>剩下的问题转化为判断一个点是否被多边形包围。</del></p>
+<hr>
+<p>199 <strong>Beautiful People</strong></p>
+<p><strong>题意</strong>  一个俱乐部中有 $2\le N\le 10^5$ 个人，每个人有能力值 $1\le S_i\le 10^9$ 和魅力值 $1\le B_i\le 10^9$。现想邀请尽可能多的人参加派对，但是当 $S_i\le S_j\and B_i\ge B_j$ 时两个人存在矛盾。在不邀请有矛盾的两个人来派对的前提下，问最多能邀请多少人。</p>
+<p><strong>分析</strong> 按 $pair(S_i, B_i)$ 排序，问题转变成最长上升子序列。</p>
+<hr>
+<p>200 <strong>Cracking RSA</strong></p>
+<p><strong>题意</strong>  给 $1\le m\le 100$ 个数 $1\le b_i\le 10^9$，所有数的质因子是前 $1\le t\le 100$ 个质数。求 {1, 2, …, m} 的所有子集数量，子集所对应 $\prod b_i$ 是完全平方数。</p>
+<p><strong>分析</strong> $\prod b_i$ 是完全平方数，说明每个质因子的指数都是偶数，那么我们只关心 $b_i$ 每个质因子的指数奇偶性，本质上就是解模 2 意义下的方程组解的数量（套高斯消元板子即可）。 </p>
+<hr>
+<p>201 <strong>Non Absorbing DFA</strong></p>
+<p><strong>题意</strong>  给一个 $1\le K\le 1000$ 个状态的有限状态自动机，字符集为小写字母。除了常规的状态转移外，还有转移 $X(u, c) $：当 $X(u, c)=0$ 时正常转移；当 $X(u, c)=1$ 时不进行匹配，但是可以进入相应的状态（可以认为是等价状态的转移）。求长度为 $1\le N\le 60$ 的所有字符串中被该自动机接受的字符串数量。</p>
+<p><strong>分析</strong> 大数模拟。</p>
+<hr>
+<p>202 <strong>The Towers of Hanoi Revisited</strong></p>
+<p><strong>题意</strong>  $4\le M\le 65$ 塔汉诺塔问题，将 $1\le N\le 64$ 圆盘从第一柱塔移动到第 $M$ 柱塔上，求最少的操作次数以及具体的移动方案。</p>
+<p><strong>分析</strong> 三塔汉诺塔推广，先将 $N-1$ 个圆盘均摊到其他塔上，将第 $N$ 个圆盘直接移动到目标塔上，然后重复操作将 $N-1$ 个圆盘依次移动到目标塔上。</p>
+<hr>
+<p>203 <strong>Hyperhuffman</strong></p>
+<p><strong>题意</strong> 给 $2\le N\le 5×10^5$ 个字符在某一字符串的出现次数 $1\le P_i\le 10^9, P_i\le P_{i+1}$，使用哈夫曼编码字符，求编码后的字符串长度。</p>
+<p><strong>分析</strong> 由于 $P_i$ 本身有序，因此对于合并得到的 $P_i+P_j$ 可由队列维护（该队列天然也是有序的），因此总的时间复杂度是 $O(N)$。</p>
+<hr>
+<p>204 <strong>Little Jumper</strong></p>
+<p><strong>题意</strong> </p>
 <p><strong>分析</strong></p>
+<hr>
+<p>205 <strong>Quantization Problem</strong></p>
+<p><strong>题意</strong> 给 $m×s,1\le m\le s\le 128$ 编码表 $A_{ij}$，需要编码 $1\le n\le 1000$ 个数 $1\le x_i\le 10^6$，规则：假设第 $i$ 个数使用了第 $k_i$ 列，则第 $i+1$ 个数只能使用第 $k_i\mod m$ 行的数来编码。求 $\sum|x_i-A_{k_{i-1}\mod m, k_i}|$ 的最小值。</p>
+<p><strong>分析</strong> $dp(i, j)$ 表示第 $i$ 个数使用第 $j=k_i\mod m$ 列编码的最小值。</p>
 
     </article>
     <!-- license  -->
@@ -525,6 +627,11 @@ phi(W) = \begin{cases} 1,& len(W)=1\\ phi(w_Nw_{N-1}\dots w_{K+1}+phi(w_Kw_{K-1}
     <!-- paginator  -->
     <ul class="post-paginator">
         <li class="next">
+            
+                <div class="nextSlogan">Next Post</div>
+                <a href= "../../../05/10/Kuhn-Munkres-Algorithm/" title= "Kuhn-Munkres Algorithm">
+                    <div class="nextTitle">Kuhn-Munkres Algorithm</div>
+                </a>
             
         </li>
         <li class="previous">
@@ -927,9 +1034,42 @@ top:50vh;
     
     
     
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
     <div class="total-and-search">
         <div class="total-archive">
-        Total : 22
+        Total : 23
         </div>
         <!-- search  -->
         
@@ -945,7 +1085,12 @@ top:50vh;
     
     
         <li class="archive-post-item">
-            <span class="archive-post-date">04/15</span><a class="archive-post-title" href= "" >SGU 153-252</a>
+            <span class="archive-post-date">05/10</span><a class="archive-post-title" href= "" >Kuhn-Munkres Algorithm</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">04/15</span><a class="archive-post-title" href= "../../../04/15/SGU-153-252/" >SGU 153-252</a>
         </li>
     
     
@@ -999,11 +1144,6 @@ top:50vh;
     
     
         <li class="archive-post-item">
-            <span class="archive-post-date">07/29</span><a class="archive-post-title" href= "../../../../2019/07/29/Vim-for-windows-配置/" >Windows 下使用 Vim</a>
-        </li>
-    
-    
-        <li class="archive-post-item">
             <span class="archive-post-date">07/22</span><a class="archive-post-title" href= "../../../../2019/07/22/B-Tree/" >B-Tree</a>
         </li>
     
@@ -1040,6 +1180,11 @@ top:50vh;
     
     <div class="archive-year"> 2018 </div>
     <ul class="year-list">
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">10/10</span><a class="archive-post-title" href= "../../../../2018/10/10/Vim-for-windows-配置/" >Windows 下使用 Vim</a>
+        </li>
     
     
         <li class="archive-post-item">

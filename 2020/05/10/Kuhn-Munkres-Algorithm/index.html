@@ -22,7 +22,7 @@
     <meta name="description" content>
     <meta http-equiv="Cache-control" content="no-cache">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-    <title>Nowcoder-出题人的数组 · Mcginn&#39;s Blog</title>
+    <title>Kuhn-Munkres Algorithm · Mcginn&#39;s Blog</title>
     <style type="text/css">
     @font-face {
         font-family: 'Oswald-Regular';
@@ -217,7 +217,7 @@
                 <a href="../../../../index.html" >Mcginn&#39;s Blog</a>
             </div>
             <div class="post-title">
-                <a href="#" class="post-name">Nowcoder-出题人的数组</a>
+                <a href="#" class="post-name">Kuhn-Munkres Algorithm</a>
             </div>
     </div>
     
@@ -247,7 +247,7 @@ height:50vh;
         <h1 class="intro-title">
             <!-- 主页  -->
             
-            Nowcoder-出题人的数组
+            Kuhn-Munkres Algorithm
             <!-- 404 -->
             
         </h1>
@@ -264,22 +264,14 @@ height:50vh;
             <div class="post-intros">
                 <!-- 文章页标签  -->
                 
-                    <div class= post-intro-tags >
-    
-        <a class="post-tag" href="javascript:void(0);" data-tags = "ICPC">ICPC</a>
-    
-        <a class="post-tag" href="javascript:void(0);" data-tags = "贪心">贪心</a>
-    
-</div>
-                
                 
                     <div class="post-intro-read">
-                        <span>字数统计: <span class="post-count word-count">797</span>阅读时长: <span class="post-count reading-time">3 min</span></span>
+                        <span>字数统计: <span class="post-count word-count">669</span>阅读时长: <span class="post-count reading-time">3 min</span></span>
                     </div>
                 
                 <div class="post-intro-meta">
                     <span class="post-intro-calander iconfont-archer">&#xe676;</span>
-                    <span class="post-intro-time">2019/03/31</span>
+                    <span class="post-intro-time">2020/05/10</span>
                     
                     <span id="busuanzi_container_page_pv" class="busuanzi-pv">
                         <span class="iconfont-archer">&#xe602;</span>
@@ -403,22 +395,34 @@ height:50vh;
         <div class="container container-unloaded">
             <main class="main post-page">
     <article class="article-entry">
-        <p>链接：<a href="https://ac.nowcoder.com/acm/contest/545/C" target="_blank" rel="noopener">https://ac.nowcoder.com/acm/contest/545/C</a><br>来源：牛客网</p>
-<h4 id="题目描述"><a href="#题目描述" class="headerlink" title="题目描述"></a>题目描述</h4><p>出题人有两个数组 $A, B$，请你把两个数组归并起来使得 $Cost=∑i∗C_i$ 最小，要求两个原数组的顺序在新数组中保持不变。 </p>
-<h4 id="输入描述"><a href="#输入描述" class="headerlink" title="输入描述"></a>输入描述</h4><p>第一行输入两个正整数 $n,m$，分别表示数组 $A, B$ 的长度。<br>第二行输入 $n$ 个正整数，表示数组 $A$。<br>第二行输入 $m$ 个正整数，表示数组 $B$ 。</p>
-<h4 id="输出描述"><a href="#输出描述" class="headerlink" title="输出描述"></a>输出描述</h4><p>一个正整数，表示最小代价 $Cost$。</p>
-<h4 id="示例-1"><a href="#示例-1" class="headerlink" title="示例 1"></a>示例 1</h4><table style="border-collapse:collapse;border-spacing:0;border-color:#999" class="tg"><tr><th style="font-family:Arial, sans-serif;font-size:14px;font-weight:normal;padding:10px 10px;border-style:solid;border-width:1px;overflow:hidden;word-break:normal;border-color:#fd6864;color:#fff;background-color:#fd6864;text-align:left">输入</th><th style="font-family:Arial, sans-serif;font-size:14px;font-weight:normal;padding:10px 10px;border-style:solid;border-width:1px;overflow:hidden;word-break:normal;border-color:#fd6864;color:#fff;background-color:#fd6864;text-align:left">输出</th></tr><tr><td style="font-family:Arial, sans-serif;font-size:14px;padding:10px 10px;border-style:solid;border-width:1px;overflow:hidden;word-break:normal;border-color:#fd6864;color:#444;background-color:#F7FDFA;text-align:left">3 3<br>1 3 5<br>2 6 4</td><td style="font-family:Arial, sans-serif;font-size:14px;padding:10px 10px;border-style:solid;border-width:1px;overflow:hidden;word-break:normal;border-color:#fd6864;color:#444;background-color:#F7FDFA;text-align:left">75</td></tr></table>
-
-<h4 id="备注"><a href="#备注" class="headerlink" title="备注"></a>备注</h4><p>$n, m \le 100000$</p>
-<p>$A_i, B_i \le 100000$</p>
-<h4 id="解题思路"><a href="#解题思路" class="headerlink" title="解题思路"></a>解题思路</h4><p>$O(nm)$ 动态规划很容易想到，但是复杂度太高且没有方法优化，那么就考虑贪心解法。</p>
-<p>显然，合并后的数组 $C$ 格式为 $\dots ABABA\dots$，即一段 $A$ 接一段 $B$ 。</p>
-<p>常见的贪心策略为，考虑相邻元素的交换是否会导致更优的结果。由于不能打乱原先的顺序，故总是后段的前缀替换前段的后缀，不失一般性，我们可以假设前段为 $A$，后段为 $B$。</p>
-<p>记 $Cost(A) = \sum_{i = 1} ^ {|A|}i\times A_i$，则原先的贡献值为 $Cost(A)+Cost(B)+|A|\times Sum(B)$，交换后的贡献值为 $Cost(A)+Cost(B)+|B|\times Sum(A)$，则当 $|B|\times Sum(A) \lt |A|\times Sum(B)$，即</p>
+        <ol>
+<li><p>背景：带边权的二分图<strong>最大权值完美匹配</strong>。</p>
+</li>
+<li><p>顶标概念：顶点权值 $L_x, L_y$。</p>
+</li>
+<li><p>可行顶标：<strong>所有</strong>边 $e(x→y)$  ，都满足 $L_x+L_y\ge W_e$。</p>
+<p><strong>注：</strong>此时还没有开始匹配，是对原图所有边的限制。</p>
+</li>
+<li><p>相等子图：包含所有顶点；仅包含 $W_{x→y}=L_x+L_y$ 的边。</p>
+<p>问题即转化为求相等子图的完美匹配，此时边权和达到上限 $\sum L_x+ \sum L_y$。</p>
+</li>
+<li><p>初始化：$L_y=0, L_x=\max_{j\in Y}{W_{x→j}}$ 使得初始方案为可行顶标。</p>
+</li>
+<li><p>交替路：与匈牙利算法类似，在相等子图中搜索增广路时，如果找不到时我们称此时得到一条交替路。</p>
+<p>如果将<strong>交替路</strong>中 $X$ 集合的顶标都 $-d, d&gt;0$，$Y$ 集合的顶标都 $+d$，有以下结论：</p>
+<ul>
+<li><p>如果 $x→y$ 在相等子图中，$L_x+L_y$ 无变化，即该边仍在相等子图中。</p>
+</li>
+<li><p>如果 $x→y$ 不在相等子图中，<strong>当 $x$ 在交替路而 $y$ 不在交替路时</strong>，$L_x+L_y$ 将减少 $d$，意味着该边有可能加入相等子图中。注意 $d$ 不能过大，否则会破坏<strong>可行顶标</strong>这个前提，因此</p>
 <script type="math/tex; mode=display">
-\frac{Sum(A)}{|A|} \lt \frac{Sum(B)}{|B|}</script><p>也就是说，<strong>均值越大的段需要优先选择</strong>。</p>
-<p>剩下的就是如何构造这些段，我们假设串 $A=A_1A_2$，当 $Average(A_1)\lt Average(A_2)$ 时，在数组 $C$ 中总会合并成一段，根据这一性质在原数组中利用<strong>单调栈</strong>即可构造初始的段，之后就是从数组 $A,B​$ 贪心选择均值较大的段。</p>
-<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;bits/stdc++.h&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</span><br><span class="line"><span class="keyword">typedef</span> <span class="keyword">double</span> db;</span><br><span class="line"><span class="keyword">typedef</span> <span class="keyword">long</span> <span class="keyword">long</span> ll;</span><br><span class="line"><span class="keyword">typedef</span> <span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; vi;</span><br><span class="line"><span class="keyword">typedef</span> pair&lt;<span class="keyword">int</span>, <span class="keyword">int</span>&gt; pii;</span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> fi first</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> se second</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> pb push_back</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> sz(x) ((int)(x).size())</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> all(x) begin(x),end(x)</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> rep(i,l,r) for(int i=(l);i&lt;(r);++i)</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> per(i,l,r) for(int i=(r)-1;i&gt;=(l);--i)</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> dd(x) cout &lt;&lt; #x &lt;&lt; <span class="meta-string">"="</span> &lt;&lt; x &lt;&lt; <span class="meta-string">", "</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> de(x) cout &lt;&lt; #x &lt;&lt; <span class="meta-string">"="</span> &lt;&lt; x &lt;&lt; endl</span></span><br><span class="line"><span class="comment">//-------</span></span><br><span class="line"><span class="keyword">const</span> <span class="keyword">int</span> N = <span class="number">1e5</span> + <span class="number">7</span>;</span><br><span class="line"><span class="keyword">int</span> n, m, A[N], B[N];</span><br><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">Node</span> &#123;</span></span><br><span class="line">    <span class="keyword">int</span> num; ll sum;</span><br><span class="line">    Node() &#123;&#125;</span><br><span class="line">    Node(<span class="keyword">int</span> _num, ll _sum) &#123;</span><br><span class="line">        num = _num, sum = _sum;</span><br><span class="line">    &#125;</span><br><span class="line">    Node <span class="keyword">operator</span>+(<span class="keyword">const</span> Node &amp;p) <span class="keyword">const</span> &#123;</span><br><span class="line">        <span class="keyword">return</span> Node(num + p.num, sum + p.sum);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">bool</span> <span class="keyword">operator</span>&lt;(<span class="keyword">const</span> Node &amp;p) <span class="keyword">const</span> &#123;</span><br><span class="line">        <span class="keyword">return</span> sum * p.num &lt; p.sum * num; </span><br><span class="line">    &#125;</span><br><span class="line">&#125; a[N], b[N];</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">gao</span><span class="params">(<span class="keyword">int</span> n, <span class="keyword">int</span> *r, Node *a)</span> </span>&#123;</span><br><span class="line">	<span class="keyword">int</span> top = <span class="number">0</span>;</span><br><span class="line">    rep(i, <span class="number">0</span>, n) &#123;</span><br><span class="line">        <span class="built_in">scanf</span>(<span class="string">"%d"</span>, r + i);</span><br><span class="line">        <span class="function">Node <span class="title">v</span><span class="params">(<span class="number">1</span>, r[i])</span></span>;    </span><br><span class="line">        <span class="keyword">while</span> (top &gt; <span class="number">0</span> &amp;&amp; a[top - <span class="number">1</span>] &lt; v)</span><br><span class="line">            v = a[--top] + v;</span><br><span class="line">        a[top++] = v;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> top;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    <span class="built_in">scanf</span>(<span class="string">"%d%d"</span>, &amp;n, &amp;m);</span><br><span class="line">	<span class="keyword">int</span> la = gao(n, A, a), lb = gao(m, B, b);</span><br><span class="line">    n = m = <span class="number">0</span>;</span><br><span class="line">    ll ans = <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>, j = <span class="number">0</span>; i &lt; la || j &lt; lb; ) &#123;</span><br><span class="line">        <span class="keyword">while</span> (i &lt; la &amp;&amp; (j == lb || !(a[i] &lt; b[j]))) &#123;</span><br><span class="line">            rep(k, n, n + a[i].num) ans += <span class="number">1l</span>l * (k + m + <span class="number">1</span>) * A[k];    </span><br><span class="line">            n += a[i++].num;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">while</span> (j &lt; lb &amp;&amp; (i == la || !(b[j] &lt; a[i]))) &#123;</span><br><span class="line">            rep(k, m, m + b[j].num) ans += <span class="number">1l</span>l * (k + n + <span class="number">1</span>) * B[k];</span><br><span class="line">            m += b[j++].num;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">"%lld\n"</span>, ans);</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+d=\min\{L_x+L_y-W_{x→y}|x在交替路\and y不在交替路\}</script></li>
+</ul>
+<p><strong>注：</strong>相等子图中顶标之和 $\sum L_x + \sum L_y$ 越来越小，以此来加入更多的边使得边权和更大。</p>
+</li>
+<li><p><a href="https://github.com/McGinn7/Template-for-ICPC/blob/master/template/km.cpp" target="_blank" rel="noopener">代码模板</a></p>
+</li>
+</ol>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// find a perfect matching with maximum total cost</span></span><br><span class="line"><span class="comment">// in bipartite graph G=(X,Y;E).</span></span><br><span class="line"><span class="comment">// if you want the total cost minimum, just negative</span></span><br><span class="line"><span class="comment">// cost.</span></span><br><span class="line"><span class="keyword">template</span>&lt;<span class="keyword">typename</span> T&gt;</span><br><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">KuhnMunkres</span> &#123;</span></span><br><span class="line">	<span class="keyword">int</span> n, m, vis[N], pre[N], mth[N];</span><br><span class="line">	T INF, Lx[N], Ly[N], slack[N], w[N][N];</span><br><span class="line"></span><br><span class="line">	<span class="function"><span class="keyword">void</span> <span class="title">init</span><span class="params">(<span class="keyword">int</span> _n, <span class="keyword">int</span> _m, T _INF)</span> </span>&#123;</span><br><span class="line">		n = _n, m = _m, INF = _INF;</span><br><span class="line">		<span class="comment">// modify weight of non-edge if need</span></span><br><span class="line">		rep(i, <span class="number">0</span>, n) rep(j, <span class="number">0</span>, m) w[i][j] = -INF;</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	<span class="function"><span class="keyword">inline</span> <span class="keyword">void</span> <span class="title">addEdge</span><span class="params">(<span class="keyword">int</span> u, <span class="keyword">int</span> v, <span class="keyword">int</span> wgh)</span> </span>&#123;</span><br><span class="line">		w[u][v] = wgh;</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	<span class="function"><span class="keyword">void</span> <span class="title">find</span><span class="params">(<span class="keyword">int</span> v)</span> </span>&#123;</span><br><span class="line">		rep(i, <span class="number">0</span>, m + <span class="number">1</span>) vis[i] = <span class="number">0</span>, slack[i] = INF;</span><br><span class="line">		<span class="keyword">int</span> u = m;</span><br><span class="line">		<span class="keyword">for</span> (mth[u] = v; mth[u] != <span class="number">-1</span>; u = v) &#123;</span><br><span class="line">			vis[u] = <span class="number">1</span>;</span><br><span class="line">			T d = INF;</span><br><span class="line">			rep(i, <span class="number">0</span>, m) <span class="keyword">if</span> (!vis[i]) &#123;</span><br><span class="line">				T att = Lx[mth[u]] + Ly[i] - w[mth[u]][i];</span><br><span class="line">				<span class="comment">// maintain feasible solution</span></span><br><span class="line">				<span class="keyword">if</span> (att &lt; slack[i]) slack[i] = att, pre[i] = u;</span><br><span class="line">				<span class="comment">// find minimum d</span></span><br><span class="line">				<span class="keyword">if</span> (slack[i] &lt; d) d = slack[v = i];</span><br><span class="line">			&#125;</span><br><span class="line">			rep(i, <span class="number">0</span>, m + <span class="number">1</span>)</span><br><span class="line">				<span class="keyword">if</span> (vis[i]) Lx[mth[i]] -= d, Ly[i] += d;</span><br><span class="line">				<span class="keyword">else</span> slack[i] -= d;</span><br><span class="line">		&#125;</span><br><span class="line">		<span class="comment">// find a augmented path</span></span><br><span class="line">		<span class="keyword">for</span>(; u != m; u = pre[u]) mth[u] = mth[pre[u]];</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	<span class="function">T <span class="title">solve</span><span class="params">()</span> </span>&#123;</span><br><span class="line">		<span class="keyword">bool</span> iswap = <span class="literal">false</span>;</span><br><span class="line">		<span class="keyword">if</span> (n &gt; m) &#123;</span><br><span class="line">			rep(i, <span class="number">0</span>, n) rep(j, <span class="number">0</span>, min(i, m))</span><br><span class="line">				swap(w[i][j], w[j][i]);</span><br><span class="line">			iswap = <span class="literal">true</span>, swap(n, m);</span><br><span class="line">		&#125;</span><br><span class="line">		fill(Lx, Lx + n, <span class="number">0</span>);</span><br><span class="line">		fill(Ly, Ly + m, <span class="number">0</span>);</span><br><span class="line">		fill(mth, mth + m, <span class="number">-1</span>);</span><br><span class="line">		rep(i, <span class="number">0</span>, n) find(i);</span><br><span class="line"></span><br><span class="line">		T ret = <span class="number">0</span>;</span><br><span class="line">		rep(i, <span class="number">0</span>, n) ret += Lx[i];</span><br><span class="line">		rep(i, <span class="number">0</span>, m) ret += Ly[i];</span><br><span class="line">		<span class="keyword">if</span> (iswap)</span><br><span class="line">			per(i, <span class="number">0</span>, max(n, m)) swap(Lx[i], Ly[i]);</span><br><span class="line">		<span class="keyword">return</span> ret;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
 
     </article>
     <!-- license  -->
@@ -427,17 +431,12 @@ height:50vh;
     <ul class="post-paginator">
         <li class="next">
             
-                <div class="nextSlogan">Next Post</div>
-                <a href= "../../../04/03/斜率优化/" title= "斜率优化">
-                    <div class="nextTitle">斜率优化</div>
-                </a>
-            
         </li>
         <li class="previous">
             
                 <div class="prevSlogan">Previous Post</div>
-                <a href= "../../../../2018/10/10/Vim-for-windows-配置/" title= "Windows 下使用 Vim">
-                    <div class="prevTitle">Windows 下使用 Vim</div>
+                <a href= "../../../04/15/SGU-153-252/" title= "SGU 153-252">
+                    <div class="prevTitle">SGU 153-252</div>
                 </a>
             
         </li>
@@ -568,7 +567,7 @@ top:50vh;
         <div class="toc-catalog">
             <span class="iconfont-archer catalog-icon">&#xe613;</span><span>CATALOG</span>
         </div>
-        <ol class="toc"><li class="toc-item toc-level-4"><a class="toc-link" href="#题目描述"><span class="toc-number">1.</span> <span class="toc-text">题目描述</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#输入描述"><span class="toc-number">2.</span> <span class="toc-text">输入描述</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#输出描述"><span class="toc-number">3.</span> <span class="toc-text">输出描述</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#示例-1"><span class="toc-number">4.</span> <span class="toc-text">示例 1</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#备注"><span class="toc-number">5.</span> <span class="toc-text">备注</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#解题思路"><span class="toc-number">6.</span> <span class="toc-text">解题思路</span></a></li></ol>
+        
     </div>
     
     <div class="back-top iconfont-archer">&#xe639;</div>

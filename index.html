@@ -359,6 +359,42 @@ height:50vh;
     
     
     <article class="index-post">
+        <a class="abstract-title" href = "2020/05/10/Kuhn-Munkres-Algorithm/" >
+            
+                <span>Kuhn-Munkres Algorithm</span>
+        </a>
+        <div class="abstract-content">
+            
+背景：带边权的二分图最大权值完美匹配。
+
+顶标概念：顶点权值 $L_x, L_y$。
+
+可行顶标：所有边 $e(x→y)$  ，都满足 $L_x+L_y\ge W_e$。
+注：此时还没有开始匹配，是对原图所有边的限制。
+
+相等子图：包含所有顶点；仅包含 $W_{x→y}=L_x+L_y$ 的边。
+问题即转化为求相等子图的完美匹配，此时边权和达到上限 $\sum L_x+ \sum L_y$。
+
+初始化：$L_y=0, L_x=\max_{j\in Y}{W_{x→j}}$ 使得初始方案为可行顶标。
+
+交替路：与匈牙利算法类似，在相等子图中搜索增广路时，如果找不到时我们称此时得到一条交替...
+        </div>
+        <div class="abstract-post-meta">
+            <!-- date  -->
+            <div class="abstract-date">
+                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2020/05/10</span>
+            </div>
+            <!-- tags  -->
+            
+        </div>
+    </article>
+    
+    
+    
+    
+    
+    
+    <article class="index-post">
         <a class="abstract-title" href = "2020/04/15/SGU-153-252/" >
             
                 <span class="stick-top iconfont-archer">&#xe63d;</span>
@@ -628,48 +664,6 @@ AC 代码库
             <div class= abstract-tags >
     
         <a class="post-tag" href="javascript:void(0);" data-tags = "polya">polya</a>
-    
-</div>
-            
-        </div>
-    </article>
-    
-    
-    
-    
-    
-    
-    <article class="index-post">
-        <a class="abstract-title" href = "2019/07/29/Vim-for-windows-配置/" >
-            
-                <span>Windows 下使用 Vim</span>
-        </a>
-        <div class="abstract-content">
-            简要说明主要针对 ACM/ICPC 竞赛选手在 Windows 10 系统下使用 vim 编写 C/C++ 代码。
-功能配置：
-
-编译和运行 *.cpp 文件；
-一键复制代码;
-记事本打开代码。
-
-
-git bash 和 gvim 都配置了一遍。gvim 使用 Windows 自带的 cmd 运行的话，鼠标是没办法移动光标的，并且配置相对 git bash 较麻烦，所以推荐使用 git bash。
-Vimrc 配置
-编辑安装路径下的 vimrc 文件，例如 “D:\Git\etc\vimrc”，配置快捷键。
-123456set nu ai ci si mouse=a ts=4 sts=4...
-        </div>
-        <div class="abstract-post-meta">
-            <!-- date  -->
-            <div class="abstract-date">
-                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2019/07/29</span>
-            </div>
-            <!-- tags  -->
-            
-            <div class= abstract-tags >
-    
-        <a class="post-tag" href="javascript:void(0);" data-tags = "vim">vim</a>
-    
-        <a class="post-tag" href="javascript:void(0);" data-tags = "git bash">git bash</a>
     
 </div>
             
@@ -1119,9 +1113,42 @@ Vimrc 配置
     
     
     
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
     <div class="total-and-search">
         <div class="total-archive">
-        Total : 22
+        Total : 23
         </div>
         <!-- search  -->
         
@@ -1137,7 +1164,12 @@ Vimrc 配置
     
     
         <li class="archive-post-item">
-            <span class="archive-post-date">04/15</span><a class="archive-post-title" href= "" >SGU 153-252</a>
+            <span class="archive-post-date">05/10</span><a class="archive-post-title" href= "" >Kuhn-Munkres Algorithm</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">04/15</span><a class="archive-post-title" href= "../../../04/15/SGU-153-252/" >SGU 153-252</a>
         </li>
     
     
@@ -1191,11 +1223,6 @@ Vimrc 配置
     
     
         <li class="archive-post-item">
-            <span class="archive-post-date">07/29</span><a class="archive-post-title" href= "../../../../2019/07/29/Vim-for-windows-配置/" >Windows 下使用 Vim</a>
-        </li>
-    
-    
-        <li class="archive-post-item">
             <span class="archive-post-date">07/22</span><a class="archive-post-title" href= "../../../../2019/07/22/B-Tree/" >B-Tree</a>
         </li>
     
@@ -1232,6 +1259,11 @@ Vimrc 配置
     
     <div class="archive-year"> 2018 </div>
     <ul class="year-list">
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">10/10</span><a class="archive-post-title" href= "../../../../2018/10/10/Vim-for-windows-配置/" >Windows 下使用 Vim</a>
+        </li>
     
     
         <li class="archive-post-item">
