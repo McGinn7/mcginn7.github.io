@@ -500,21 +500,21 @@ i_1&i_2&\dots&i_n
 G(c)=\{f:f\in G, f*c=c\} \tag{4}</script><p>集合 $G(c)$ 称为 $c$ 的<strong>稳定核</strong>，任何着色的稳定核是一个置换群。</p>
 <p>在 $f$ 作用下使着色 $c$ 保持不变的 $G$ 中所有着色的集合：</p>
 <script type="math/tex; mode=display">
-C(f)=\{c:c\in C, f*c=c\} \tag 5</script><p><strong>定理1</strong> 对于每一种着色 $c$，$c$ 的稳定核 $G(c)$ 是一个置换群，且对 $G$ 中任意置换 $f$ 与 $g$，$g<em>c=f</em>c$当且仅当 $f^{-1}\circ g$ 属于 $G(c)$。</p>
-<p><strong>推论1</strong> 设 $c$ 为 $C$ 中的一种着色，那么与 $c$ 等价的着色数等于 $G$ 中的置换个数除以 $c$ 的稳定核中的置换个数</p>
+C(f)=\{c:c\in C, f*c=c\} \tag 5</script><p><strong>定理1</strong> 对于每一种着色 $c$，$c$ 的稳定核 $G(c)$ 是一个置换群，且对 $G$ 中任意置换 $f,g$, $g<em>c=f</em>c$ 当且仅当 $f^{-1}\circ g$ 属于 $G(c)$。</p>
+<p><strong>推论1</strong> 设 $c$ 为 $C$ 中的一种着色，那么与 $c$ <strong>等价的着色数</strong>等于 $G$ 中的置换个数除以 $c$ 的稳定核中的置换个数</p>
 <script type="math/tex; mode=display">
 |\{f*c:f\in G\}|=\frac{|G|}{|G(c)|} \tag 6</script><p><strong>证明</strong> 对于 $h\in G(c)$，有 $(f\circ h)<em>c=f</em>(h<em>c)=f</em>c$，从而对于每个置换 $f$，恰好存在 $|G(c)|$ 个置换，这些置换作用在 $c$ 上跟 $f$ 有同样的效果。</p>
 <p><strong>定理2</strong> 设 $G$ 是 $X$ 的一个置换群，$C$ 是 $X$ 的一个着色集并且使得对于 $G$ 中的任意 $f$ 与 $C$ 中的任意 $c$，$f*c\in C$，则 $C$ 中不等价的着色数 $N(G, C)$ 为</p>
 <script type="math/tex; mode=display">
 N(G, C)=\frac1 {|G|} \sum_{f\in G}|C(f)| \tag 7</script><p>换言之，$C$ 中不等价的着色数等于使着色通过 $G$ 中的置换保持不变的着色的平均数。</p>
-<p><strong>证明</strong> 计数 $f*c=c$ 的对偶 $(f, c)$ 的个数，使用两种不同的方式计数，然后使计数相等。</p>
-<p>一种从置换 $f$ 考察，根据定义计数结果为</p>
+<p><strong>证明</strong> 计数满足 $f*c=c$ 的 $(f, c)$ 个数。使用两种不同的方式计数，然后使计数相等。</p>
+<p>一种从置换 $f$ 考察，根据<strong>定义</strong>计数结果为</p>
 <script type="math/tex; mode=display">
 \sum_{f\in G} |C(f)| \tag 8</script><p>一种从着色 $c$ 考察，每个 $c$ 对结果的贡献为</p>
 <script type="math/tex; mode=display">
 |G(c)|=\frac{|G|}{(与 c 等价的着色数)} \tag 9</script><p>计数结果为</p>
 <script type="math/tex; mode=display">
-\sum_{c \in C} \frac{|G|}{(与c等价的着色数)} \tag {10}</script><p>按等价类将着色归类，每个等价类的总贡献为 $|G|$，等价类的个数就是不等价类的着色数 $N(G, C)$，因此公式(10) 等于</p>
+\sum_{c \in C} \frac{|G|}{(与c等价的着色数)} \tag {10}</script><p>按等价类（根据置换群的性值，等价具有传递性）将着色归类，每个等价类的总贡献为 $|G|$，等价类的个数就是不等价类的着色数 $N(G, C)$，因此公式(10) 等于</p>
 <script type="math/tex; mode=display">
 N(G,C)\times |G| \tag {11}</script><p>联立公式(8) 和公式(11) 得到</p>
 <script type="math/tex; mode=display">
@@ -1000,14 +1000,6 @@ top:50vh;
     
     
     
-    
-    
-    
-    
-    
-    
-    
-    
     <div class="total-and-search">
         <div class="total-archive">
         Total : 23
@@ -1166,21 +1158,21 @@ top:50vh;
     
         <span class="sidebar-tag-name" data-tags="AC自动机"><span class="iconfont-archer">&#xe606;</span>AC自动机</span>
     
-        <span class="sidebar-tag-name" data-tags="domjudge"><span class="iconfont-archer">&#xe606;</span>domjudge</span>
-    
         <span class="sidebar-tag-name" data-tags="KMP"><span class="iconfont-archer">&#xe606;</span>KMP</span>
     
         <span class="sidebar-tag-name" data-tags="ICPC"><span class="iconfont-archer">&#xe606;</span>ICPC</span>
     
         <span class="sidebar-tag-name" data-tags="贪心"><span class="iconfont-archer">&#xe606;</span>贪心</span>
     
+        <span class="sidebar-tag-name" data-tags="domjudge"><span class="iconfont-archer">&#xe606;</span>domjudge</span>
+    
+        <span class="sidebar-tag-name" data-tags="斜率优化"><span class="iconfont-archer">&#xe606;</span>斜率优化</span>
+    
         <span class="sidebar-tag-name" data-tags="vim"><span class="iconfont-archer">&#xe606;</span>vim</span>
     
         <span class="sidebar-tag-name" data-tags="git bash"><span class="iconfont-archer">&#xe606;</span>git bash</span>
     
         <span class="sidebar-tag-name" data-tags="polya"><span class="iconfont-archer">&#xe606;</span>polya</span>
-    
-        <span class="sidebar-tag-name" data-tags="斜率优化"><span class="iconfont-archer">&#xe606;</span>斜率优化</span>
     
     </div>
     <div class="iconfont-archer sidebar-tags-empty">&#xe678;</div>
