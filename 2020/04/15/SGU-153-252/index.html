@@ -266,7 +266,7 @@ height:50vh;
                 
                 
                     <div class="post-intro-read">
-                        <span>字数统计: <span class="post-count word-count">5.1k</span>阅读时长: <span class="post-count reading-time">20 min</span></span>
+                        <span>字数统计: <span class="post-count word-count">5.4k</span>阅读时长: <span class="post-count reading-time">21 min</span></span>
                     </div>
                 
                 <div class="post-intro-meta">
@@ -620,6 +620,20 @@ dp(i, j) = \min_{i - j - k \ge i - M} {dp(i - j, k)} + C_i</script><hr>
 <p>205 <strong>Quantization Problem</strong></p>
 <p><strong>题意</strong> 给 $m×s,1\le m\le s\le 128$ 编码表 $A_{ij}$，需要编码 $1\le n\le 1000$ 个数 $1\le x_i\le 10^6$，规则：假设第 $i$ 个数使用了第 $k_i$ 列，则第 $i+1$ 个数只能使用第 $k_i\mod m$ 行的数来编码。求 $\sum|x_i-A_{k_{i-1}\mod m, k_i}|$ 的最小值。</p>
 <p><strong>分析</strong> $dp(i, j)$ 表示第 $i$ 个数使用第 $j=k_i\mod m$ 列编码的最小值。</p>
+<hr>
+<p>206</p>
+<hr>
+<p>207</p>
+<hr>
+<p>208 <strong>Toral Tickets</strong></p>
+<p><strong>题意</strong> 给 $N\times M, 1\le N, M\le 20$ 大小的橡胶板，按长边卷成圆柱体（底面周长为短边），然后再将圆柱体卷成环状（类似泳圈），每个格子可染色黑/白，求<strong>本质不同</strong>的环状物。当橡胶板为正方形时，有两种方案卷成圆柱体。 </p>
+<p><strong>分析</strong> 当其中一条边为 1 时，本质上是<strong>项链染色</strong>问题。在本题背景下，仅需要多考虑一个方向上的旋转，但是不方便直接计算每个置换的循环数（polya 计数）。本题矩形大小较小，因此可以模拟计算每个置换的循环数。</p>
+<p><strong>标签</strong> Polya</p>
+<hr>
+<p>209 <strong>Areas</strong></p>
+<p><strong>题意</strong> 给平面上 $1\le N\le 80$ 条直线，这些直线会划分出有限面积和无线面积的区域，求有限面积的各个区域的面积。</p>
+<p><strong>分析</strong> （未代码验证）直线交求出交点坐标，处理出各个交点的相邻交点。有限面积区域都是凸包，利用这个性质可以处理所有的有限面积区域。判重可以利用连续 3 个点 index 来区分。</p>
+<p><strong>TAG</strong> Polya</p>
 
     </article>
     <!-- license  -->
@@ -1059,6 +1073,20 @@ top:50vh;
     
     
     
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
     <div class="total-and-search">
         <div class="total-archive">
         Total : 23
@@ -1217,21 +1245,21 @@ top:50vh;
     
         <span class="sidebar-tag-name" data-tags="AC自动机"><span class="iconfont-archer">&#xe606;</span>AC自动机</span>
     
-        <span class="sidebar-tag-name" data-tags="KMP"><span class="iconfont-archer">&#xe606;</span>KMP</span>
+        <span class="sidebar-tag-name" data-tags="domjudge"><span class="iconfont-archer">&#xe606;</span>domjudge</span>
     
         <span class="sidebar-tag-name" data-tags="ICPC"><span class="iconfont-archer">&#xe606;</span>ICPC</span>
     
         <span class="sidebar-tag-name" data-tags="贪心"><span class="iconfont-archer">&#xe606;</span>贪心</span>
     
-        <span class="sidebar-tag-name" data-tags="domjudge"><span class="iconfont-archer">&#xe606;</span>domjudge</span>
-    
-        <span class="sidebar-tag-name" data-tags="斜率优化"><span class="iconfont-archer">&#xe606;</span>斜率优化</span>
+        <span class="sidebar-tag-name" data-tags="KMP"><span class="iconfont-archer">&#xe606;</span>KMP</span>
     
         <span class="sidebar-tag-name" data-tags="vim"><span class="iconfont-archer">&#xe606;</span>vim</span>
     
         <span class="sidebar-tag-name" data-tags="git bash"><span class="iconfont-archer">&#xe606;</span>git bash</span>
     
         <span class="sidebar-tag-name" data-tags="polya"><span class="iconfont-archer">&#xe606;</span>polya</span>
+    
+        <span class="sidebar-tag-name" data-tags="斜率优化"><span class="iconfont-archer">&#xe606;</span>斜率优化</span>
     
     </div>
     <div class="iconfont-archer sidebar-tags-empty">&#xe678;</div>
