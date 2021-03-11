@@ -266,7 +266,7 @@ height:50vh;
                 
                 
                     <div class="post-intro-read">
-                        <span>字数统计: <span class="post-count word-count">5.9k</span>阅读时长: <span class="post-count reading-time">23 min</span></span>
+                        <span>字数统计: <span class="post-count word-count">6.4k</span>阅读时长: <span class="post-count reading-time">25 min</span></span>
                     </div>
                 
                 <div class="post-intro-meta">
@@ -666,6 +666,46 @@ dp(i, j) = \min_{i - j - k \ge i - M} {dp(i - j, k)} + C_i</script><hr>
 <p>216 <strong>Royal Federation</strong></p>
 <p><strong>题意</strong> 给 $1\le N\le 10^4$ 大小的树以及常数 $1\le B\le N$，要求将树分割成若干大小介于 $[B, 3B]$ 的区域，每个区域不一定联通但需要存在一个控制点连接该区域的点，找出一个可行方案。</p>
 <p><strong>分析</strong> （理论）不断将树的大小二分，即找重心。</p>
+<hr>
+<p>217 <strong>Two Cylinders</strong></p>
+<p><strong>题意</strong> 给三维空间中无限长的两个圆柱体，半径分别为 $1\le R_1, R_2\le 100$，其轴线相互垂直，求交区域面积。</p>
+<p><strong>分析</strong> </p>
+<hr>
+<p>218 <strong>Unstable Systems</strong></p>
+<p><strong>题意</strong> 有 $N$ 台工作站和 $N$ 个程序，工作站 $i$ 运行程序 $j$ 出错的不稳定性为 $|a_{i, j}|\le 10^6$。在一台工作站运行一个程序的前提下，求解一个分配方案最小化不稳定性的最大值。</p>
+<p><strong>分析</strong> （理论）二分最大值，求解二分图的最大匹配。</p>
+<hr>
+<p>219 <strong>Synchrograph</strong></p>
+<p><strong>题意</strong> 给 $1\le N\le 1000$ 个点, $1\le M\le 50000$ 条边的有向图，边权是不超过 $10^9$ 的非负整数。当一个点的所有入边边权均为正数时，视为激活状态并且可以将所有入边边权减一，所有出边边权加一。现要求判断每个点是否能经过若干操作后变成激活状态。</p>
+<p><strong>分析</strong> （理论）<del>考虑最简单的情况，相邻两个点存在双向边且边权均为 0，那么这 2 个点都不可能变成激活状态。</del></p>
+<hr>
+<p>220 <strong>Little Bishops</strong></p>
+<p><strong>题意 </strong> 给大小为 $n\times n, 1\le n\le 10$ 的国际象棋棋盘，放置 $0\le k\le n^2$ 个象。象只能沿对角线方向走，步数不限但会互相攻击路径上的其它象。求放置后不会互相攻击的方案数。 </p>
+<p><strong>分析</strong> dp。</p>
+<hr>
+<p>221 <strong>Big Bishops</strong></p>
+<p><strong>题意</strong> （与 220 Little Bishops 相同），棋盘大小为 $n\times n, 1\le n\le 50$，求方案数。</p>
+<p><strong>分析</strong></p>
+<hr>
+<p>222 <strong>Little Rooks</strong></p>
+<p><strong>题意</strong></p>
+<p><strong>分析</strong></p>
+<hr>
+<p>223 <strong>Little Kings</strong></p>
+<p><strong>题意</strong> 在 $n\times n, 1\le n\le 10$ 的棋盘上放置国王，国王会攻击相邻的 8 个格子。求放置 $k$ 个国王且不互相攻击的方案数。</p>
+<p><strong>分析</strong> 状压 dp。</p>
+<hr>
+<p>224 <strong>Little Queens</strong></p>
+<p><strong>题意</strong></p>
+<p><strong>分析</strong></p>
+<hr>
+<p>225 <strong>Little Knights</strong></p>
+<p><strong>题意</strong></p>
+<p><strong>分析</strong></p>
+<hr>
+<p>226 Colored graph</p>
+<p><strong>题意</strong> $2\le N\le 200$ 个点，$0\le M\le N^2$ 条边的有向图，每条边为三种颜色中的一种。求点 1 到点 N 的最短距离，要求路径上不能出现连续相同颜色的边。</p>
+<p><strong>分析</strong></p>
 
     </article>
     <!-- license  -->
@@ -1113,58 +1153,6 @@ top:50vh;
     
     
     
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
     <div class="total-and-search">
         <div class="total-archive">
         Total : 24
@@ -1301,12 +1289,12 @@ top:50vh;
     
     
         <li class="archive-post-item">
-            <span class="archive-post-date">07/19</span><a class="archive-post-title" href= "../../../../2018/07/19/The Binding of Isaac Afterbirth+总结/" >The Binding of Isaac:Afterbirth+总结</a>
+            <span class="archive-post-date">07/19</span><a class="archive-post-title" href= "../../../../2018/07/19/The Binding of Isaac Afterbirth+总结-ChenMingqin.work/" >The Binding of Isaac:Afterbirth+总结</a>
         </li>
     
     
         <li class="archive-post-item">
-            <span class="archive-post-date">07/19</span><a class="archive-post-title" href= "../../../../2018/07/19/The Binding of Isaac Afterbirth+总结-ChenMingqin.work/" >The Binding of Isaac:Afterbirth+总结</a>
+            <span class="archive-post-date">07/19</span><a class="archive-post-title" href= "../../../../2018/07/19/The Binding of Isaac Afterbirth+总结/" >The Binding of Isaac:Afterbirth+总结</a>
         </li>
     
     
@@ -1328,21 +1316,21 @@ top:50vh;
     
         <span class="sidebar-tag-name" data-tags="AC自动机"><span class="iconfont-archer">&#xe606;</span>AC自动机</span>
     
-        <span class="sidebar-tag-name" data-tags="domjudge"><span class="iconfont-archer">&#xe606;</span>domjudge</span>
-    
         <span class="sidebar-tag-name" data-tags="KMP"><span class="iconfont-archer">&#xe606;</span>KMP</span>
     
         <span class="sidebar-tag-name" data-tags="ICPC"><span class="iconfont-archer">&#xe606;</span>ICPC</span>
     
         <span class="sidebar-tag-name" data-tags="贪心"><span class="iconfont-archer">&#xe606;</span>贪心</span>
     
+        <span class="sidebar-tag-name" data-tags="domjudge"><span class="iconfont-archer">&#xe606;</span>domjudge</span>
+    
         <span class="sidebar-tag-name" data-tags="vim"><span class="iconfont-archer">&#xe606;</span>vim</span>
     
         <span class="sidebar-tag-name" data-tags="git bash"><span class="iconfont-archer">&#xe606;</span>git bash</span>
     
-        <span class="sidebar-tag-name" data-tags="polya"><span class="iconfont-archer">&#xe606;</span>polya</span>
-    
         <span class="sidebar-tag-name" data-tags="斜率优化"><span class="iconfont-archer">&#xe606;</span>斜率优化</span>
+    
+        <span class="sidebar-tag-name" data-tags="polya"><span class="iconfont-archer">&#xe606;</span>polya</span>
     
     </div>
     <div class="iconfont-archer sidebar-tags-empty">&#xe678;</div>
