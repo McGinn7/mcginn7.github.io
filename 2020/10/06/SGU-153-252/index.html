@@ -266,7 +266,7 @@ height:50vh;
                 
                 
                     <div class="post-intro-read">
-                        <span>字数统计: <span class="post-count word-count">6.4k</span>阅读时长: <span class="post-count reading-time">25 min</span></span>
+                        <span>字数统计: <span class="post-count word-count">7.3k</span>阅读时长: <span class="post-count reading-time">29 min</span></span>
                     </div>
                 
                 <div class="post-intro-meta">
@@ -703,9 +703,41 @@ dp(i, j) = \min_{i - j - k \ge i - M} {dp(i - j, k)} + C_i</script><hr>
 <p><strong>题意</strong></p>
 <p><strong>分析</strong></p>
 <hr>
-<p>226 Colored graph</p>
+<p>226 <strong>Colored graph</strong></p>
 <p><strong>题意</strong> $2\le N\le 200$ 个点，$0\le M\le N^2$ 条边的有向图，每条边为三种颜色中的一种。求点 1 到点 N 的最短距离，要求路径上不能出现连续相同颜色的边。</p>
+<p><strong>分析</strong> 最短路</p>
+<hr>
+<p>227 <strong>The art to the broad masses!</strong></p>
+<p><strong>题意</strong> 给 $1\le N\le 50$ 个半圆弧，判断交点数量是否有限，若有限输出所有交点。</p>
+<p><strong>分析</strong> 本质上求解两圆交点，然后仅保留半圆上的点（可以利用叉积计算）。</p>
+<hr>
+<p>228 <strong>Archipelago</strong></p>
+<p><strong>题意</strong> 已知正 $3\le N\le 150$ 边形的两个点，按顺时针方向标号，第 $N_1$ 个点的坐标为 $(x_1, y_1)$，第 $N_2$ 个点的坐标为 $(x_2, y_2)$。求正 $N$ 边形的所有顶点坐标，按标号顺序输出。</p>
+<p><strong>分析</strong> 计算几何。</p>
+<hr>
+<p>229 <strong>Divide and conquer</strong></p>
+<p><strong>题意</strong></p>
 <p><strong>分析</strong></p>
+<hr>
+<p>230 <strong>Weighings</strong></p>
+<p><strong>题意</strong> 有 $1\le N\le 100$ 个硬币，第 $i$ 个硬币重量为 $i$ 克，每个硬币放入无差别的盒子中。目前已知 $1\le M\le 10000$ 个重量关系 $1\le P, Q\le N$，表示盒子 $P$ 的重量大于盒子 $Q$ 的重量。求每个硬币放入的盒子编号，输出任一种方案，若无解输出 “No solution”。</p>
+<p><strong>分析</strong> 拓扑序。</p>
+<hr>
+<p>231 Prime Sum</p>
+<p><strong>题意</strong> 求 $1\le N\le 10^6$ 范围内的质数对 $(A, B), A\le B$，满足 $A+B$ 也是质数的数量。</p>
+<p><strong>分析</strong> 除 2 外，质数都是奇数。而奇数+奇数=偶数，因此问题转化为质数对 $(2, B)$ 的方案数。</p>
+<hr>
+<p>232 Infinite Fraction</p>
+<p><strong>题意</strong> 给长为 $1\le N\le 1.5\times10^5$ 的数字串 $D, 0\le D_i\le9$ 以及常数 $0\le K\le 10^9$，构造无限循环小数 $A_i$，其中 $A_{i, j}=D_{(i+jK)\mod N}$，其中 $j\ge 0$ 表示第几个小数。在所有可能的小数 $A_i$ 中找出最大的小数。</p>
+<p><strong>分析</strong> 每个无限循环小数的重复部分长度是一致的，因为步长 $K$ 和环长 $N$ 是固定的，并且长度为 $\frac{N}{gcd(N,K)}$，因此 $A_i$ 比较大小时仅需要比较 $\frac{N}{gcd(N,K)}$ 长即可。到这步时比较容易想到用<strong>后缀数组</strong>处理，将前 $N$ 个 $A_i$ 的重复部分拼接起来比较各个 $A_i$ 的序即可。但是这种做法空间复杂度为 $O(\frac{N^2}{gcd(N,K)})$，不适用于 $N$ 很大的情况。考虑 $A_i$ 的重复部分包含了 $A_{i+1,0}, A_{i+1,1}$ 等部分，复用这部分数据仅需要将 $A_i$ 的重复部分再复制一份即可，总共需要额外 $gcd(N, K)\frac N{gcd(N,K)}=N$ 的空间（这里 $gcd(N,K)$ 表示循环个数）。</p>
+<hr>
+<p>233 The Greatest Angle</p>
+<p><strong>题意</strong> $1\le N\le 10^4$ 个测试，每次测试给一个圆 $(x_0, y_0, r)$ 以及点 $A(x_a, y_a)$，点 $B(x_b, y_b)$，在圆上找到一点 C 使得角 ACB 最大。若有多解输出任一解。</p>
+<p><strong>分析</strong></p>
+<hr>
+<p>234 Black-White King Strikes Back</p>
+<p><strong>题意</strong> 给大小为 $M\times N, 1\le M,N\le 200$ 的棋盘，需要在棋盘上放置卫兵，但是卫兵会攻击上下左右的所有生物，即包括其他卫兵。在有些格子不能放置卫兵的前提下，求最多能放置多少个卫兵使得卫兵不会互相攻击。</p>
+<p><strong>分析</strong> 二分图的最大独立集。假设每个格子的坐标为 $(x, y)$，则根据 $x+y$ 的奇偶性可划分出 2 个点集，并且冲突仅出现在两个点集之间，点集内部没有冲突。将冲突表示成边的话，问题就转换成找出二分图的最大独立集。</p>
 
     </article>
     <!-- license  -->
@@ -1153,6 +1185,40 @@ top:50vh;
     
     
     
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
     <div class="total-and-search">
         <div class="total-archive">
         Total : 24
@@ -1171,7 +1237,7 @@ top:50vh;
     
     
         <li class="archive-post-item">
-            <span class="archive-post-date">10/06</span><a class="archive-post-title" href= "" >SGU 153-252</a>
+            <span class="archive-post-date">10/06</span><a class="archive-post-title" href= "../../../10/06/SGU-153-252/" >SGU 153-252</a>
         </li>
     
     
@@ -1181,27 +1247,27 @@ top:50vh;
     
     
         <li class="archive-post-item">
-            <span class="archive-post-date">02/23</span><a class="archive-post-title" href= "../../../02/23/CSAPP-cachelab/" >CSAPP - cachelab</a>
+            <span class="archive-post-date">02/23</span><a class="archive-post-title" href= "../../23/CSAPP-cachelab/" >CSAPP - cachelab</a>
         </li>
     
     
         <li class="archive-post-item">
-            <span class="archive-post-date">02/21</span><a class="archive-post-title" href= "../../../02/21/CSAPP-archlab/" >CSAPP - archlab</a>
+            <span class="archive-post-date">02/21</span><a class="archive-post-title" href= "" >CSAPP - archlab</a>
         </li>
     
     
         <li class="archive-post-item">
-            <span class="archive-post-date">02/19</span><a class="archive-post-title" href= "../../../02/19/CSAPP-attacklab/" >CSAPP - attacklab</a>
+            <span class="archive-post-date">02/19</span><a class="archive-post-title" href= "../../19/CSAPP-attacklab/" >CSAPP - attacklab</a>
         </li>
     
     
         <li class="archive-post-item">
-            <span class="archive-post-date">02/16</span><a class="archive-post-title" href= "../../../02/16/CSAPP-bomblab/" >CSAPP - bomblab</a>
+            <span class="archive-post-date">02/16</span><a class="archive-post-title" href= "../../16/CSAPP-bomblab/" >CSAPP - bomblab</a>
         </li>
     
     
         <li class="archive-post-item">
-            <span class="archive-post-date">02/14</span><a class="archive-post-title" href= "../../../02/14/CSAPP-datalab/" >CSAPP - datalab</a>
+            <span class="archive-post-date">02/14</span><a class="archive-post-title" href= "../../14/CSAPP-datalab/" >CSAPP - datalab</a>
         </li>
     
     
@@ -1289,12 +1355,12 @@ top:50vh;
     
     
         <li class="archive-post-item">
-            <span class="archive-post-date">07/19</span><a class="archive-post-title" href= "../../../../2018/07/19/The Binding of Isaac Afterbirth+总结-ChenMingqin.work/" >The Binding of Isaac:Afterbirth+总结</a>
+            <span class="archive-post-date">07/19</span><a class="archive-post-title" href= "../../../../2018/07/19/The Binding of Isaac Afterbirth+总结/" >The Binding of Isaac:Afterbirth+总结</a>
         </li>
     
     
         <li class="archive-post-item">
-            <span class="archive-post-date">07/19</span><a class="archive-post-title" href= "../../../../2018/07/19/The Binding of Isaac Afterbirth+总结/" >The Binding of Isaac:Afterbirth+总结</a>
+            <span class="archive-post-date">07/19</span><a class="archive-post-title" href= "../../../../2018/07/19/The Binding of Isaac Afterbirth+总结-ChenMingqin.work/" >The Binding of Isaac:Afterbirth+总结</a>
         </li>
     
     
@@ -1316,21 +1382,21 @@ top:50vh;
     
         <span class="sidebar-tag-name" data-tags="AC自动机"><span class="iconfont-archer">&#xe606;</span>AC自动机</span>
     
+        <span class="sidebar-tag-name" data-tags="domjudge"><span class="iconfont-archer">&#xe606;</span>domjudge</span>
+    
         <span class="sidebar-tag-name" data-tags="KMP"><span class="iconfont-archer">&#xe606;</span>KMP</span>
     
         <span class="sidebar-tag-name" data-tags="ICPC"><span class="iconfont-archer">&#xe606;</span>ICPC</span>
     
         <span class="sidebar-tag-name" data-tags="贪心"><span class="iconfont-archer">&#xe606;</span>贪心</span>
     
-        <span class="sidebar-tag-name" data-tags="domjudge"><span class="iconfont-archer">&#xe606;</span>domjudge</span>
-    
         <span class="sidebar-tag-name" data-tags="vim"><span class="iconfont-archer">&#xe606;</span>vim</span>
     
         <span class="sidebar-tag-name" data-tags="git bash"><span class="iconfont-archer">&#xe606;</span>git bash</span>
     
-        <span class="sidebar-tag-name" data-tags="斜率优化"><span class="iconfont-archer">&#xe606;</span>斜率优化</span>
-    
         <span class="sidebar-tag-name" data-tags="polya"><span class="iconfont-archer">&#xe606;</span>polya</span>
+    
+        <span class="sidebar-tag-name" data-tags="斜率优化"><span class="iconfont-archer">&#xe606;</span>斜率优化</span>
     
     </div>
     <div class="iconfont-archer sidebar-tags-empty">&#xe678;</div>
