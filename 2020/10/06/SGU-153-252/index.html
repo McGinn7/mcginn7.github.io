@@ -266,7 +266,7 @@ height:50vh;
                 
                 
                     <div class="post-intro-read">
-                        <span>字数统计: <span class="post-count word-count">7.3k</span>阅读时长: <span class="post-count reading-time">29 min</span></span>
+                        <span>字数统计: <span class="post-count word-count">8.5k</span>阅读时长: <span class="post-count reading-time">33 min</span></span>
                     </div>
                 
                 <div class="post-intro-meta">
@@ -738,6 +738,60 @@ dp(i, j) = \min_{i - j - k \ge i - M} {dp(i - j, k)} + C_i</script><hr>
 <p>234 Black-White King Strikes Back</p>
 <p><strong>题意</strong> 给大小为 $M\times N, 1\le M,N\le 200$ 的棋盘，需要在棋盘上放置卫兵，但是卫兵会攻击上下左右的所有生物，即包括其他卫兵。在有些格子不能放置卫兵的前提下，求最多能放置多少个卫兵使得卫兵不会互相攻击。</p>
 <p><strong>分析</strong> 二分图的最大独立集。假设每个格子的坐标为 $(x, y)$，则根据 $x+y$ 的奇偶性可划分出 2 个点集，并且冲突仅出现在两个点集之间，点集内部没有冲突。将冲突表示成边的话，问题就转换成找出二分图的最大独立集。</p>
+<p><strong>Konig定理</strong></p>
+<p>假设二分图的最大匹配数为 M，最小覆盖数为 m，则有:</p>
+<ol>
+<li>m ≤ M。令最大匹配的点集为 C，二分图为 <v, e>。假设有 m &gt; M，所以存在点 a, b ∉ C 且 (a, b) ∈E，这与最大匹配的定义矛盾，因此假设不成立。</v,></li>
+<li>m ≥ M。在最大匹配中，每对匹配没有公共点，因此覆盖匹配边至少需要 M 个点，因此有 m ≥ M。</li>
+</ol>
+<p>综上二分图有：最小覆盖数 = 最大匹配数。</p>
+<p><strong>二分图最小点覆盖的构造方案</strong></p>
+<p>基于二分图中最小点覆盖数等于最大匹配数的结论来构造方案，首先有两个认知：</p>
+<ol>
+<li>每对匹配有且仅有一个点在方案中；</li>
+<li>没有配对且有连边的点，由有匹配的点来覆盖其之间的连边。</li>
+</ol>
+<p>那么根据上面的认知，则有构造方案：</p>
+<ol>
+<li>选取二分图左侧无匹配的所有点，根据认知 2 这些点必须由右侧在匹配中的点来覆盖（理论上，此时无匹配的左侧点也找不到无匹配的右侧点，否则就违反了最大匹配的定义）。</li>
+<li>在选取了部分右匹配点进方案后，根据认知 1，相应的左侧匹配点就不能选择了。之后，将这些不能选择的左侧点视为无匹配点，寻找其他右匹配点来覆盖非匹配边。</li>
+<li>在步骤 1,2 中未访问过的点，只剩匹配点之间自己的连边，可以任选一点。</li>
+</ol>
+<p>步骤 1,2 本质上是在寻找增广路，并且覆盖了左侧无匹配点与右侧之间的连边。在最大匹配的前提下，步骤 1,2 找不到新匹配，因此增广路的终点必然是左侧。</p>
+<p>右侧无匹配点与左侧之间的连边情况也是类似的，仿照步骤 1,2 即可。显然，处理左侧无匹配点和右侧无匹配点不存在冲突，因此可以在一次 BFS 中处理。</p>
+<hr>
+<p>235 The Queen</p>
+<p><strong>题意</strong> 在大小为 $2\le N\le 300$ 的国际象棋棋盘上，有且仅有一个白棋皇后以及其他种类的白棋和黑棋。白皇后只可以攻击黑棋，在仅有白皇后可以移动的前提下，求白皇后在 $0\le M\le 50$ 步后可以到达哪些位置。</p>
+<p><strong>分析</strong> 模拟。</p>
+<hr>
+<p>236 Greedy Path</p>
+<p><strong>题意</strong> 给 $3\le N\le 50$  个点，$M$ 条边的带权有向图，每条边有权值 $1\le C_{ij}\le 100$ 和 $1\le T_{ij}\le 100$。求一个环使得 $\sum C_{ij}/\sum T_{ij}$ 最大。</p>
+<p><strong>分析</strong></p>
+<hr>
+<p>237 Galaxy X: Episode I - Masters of Mind</p>
+<p><strong>题意</strong> 给定长度为 255 且包含 ‘*‘,’?’,’!’ 的正则表达式，基于该正则构造长度和字典序都是最小的回文串。各符号含义：’*‘ 匹配任意长度的任意字符；’?’ 恰好匹配一个字符；’!’ 恰好匹配三个字符。</p>
+<p><strong>分析</strong> DP；’!’替换成 3 个 ‘?’。</p>
+<hr>
+<p>238 Uncle Vasya and Bags for Potatoes</p>
+<p><strong>题意</strong> （将题目中的地板抽象成一个点）给一棵大小为 $N+1$ 的树，每次操作将根节点的一个儿子节点替换成根。在给定初始状态后，经过若干次操作可以得到多少种不同的状态。</p>
+<p><strong>分析</strong> 每种状态根据只与树根编号有关，因此答案为 $N+1$（特判 $N=1$ 时答案为 1）。</p>
+<hr>
+<p>239 Minesweeper</p>
+<p><strong>题意</strong> 在 $2\times N, 1\le N\le 1000$ 的扫雷游戏中，地雷只会出现在第 1 列，已知第 2 列数字的前提下，求所有可能埋雷的方案数。</p>
+<p><strong>分析</strong> dp(i, mask)。</p>
+<hr>
+<p>240 Runaway</p>
+<p><strong>题意</strong> 给 $1\le N\le 100$ 个点，$1\le M\le 10000$ 条边的无向图，每条边有初始温度 $0\le R_i\le 10000$，每秒温度增长值 $0\le P_i\le 10000$，通过该边的时间 $1\le T_i\le 10000$。角色最高能忍受的温度为 $1\le H\le 10000$，已知当前角色位置为 $S$，需要从 $E$ 个出口中离开地图，希望最小化路径中的最高温度。</p>
+<p><strong>分析</strong> dp。</p>
+<hr>
+<p>241 The United Fields of Chessboardia</p>
+<p><strong>题意</strong> 给大小分别为 $N\times N,0\le N\le 20$ 和 $M\times M, 0\le M\le 20$ 的棋盘，第 2 个棋盘的左下角与第 1 个棋盘的右上角重叠一部分。求放置 $0\le K\le 10^9$ 个车的方案数，满足任意 2 个车不互相攻击。</p>
+<p><strong>分析</strong> 状压 dp。</p>
+<hr>
+<p>242 Student’s Morning</p>
+<p><strong>题意</strong> 有 $0\le N\le 200$ 个学生以及 $0\le K\le 200$ 所学校。需要去访问所有学校，但每所学校至少需要 2 个学生，并且每个学生都有自己的学校偏好列表，求解是否存在一种方案，若有则输出一种。</p>
+<p><strong>分析</strong> 最大流可解。</p>
+<hr>
 
     </article>
     <!-- license  -->
@@ -1213,12 +1267,6 @@ top:50vh;
     
     
     
-    
-    
-    
-    
-    
-    
     <div class="total-and-search">
         <div class="total-archive">
         Total : 24
@@ -1237,7 +1285,7 @@ top:50vh;
     
     
         <li class="archive-post-item">
-            <span class="archive-post-date">10/06</span><a class="archive-post-title" href= "../../../10/06/SGU-153-252/" >SGU 153-252</a>
+            <span class="archive-post-date">10/06</span><a class="archive-post-title" href= "" >SGU 153-252</a>
         </li>
     
     
@@ -1247,27 +1295,27 @@ top:50vh;
     
     
         <li class="archive-post-item">
-            <span class="archive-post-date">02/23</span><a class="archive-post-title" href= "../../23/CSAPP-cachelab/" >CSAPP - cachelab</a>
+            <span class="archive-post-date">02/23</span><a class="archive-post-title" href= "../../../02/23/CSAPP-cachelab/" >CSAPP - cachelab</a>
         </li>
     
     
         <li class="archive-post-item">
-            <span class="archive-post-date">02/21</span><a class="archive-post-title" href= "" >CSAPP - archlab</a>
+            <span class="archive-post-date">02/21</span><a class="archive-post-title" href= "../../../02/21/CSAPP-archlab/" >CSAPP - archlab</a>
         </li>
     
     
         <li class="archive-post-item">
-            <span class="archive-post-date">02/19</span><a class="archive-post-title" href= "../../19/CSAPP-attacklab/" >CSAPP - attacklab</a>
+            <span class="archive-post-date">02/19</span><a class="archive-post-title" href= "../../../02/19/CSAPP-attacklab/" >CSAPP - attacklab</a>
         </li>
     
     
         <li class="archive-post-item">
-            <span class="archive-post-date">02/16</span><a class="archive-post-title" href= "../../16/CSAPP-bomblab/" >CSAPP - bomblab</a>
+            <span class="archive-post-date">02/16</span><a class="archive-post-title" href= "../../../02/16/CSAPP-bomblab/" >CSAPP - bomblab</a>
         </li>
     
     
         <li class="archive-post-item">
-            <span class="archive-post-date">02/14</span><a class="archive-post-title" href= "../../14/CSAPP-datalab/" >CSAPP - datalab</a>
+            <span class="archive-post-date">02/14</span><a class="archive-post-title" href= "../../../02/14/CSAPP-datalab/" >CSAPP - datalab</a>
         </li>
     
     
@@ -1355,12 +1403,12 @@ top:50vh;
     
     
         <li class="archive-post-item">
-            <span class="archive-post-date">07/19</span><a class="archive-post-title" href= "../../../../2018/07/19/The Binding of Isaac Afterbirth+总结/" >The Binding of Isaac:Afterbirth+总结</a>
+            <span class="archive-post-date">07/19</span><a class="archive-post-title" href= "../../../../2018/07/19/The Binding of Isaac Afterbirth+总结-ChenMingqin.work/" >The Binding of Isaac:Afterbirth+总结</a>
         </li>
     
     
         <li class="archive-post-item">
-            <span class="archive-post-date">07/19</span><a class="archive-post-title" href= "../../../../2018/07/19/The Binding of Isaac Afterbirth+总结-ChenMingqin.work/" >The Binding of Isaac:Afterbirth+总结</a>
+            <span class="archive-post-date">07/19</span><a class="archive-post-title" href= "../../../../2018/07/19/The Binding of Isaac Afterbirth+总结/" >The Binding of Isaac:Afterbirth+总结</a>
         </li>
     
     
@@ -1394,9 +1442,9 @@ top:50vh;
     
         <span class="sidebar-tag-name" data-tags="git bash"><span class="iconfont-archer">&#xe606;</span>git bash</span>
     
-        <span class="sidebar-tag-name" data-tags="polya"><span class="iconfont-archer">&#xe606;</span>polya</span>
-    
         <span class="sidebar-tag-name" data-tags="斜率优化"><span class="iconfont-archer">&#xe606;</span>斜率优化</span>
+    
+        <span class="sidebar-tag-name" data-tags="polya"><span class="iconfont-archer">&#xe606;</span>polya</span>
     
     </div>
     <div class="iconfont-archer sidebar-tags-empty">&#xe678;</div>
