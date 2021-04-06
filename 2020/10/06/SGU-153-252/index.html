@@ -266,7 +266,7 @@ height:50vh;
                 
                 
                     <div class="post-intro-read">
-                        <span>字数统计: <span class="post-count word-count">8.5k</span>阅读时长: <span class="post-count reading-time">33 min</span></span>
+                        <span>字数统计: <span class="post-count word-count">9.1k</span>阅读时长: <span class="post-count reading-time">36 min</span></span>
                     </div>
                 
                 <div class="post-intro-meta">
@@ -792,6 +792,21 @@ dp(i, j) = \min_{i - j - k \ge i - M} {dp(i - j, k)} + C_i</script><hr>
 <p><strong>题意</strong> 有 $0\le N\le 200$ 个学生以及 $0\le K\le 200$ 所学校。需要去访问所有学校，但每所学校至少需要 2 个学生，并且每个学生都有自己的学校偏好列表，求解是否存在一种方案，若有则输出一种。</p>
 <p><strong>分析</strong> 最大流可解。</p>
 <hr>
+<p>243 Broken Chessboard</p>
+<p><strong>题意</strong> 大小为 $1\le N\le 5$ 的正方形棋盘碎成若干个连通块，这些连通块散落后可能会发生翻转 90/180/270 的情况。现要求复原该正方形，输出任一方案。</p>
+<p><strong>分析</strong> 搜索+剪枝。</p>
+<hr>
+<p>244 Height, Bisector and Median</p>
+<p><strong>题意</strong> 给 △ABC 的高  AH, 角平分线 AD 以及中位线 AM（所有长度不超过 100）。判断是否能构造出 △ABC，若能输出任一方案。</p>
+<p><strong>分析</strong></p>
+<hr>
+<p>245 Black-White Army</p>
+<p><strong>题意</strong> 给大小为 $N\times M, 1\le N,M\le 300$ 的国际象棋棋盘，主角有且仅有一个棋子（可从 pawn, rook, knight, bishop 和 king 中选一类型），对手棋子散布在棋盘上不会主动移动但如果可以就会攻击主角的棋子。主角若击杀对方棋子，可根据棋子类型获得不同的分数。现给定双方棋子的位置，求主角最多能获得多少分数。</p>
+<p><strong>分析</strong> 因为棋盘上的路径是可逆的，那么主角击杀棋子的顺序是无关的，即可贪心地击杀对方棋子。在击杀对面棋子后，一些原本不可达的位置可能就可以在不被对方攻击的情况下到达了，这个更新需要遍历整个棋盘，可以 lazy update。</p>
+<hr>
+<p>246 Black &amp; White</p>
+<p><strong>题意</strong> 给长度为 $2N-1$ 长度由黑色/白色珠子构成的项链，其中有 $K$ 个黑色珠子。如果项链能找到 2 个黑色珠子将项链分成两部分且其中一部分长度为 $N$，则定义为好项链。找出最小的 $K$ 使得所有项链都是好项链。</p>
+<p><strong>分析</strong> 记项链长度 $L=2N-1$，将问题转化成最多能放置多少个黑色珠子使得两两之间的长度不为 $N$。考虑最坏的情况，位置 $i$ 放置黑珠，位置 $i+(N+1)$ 放置白珠，位置 $i+2(N+1)$ 放置黑珠，以此类推。最后会回到位置 $i$，即 $i+k(N+1)\equiv i\pmod L$，到这步可以解出 $k=\frac{LCM(N+1,L)}{N+1}$，即在这个循环中有 $k$ 个位置，按照黑色交替染色最多可以放置 $\lfloor \frac {k} 2\rfloor$。因为项链长度为 $L$，这样的循环共有 $L/k$ 个，整个项链最多可以放置 $\lfloor\frac k 2\rfloor \frac Lk$ 个黑子珠子满足两两之间长度不为 $N$。</p>
 
     </article>
     <!-- license  -->
@@ -1259,14 +1274,6 @@ top:50vh;
     
     
     
-    
-    
-    
-    
-    
-    
-    
-    
     <div class="total-and-search">
         <div class="total-archive">
         Total : 24
@@ -1403,12 +1410,12 @@ top:50vh;
     
     
         <li class="archive-post-item">
-            <span class="archive-post-date">07/19</span><a class="archive-post-title" href= "../../../../2018/07/19/The Binding of Isaac Afterbirth+总结-ChenMingqin.work/" >The Binding of Isaac:Afterbirth+总结</a>
+            <span class="archive-post-date">07/19</span><a class="archive-post-title" href= "../../../../2018/07/19/The Binding of Isaac Afterbirth+总结/" >The Binding of Isaac:Afterbirth+总结</a>
         </li>
     
     
         <li class="archive-post-item">
-            <span class="archive-post-date">07/19</span><a class="archive-post-title" href= "../../../../2018/07/19/The Binding of Isaac Afterbirth+总结/" >The Binding of Isaac:Afterbirth+总结</a>
+            <span class="archive-post-date">07/19</span><a class="archive-post-title" href= "../../../../2018/07/19/The Binding of Isaac Afterbirth+总结-ChenMingqin.work/" >The Binding of Isaac:Afterbirth+总结</a>
         </li>
     
     
@@ -1438,11 +1445,11 @@ top:50vh;
     
         <span class="sidebar-tag-name" data-tags="贪心"><span class="iconfont-archer">&#xe606;</span>贪心</span>
     
+        <span class="sidebar-tag-name" data-tags="斜率优化"><span class="iconfont-archer">&#xe606;</span>斜率优化</span>
+    
         <span class="sidebar-tag-name" data-tags="vim"><span class="iconfont-archer">&#xe606;</span>vim</span>
     
         <span class="sidebar-tag-name" data-tags="git bash"><span class="iconfont-archer">&#xe606;</span>git bash</span>
-    
-        <span class="sidebar-tag-name" data-tags="斜率优化"><span class="iconfont-archer">&#xe606;</span>斜率优化</span>
     
         <span class="sidebar-tag-name" data-tags="polya"><span class="iconfont-archer">&#xe606;</span>polya</span>
     
