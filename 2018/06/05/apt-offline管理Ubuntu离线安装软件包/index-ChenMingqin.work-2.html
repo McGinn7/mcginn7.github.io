@@ -22,7 +22,7 @@
     <meta name="description" content>
     <meta http-equiv="Cache-control" content="no-cache">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-    <title>The Binding of Isaac:Afterbirth+总结 · Mcginn&#39;s Blog</title>
+    <title>Ubuntu离线安装软件包 · Mcginn&#39;s Blog</title>
     <style type="text/css">
     @font-face {
         font-family: 'Oswald-Regular';
@@ -217,7 +217,7 @@
                 <a href="../../../../index.html" >Mcginn&#39;s Blog</a>
             </div>
             <div class="post-title">
-                <a href="#" class="post-name">The Binding of Isaac:Afterbirth+总结</a>
+                <a href="#" class="post-name">Ubuntu离线安装软件包</a>
             </div>
     </div>
     
@@ -247,7 +247,7 @@ height:50vh;
         <h1 class="intro-title">
             <!-- 主页  -->
             
-            The Binding of Isaac:Afterbirth+总结
+            Ubuntu离线安装软件包
             <!-- 404 -->
             
         </h1>
@@ -266,12 +266,12 @@ height:50vh;
                 
                 
                     <div class="post-intro-read">
-                        <span>字数统计: <span class="post-count word-count">244</span>阅读时长: <span class="post-count reading-time">1 min</span></span>
+                        <span>字数统计: <span class="post-count word-count">534</span>阅读时长: <span class="post-count reading-time">2 min</span></span>
                     </div>
                 
                 <div class="post-intro-meta">
                     <span class="post-intro-calander iconfont-archer">&#xe676;</span>
-                    <span class="post-intro-time">2018/07/19</span>
+                    <span class="post-intro-time">2018/06/05</span>
                     
                     <span id="busuanzi_container_page_pv" class="busuanzi-pv">
                         <span class="iconfont-archer">&#xe602;</span>
@@ -395,28 +395,43 @@ height:50vh;
         <div class="container container-unloaded">
             <main class="main post-page">
     <article class="article-entry">
-        <ul>
-<li><p><img src="http://www.chinabaike.com/uploads/allimg/160614/031Q331C-41.jpg" alt="献血袋"></p>
-<p>献血袋：扣半颗红心（子宫层一颗），掉落随机数量（通常1）的硬币。献血袋很强，很容易刷起来。</p>
+        <h3 id="参考链接"><a href="#参考链接" class="headerlink" title="参考链接"></a>参考链接</h3><ul>
+<li><a href="http://wiki.ubuntu.org.cn/Apt-offline离线安装指南" target="_blank" rel="noopener">apt-offline离线安装指南</a></li>
+<li><a href="https://blog.sleeplessbeastie.eu/2014/01/30/how-to-manage-packages-on-an-off-line-debian-system/" target="_blank" rel="noopener">https://blog.sleeplessbeastie.eu/2014/01/30/how-to-manage-packages-on-an-off-line-debian-system/</a></li>
+<li><a href="http://manpages.ubuntu.com/manpages/precise/man8/apt-offline.8.html#contenttoc4" target="_blank" rel="noopener">http://manpages.ubuntu.com/manpages/precise/man8/apt-offline.8.html#contenttoc4</a></li>
+<li><a href="https://www.debian.org/" target="_blank" rel="noopener">https://www.debian.org/</a></li>
+<li><a href="https://camicri.github.io/camicri-cube/#/" target="_blank" rel="noopener">https://camicri.github.io/camicri-cube/#/</a></li>
+</ul>
+<h3 id="应用场景"><a href="#应用场景" class="headerlink" title="应用场景"></a>应用场景</h3><ul>
+<li>需要升级/安装软件的电脑无网络。</li>
+<li>软件要安装到多台电脑上，且软件较大，下载时间长。</li>
+</ul>
+<h3 id="方案"><a href="#方案" class="headerlink" title="方案"></a>方案</h3><ul>
+<li>由于<strong>apt-offline</strong>的安装有依赖，离线安装会失败，所以需要借助<strong>Camicri Cube</strong>来完成<strong>apt-offline</strong>的安装。</li>
+<li>不用<strong>Camicri Cube</strong>完成全部安装是因为它貌似不支持命令行，只有可视化界面操作。如果安装的包较多，就比较麻烦。而<strong>apt-offline</strong>支持命令行操作，一次性可以打包多个安装包，比较方便。</li>
+</ul>
+<h3 id="Camicri-Cube完成离线系统升级"><a href="#Camicri-Cube完成离线系统升级" class="headerlink" title="Camicri Cube完成离线系统升级"></a>Camicri Cube完成离线系统升级</h3><ul>
+<li>在<strong>离线</strong>电脑上打开Camicri Cube，创建一个<strong>project</strong>，关闭后打包Cube目录下相应的project。</li>
+<li>在<strong>联网</strong>电脑上，将打包文件解压到Cube目录下的project目录，然后用Cube打开这个project。</li>
+<li>点击  <strong>Cube -&gt; Repository -&gt; Download Repositories</strong>  进行下载更新。</li>
+<li>点击 <strong> Asterisk -&gt; Upgradable</strong> ， <strong> Cube -&gt; Download -&gt; Mark All Updates for Download </strong>，  <strong> Cube -&gt; Download -&gt; Download All Marked Packages</strong> ，就可以完成软件包的升级。</li>
+<li>在上方的搜索框输入<strong>apt-offline</strong>和<strong>vim</strong>，点download进行下载。</li>
+<li>在<strong>联网</strong>电脑的project打包后传到<strong>离线</strong>电脑上，<strong>覆盖</strong>原先的project，然后用Cube打开。</li>
+<li><strong> Cube -&gt; System -&gt; Update Computer’s Repositories</strong> 更新Repository。</li>
+<li><strong>Cube -&gt; Install -&gt; Mark All Downloaded for Installation</strong>  , <strong>Cube -&gt; Install -&gt; Install All Marked Packages </strong> ，完成安装软件。</li>
+</ul>
+<h3 id="apt-offline下载及安装离线软件包"><a href="#apt-offline下载及安装离线软件包" class="headerlink" title="apt-offline下载及安装离线软件包"></a>apt-offline下载及安装离线软件包</h3><ul>
+<li><p>假设要在<strong>离线</strong>电脑安装mysql-server，先在离线电脑运行以下命令来，完成安装包的行为和定义签名文件：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">apt-offline set debian-install.sig --install-packages mysql-server</span><br></pre></td></tr></table></figure>
 </li>
-<li><p><img src="http://ins.lookgame.com/static/allimg/151130/5-151130101R4.png" alt="手术刀"></p>
-<p>手术刀：在地上制造褐色和蓝色两个通道并传送，传送出来时有短暂无敌，可以做到：</p>
-<ol>
-<li><strong>白嫖卖血机</strong>，喂黑小孩，进出刺房等；</li>
-<li>进BOSS房和挑战房时，开箱子后直接传出去。</li>
-</ol>
+<li><p>将生成的<strong>debian-install.sig</strong>文件上传到<strong>联网</strong>电脑执行下载并打包：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">apt-offline get debian-install.sig --bundle debian-install.zip</span><br></pre></td></tr></table></figure>
 </li>
-<li><p>在白心的隐藏房，使用存血罐可以吐出白心。配合1+1和肉刀可以生成N多肉哥。</p>
+<li><p>将打包好的<strong>debian-install.zip</strong>传到<strong>离线</strong>电脑上，运行下面的命令来更新APT database:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo apt-offline install debian-install.zip</span><br></pre></td></tr></table></figure>
 </li>
-<li><p>钥匙通常留给商店使用。</p>
-</li>
-<li><p>睫毛膏是负面道具，不要拿。</p>
-</li>
-<li><p>商店高概率刷出复眼（复制本房间的道具，未购买的道具也可以复制），最好等出了打折券再用。</p>
-</li>
-<li><p>20分钟内打败妈腿会开Boss Rush房；30分钟内打败妈心开启Blue Womb(蓝色子宫，打hush)房。使用<strong>MaMa Mega!</strong>可以<strong>强制</strong>开启br和bw。</p>
-</li>
-<li><p>Strength Card 给予 keeper 永久血上限。</p>
+<li><p>最后运行apt-get来完成安装：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo apt-get install mysql-server</span><br></pre></td></tr></table></figure>
 </li>
 </ul>
 
@@ -428,17 +443,12 @@ height:50vh;
         <li class="next">
             
                 <div class="nextSlogan">Next Post</div>
-                <a href= "../../../08/18/论文笔记 Semantic Compositional Networks for Visual Captioning/" title= "论文笔记 Semantic Compositional Networks for Visual Captioning">
-                    <div class="nextTitle">论文笔记 Semantic Compositional Networks for Visual Captioning</div>
+                <a href= "../../../07/17/论文阅读记录/" title= "论文阅读记录">
+                    <div class="nextTitle">论文阅读记录</div>
                 </a>
             
         </li>
         <li class="previous">
-            
-                <div class="prevSlogan">Previous Post</div>
-                <a href= "../The Binding of Isaac Afterbirth+总结-ChenMingqin.work/" title= "The Binding of Isaac:Afterbirth+总结">
-                    <div class="prevTitle">The Binding of Isaac:Afterbirth+总结</div>
-                </a>
             
         </li>
     </ul>
@@ -568,7 +578,7 @@ top:50vh;
         <div class="toc-catalog">
             <span class="iconfont-archer catalog-icon">&#xe613;</span><span>CATALOG</span>
         </div>
-        
+        <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#参考链接"><span class="toc-number">1.</span> <span class="toc-text">参考链接</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#应用场景"><span class="toc-number">2.</span> <span class="toc-text">应用场景</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#方案"><span class="toc-number">3.</span> <span class="toc-text">方案</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Camicri-Cube完成离线系统升级"><span class="toc-number">4.</span> <span class="toc-text">Camicri Cube完成离线系统升级</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#apt-offline下载及安装离线软件包"><span class="toc-number">5.</span> <span class="toc-text">apt-offline下载及安装离线软件包</span></a></li></ol>
     </div>
     
     <div class="back-top iconfont-archer">&#xe639;</div>
@@ -581,24 +591,6 @@ top:50vh;
     <div class="sidebar-content sidebar-content-show-archive">
           <div class="sidebar-panel-archives">
     <!-- 在ejs中将archive按照时间排序 -->
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
     
     
     
@@ -1052,21 +1044,21 @@ top:50vh;
     
         <span class="sidebar-tag-name" data-tags="AC自动机"><span class="iconfont-archer">&#xe606;</span>AC自动机</span>
     
-        <span class="sidebar-tag-name" data-tags="domjudge"><span class="iconfont-archer">&#xe606;</span>domjudge</span>
+        <span class="sidebar-tag-name" data-tags="KMP"><span class="iconfont-archer">&#xe606;</span>KMP</span>
     
         <span class="sidebar-tag-name" data-tags="ICPC"><span class="iconfont-archer">&#xe606;</span>ICPC</span>
     
         <span class="sidebar-tag-name" data-tags="贪心"><span class="iconfont-archer">&#xe606;</span>贪心</span>
     
-        <span class="sidebar-tag-name" data-tags="KMP"><span class="iconfont-archer">&#xe606;</span>KMP</span>
+        <span class="sidebar-tag-name" data-tags="domjudge"><span class="iconfont-archer">&#xe606;</span>domjudge</span>
     
         <span class="sidebar-tag-name" data-tags="vim"><span class="iconfont-archer">&#xe606;</span>vim</span>
     
         <span class="sidebar-tag-name" data-tags="git bash"><span class="iconfont-archer">&#xe606;</span>git bash</span>
     
-        <span class="sidebar-tag-name" data-tags="polya"><span class="iconfont-archer">&#xe606;</span>polya</span>
-    
         <span class="sidebar-tag-name" data-tags="斜率优化"><span class="iconfont-archer">&#xe606;</span>斜率优化</span>
+    
+        <span class="sidebar-tag-name" data-tags="polya"><span class="iconfont-archer">&#xe606;</span>polya</span>
     
     </div>
     <div class="iconfont-archer sidebar-tags-empty">&#xe678;</div>

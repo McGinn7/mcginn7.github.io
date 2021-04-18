@@ -266,7 +266,7 @@ height:50vh;
                 
                 
                     <div class="post-intro-read">
-                        <span>字数统计: <span class="post-count word-count">9.1k</span>阅读时长: <span class="post-count reading-time">36 min</span></span>
+                        <span>字数统计: <span class="post-count word-count">9.8k</span>阅读时长: <span class="post-count reading-time">39 min</span></span>
                     </div>
                 
                 <div class="post-intro-meta">
@@ -807,6 +807,26 @@ dp(i, j) = \min_{i - j - k \ge i - M} {dp(i - j, k)} + C_i</script><hr>
 <p>246 Black &amp; White</p>
 <p><strong>题意</strong> 给长度为 $2N-1$ 长度由黑色/白色珠子构成的项链，其中有 $K$ 个黑色珠子。如果项链能找到 2 个黑色珠子将项链分成两部分且其中一部分长度为 $N$，则定义为好项链。找出最小的 $K$ 使得所有项链都是好项链。</p>
 <p><strong>分析</strong> 记项链长度 $L=2N-1$，将问题转化成最多能放置多少个黑色珠子使得两两之间的长度不为 $N$。考虑最坏的情况，位置 $i$ 放置黑珠，位置 $i+(N+1)$ 放置白珠，位置 $i+2(N+1)$ 放置黑珠，以此类推。最后会回到位置 $i$，即 $i+k(N+1)\equiv i\pmod L$，到这步可以解出 $k=\frac{LCM(N+1,L)}{N+1}$，即在这个循环中有 $k$ 个位置，按照黑色交替染色最多可以放置 $\lfloor \frac {k} 2\rfloor$。因为项链长度为 $L$，这样的循环共有 $L/k$ 个，整个项链最多可以放置 $\lfloor\frac k 2\rfloor \frac Lk$ 个黑子珠子满足两两之间长度不为 $N$。</p>
+<hr>
+<p>247 Difficult Choice</p>
+<p><strong>题意</strong> $0\le N\le 100$ 次测试，每个测试给一个奇质数 $P\lt 1000$，需要从 $[1, 2P]$ 中选取 $P$ 个数满足和是 $P$ 的倍数，求方案数。</p>
+<p><strong>分析</strong> 将数分为集合 $A=\{x|x\in[1,P]\}$ 和集合 $B=\{x|x\in[P+1,2P]\}$。假设从 $A$ 中取 $a_1, a_2, \dots,a_n$，从 $B$ 中取 $b_1, b_2, \dots, b_m$，满足 $n+m=P$ 且 $\sum a_i +\sum b_i =kP$，则有推论：记 $c_i=(a_i-1+d)\mod P+1$，有 $\forall d\in[1,P)，\sum c_i+\sum b_i \neq kP$，即在有一组合法解的前提下可构造不出 $P-1$ 个<strong>非法解</strong>。</p>
+<p>首先证明序列 $a_i$ 和序列 $c_i$ 不一致，使用反证法证明：$\exist d\in [1,P)$，使得 $a_i=c_j=(a_j-1+d)\mod P+1$。因为 $c_i$ 是 $a_i$ 的一个置换，可以计算出每个循环的长度为 $P/\gcd(d,P)=P$。在<strong>没有全选集合 $A$</strong> 的情况下有 $n&lt;P$，故假设不成立从而有 $a_i$ 和 $c_i$ 不一致。</p>
+<p>因为有 $n&lt;P, d&lt;P$ 且 $P$ 是质数，所以 $nd\neq 0\pmod P$，则 $\sum c_i + \sum b_i \neq \sum a_i+\sum b_i=kP$。</p>
+<p>综上，在所有选取方案（包括非法）中，每 $P$ 组有一组解，因此方案数为 $\frac{C(2P, P)-2}{P}+2$，常数 2 表示全选 A 和全选 B。</p>
+<hr>
+<p>248 Integer Linear Programming</p>
+<p><strong>题意</strong> 整形线性规划问题，给定 $0\lt N\le 3$ 个变量 $x_i$，最小化目标函数为 $f(x_1, x_2,\dots,x_N)=\sum x_i$，约束为 $\sum c_ix_i = V$，其中 $0\lt c_i, V\le 10^6$。求解非负整数解 $(x_1, x_2,\dots, x_N)$。</p>
+<p><strong>分析</strong> 将变量视为空间为 $c_i$ 价值为 1 的物品，问题转化成完全背包问题。</p>
+<hr>
+<p>249 Matrix</p>
+<p><strong>题意</strong> 使用 $[0, 2^{N+M}), N+M\le 20$ 的所有数构造 $2^N\times 2^M$ 大小的矩阵，满足相邻格子中的数在二进制表示下仅一位不同。矩阵是环形的，即第一列和最后一列相邻，第一行和最后一行相邻。</p>
+<p><strong>分析</strong> 将二进制位拆分成两部分，第一部分占 $N$ 位，第二部分占 $M$ 位。构造思想：同一行的数前 $N$ 位相同，通过后 $M$ 位造环；不同行的数后 $M$ 位按列一一对应，仅前 $N$ 位中有一位不同，即通过前 $N$ 位构造行之间的环。因为第一部分和第二部分是相互独立的，所以本质上是求 $2^K$ 的环构造方案。</p>
+<p>使用数学归纳法构造方案：</p>
+<ol>
+<li>当 $K=2$ 时，有 00, 01, 11, 10。</li>
+<li>当 $K&gt;2$ 时，假设 $K-1$ 的序列为 $x_1, x_2, \dots, x_{2^{K-1}}$，基于 $x_i$ 构造 $\overline {0x_i}, \overline {1x_i}$，新构造的两个数仅一位不同，并且可以构造出新序列 $\overline{0x_i}, \overline{1x_i}, \overline{1x_{i+1}}, \overline{0x_{i+1}}$。显然，新序列也是符合题意的环。</li>
+</ol>
 
     </article>
     <!-- license  -->
@@ -1272,8 +1292,6 @@ top:50vh;
     
     
     
-    
-    
     <div class="total-and-search">
         <div class="total-archive">
         Total : 24
@@ -1410,12 +1428,12 @@ top:50vh;
     
     
         <li class="archive-post-item">
-            <span class="archive-post-date">07/19</span><a class="archive-post-title" href= "../../../../2018/07/19/The Binding of Isaac Afterbirth+总结/" >The Binding of Isaac:Afterbirth+总结</a>
+            <span class="archive-post-date">07/19</span><a class="archive-post-title" href= "../../../../2018/07/19/The Binding of Isaac Afterbirth+总结-ChenMingqin.work/" >The Binding of Isaac:Afterbirth+总结</a>
         </li>
     
     
         <li class="archive-post-item">
-            <span class="archive-post-date">07/19</span><a class="archive-post-title" href= "../../../../2018/07/19/The Binding of Isaac Afterbirth+总结-ChenMingqin.work/" >The Binding of Isaac:Afterbirth+总结</a>
+            <span class="archive-post-date">07/19</span><a class="archive-post-title" href= "../../../../2018/07/19/The Binding of Isaac Afterbirth+总结/" >The Binding of Isaac:Afterbirth+总结</a>
         </li>
     
     
@@ -1439,19 +1457,19 @@ top:50vh;
     
         <span class="sidebar-tag-name" data-tags="domjudge"><span class="iconfont-archer">&#xe606;</span>domjudge</span>
     
-        <span class="sidebar-tag-name" data-tags="KMP"><span class="iconfont-archer">&#xe606;</span>KMP</span>
-    
         <span class="sidebar-tag-name" data-tags="ICPC"><span class="iconfont-archer">&#xe606;</span>ICPC</span>
     
         <span class="sidebar-tag-name" data-tags="贪心"><span class="iconfont-archer">&#xe606;</span>贪心</span>
     
-        <span class="sidebar-tag-name" data-tags="斜率优化"><span class="iconfont-archer">&#xe606;</span>斜率优化</span>
+        <span class="sidebar-tag-name" data-tags="KMP"><span class="iconfont-archer">&#xe606;</span>KMP</span>
     
         <span class="sidebar-tag-name" data-tags="vim"><span class="iconfont-archer">&#xe606;</span>vim</span>
     
         <span class="sidebar-tag-name" data-tags="git bash"><span class="iconfont-archer">&#xe606;</span>git bash</span>
     
         <span class="sidebar-tag-name" data-tags="polya"><span class="iconfont-archer">&#xe606;</span>polya</span>
+    
+        <span class="sidebar-tag-name" data-tags="斜率优化"><span class="iconfont-archer">&#xe606;</span>斜率优化</span>
     
     </div>
     <div class="iconfont-archer sidebar-tags-empty">&#xe678;</div>

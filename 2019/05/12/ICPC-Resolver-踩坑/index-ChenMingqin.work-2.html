@@ -22,7 +22,7 @@
     <meta name="description" content>
     <meta http-equiv="Cache-control" content="no-cache">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-    <title>The Binding of Isaac:Afterbirth+总结 · Mcginn&#39;s Blog</title>
+    <title>ICPC Resolver 踩坑 · Mcginn&#39;s Blog</title>
     <style type="text/css">
     @font-face {
         font-family: 'Oswald-Regular';
@@ -217,7 +217,7 @@
                 <a href="../../../../index.html" >Mcginn&#39;s Blog</a>
             </div>
             <div class="post-title">
-                <a href="#" class="post-name">The Binding of Isaac:Afterbirth+总结</a>
+                <a href="#" class="post-name">ICPC Resolver 踩坑</a>
             </div>
     </div>
     
@@ -247,7 +247,7 @@ height:50vh;
         <h1 class="intro-title">
             <!-- 主页  -->
             
-            The Binding of Isaac:Afterbirth+总结
+            ICPC Resolver 踩坑
             <!-- 404 -->
             
         </h1>
@@ -266,12 +266,12 @@ height:50vh;
                 
                 
                     <div class="post-intro-read">
-                        <span>字数统计: <span class="post-count word-count">244</span>阅读时长: <span class="post-count reading-time">1 min</span></span>
+                        <span>字数统计: <span class="post-count word-count">674</span>阅读时长: <span class="post-count reading-time">2 min</span></span>
                     </div>
                 
                 <div class="post-intro-meta">
                     <span class="post-intro-calander iconfont-archer">&#xe676;</span>
-                    <span class="post-intro-time">2018/07/19</span>
+                    <span class="post-intro-time">2019/05/12</span>
                     
                     <span id="busuanzi_container_page_pv" class="busuanzi-pv">
                         <span class="iconfont-archer">&#xe602;</span>
@@ -395,30 +395,57 @@ height:50vh;
         <div class="container container-unloaded">
             <main class="main post-page">
     <article class="article-entry">
-        <ul>
-<li><p><img src="http://www.chinabaike.com/uploads/allimg/160614/031Q331C-41.jpg" alt="献血袋"></p>
-<p>献血袋：扣半颗红心（子宫层一颗），掉落随机数量（通常1）的硬币。献血袋很强，很容易刷起来。</p>
+        <h2 id="应用场景"><a href="#应用场景" class="headerlink" title="应用场景"></a>应用场景</h2><p>从 DOMjudge 系统中导出数据，使用 ICPC Tools/Resolver 滚榜。</p>
+<p>DOMjudge 版本：7.0.1。</p>
+<p>Resolver 版本：2.0.1798。如果使用 DOMjudge 评测，建议使用 2.1 及以上版本。</p>
+<h2 id="数据操作"><a href="#数据操作" class="headerlink" title="数据操作"></a>数据操作</h2><ol>
+<li><p>搜索 <a href="https://icpc.baylor.edu/icpctools/" target="_blank" rel="noopener">ICPC Tools</a>，下载 ICPC Resolver.rar。</p>
 </li>
-<li><p><img src="http://ins.lookgame.com/static/allimg/151130/5-151130101R4.png" alt="手术刀"></p>
-<p>手术刀：在地上制造褐色和蓝色两个通道并传送，传送出来时有短暂无敌，可以做到：</p>
+<li><p>运行 award.sh，通过 REST 导入 event feed（一场比赛的所有信息流）。</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">URL: http://59.77.134.102/domjudge/api/contests/5</span><br><span class="line">USER: amdin</span><br><span class="line">Password: *******</span><br></pre></td></tr></table></figure>
+<p>点击 <code>save</code> 保存为 “events.xml”。</p>
+</li>
+<li><p>目前版本（2.0.1798）的 Resolver 存在 bug，需要<strong>手动</strong>修订 events.xml 文件：</p>
 <ol>
-<li><strong>白嫖卖血机</strong>，喂黑小孩，进出刺房等；</li>
-<li>进BOSS房和挑战房时，开箱子后直接传出去。</li>
+<li><p>第 1、2 行重复 <code>&lt;contest&gt;</code>，删除其中一行。</p>
+</li>
+<li><p><code>&lt;problem&gt;</code> 中的生成 <code>&lt;id&gt;</code> 从 0 开始，改成从 1 开始（否则导致部分提交不合法）。</p>
+</li>
+<li><p>删除信息不全的队伍，必要信息有：</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">team</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">id</span>&gt;</span>221801437<span class="tag">&lt;/<span class="name">id</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">name</span>&gt;</span>Teamaaa<span class="tag">&lt;/<span class="name">name</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">university</span>&gt;</span>福州大学<span class="tag">&lt;/<span class="name">university</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">university-short-name</span>&gt;</span>福州大学<span class="tag">&lt;/<span class="name">university-short-name</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">region</span>&gt;</span>Participants<span class="tag">&lt;/<span class="name">region</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">team</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<p><code>university-short-name</code> 为滚榜中显示的学校名称，故这里写学校全称。</p>
+</li>
+<li><p>末尾添加 <code>finalized</code> 信息：</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">finalized</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">last-gold</span>&gt;</span>1<span class="tag">&lt;/<span class="name">last-gold</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">last-silver</span>&gt;</span>2<span class="tag">&lt;/<span class="name">last-silver</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">last-bronze</span>&gt;</span>3<span class="tag">&lt;/<span class="name">last-bronze</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">timestamp</span>&gt;</span>1557574214.130<span class="tag">&lt;/<span class="name">timestamp</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">finalized</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">contest</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<p><code>timestamp</code> 可设置成任意值。</p>
+</li>
+</ol>
+<p>可使用该代码 <a href="https://github.com/McGinn7/myscript/blob/master/icpc_resolver_revise_events_xml.py" target="_blank" rel="noopener"><strong>icpc_resolver_revise_events_xml</strong></a> 修订 events.xml。</p>
+</li>
+<li><p>使用 award.sh 打开<strong>处理后</strong>的 events.xml，设置金银铜奖人数，然后导出新的 xml 文件，并重新修订 events.xml 文件。</p>
+<p>由于 award.sh 金银铜每组上限 10 个，共 30 个。不符合中国国情，故需要在 events.xml 中手动修改 <code>last-gold</code> 等字段。若 <code>last-gold=3, last-silver=10</code>，则表示设置金奖 3 个，银奖 7 个。</p>
+<p>生成的 <code>&lt;award&gt;</code> 的 citation 可设置成 “金奖”、“银奖” 中文显示。</p>
+</li>
+<li><p>调用以下指令开始滚榜：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">resolver.sh &lt;Path to CDP&gt;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>CDP（<a href="https://clics.ecs.baylor.edu/index.php?title=CDP" target="_blank" rel="noopener">Contest Data Package</a>）是提供榜单需要的数据目录，其中包括：</p>
+<ol>
+<li>config 目录，根据官方 wiki 设置即可，<strong>必要</strong>文件包括：<ol>
+<li>contest.yaml：设置比赛标题、时长和封榜时间。</li>
+<li>problemset.yaml：设置题目 id，题目名称。</li>
+<li>groups.tsv, teams.tsv：从 DOMjudge 导出。</li>
+<li><del>userdata.tsv</del>：官方 wiki 提示必须，实际上<strong>似乎可去除</strong>。</li>
 </ol>
 </li>
-<li><p>在白心的隐藏房，使用存血罐可以吐出白心。配合1+1和肉刀可以生成N多肉哥。</p>
+<li>events.xml：比赛信息；</li>
+<li>images/logo/team_id.png：学校图标，每个学校的在 events.xml 的第一支队伍 id，id 不包含前导 0； </li>
+<li>images/team/team_id.jpg：队伍照片，若出现 Out Of Memory 问题，则限制队伍照片的大小或者加大 resolver.sh 中 -Xmx 参数。</li>
+</ol>
 </li>
-<li><p>钥匙通常留给商店使用。</p>
+<li><p>榜单目前并不支持队伍、学校的中文显示，需要使用压缩工具（如 Bandizip）打开 “resolver/lib/presentContest.jar”，使用支持中文的字体替换 “font/HELV.PFB” 即可。 </p>
 </li>
-<li><p>睫毛膏是负面道具，不要拿。</p>
-</li>
-<li><p>商店高概率刷出复眼（复制本房间的道具，未购买的道具也可以复制），最好等出了打折券再用。</p>
-</li>
-<li><p>20分钟内打败妈腿会开Boss Rush房；30分钟内打败妈心开启Blue Womb(蓝色子宫，打hush)房。使用<strong>MaMa Mega!</strong>可以<strong>强制</strong>开启br和bw。</p>
-</li>
-<li><p>Strength Card 给予 keeper 永久血上限。</p>
-</li>
-</ul>
+</ol>
 
     </article>
     <!-- license  -->
@@ -428,16 +455,16 @@ height:50vh;
         <li class="next">
             
                 <div class="nextSlogan">Next Post</div>
-                <a href= "../../../08/18/论文笔记 Semantic Compositional Networks for Visual Captioning/" title= "论文笔记 Semantic Compositional Networks for Visual Captioning">
-                    <div class="nextTitle">论文笔记 Semantic Compositional Networks for Visual Captioning</div>
+                <a href= "../../24/Knuth-Morris-Pratt-Algorithm/" title= "Knuth-Morris-Pratt Algorithm">
+                    <div class="nextTitle">Knuth-Morris-Pratt Algorithm</div>
                 </a>
             
         </li>
         <li class="previous">
             
                 <div class="prevSlogan">Previous Post</div>
-                <a href= "../The Binding of Isaac Afterbirth+总结-ChenMingqin.work/" title= "The Binding of Isaac:Afterbirth+总结">
-                    <div class="prevTitle">The Binding of Isaac:Afterbirth+总结</div>
+                <a href= "../../../04/03/斜率优化/" title= "斜率优化">
+                    <div class="prevTitle">斜率优化</div>
                 </a>
             
         </li>
@@ -568,7 +595,7 @@ top:50vh;
         <div class="toc-catalog">
             <span class="iconfont-archer catalog-icon">&#xe613;</span><span>CATALOG</span>
         </div>
-        
+        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#应用场景"><span class="toc-number">1.</span> <span class="toc-text">应用场景</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#数据操作"><span class="toc-number">2.</span> <span class="toc-text">数据操作</span></a></li></ol>
     </div>
     
     <div class="back-top iconfont-archer">&#xe639;</div>
@@ -581,24 +608,6 @@ top:50vh;
     <div class="sidebar-content sidebar-content-show-archive">
           <div class="sidebar-panel-archives">
     <!-- 在ejs中将archive按照时间排序 -->
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
     
     
     
@@ -1052,21 +1061,21 @@ top:50vh;
     
         <span class="sidebar-tag-name" data-tags="AC自动机"><span class="iconfont-archer">&#xe606;</span>AC自动机</span>
     
-        <span class="sidebar-tag-name" data-tags="domjudge"><span class="iconfont-archer">&#xe606;</span>domjudge</span>
+        <span class="sidebar-tag-name" data-tags="KMP"><span class="iconfont-archer">&#xe606;</span>KMP</span>
     
         <span class="sidebar-tag-name" data-tags="ICPC"><span class="iconfont-archer">&#xe606;</span>ICPC</span>
     
         <span class="sidebar-tag-name" data-tags="贪心"><span class="iconfont-archer">&#xe606;</span>贪心</span>
     
-        <span class="sidebar-tag-name" data-tags="KMP"><span class="iconfont-archer">&#xe606;</span>KMP</span>
+        <span class="sidebar-tag-name" data-tags="domjudge"><span class="iconfont-archer">&#xe606;</span>domjudge</span>
     
         <span class="sidebar-tag-name" data-tags="vim"><span class="iconfont-archer">&#xe606;</span>vim</span>
     
         <span class="sidebar-tag-name" data-tags="git bash"><span class="iconfont-archer">&#xe606;</span>git bash</span>
     
-        <span class="sidebar-tag-name" data-tags="polya"><span class="iconfont-archer">&#xe606;</span>polya</span>
-    
         <span class="sidebar-tag-name" data-tags="斜率优化"><span class="iconfont-archer">&#xe606;</span>斜率优化</span>
+    
+        <span class="sidebar-tag-name" data-tags="polya"><span class="iconfont-archer">&#xe606;</span>polya</span>
     
     </div>
     <div class="iconfont-archer sidebar-tags-empty">&#xe678;</div>

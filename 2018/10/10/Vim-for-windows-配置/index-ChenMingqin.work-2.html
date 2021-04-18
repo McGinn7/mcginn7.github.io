@@ -22,7 +22,7 @@
     <meta name="description" content>
     <meta http-equiv="Cache-control" content="no-cache">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-    <title>The Binding of Isaac:Afterbirth+总结 · Mcginn&#39;s Blog</title>
+    <title>Windows 下使用 Vim · Mcginn&#39;s Blog</title>
     <style type="text/css">
     @font-face {
         font-family: 'Oswald-Regular';
@@ -217,7 +217,7 @@
                 <a href="../../../../index.html" >Mcginn&#39;s Blog</a>
             </div>
             <div class="post-title">
-                <a href="#" class="post-name">The Binding of Isaac:Afterbirth+总结</a>
+                <a href="#" class="post-name">Windows 下使用 Vim</a>
             </div>
     </div>
     
@@ -247,7 +247,7 @@ height:50vh;
         <h1 class="intro-title">
             <!-- 主页  -->
             
-            The Binding of Isaac:Afterbirth+总结
+            Windows 下使用 Vim
             <!-- 404 -->
             
         </h1>
@@ -264,14 +264,22 @@ height:50vh;
             <div class="post-intros">
                 <!-- 文章页标签  -->
                 
+                    <div class= post-intro-tags >
+    
+        <a class="post-tag" href="javascript:void(0);" data-tags = "vim">vim</a>
+    
+        <a class="post-tag" href="javascript:void(0);" data-tags = "git bash">git bash</a>
+    
+</div>
+                
                 
                     <div class="post-intro-read">
-                        <span>字数统计: <span class="post-count word-count">244</span>阅读时长: <span class="post-count reading-time">1 min</span></span>
+                        <span>字数统计: <span class="post-count word-count">350</span>阅读时长: <span class="post-count reading-time">1 min</span></span>
                     </div>
                 
                 <div class="post-intro-meta">
                     <span class="post-intro-calander iconfont-archer">&#xe676;</span>
-                    <span class="post-intro-time">2018/07/19</span>
+                    <span class="post-intro-time">2018/10/10</span>
                     
                     <span id="busuanzi_container_page_pv" class="busuanzi-pv">
                         <span class="iconfont-archer">&#xe602;</span>
@@ -395,28 +403,31 @@ height:50vh;
         <div class="container container-unloaded">
             <main class="main post-page">
     <article class="article-entry">
-        <ul>
-<li><p><img src="http://www.chinabaike.com/uploads/allimg/160614/031Q331C-41.jpg" alt="献血袋"></p>
-<p>献血袋：扣半颗红心（子宫层一颗），掉落随机数量（通常1）的硬币。献血袋很强，很容易刷起来。</p>
-</li>
-<li><p><img src="http://ins.lookgame.com/static/allimg/151130/5-151130101R4.png" alt="手术刀"></p>
-<p>手术刀：在地上制造褐色和蓝色两个通道并传送，传送出来时有短暂无敌，可以做到：</p>
+        <h2 id="简要说明"><a href="#简要说明" class="headerlink" title="简要说明"></a>简要说明</h2><p>主要针对 ACM/ICPC 竞赛选手在 Windows 10 系统下使用 vim 编写 C/C++ 代码。</p>
+<p>功能配置：</p>
 <ol>
-<li><strong>白嫖卖血机</strong>，喂黑小孩，进出刺房等；</li>
-<li>进BOSS房和挑战房时，开箱子后直接传出去。</li>
+<li>编译和运行 *.cpp 文件；</li>
+<li>一键复制代码;</li>
+<li>记事本打开代码。</li>
 </ol>
+<img src="/2018/10/10/Vim-for-windows-配置/1539090544618.png" title="效果图">
+<p>git bash 和 gvim 都配置了一遍。gvim 使用 Windows 自带的 cmd 运行的话，鼠标是没办法移动光标的，并且配置相对 git bash 较麻烦，所以推荐使用 git bash。</p>
+<h2 id="Vimrc-配置"><a href="#Vimrc-配置" class="headerlink" title="Vimrc 配置"></a>Vimrc 配置</h2><ul>
+<li><p>编辑安装路径下的 vimrc 文件，例如 “D:\Git\etc\vimrc”，配置快捷键。</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">set nu ai ci si mouse=a ts=4 sts=4 sw=4</span><br><span class="line">nmap&lt;F2&gt; :vs %&lt;.in &lt;CR&gt;</span><br><span class="line">nmap&lt;F3&gt; :w !clip.exe &lt;CR&gt; &lt;CR&gt;</span><br><span class="line">nmap&lt;F4&gt; :!write % &lt;CR&gt;</span><br><span class="line">nmap&lt;F8&gt; :!./%&lt; &lt; %&lt;.in &lt;CR&gt;</span><br><span class="line">nmap&lt;F9&gt; :!g++ % -o %&lt; -O2 -g -Wall -std=c++11 &lt;CR&gt;</span><br></pre></td></tr></table></figure>
 </li>
-<li><p>在白心的隐藏房，使用存血罐可以吐出白心。配合1+1和肉刀可以生成N多肉哥。</p>
+</ul>
+<h2 id="额外配置"><a href="#额外配置" class="headerlink" title="额外配置"></a>额外配置</h2><ul>
+<li><p>vimrc 文件默认有一些配置，可根据需要修改。</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">set vb             "这个不关的话，触发某些条件会闪屏</span><br><span class="line">set laststatus=1   "窗口底部状态栏的行数（默认是2），这里设置成1。</span><br><span class="line">au FileType c,cpp setlocal comments-=:// comments+=f:// "取消换行自动注释</span><br></pre></td></tr></table></figure>
 </li>
-<li><p>钥匙通常留给商店使用。</p>
-</li>
-<li><p>睫毛膏是负面道具，不要拿。</p>
-</li>
-<li><p>商店高概率刷出复眼（复制本房间的道具，未购买的道具也可以复制），最好等出了打折券再用。</p>
-</li>
-<li><p>20分钟内打败妈腿会开Boss Rush房；30分钟内打败妈心开启Blue Womb(蓝色子宫，打hush)房。使用<strong>MaMa Mega!</strong>可以<strong>强制</strong>开启br和bw。</p>
-</li>
-<li><p>Strength Card 给予 keeper 永久血上限。</p>
+</ul>
+<ul>
+<li><p>设置 Ctrl + Alt + T 快捷键启动 Git Bash 终端。</p>
+<ol>
+<li>创建 “git-bash.exe” 的快捷方式，打开快捷方式的属性窗口，修改<strong>起始位置</strong>，并设置快捷键。</li>
+<li>打开<strong>控制面板</strong>，找到 “管理工具”， 将快捷方式复制到该文件夹中。</li>
+</ol>
 </li>
 </ul>
 
@@ -428,16 +439,16 @@ height:50vh;
         <li class="next">
             
                 <div class="nextSlogan">Next Post</div>
-                <a href= "../../../08/18/论文笔记 Semantic Compositional Networks for Visual Captioning/" title= "论文笔记 Semantic Compositional Networks for Visual Captioning">
-                    <div class="nextTitle">论文笔记 Semantic Compositional Networks for Visual Captioning</div>
+                <a href= "../../../../2019/03/31/Nowcoder-出题人的数组/" title= "Nowcoder-出题人的数组">
+                    <div class="nextTitle">Nowcoder-出题人的数组</div>
                 </a>
             
         </li>
         <li class="previous">
             
                 <div class="prevSlogan">Previous Post</div>
-                <a href= "../The Binding of Isaac Afterbirth+总结-ChenMingqin.work/" title= "The Binding of Isaac:Afterbirth+总结">
-                    <div class="prevTitle">The Binding of Isaac:Afterbirth+总结</div>
+                <a href= "../../09/论文笔记-Tips-and-Tricks-for-Visual-Question-Answering/" title= "论文笔记 Tips and Tricks for Visual Question Answering">
+                    <div class="prevTitle">论文笔记 Tips and Tricks for Visual Question Answering</div>
                 </a>
             
         </li>
@@ -568,7 +579,7 @@ top:50vh;
         <div class="toc-catalog">
             <span class="iconfont-archer catalog-icon">&#xe613;</span><span>CATALOG</span>
         </div>
-        
+        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#简要说明"><span class="toc-number">1.</span> <span class="toc-text">简要说明</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Vimrc-配置"><span class="toc-number">2.</span> <span class="toc-text">Vimrc 配置</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#额外配置"><span class="toc-number">3.</span> <span class="toc-text">额外配置</span></a></li></ol>
     </div>
     
     <div class="back-top iconfont-archer">&#xe639;</div>
@@ -581,24 +592,6 @@ top:50vh;
     <div class="sidebar-content sidebar-content-show-archive">
           <div class="sidebar-panel-archives">
     <!-- 在ejs中将archive按照时间排序 -->
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
     
     
     
@@ -1052,21 +1045,21 @@ top:50vh;
     
         <span class="sidebar-tag-name" data-tags="AC自动机"><span class="iconfont-archer">&#xe606;</span>AC自动机</span>
     
-        <span class="sidebar-tag-name" data-tags="domjudge"><span class="iconfont-archer">&#xe606;</span>domjudge</span>
+        <span class="sidebar-tag-name" data-tags="KMP"><span class="iconfont-archer">&#xe606;</span>KMP</span>
     
         <span class="sidebar-tag-name" data-tags="ICPC"><span class="iconfont-archer">&#xe606;</span>ICPC</span>
     
         <span class="sidebar-tag-name" data-tags="贪心"><span class="iconfont-archer">&#xe606;</span>贪心</span>
     
-        <span class="sidebar-tag-name" data-tags="KMP"><span class="iconfont-archer">&#xe606;</span>KMP</span>
+        <span class="sidebar-tag-name" data-tags="domjudge"><span class="iconfont-archer">&#xe606;</span>domjudge</span>
     
         <span class="sidebar-tag-name" data-tags="vim"><span class="iconfont-archer">&#xe606;</span>vim</span>
     
         <span class="sidebar-tag-name" data-tags="git bash"><span class="iconfont-archer">&#xe606;</span>git bash</span>
     
-        <span class="sidebar-tag-name" data-tags="polya"><span class="iconfont-archer">&#xe606;</span>polya</span>
-    
         <span class="sidebar-tag-name" data-tags="斜率优化"><span class="iconfont-archer">&#xe606;</span>斜率优化</span>
+    
+        <span class="sidebar-tag-name" data-tags="polya"><span class="iconfont-archer">&#xe606;</span>polya</span>
     
     </div>
     <div class="iconfont-archer sidebar-tags-empty">&#xe678;</div>

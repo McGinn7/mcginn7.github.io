@@ -22,7 +22,7 @@
     <meta name="description" content>
     <meta http-equiv="Cache-control" content="no-cache">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-    <title>The Binding of Isaac:Afterbirth+总结 · Mcginn&#39;s Blog</title>
+    <title>斜率优化 · Mcginn&#39;s Blog</title>
     <style type="text/css">
     @font-face {
         font-family: 'Oswald-Regular';
@@ -217,7 +217,7 @@
                 <a href="../../../../index.html" >Mcginn&#39;s Blog</a>
             </div>
             <div class="post-title">
-                <a href="#" class="post-name">The Binding of Isaac:Afterbirth+总结</a>
+                <a href="#" class="post-name">斜率优化</a>
             </div>
     </div>
     
@@ -247,7 +247,7 @@ height:50vh;
         <h1 class="intro-title">
             <!-- 主页  -->
             
-            The Binding of Isaac:Afterbirth+总结
+            斜率优化
             <!-- 404 -->
             
         </h1>
@@ -264,14 +264,22 @@ height:50vh;
             <div class="post-intros">
                 <!-- 文章页标签  -->
                 
+                    <div class= post-intro-tags >
+    
+        <a class="post-tag" href="javascript:void(0);" data-tags = "ICPC">ICPC</a>
+    
+        <a class="post-tag" href="javascript:void(0);" data-tags = "斜率优化">斜率优化</a>
+    
+</div>
+                
                 
                     <div class="post-intro-read">
-                        <span>字数统计: <span class="post-count word-count">244</span>阅读时长: <span class="post-count reading-time">1 min</span></span>
+                        <span>字数统计: <span class="post-count word-count">1.4k</span>阅读时长: <span class="post-count reading-time">7 min</span></span>
                     </div>
                 
                 <div class="post-intro-meta">
                     <span class="post-intro-calander iconfont-archer">&#xe676;</span>
-                    <span class="post-intro-time">2018/07/19</span>
+                    <span class="post-intro-time">2019/04/03</span>
                     
                     <span id="busuanzi_container_page_pv" class="busuanzi-pv">
                         <span class="iconfont-archer">&#xe602;</span>
@@ -395,30 +403,45 @@ height:50vh;
         <div class="container container-unloaded">
             <main class="main post-page">
     <article class="article-entry">
-        <ul>
-<li><p><img src="http://www.chinabaike.com/uploads/allimg/160614/031Q331C-41.jpg" alt="献血袋"></p>
-<p>献血袋：扣半颗红心（子宫层一颗），掉落随机数量（通常1）的硬币。献血袋很强，很容易刷起来。</p>
+        <h2 id="斜率优化"><a href="#斜率优化" class="headerlink" title="斜率优化"></a>斜率优化</h2><p>针对形如：</p>
+<script type="math/tex; mode=display">
+dp(i)=\min _{j=1}^{i-1} (dp(j)+cost(i, j))</script><p>的动态规划转移方程，可通过’’斜率’’的<strong>单调性</strong>进行优化。</p>
+<h2 id="题一、-HNOI2008-玩具装箱TOY"><a href="#题一、-HNOI2008-玩具装箱TOY" class="headerlink" title="题一、[HNOI2008]玩具装箱TOY"></a>题一、[HNOI2008]玩具装箱TOY</h2><h3 id="题意-题目链接"><a href="#题意-题目链接" class="headerlink" title="题意 题目链接"></a>题意 <a href="https://www.luogu.org/problemnew/show/P3195" target="_blank" rel="noopener">题目链接</a></h3><p>给定长为 $1\le N\le 50000$ 的序列 $1\le C_i\le 10^7$，将序列分成若干连续段，每段 $[i, j]$ 的花费为</p>
+<script type="math/tex; mode=display">
+((j - i+\sum_{k=i}^jC_k)-L)^2</script><p>其中 $L$ 为常数，$1\le L \le 10^7$。要求计算总的最小花费代价。</p>
+<h3 id="解题思路"><a href="#解题思路" class="headerlink" title="解题思路"></a>解题思路</h3><p>利用前缀和 $S_i​$，区间 $[i, j]​$ 序列和可表示成 $S_j - S_{i-1}​$。容易想到 dp 转移方程为：</p>
+<script type="math/tex; mode=display">
+dp(j)=\min_{i=0}^{j-1}(dp(i)+cost(i, j)) \\
+cost(i, j) = ((j - (i + 1) + S_j - S_i) - L)^2</script><p>将变量整理归类，记 $a_j=j+S_j, b_i=i+S_i+L+1$，则 $cost(i, j)$ 转化成：</p>
+<script type="math/tex; mode=display">
+cost(i, j) = (a_j-b_i)^2 = a_j^2+b_i^2-2a_jb_i</script><p>转移方程移项可得：</p>
+<script type="math/tex; mode=display">
+2a_jb_i + dp(j)-a_j^2=dp(i)+b_i^2</script><p>因为 $a_j​$ 在 $j​$ 固定时可认为是个定值，故问题相当于最小化 $dp(j)-a_j^2​$，进而可以将问题看成是斜率为 $2a_j​$ 的直线，找出一点 $(b_i, dp(i)+b_i^2)​$ 使得直线在 $y​$ 轴的截距 $dp(j) - a_j^2​$ 最小。</p>
+<img src="/2019/04/03/斜率优化/1554264317802.png" title="下凸壳">
+<center>图 1. 下凸壳。灰色点和黑色点分别表示非凸壳点和凸壳点。</center>
+
+<p>显然，截距最小的关键点必然在<strong>下凸壳</strong>上，且下凸壳的每段斜率是<strong>单调递增</strong>的。</p>
+<p>斜率为 $g$ 的直线截距最小所对应的最优点是，该点前一段斜率 $\lt g$，后一段斜率 $\gt g​$。</p>
+<p>注意 $1\le C_i  \Rightarrow S_i \lt S_{i + 1} \Rightarrow a_i=i+S_i \lt a_{i + 1}=(i + 1) + S_{i + 1}$，斜率 $a_i$ 是单调递增的，则对应的最优点位置也是单调的，所以这种情况可通过<strong>双端队列</strong>将复杂度优化到 $O(n)​$。</p>
+<h2 id="题二、小A与最大子段和"><a href="#题二、小A与最大子段和" class="headerlink" title="题二、小A与最大子段和"></a>题二、小A与最大子段和</h2><h3 id="题意-题目链接-1"><a href="#题意-题目链接-1" class="headerlink" title="题意 题目链接"></a>题意 <a href="https://ac.nowcoder.com/acm/contest/545/A" target="_blank" rel="noopener">题目链接</a></h3><p>给定长为 $1\le N \le 2\times 10^5​$ 的序列 $0 \le |A_i| \le 2000​$，找一个非空连续子段 $B​$，最大化：</p>
+<script type="math/tex; mode=display">
+\sum_{i=1}^{|B|} i\times B_i</script><h3 id="解题思路-1"><a href="#解题思路-1" class="headerlink" title="解题思路"></a>解题思路</h3><p>把问题进一步公式化：</p>
+<script type="math/tex; mode=display">
+Ans = \max_{1\le i\le j\le N} \{\sum_{k=i}^j(k-i+1)\times A_k\} \tag 1</script><p>为了去除 $\sum$ ，引入前缀和 $S_i$ 和 $V_i=\sum_{p=1}^i p\times A_p​$，公式 (1) 转化成：</p>
+<script type="math/tex; mode=display">
+Ans = \max_{0\le i\lt j\le N} \{(V_j-V_i)-i\times(S_j-S_i)\} \tag 2</script><p>根据变量下标整理归类：</p>
+<script type="math/tex; mode=display">
+Ans = -S_j\times i+(i\times S_i-V_i) + V_j \\
+\Rightarrow S_j\times i+(Ans - V_j) = i\times S_i- V_i</script><p>同”玩具装箱TOY”，此时相当于令截距 $Ans - V_j$ <strong>最大</strong>，所以此时需要维护点集 $(i, iS_i-V_i)$ 的<strong>上凸壳</strong>。</p>
+<p>因为 $A_i$ 存在负数，故斜率 $S_i$ 并不具有单调性，所以需要<strong>二分</strong>确定最优点的位置。 </p>
+<h2 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h2><ol>
+<li><p><a href="https://www.cnblogs.com/ka200812/archive/2012/08/03/2621345.html" target="_blank" rel="noopener">斜率优化DP</a></p>
 </li>
-<li><p><img src="http://ins.lookgame.com/static/allimg/151130/5-151130101R4.png" alt="手术刀"></p>
-<p>手术刀：在地上制造褐色和蓝色两个通道并传送，传送出来时有短暂无敌，可以做到：</p>
-<ol>
-<li><strong>白嫖卖血机</strong>，喂黑小孩，进出刺房等；</li>
-<li>进BOSS房和挑战房时，开箱子后直接传出去。</li>
+<li><p><a href="https://blog.csdn.net/lxc779760807/article/details/51366552" target="_blank" rel="noopener">斜率优化dp小结</a></p>
+</li>
 </ol>
-</li>
-<li><p>在白心的隐藏房，使用存血罐可以吐出白心。配合1+1和肉刀可以生成N多肉哥。</p>
-</li>
-<li><p>钥匙通常留给商店使用。</p>
-</li>
-<li><p>睫毛膏是负面道具，不要拿。</p>
-</li>
-<li><p>商店高概率刷出复眼（复制本房间的道具，未购买的道具也可以复制），最好等出了打折券再用。</p>
-</li>
-<li><p>20分钟内打败妈腿会开Boss Rush房；30分钟内打败妈心开启Blue Womb(蓝色子宫，打hush)房。使用<strong>MaMa Mega!</strong>可以<strong>强制</strong>开启br和bw。</p>
-</li>
-<li><p>Strength Card 给予 keeper 永久血上限。</p>
-</li>
-</ul>
+<h2 id="代码"><a href="#代码" class="headerlink" title="代码"></a>代码</h2><h3 id="HNOI2008-玩具装箱TOY"><a href="#HNOI2008-玩具装箱TOY" class="headerlink" title="[HNOI2008]玩具装箱TOY"></a>[HNOI2008]玩具装箱TOY</h3><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;bits/stdc++.h&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</span><br><span class="line"><span class="keyword">typedef</span> <span class="keyword">double</span> db;</span><br><span class="line"><span class="keyword">typedef</span> <span class="keyword">long</span> <span class="keyword">long</span> ll;</span><br><span class="line"><span class="keyword">typedef</span> <span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; vi;</span><br><span class="line"><span class="keyword">typedef</span> pair&lt;<span class="keyword">int</span>, <span class="keyword">int</span>&gt; pii;</span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> fi first</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> se second</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> pb push_back</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> sz(x) ((int)(x).size())</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> all(x) begin(x),end(x)</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> rep(i,l,r) for(int i=(l);i&lt;(r);++i)</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> per(i,l,r) for(int i=(r)-1;i&gt;=(l);--i)</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> dd(x) cout &lt;&lt; #x &lt;&lt; <span class="meta-string">"="</span> &lt;&lt; x &lt;&lt; <span class="meta-string">", "</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> de(x) cout &lt;&lt; #x &lt;&lt; <span class="meta-string">"="</span> &lt;&lt; x &lt;&lt; endl</span></span><br><span class="line"><span class="comment">//-------</span></span><br><span class="line"><span class="keyword">const</span> <span class="keyword">int</span> N = <span class="number">5e5</span> + <span class="number">7</span>;</span><br><span class="line"><span class="keyword">int</span> n, L, C[N];</span><br><span class="line">ll S[N], dp[N];</span><br><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">P</span> &#123;</span></span><br><span class="line">	ll x, y;</span><br><span class="line">	P() &#123;&#125;</span><br><span class="line">	P(ll _x, ll _y) &#123;</span><br><span class="line">		x = _x, y = _y;</span><br><span class="line">	&#125;</span><br><span class="line">	P <span class="keyword">operator</span>-(<span class="keyword">const</span> P &amp;p) <span class="keyword">const</span> &#123;</span><br><span class="line">		<span class="keyword">return</span> P(x - p.x, y - p.y);</span><br><span class="line">	&#125;</span><br><span class="line">	ll <span class="keyword">operator</span>^(<span class="keyword">const</span> P &amp;p) <span class="keyword">const</span> &#123;</span><br><span class="line">		<span class="keyword">return</span> x * p.y - y * p.x;		</span><br><span class="line">	&#125;</span><br><span class="line">&#125;;</span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> X(i) (i + S[i] + L + 1)</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> Y(i) (dp[i] + X(i) * X(i))</span></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span> </span>&#123;</span><br><span class="line">	<span class="built_in">scanf</span>(<span class="string">"%d%d"</span>, &amp;n, &amp;L);</span><br><span class="line">	rep(i, <span class="number">1</span>, n + <span class="number">1</span>) <span class="built_in">scanf</span>(<span class="string">"%d"</span>, C + i);</span><br><span class="line">	rep(i, <span class="number">1</span>, n + <span class="number">1</span>) S[i] = S[i - <span class="number">1</span>] + C[i];</span><br><span class="line">	<span class="built_in">deque</span>&lt;P&gt; Q; Q.push_back(P(X(<span class="number">0</span>), Y(<span class="number">0</span>)));</span><br><span class="line">	rep(i, <span class="number">1</span>, n + <span class="number">1</span>) &#123;</span><br><span class="line">		ll g = <span class="number">2</span> * (i + S[i]);</span><br><span class="line">		<span class="keyword">while</span> (sz(Q) &gt; <span class="number">1</span> &amp;&amp; (Q[<span class="number">1</span>].y - Q[<span class="number">0</span>].y) &lt; (Q[<span class="number">1</span>].x - Q[<span class="number">0</span>].x) * g) </span><br><span class="line">			Q.pop_front();</span><br><span class="line">		dp[i] = Q[<span class="number">0</span>].y - g * Q[<span class="number">0</span>].x + (i + S[i]) * (i + S[i]);</span><br><span class="line">		P a(X(i), Y(i));</span><br><span class="line">		<span class="keyword">while</span> (sz(Q) &gt; <span class="number">1</span> &amp;&amp; ((Q[sz(Q) - <span class="number">2</span>] - a) ^ (Q.back() - a)) &lt;= <span class="number">0</span>) </span><br><span class="line">			Q.pop_back();	</span><br><span class="line">		Q.push_back(a);</span><br><span class="line">	&#125;	</span><br><span class="line">	<span class="built_in">printf</span>(<span class="string">"%lld"</span>, dp[n]);</span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="小A与最大子段和"><a href="#小A与最大子段和" class="headerlink" title="小A与最大子段和"></a>小A与最大子段和</h3><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;bits/stdc++.h&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</span><br><span class="line"><span class="keyword">typedef</span> <span class="keyword">double</span> db;</span><br><span class="line"><span class="keyword">typedef</span> <span class="keyword">long</span> <span class="keyword">long</span> ll;</span><br><span class="line"><span class="keyword">typedef</span> <span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; vi;</span><br><span class="line"><span class="keyword">typedef</span> pair&lt;<span class="keyword">int</span>, <span class="keyword">int</span>&gt; pii;</span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> fi first</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> se second</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> pb push_back</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> sz(x) ((int)(x).size())</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> all(x) begin(x),end(x)</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> rep(i,l,r) for(int i=(l);i&lt;(r);++i)</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> per(i,l,r) for(int i=(r)-1;i&gt;=(l);--i)</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> dd(x) cout &lt;&lt; #x &lt;&lt; <span class="meta-string">"="</span> &lt;&lt; x &lt;&lt; <span class="meta-string">", "</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> de(x) cout &lt;&lt; #x &lt;&lt; <span class="meta-string">"="</span> &lt;&lt; x &lt;&lt; endl</span></span><br><span class="line"><span class="comment">//-------</span></span><br><span class="line"><span class="keyword">const</span> <span class="keyword">int</span> N = <span class="number">2e5</span> + <span class="number">7</span>;</span><br><span class="line"><span class="keyword">int</span> n, a[N];</span><br><span class="line">ll S[N], V[N];</span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> X(i) (i)</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> Y(i) (i * S[i] - V[i])</span></span><br><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">P</span> &#123;</span></span><br><span class="line">	ll x, y;</span><br><span class="line">	P() &#123;&#125; P(ll _x, ll _y) &#123; x = _x, y = _y; &#125; </span><br><span class="line">	P <span class="keyword">operator</span>-(<span class="keyword">const</span> P &amp;p) <span class="keyword">const</span> &#123;</span><br><span class="line">		<span class="keyword">return</span> P(x - p.x, y - p.y);</span><br><span class="line">	&#125;</span><br><span class="line">	ll <span class="keyword">operator</span>^(<span class="keyword">const</span> P &amp;p) <span class="keyword">const</span> &#123;</span><br><span class="line">		<span class="keyword">return</span> x * p.y - y * p.x;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;;</span><br><span class="line"><span class="function"><span class="keyword">bool</span> <span class="title">chk</span><span class="params">(<span class="built_in">deque</span>&lt;P&gt; &amp;Q, <span class="keyword">int</span> i, ll G)</span> </span>&#123;</span><br><span class="line">	<span class="keyword">return</span> (Q[i + <span class="number">1</span>].y - Q[i].y) &gt;= (Q[i + <span class="number">1</span>].x - Q[i].x) * G;	</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span> </span>&#123;</span><br><span class="line">	<span class="built_in">scanf</span>(<span class="string">"%d"</span>, &amp;n);</span><br><span class="line">	rep(i, <span class="number">1</span>, n + <span class="number">1</span>) <span class="built_in">scanf</span>(<span class="string">"%d"</span>, a + i);	</span><br><span class="line">	rep(i, <span class="number">1</span>, n + <span class="number">1</span>) S[i] = S[i - <span class="number">1</span>] + a[i];</span><br><span class="line">	rep(i, <span class="number">1</span>, n + <span class="number">1</span>) V[i] = V[i - <span class="number">1</span>] + i * a[i];</span><br><span class="line">		</span><br><span class="line">	<span class="built_in">deque</span>&lt;P&gt; Q; Q.push_back(P(X(<span class="number">0</span>), Y(<span class="number">0</span>)));</span><br><span class="line">	ll ans = LLONG_MIN;</span><br><span class="line">	rep(i, <span class="number">1</span>, n + <span class="number">1</span>) &#123;</span><br><span class="line">		<span class="comment">// answer</span></span><br><span class="line">		<span class="keyword">int</span> l = <span class="number">0</span>, r = max(<span class="number">0</span>, sz(Q) - <span class="number">2</span>);</span><br><span class="line">		<span class="keyword">while</span> (l + <span class="number">1</span> &lt; r) &#123;</span><br><span class="line">			<span class="keyword">int</span> z = (l + r) &gt;&gt; <span class="number">1</span>;</span><br><span class="line">			chk(Q, z, S[i]) ? l = z : r = z;	</span><br><span class="line">		&#125;</span><br><span class="line">		<span class="keyword">int</span> j = l;</span><br><span class="line">		<span class="keyword">if</span> (chk(Q, r, S[i])) j = r + <span class="number">1</span>;</span><br><span class="line">		<span class="keyword">else</span> <span class="keyword">if</span> (chk(Q, l, S[i])) j = l + <span class="number">1</span>;</span><br><span class="line">		<span class="keyword">else</span> j = l;</span><br><span class="line">		ll f = Q[j].y - S[i] * Q[j].x + V[i];</span><br><span class="line">		ans = max(ans, f);</span><br><span class="line">		<span class="comment">// maintain</span></span><br><span class="line">		P a(X(i), Y(i));</span><br><span class="line">		<span class="keyword">while</span> (sz(Q) &gt; <span class="number">1</span> &amp;&amp; ((Q[sz(Q) - <span class="number">2</span>] - a) ^ (Q.back() - a)) &gt;= <span class="number">0</span>)</span><br><span class="line">			Q.pop_back();</span><br><span class="line">		Q.push_back(a);</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="built_in">printf</span>(<span class="string">"%lld"</span>, ans);</span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
     </article>
     <!-- license  -->
@@ -428,16 +451,16 @@ height:50vh;
         <li class="next">
             
                 <div class="nextSlogan">Next Post</div>
-                <a href= "../../../08/18/论文笔记 Semantic Compositional Networks for Visual Captioning/" title= "论文笔记 Semantic Compositional Networks for Visual Captioning">
-                    <div class="nextTitle">论文笔记 Semantic Compositional Networks for Visual Captioning</div>
+                <a href= "../../../05/12/ICPC-Resolver-踩坑/" title= "ICPC Resolver 踩坑">
+                    <div class="nextTitle">ICPC Resolver 踩坑</div>
                 </a>
             
         </li>
         <li class="previous">
             
                 <div class="prevSlogan">Previous Post</div>
-                <a href= "../The Binding of Isaac Afterbirth+总结-ChenMingqin.work/" title= "The Binding of Isaac:Afterbirth+总结">
-                    <div class="prevTitle">The Binding of Isaac:Afterbirth+总结</div>
+                <a href= "../../../03/31/Nowcoder-出题人的数组/" title= "Nowcoder-出题人的数组">
+                    <div class="prevTitle">Nowcoder-出题人的数组</div>
                 </a>
             
         </li>
@@ -568,7 +591,7 @@ top:50vh;
         <div class="toc-catalog">
             <span class="iconfont-archer catalog-icon">&#xe613;</span><span>CATALOG</span>
         </div>
-        
+        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#斜率优化"><span class="toc-number">1.</span> <span class="toc-text">斜率优化</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#题一、-HNOI2008-玩具装箱TOY"><span class="toc-number">2.</span> <span class="toc-text">题一、[HNOI2008]玩具装箱TOY</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#题意-题目链接"><span class="toc-number">2.1.</span> <span class="toc-text">题意 题目链接</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#解题思路"><span class="toc-number">2.2.</span> <span class="toc-text">解题思路</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#题二、小A与最大子段和"><span class="toc-number">3.</span> <span class="toc-text">题二、小A与最大子段和</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#题意-题目链接-1"><span class="toc-number">3.1.</span> <span class="toc-text">题意 题目链接</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#解题思路-1"><span class="toc-number">3.2.</span> <span class="toc-text">解题思路</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#参考"><span class="toc-number">4.</span> <span class="toc-text">参考</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#代码"><span class="toc-number">5.</span> <span class="toc-text">代码</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#HNOI2008-玩具装箱TOY"><span class="toc-number">5.1.</span> <span class="toc-text">[HNOI2008]玩具装箱TOY</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#小A与最大子段和"><span class="toc-number">5.2.</span> <span class="toc-text">小A与最大子段和</span></a></li></ol></li></ol>
     </div>
     
     <div class="back-top iconfont-archer">&#xe639;</div>
@@ -581,24 +604,6 @@ top:50vh;
     <div class="sidebar-content sidebar-content-show-archive">
           <div class="sidebar-panel-archives">
     <!-- 在ejs中将archive按照时间排序 -->
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
     
     
     
@@ -1052,21 +1057,21 @@ top:50vh;
     
         <span class="sidebar-tag-name" data-tags="AC自动机"><span class="iconfont-archer">&#xe606;</span>AC自动机</span>
     
-        <span class="sidebar-tag-name" data-tags="domjudge"><span class="iconfont-archer">&#xe606;</span>domjudge</span>
+        <span class="sidebar-tag-name" data-tags="KMP"><span class="iconfont-archer">&#xe606;</span>KMP</span>
     
         <span class="sidebar-tag-name" data-tags="ICPC"><span class="iconfont-archer">&#xe606;</span>ICPC</span>
     
         <span class="sidebar-tag-name" data-tags="贪心"><span class="iconfont-archer">&#xe606;</span>贪心</span>
     
-        <span class="sidebar-tag-name" data-tags="KMP"><span class="iconfont-archer">&#xe606;</span>KMP</span>
+        <span class="sidebar-tag-name" data-tags="domjudge"><span class="iconfont-archer">&#xe606;</span>domjudge</span>
     
         <span class="sidebar-tag-name" data-tags="vim"><span class="iconfont-archer">&#xe606;</span>vim</span>
     
         <span class="sidebar-tag-name" data-tags="git bash"><span class="iconfont-archer">&#xe606;</span>git bash</span>
     
-        <span class="sidebar-tag-name" data-tags="polya"><span class="iconfont-archer">&#xe606;</span>polya</span>
-    
         <span class="sidebar-tag-name" data-tags="斜率优化"><span class="iconfont-archer">&#xe606;</span>斜率优化</span>
+    
+        <span class="sidebar-tag-name" data-tags="polya"><span class="iconfont-archer">&#xe606;</span>polya</span>
     
     </div>
     <div class="iconfont-archer sidebar-tags-empty">&#xe678;</div>
