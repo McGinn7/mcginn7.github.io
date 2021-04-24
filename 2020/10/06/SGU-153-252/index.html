@@ -266,7 +266,7 @@ height:50vh;
                 
                 
                     <div class="post-intro-read">
-                        <span>字数统计: <span class="post-count word-count">9.8k</span>阅读时长: <span class="post-count reading-time">39 min</span></span>
+                        <span>字数统计: <span class="post-count word-count">10.4k</span>阅读时长: <span class="post-count reading-time">41 min</span></span>
                     </div>
                 
                 <div class="post-intro-meta">
@@ -827,6 +827,19 @@ dp(i, j) = \min_{i - j - k \ge i - M} {dp(i - j, k)} + C_i</script><hr>
 <li>当 $K=2$ 时，有 00, 01, 11, 10。</li>
 <li>当 $K&gt;2$ 时，假设 $K-1$ 的序列为 $x_1, x_2, \dots, x_{2^{K-1}}$，基于 $x_i$ 构造 $\overline {0x_i}, \overline {1x_i}$，新构造的两个数仅一位不同，并且可以构造出新序列 $\overline{0x_i}, \overline{1x_i}, \overline{1x_{i+1}}, \overline{0x_{i+1}}$。显然，新序列也是符合题意的环。</li>
 </ol>
+<hr>
+<p>250 Constructive Plan</p>
+<p><strong>题意</strong> 给 $N\times M, 1\le N,M\le 180$ 大小的 01 矩阵，求一个由全 0 构成的 C 字形最大面积。C 字形由三个矩形构成，左边界在同一列，中间矩形的宽度严格小于上下两个矩形的宽度。</p>
+<p><strong>分析</strong> 枚举 C 字形的上下边界，处理出三个矩形的公共矩形，之后需要考虑 2 种情况。一种是不向外扩展，则在公共矩形右边界所在列中部挖一个孔，形成 C 字形。另一种是向右侧扩展，因为上下矩形两者宽度互不影响，因此只需要预处理以给定矩形左上角顶点的最大矩形和以给定矩形左下角顶点的最大矩形，然后尝试扩展形成更大的 C 字形。</p>
+<hr>
+<p>251 Polymania</p>
+<p><strong>题意</strong>  已知有 $3\le N\le 8$ 个二维平面上的点，每个点有正整数权重 $0&lt;R_i\le 100$ 且 $R_{N-1}=R_N$。要求任意 3 个点构成三角形面积等于权重之和，若有解输出所有点坐标。</p>
+<p><strong>分析</strong> 假设固定点 N-1 和点 N 这一线段长度，那么其他点距离点 N-1 和点 N 所在直线的距离便固定了，即其他点的位置根据其权重 Ri 固定在某一直线上。</p>
+<p>假设有权重不同的点 A 和点 B，因为 $R_{N-1}=R_N$，所以 A,B 不会在线段 (N-1, N) 的同一侧，并且线段 (N-1, N) 的中点必须在线段 (A, B) 上。可以通过反证法验证，不能在添加一点 C 满足条件。因此满足题意的最多 4 个点，根据该限制构造答案即可。</p>
+<hr>
+<p>252 Railway Communication</p>
+<p><strong>题意</strong> 给 $1\le N\le 100$ 个点和 $0\le M\le 1000$ 条边的有向无环图，<strong>任意两点有且仅有一条边</strong>。求解<strong>最少</strong>路径数量， 满足：每个点有且仅有一个条路径经过；每条边最多被一条路径使用。其中，路径定义为若干条连续边组成。在路径最少的前提下，最小化使用边的权值总和。 </p>
+<p><strong>分析</strong> 最小费用最大流。将每个点拆分入点和出点，流量为 1 费用为边权。</p>
 
     </article>
     <!-- license  -->
@@ -1292,6 +1305,20 @@ top:50vh;
     
     
     
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
     <div class="total-and-search">
         <div class="total-archive">
         Total : 24
@@ -1310,12 +1337,12 @@ top:50vh;
     
     
         <li class="archive-post-item">
-            <span class="archive-post-date">10/06</span><a class="archive-post-title" href= "" >SGU 153-252</a>
+            <span class="archive-post-date">10/06</span><a class="archive-post-title" href= "../../../10/06/SGU-153-252/" >SGU 153-252</a>
         </li>
     
     
         <li class="archive-post-item">
-            <span class="archive-post-date">05/10</span><a class="archive-post-title" href= "../../../05/10/Kuhn-Munkres-Algorithm/" >Kuhn-Munkres Algorithm</a>
+            <span class="archive-post-date">05/10</span><a class="archive-post-title" href= "" >Kuhn-Munkres Algorithm</a>
         </li>
     
     
@@ -1455,13 +1482,13 @@ top:50vh;
     
         <span class="sidebar-tag-name" data-tags="AC自动机"><span class="iconfont-archer">&#xe606;</span>AC自动机</span>
     
-        <span class="sidebar-tag-name" data-tags="domjudge"><span class="iconfont-archer">&#xe606;</span>domjudge</span>
+        <span class="sidebar-tag-name" data-tags="KMP"><span class="iconfont-archer">&#xe606;</span>KMP</span>
     
         <span class="sidebar-tag-name" data-tags="ICPC"><span class="iconfont-archer">&#xe606;</span>ICPC</span>
     
         <span class="sidebar-tag-name" data-tags="贪心"><span class="iconfont-archer">&#xe606;</span>贪心</span>
     
-        <span class="sidebar-tag-name" data-tags="KMP"><span class="iconfont-archer">&#xe606;</span>KMP</span>
+        <span class="sidebar-tag-name" data-tags="domjudge"><span class="iconfont-archer">&#xe606;</span>domjudge</span>
     
         <span class="sidebar-tag-name" data-tags="vim"><span class="iconfont-archer">&#xe606;</span>vim</span>
     
