@@ -266,7 +266,7 @@ height:50vh;
                 
                 
                     <div class="post-intro-read">
-                        <span>字数统计: <span class="post-count word-count">1.9k</span>阅读时长: <span class="post-count reading-time">7 min</span></span>
+                        <span>字数统计: <span class="post-count word-count">2.7k</span>阅读时长: <span class="post-count reading-time">10 min</span></span>
                     </div>
                 
                 <div class="post-intro-meta">
@@ -395,7 +395,37 @@ height:50vh;
         <div class="container container-unloaded">
             <main class="main post-page">
     <article class="article-entry">
-        <p>271 Book Pile</p>
+        <p>278 Fuel</p>
+<p><strong>题意</strong> 给定 $1\le N\le 75000$ 种燃油，每种燃油<strong>单位质量</strong>下体积为 $a_i$, 成本 $b_i$ 和强度 $c_i$，其中 $0\le a_i, b_i, c_i\le 100$。已知汽车的油箱可容纳 $1\le A\le 1000$ 体积的燃油以及成本限制 $1\le B\le 10000$，在允许任意混合燃油的情况下，求混合燃油的最大强度。</p>
+<p><strong>分析</strong> 假设有 2 种燃油 $(a_i, b_i, c_i), (a_j, b_j, c_j)$，混合后可以得到 $\forall w\in [0, 1], a=wa_i+(1-w)a_j, b=wb_i+(1-w)b_j, c=wc_i+(1-w)c_j$，最终从一种比例的混合燃油中取得最大强度，即 $ans = c\times min\{\frac Aa,\frac Bb\}$。从几何角度看该问题，2 种燃油时混合燃油候选为一条线段，多种燃油时候选为凸多面体。</p>
+<p>记 $x_i = \frac {c_i}{a_i}, y_i=\frac{c_i}{b_i}$，原问题可以转化成 $\max z,z\le Ax_i, z\le By_i$。通过直线 $y=\frac AB x$ 划分 $z$ 上限分别为 $Ax_i$ 和 $By_i$ 的情况，本质上都是线性规划问题，最优解必然在 extreme point（端点）上。</p>
+<hr>
+<p>277 Heroes</p>
+<p><strong>题意</strong> 二维平面初始给 3 个点，随后逐渐添加 $1\le N\le 10^5$ 个点。每次添加点后，重新构造多边形包含当前所有点且周长最短，输出多边形的面积。</p>
+<p><strong>分析</strong> 加点维护凸包，<a href="https://github.com/McGinn7/Template-for-ICPC/blob/master/template/convex_hull.cpp" target="_blank" rel="noopener">参考模板</a></p>
+<hr>
+<p>276 Andrew’s Troubles</p>
+<p><strong>题意</strong> （if else 模拟题）</p>
+<p><strong>分析</strong> 模拟。</p>
+<hr>
+<p>275 To xor or not to xor</p>
+<p><strong>题意</strong> 给 100 个数 $A_i(0 \le A_i \le 10^{18})$，求一个子序列使得异或和最大。</p>
+<p><strong>分析</strong> 线性基。</p>
+<hr>
+<p>274 Spam-filter</p>
+<p><strong>题意</strong> 写一个邮件地址 parser，判断地址合法性。</p>
+<p><strong>分析</strong> Parser。</p>
+<hr>
+<p>273 Game Po</p>
+<p><strong>题意</strong> 给定 200 个石子排成一排，并且每个石子染成蓝、红、黄、白其中一种颜色。四名玩家轮流选择 2 个相邻石子并使用 1 个替换规则颜色的石子替换，直到不能替换为止。游戏开始前，给定允许的替换规则，四种颜色分配给四名玩家，若游戏结束时仅剩 1 个石子，则该石子颜色对应的玩家获胜。求最后可能获胜的颜色。</p>
+<p><strong>分析</strong> 区间 DP。</p>
+<hr>
+<p>272 Evacuation plan</p>
+<p><strong>题意</strong> 给 $1\le N\le 10^4$ 个点和 $1\le M\le 10^5$ 条边的无向图，起点集合 $A$ 以及终点集合 $B$，保证 $A∩B=\empty$。现要找出若干等长路径使得尽可能多的点从 $A$ 走到 $B$，需满足：1. 路径长度等于 $\min\{dist(a, b)|a\in A, b\in B\}$；2. 任意两条路径不能存在交点。<del>求最多的点数以及路径长度，并输出一种路径方案。</del></p>
+<p>随便构造一种方案，使得再也找不到一条从 A 到 B 的路径（不是找一个最优的方案）。</p>
+<p><strong>分析</strong> BFS+DFS。</p>
+<hr>
+<p>271 Book Pile</p>
 <p><strong>题意</strong> 已知有 $0\le N\le 40000$ 个元素的栈，进行 $0\le M\le 10^5$ 次操作：1. 栈顶添加一新元素；2. 将栈顶 $0\le K\le 40000$ 个元素翻转，其中 $K$ 是常数。输出所有操作后的栈元素顺序。</p>
 <p><strong>分析</strong> 伸展树可做，但是大材小用了。操作上只有添加新元素且 $K$ 为常数，一旦栈元素数量超过 $K$，除栈顶 $K$ 个元素外其余元素已经固定了，这部分元素写入固定的栈中即可。而栈顶 $K$ 个元素可能发生多次翻转，使用双端队列可以方便维护往“栈顶”添加数据。</p>
 <hr>
@@ -933,42 +963,6 @@ top:50vh;
     
     
     
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
     <div class="total-and-search">
         <div class="total-archive">
         Total : 25
@@ -1119,12 +1113,12 @@ top:50vh;
     
     
         <li class="archive-post-item">
-            <span class="archive-post-date">07/19</span><a class="archive-post-title" href= "../../../../2018/07/19/The Binding of Isaac Afterbirth+总结/" >The Binding of Isaac:Afterbirth+总结</a>
+            <span class="archive-post-date">07/19</span><a class="archive-post-title" href= "../../../../2018/07/19/The Binding of Isaac Afterbirth+总结-ChenMingqin.work/" >The Binding of Isaac:Afterbirth+总结</a>
         </li>
     
     
         <li class="archive-post-item">
-            <span class="archive-post-date">07/19</span><a class="archive-post-title" href= "../../../../2018/07/19/The Binding of Isaac Afterbirth+总结-ChenMingqin.work/" >The Binding of Isaac:Afterbirth+总结</a>
+            <span class="archive-post-date">07/19</span><a class="archive-post-title" href= "../../../../2018/07/19/The Binding of Isaac Afterbirth+总结/" >The Binding of Isaac:Afterbirth+总结</a>
         </li>
     
     
@@ -1154,13 +1148,13 @@ top:50vh;
     
         <span class="sidebar-tag-name" data-tags="贪心"><span class="iconfont-archer">&#xe606;</span>贪心</span>
     
+        <span class="sidebar-tag-name" data-tags="斜率优化"><span class="iconfont-archer">&#xe606;</span>斜率优化</span>
+    
         <span class="sidebar-tag-name" data-tags="vim"><span class="iconfont-archer">&#xe606;</span>vim</span>
     
         <span class="sidebar-tag-name" data-tags="git bash"><span class="iconfont-archer">&#xe606;</span>git bash</span>
     
         <span class="sidebar-tag-name" data-tags="polya"><span class="iconfont-archer">&#xe606;</span>polya</span>
-    
-        <span class="sidebar-tag-name" data-tags="斜率优化"><span class="iconfont-archer">&#xe606;</span>斜率优化</span>
     
     </div>
     <div class="iconfont-archer sidebar-tags-empty">&#xe678;</div>

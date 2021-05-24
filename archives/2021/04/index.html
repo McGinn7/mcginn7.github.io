@@ -351,12 +351,9 @@
                 <span>SGU-253-300</span>
         </a>
         <div class="abstract-content">
-            271 Book Pile
-题意 已知有 $0\le N\le 40000$ 个元素的栈，进行 $0\le M\le 10^5$ 次操作：1. 栈顶添加一新元素；2. 将栈顶 $0\le K\le 40000$ 个元素翻转，其中 $K$ 是常数。输出所有操作后的栈元素顺序。
-分析 伸展树可做，但是大材小用了。操作上只有添加新元素且 $K$ 为常数，一旦栈元素数量超过 $K$，除栈顶 $K$ 个元素外其余元素已经固定了，这部分元素写入固定的栈中即可。而栈顶 $K$ 个元素可能发生多次翻转，使用双端队列可以方便维护往“栈顶”添加数据。
-
-270 Thimbles
-题意 给定 $2\le N\...
+            278 Fuel
+题意 给定 $1\le N\le 75000$ 种燃油，每种燃油单位质量下体积为 $a_i$, 成本 $b_i$ 和强度 $c_i$，其中 $0\le a_i, b_i, c_i\le 100$。已知汽车的油箱可容纳 $1\le A\le 1000$ 体积的燃油以及成本限制 $1\le B\le 10000$，在允许任意混合燃油的情况下，求混合燃油的最大强度。
+分析 假设有 2 种燃油 $(a_i, b_i, c_i), (a_j, b_j, c_j)$，混合后可以得到 $\forall w\in [0, 1], a=wa_i+(1-w)a_j, b=wb_i+(1-w...
         </div>
         <div class="abstract-post-meta">
             <!-- date  -->
@@ -459,42 +456,6 @@
     <div class="sidebar-content sidebar-content-show-archive">
           <div class="sidebar-panel-archives">
     <!-- 在ejs中将archive按照时间排序 -->
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
     
     
     
@@ -942,12 +903,12 @@
     
     
         <li class="archive-post-item">
-            <span class="archive-post-date">07/19</span><a class="archive-post-title" href= "../../../../2018/07/19/The Binding of Isaac Afterbirth+总结/" >The Binding of Isaac:Afterbirth+总结</a>
+            <span class="archive-post-date">07/19</span><a class="archive-post-title" href= "../../../../2018/07/19/The Binding of Isaac Afterbirth+总结-ChenMingqin.work/" >The Binding of Isaac:Afterbirth+总结</a>
         </li>
     
     
         <li class="archive-post-item">
-            <span class="archive-post-date">07/19</span><a class="archive-post-title" href= "../../../../2018/07/19/The Binding of Isaac Afterbirth+总结-ChenMingqin.work/" >The Binding of Isaac:Afterbirth+总结</a>
+            <span class="archive-post-date">07/19</span><a class="archive-post-title" href= "../../../../2018/07/19/The Binding of Isaac Afterbirth+总结/" >The Binding of Isaac:Afterbirth+总结</a>
         </li>
     
     
@@ -977,13 +938,13 @@
     
         <span class="sidebar-tag-name" data-tags="贪心"><span class="iconfont-archer">&#xe606;</span>贪心</span>
     
+        <span class="sidebar-tag-name" data-tags="斜率优化"><span class="iconfont-archer">&#xe606;</span>斜率优化</span>
+    
         <span class="sidebar-tag-name" data-tags="vim"><span class="iconfont-archer">&#xe606;</span>vim</span>
     
         <span class="sidebar-tag-name" data-tags="git bash"><span class="iconfont-archer">&#xe606;</span>git bash</span>
     
         <span class="sidebar-tag-name" data-tags="polya"><span class="iconfont-archer">&#xe606;</span>polya</span>
-    
-        <span class="sidebar-tag-name" data-tags="斜率优化"><span class="iconfont-archer">&#xe606;</span>斜率优化</span>
     
     </div>
     <div class="iconfont-archer sidebar-tags-empty">&#xe678;</div>
