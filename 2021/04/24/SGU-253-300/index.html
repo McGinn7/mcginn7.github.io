@@ -266,7 +266,7 @@ height:50vh;
                 
                 
                     <div class="post-intro-read">
-                        <span>字数统计: <span class="post-count word-count">2.7k</span>阅读时长: <span class="post-count reading-time">10 min</span></span>
+                        <span>字数统计: <span class="post-count word-count">3.3k</span>阅读时长: <span class="post-count reading-time">12 min</span></span>
                     </div>
                 
                 <div class="post-intro-meta">
@@ -395,7 +395,29 @@ height:50vh;
         <div class="container container-unloaded">
             <main class="main post-page">
     <article class="article-entry">
-        <p>278 Fuel</p>
+        <p>283 Mechanics</p>
+<p><strong>题意</strong></p>
+<p><strong>分析</strong></p>
+<hr>
+<p>282 Isomorphism</p>
+<p><strong>题意</strong> 给 $1\le N\le 53$ 个点的完全图，每条边染上 $1\le M\le 1000$ 种颜色中的一种。如果一张图完全图通过重标号点构成另一张图，定义这两张图同构。求本质不同的异构图数量，结果对 $P$ 取模且 $P$ 为素数。</p>
+<p><strong>分析</strong></p>
+<hr>
+<p>281 Championship</p>
+<p><strong>题意</strong> 有 $1\le N\le 50000$ 只队伍参加了 2 场比赛且已知各比赛的排名，现要依据 2 场比赛排名生成最终排名：如果前 $M$ 支队伍在 2 场比赛中是<strong>相同集合</strong>，则最终排名的前 $M$ 支队伍也是该集合。如果无法确定队伍之间的相对排名，则按照队伍名称字典序排序。输出最终排名结果。</p>
+<p><strong>分析</strong> 模拟。</p>
+<hr>
+<p>280 Trade centers</p>
+<p><strong>题意</strong> 给 $1\le N\le 3\times 10^4$ 个点的树，在树上标记若干点使得树上所有点到最近标记点的距离不超过 $1\le K\le 100$，求最少需要标记点的数量。</p>
+<p><strong>分析</strong> 进阶问题 - HDU 5290 Bombing plan。$up(u, i)$ 表示点 u 向上覆盖 $i$ 步的最优值，$dw(u, i)$ 表示点 u 需依赖父节点向下覆盖 $i$ 步的最优值。 </p>
+<hr>
+<p>279 Bipermutations</p>
+<p><strong>题意</strong> 有 $2N,1\le N\le 1000$ 个对象 $1, 1’, 2,2’,\dots, n, n’$，已知存在<strong>偏序</strong>关系：$\forall i\in[1, n], i’\prec i$; $i\prec j \Leftrightarrow i’\prec j’$。定义 $b_{ij}= j’$ if $j &lt;i$ 否则 $b_{ij} = j$ 以及 $a(i)$ 等于 $i\prec b_{ij}$ 的数量，已知序列 $a(1),\dots, a(n)$，判断是否存在满足条件的偏序序列，若存在输出任一方案。 </p>
+<p><strong>分析</strong> 假设<strong>从大到小</strong>放置，经过模拟可以发现几个性质：(1)放置对象 $i$ 时，只会影响 $j&lt;i$ 的 $a(j)$；(2)放置 $i’$ 时会影响 $j&gt;i$ 的 $a(j)$；(3)放置 $i$ 之后才能放置 $i’$。</p>
+<p>首先每次挑选 $a(i)=0$ 的对象 $i$ 放置，如果存在多个 $a(i)=0$ 的对象 $i$，显然选取下标最小的对象 $i$，否则根据性质 (1) 会导致下标最小的对象 $i$ 的 $a(i)$ 发生变化。</p>
+<p>当找不到 $a(i)=0$ 时，<strong>依次</strong>放置已经放置 $i$ 的 $i’$——依次是指 $i\prec j \Leftrightarrow i’\prec j’$ 相对顺序不能发生变化，然后修改 $j&gt;i$ 的 $a(j)$。</p>
+<hr>
+<p>278 Fuel</p>
 <p><strong>题意</strong> 给定 $1\le N\le 75000$ 种燃油，每种燃油<strong>单位质量</strong>下体积为 $a_i$, 成本 $b_i$ 和强度 $c_i$，其中 $0\le a_i, b_i, c_i\le 100$。已知汽车的油箱可容纳 $1\le A\le 1000$ 体积的燃油以及成本限制 $1\le B\le 10000$，在允许任意混合燃油的情况下，求混合燃油的最大强度。</p>
 <p><strong>分析</strong> 假设有 2 种燃油 $(a_i, b_i, c_i), (a_j, b_j, c_j)$，混合后可以得到 $\forall w\in [0, 1], a=wa_i+(1-w)a_j, b=wb_i+(1-w)b_j, c=wc_i+(1-w)c_j$，最终从一种比例的混合燃油中取得最大强度，即 $ans = c\times min\{\frac Aa,\frac Bb\}$。从几何角度看该问题，2 种燃油时混合燃油候选为一条线段，多种燃油时候选为凸多面体。</p>
 <p>记 $x_i = \frac {c_i}{a_i}, y_i=\frac{c_i}{b_i}$，原问题可以转化成 $\max z,z\le Ax_i, z\le By_i$。通过直线 $y=\frac AB x$ 划分 $z$ 上限分别为 $Ax_i$ 和 $By_i$ 的情况，本质上都是线性规划问题，最优解必然在 extreme point（端点）上。</p>
@@ -1113,12 +1135,12 @@ top:50vh;
     
     
         <li class="archive-post-item">
-            <span class="archive-post-date">07/19</span><a class="archive-post-title" href= "../../../../2018/07/19/The Binding of Isaac Afterbirth+总结-ChenMingqin.work/" >The Binding of Isaac:Afterbirth+总结</a>
+            <span class="archive-post-date">07/19</span><a class="archive-post-title" href= "../../../../2018/07/19/The Binding of Isaac Afterbirth+总结/" >The Binding of Isaac:Afterbirth+总结</a>
         </li>
     
     
         <li class="archive-post-item">
-            <span class="archive-post-date">07/19</span><a class="archive-post-title" href= "../../../../2018/07/19/The Binding of Isaac Afterbirth+总结/" >The Binding of Isaac:Afterbirth+总结</a>
+            <span class="archive-post-date">07/19</span><a class="archive-post-title" href= "../../../../2018/07/19/The Binding of Isaac Afterbirth+总结-ChenMingqin.work/" >The Binding of Isaac:Afterbirth+总结</a>
         </li>
     
     
