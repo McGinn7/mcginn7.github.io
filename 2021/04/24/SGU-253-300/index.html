@@ -266,7 +266,7 @@ height:50vh;
                 
                 
                     <div class="post-intro-read">
-                        <span>字数统计: <span class="post-count word-count">3.3k</span>阅读时长: <span class="post-count reading-time">12 min</span></span>
+                        <span>字数统计: <span class="post-count word-count">4k</span>阅读时长: <span class="post-count reading-time">15 min</span></span>
                     </div>
                 
                 <div class="post-intro-meta">
@@ -401,7 +401,22 @@ height:50vh;
 <hr>
 <p>282 Isomorphism</p>
 <p><strong>题意</strong> 给 $1\le N\le 53$ 个点的完全图，每条边染上 $1\le M\le 1000$ 种颜色中的一种。如果一张图完全图通过重标号点构成另一张图，定义这两张图同构。求本质不同的异构图数量，结果对 $P$ 取模且 $P$ 为素数。</p>
-<p><strong>分析</strong></p>
+<p><strong>分析</strong> 该问题本质上是在求边的置换然后使用 polya 定理计数，而边置换是通过点置换得到的，因此从点置换入手。</p>
+<p>假设有一条边 $(u, v)$，分点 $u, v$ 是否在同一<em>点循环置换</em>中考虑。</p>
+<ol>
+<li><p>若点 $u, v$ 在相同 <em>k-循环</em>中，即循环中的元素为 $k$ 个。显然，边 $(u, v)$ 所在的<strong>边循环置换</strong>同样有 $k$ 个元素，而 $k$ 个点的子图共有 $C_k^2$ 条边，因此<strong>边循环个数</strong>为 $\frac {C_k^2}{k}=\frac{k-1}{2}$。</p>
+<p>注意，当 $k$ 为偶数时且 $u,v$ 在点循环置换中间隔 $\frac k2$ 时，边 $(u, v)$ 所在的边循环置换中仅有 $\frac k2$ 个元素。因为经过 $\frac k 2$ 次置换后，边 $(u, v)$ 重复出现了。将这种边循环单独考虑，此时边循环个数为 $\frac {C_k^2-\frac k2}{k}+1=\frac k 2$。</p>
+<p>综上所述，若点 $u, v$ 在相同点循环置换中，相应的边循环个数为 $\lfloor \frac k 2\rfloor$。 </p>
+</li>
+<li><p>若点 $u, v$ 不在相同点循环中时，假设两个点循环的元素个数分别为 $k_1, k_2$，那么边 $(u, v)$ 所在的边循环置换有 $LCM(k_1, k_2)$ 个元素以及总共有 $k_1k_2$ 条边，因此边循环个数为 $\frac {k_1k_2}{LCM(k_1, k_2)}=GCD(k_1,k_2)$。</p>
+</li>
+</ol>
+<p>在已知边循环个数 $(f)$ 的前提下，根据 polya 计数本质不同的染色方案数为 $M^{(f)}$。</p>
+<p>剩下的问题便是枚举点置换方案，然后计算相应的边循环个数即可。在枚举点置换方案时，只关心各个循环的大小而不是具体元素，问题转化成将 $N$ 拆解成 $k_i$ 使得 $\sum k_i=N$ 且 $k_i\le k_{i+1}$，$k_i$ 表示第 $i$ 个点循环的元素个数。</p>
+<p>在得到各个点循环大小后，通过排列组合将具体元素放进循环中，得到本质不同的点置换方案即可。首先，假设 $k_i$ 两两不同，则点分配方案数为 $C_N^{k_1}C_{N-k_1}^{k_2}\dots=\frac {N!}{k_1!k_2!\dots k_m!}$。如果存在若干个相同的 $k_i$，即存在相同大小的点循环，这些循环本身没有先后之分，但是前述枚举会重复统计。将点置换方案重新记为大小为 $x_i$ 的循环有 $c_i$ 个，则点分配方案数为 $\frac {N!}{\prod (x_i!)^{c_i}c_i!}$。此外，一个循环中的元素是有顺序的，大小为 $k$ 的循环有 $(k-1)!$ 种排列方案：循环本质上是一个环，将第 $k$ 个元素插入有 $k-1$ 个元素的环时，有 $k-1$ 个位置可以插入，利用归纳法得到 $(k-1)!$ 种排列。 最终点置换的方案数为 $\frac{N!}{\prod x_i^{c_i}c_i!}$。</p>
+<p>利用 burnside 定理，不等价着色方案数为</p>
+<script type="math/tex; mode=display">
+\frac {1}{N!}\sum \frac{N!}{x_i^{c_i}c_i!}M^{(f)}</script><p><strong>参考</strong> <a href="https://blog.csdn.net/wang3312362136/article/details/79489737" target="_blank" rel="noopener">SGU 282 Isomorphism</a></p>
 <hr>
 <p>281 Championship</p>
 <p><strong>题意</strong> 有 $1\le N\le 50000$ 只队伍参加了 2 场比赛且已知各比赛的排名，现要依据 2 场比赛排名生成最终排名：如果前 $M$ 支队伍在 2 场比赛中是<strong>相同集合</strong>，则最终排名的前 $M$ 支队伍也是该集合。如果无法确定队伍之间的相对排名，则按照队伍名称字典序排序。输出最终排名结果。</p>
@@ -987,12 +1002,6 @@ top:50vh;
     
     
     
-    
-    
-    
-    
-    
-    
     <div class="total-and-search">
         <div class="total-archive">
         Total : 25
@@ -1143,12 +1152,12 @@ top:50vh;
     
     
         <li class="archive-post-item">
-            <span class="archive-post-date">07/19</span><a class="archive-post-title" href= "../../../../2018/07/19/The Binding of Isaac Afterbirth+总结-ChenMingqin.work/" >The Binding of Isaac:Afterbirth+总结</a>
+            <span class="archive-post-date">07/19</span><a class="archive-post-title" href= "../../../../2018/07/19/The Binding of Isaac Afterbirth+总结/" >The Binding of Isaac:Afterbirth+总结</a>
         </li>
     
     
         <li class="archive-post-item">
-            <span class="archive-post-date">07/19</span><a class="archive-post-title" href= "../../../../2018/07/19/The Binding of Isaac Afterbirth+总结/" >The Binding of Isaac:Afterbirth+总结</a>
+            <span class="archive-post-date">07/19</span><a class="archive-post-title" href= "../../../../2018/07/19/The Binding of Isaac Afterbirth+总结-ChenMingqin.work/" >The Binding of Isaac:Afterbirth+总结</a>
         </li>
     
     
@@ -1170,21 +1179,21 @@ top:50vh;
     
         <span class="sidebar-tag-name" data-tags="AC自动机"><span class="iconfont-archer">&#xe606;</span>AC自动机</span>
     
-        <span class="sidebar-tag-name" data-tags="KMP"><span class="iconfont-archer">&#xe606;</span>KMP</span>
-    
         <span class="sidebar-tag-name" data-tags="domjudge"><span class="iconfont-archer">&#xe606;</span>domjudge</span>
+    
+        <span class="sidebar-tag-name" data-tags="KMP"><span class="iconfont-archer">&#xe606;</span>KMP</span>
     
         <span class="sidebar-tag-name" data-tags="ICPC"><span class="iconfont-archer">&#xe606;</span>ICPC</span>
     
         <span class="sidebar-tag-name" data-tags="贪心"><span class="iconfont-archer">&#xe606;</span>贪心</span>
-    
-        <span class="sidebar-tag-name" data-tags="polya"><span class="iconfont-archer">&#xe606;</span>polya</span>
     
         <span class="sidebar-tag-name" data-tags="vim"><span class="iconfont-archer">&#xe606;</span>vim</span>
     
         <span class="sidebar-tag-name" data-tags="git bash"><span class="iconfont-archer">&#xe606;</span>git bash</span>
     
         <span class="sidebar-tag-name" data-tags="斜率优化"><span class="iconfont-archer">&#xe606;</span>斜率优化</span>
+    
+        <span class="sidebar-tag-name" data-tags="polya"><span class="iconfont-archer">&#xe606;</span>polya</span>
     
     </div>
     <div class="iconfont-archer sidebar-tags-empty">&#xe678;</div>
