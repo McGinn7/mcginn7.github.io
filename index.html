@@ -364,20 +364,12 @@ height:50vh;
                 <span>SGU-253-300</span>
         </a>
         <div class="abstract-content">
-            284 Grammar
-题意 
+            286 Ancient decoration
+题意 $N$ 个点的无向图，已知每个点的度数为 $K$ 且 $K$ 为偶数。要求给边染色使得每个点恰好在 2 条染色边上，判断是否存在可行方案，若存在则输出任一方案。
 分析
 
-283 Mechanics
-题意
-分析
-
-282 Isomorphism
-题意 给 $1\le N\le 53$ 个点的完全图，每条边染上 $1\le M\le 1000$ 种颜色中的一种。如果一张图完全图通过重标号点构成另一张图，定义这两张图同构。求本质不同的异构图数量，结果对 $P$ 取模且 $P$ 为素数。
-分析 该问题本质上是在求边的置换然后使用 polya 定理计数，而边置换是通过点置换得到的，因此从点置换入手。
-假设有一条边 $(u, v)$，分点 $u, v$ 是否在同一点循环置换中考虑。
-
-若点 $u, v$ 在相同 k-循环中，即...
+285 What? Where? When?
+题意 已知有 13 个问题，除第 13 个问题有 $1\le N\le 1000$ 个候选外，1 至 12 号问题仅有一个候选。每次随机从 1 至 13 个问题中随机抽取一个问题，若答题者回答正确则 +1 分否则提问者 +1 分，答题者或提问者率先取得 6 分则游戏结束。给定答题者对于所有问题回答正确的概率，求所有可能局面（...
         </div>
         <div class="abstract-post-meta">
             <!-- date  -->
@@ -1164,6 +1156,8 @@ AC 代码库
     
     
     
+    
+    
     <div class="total-and-search">
         <div class="total-archive">
         Total : 25
@@ -1353,9 +1347,9 @@ AC 代码库
     
         <span class="sidebar-tag-name" data-tags="git bash"><span class="iconfont-archer">&#xe606;</span>git bash</span>
     
-        <span class="sidebar-tag-name" data-tags="polya"><span class="iconfont-archer">&#xe606;</span>polya</span>
-    
         <span class="sidebar-tag-name" data-tags="斜率优化"><span class="iconfont-archer">&#xe606;</span>斜率优化</span>
+    
+        <span class="sidebar-tag-name" data-tags="polya"><span class="iconfont-archer">&#xe606;</span>polya</span>
     
     </div>
     <div class="iconfont-archer sidebar-tags-empty">&#xe678;</div>
@@ -1421,9 +1415,26 @@ jsonContent:
     <!-- CNZZ  -->
     
     </div>
-    <!-- async load share.js --><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+    <!-- async load share.js -->
      
-    </body>
+    <script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+        tex2jax: {
+            inlineMath: [ ["$","$"], ["\\(","\\)"] ],
+            skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'],
+            processEscapes: true
+        }
+    });
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax();
+        for (var i = 0; i < all.length; ++i)
+            all[i].SourceElement().parentNode.className += ' has-jax';
+    });
+</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML"></script><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+
+
+</body>
 </html>
 
 
