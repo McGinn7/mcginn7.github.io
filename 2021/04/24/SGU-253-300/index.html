@@ -266,7 +266,7 @@ height:50vh;
                 
                 
                     <div class="post-intro-read">
-                        <span>字数统计: <span class="post-count word-count">4.3k</span>阅读时长: <span class="post-count reading-time">17 min</span></span>
+                        <span>字数统计: <span class="post-count word-count">4.8k</span>阅读时长: <span class="post-count reading-time">19 min</span></span>
                     </div>
                 
                 <div class="post-intro-meta">
@@ -395,9 +395,34 @@ height:50vh;
         <div class="container container-unloaded">
             <main class="main post-page">
     <article class="article-entry">
-        <p>286 Ancient decoration</p>
+        <p>290 Defend the Milky Way</p>
+<p><strong>题意</strong> 给三维空间中 $1\le N\le 100$ 个点，求在凸包顶点/平面上的点。</p>
+<p><strong>分析</strong> 计算几何。</p>
+<hr>
+<p>289 Challenging Tic-Tac-Toe</p>
+<p><strong>题意</strong> OOXX 游戏。给定一个初始局面，假设玩家都玩得很好的情况下，判断先手必胜/必败/平局/非法。非法是在游戏过程中不可能出现的局面。</p>
+<p><strong>分析</strong> 模拟。总共局面数为 $3^9=19683$ 种。</p>
+<hr>
+<p>288 Best Tournament Schedule</p>
+<p><strong>题意</strong> 有 $1\le N\le 2005$ 支队伍参加巡回赛，所有队伍两两之间都需安排一次比赛，要求同一巡回赛中每支队伍最多只参加一场比赛。求最少巡回赛轮数，并输出任一方案。</p>
+<p><strong>分析</strong> 构造。</p>
+<p>当 $N$ 为偶数时，巡回赛最少轮数为 $C(N,2)/(N/2)=N-1$。$N$ 为偶数的构造方案如下：</p>
+<ol>
+<li>前 $[1, N-1]$ 行，$f(i, j) = (i - 1 + j - 1)\pmod {N-1}$；</li>
+<li>第 $N$ 行，$f(N, j)=(N-1+2j)\pmod {N-1}$ 。</li>
+</ol>
+<p>当 $N$ 为奇数时，巡回赛最少轮数为 $C(N,2)/({N-1}/2)=N$。添加一支虚拟队伍转化成队伍数为偶数的情况构造。</p>
+<p><strong>代码</strong> <a href="https://github.com/McGinn7/Template-for-ICPC/blob/master/SGU/288.cpp" target="_blank" rel="noopener">sgu 288</a></p>
+<hr>
+<p>287 Amusing Qc Machine</p>
+<p><strong>题意</strong> 在 $[1, q]$ 中猜一个秘密数字，程序每次返回猜测值和秘密值的大小/相等关系。但是存在 $0\le c\le 10^6$ 延迟：第 $i$ 次猜测结果在第 $i+c$ 次猜测后返回。求最坏情况下猜中秘密数字的猜测次数。</p>
+<p><strong>分析</strong> $f(i)$ 表示 $i$ 轮交互后猜测值的数量。因为延迟 $c$ 存在，第 $i$ 次猜测只能基于前 $i-c-1$ 轮交互的已知结果。前 $i-c-1$ 轮共有 $f(i-c-1)$ 个值，划分成 $f(i-c-1) + 1$ 个区间，第 $i$ 轮猜测值必然是在这些区间中，因此共有 $f(i-c-1)+1$ 枚举值。</p>
+<p>则转移方程为 $f(i)=f(i-1)+f(i-c-1)+1$。 </p>
+<hr>
+<p>286 Ancient decoration</p>
 <p><strong>题意</strong> $N$ 个点的无向图，已知每个点的度数为 $K$ 且 $K$ 为<strong>偶数</strong>。要求给边染色使得每个点<strong>恰好</strong>在 2 条染色边上，判断是否存在可行方案，若存在则输出任一方案。</p>
 <p><strong>分析</strong></p>
+<p><strong>Tips</strong> 欧拉回路。</p>
 <hr>
 <p>285 What? Where? When?</p>
 <p><strong>题意</strong> 已知有 13 个问题，除第 13 个问题有 $1\le N\le 1000$ 个候选外，1 至 12 号问题仅有一个候选。每次随机从 1 至 13 个问题中随机抽取一个问题，若答题者回答正确则 +1 分否则提问者 +1 分，答题者或提问者率先取得 6 分则游戏结束。给定答题者对于所有问题回答正确的概率，求所有可能局面（’6:0’, ‘6:1’, ‘6:2’, ‘6:3’, ‘6:4’, ‘6:5’, ‘5:6’, ‘4:6’, ‘3:6’, ‘2:6’, ‘1:6’, ‘0:6’）的概率。</p>
@@ -1018,10 +1043,6 @@ top:50vh;
     
     
     
-    
-    
-    
-    
     <div class="total-and-search">
         <div class="total-archive">
         Total : 25
@@ -1199,9 +1220,9 @@ top:50vh;
     
         <span class="sidebar-tag-name" data-tags="AC自动机"><span class="iconfont-archer">&#xe606;</span>AC自动机</span>
     
-        <span class="sidebar-tag-name" data-tags="KMP"><span class="iconfont-archer">&#xe606;</span>KMP</span>
-    
         <span class="sidebar-tag-name" data-tags="domjudge"><span class="iconfont-archer">&#xe606;</span>domjudge</span>
+    
+        <span class="sidebar-tag-name" data-tags="KMP"><span class="iconfont-archer">&#xe606;</span>KMP</span>
     
         <span class="sidebar-tag-name" data-tags="ICPC"><span class="iconfont-archer">&#xe606;</span>ICPC</span>
     
