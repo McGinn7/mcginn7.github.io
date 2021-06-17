@@ -351,16 +351,11 @@
                 <span>SGU-253-300</span>
         </a>
         <div class="abstract-content">
-            290 Defend the Milky Way
-题意 给三维空间中 $1\le N\le 100$ 个点，求在凸包顶点/平面上的点。
-分析 计算几何。
+            293 Game with Q an C
+题意 有长度为 $2n-1(1\le n\le 2005)$ 且仅包含 ‘Q’, ‘C’ 俩字符的字符串，按顺序逐个添加字符构造新字符串，每次添加一个字符后可选择性地交换 2 个位置上的字符。要求当新字符串长度为奇数时是回文串，判断是否可行，若可行则输出任一方案。
+分析 构造。考虑一次性添加 2 个字符，维护 $\overline Q \overline C x\overline C \overline Q$ 格式，其中 $x$ 表示回文中心，$\overline Q$ 表示连续字符 Q，分 CC, CQ, QC, QQ 四种情况考虑即可。
 
-289 Challenging Tic-Tac-Toe
-题意 OOXX 游戏。给定一个初始局面，假设玩家都玩得很好的情况下，判断先手必胜/必败/平局/非法。非法是在游戏过程中不可能出现的局面。
-分析 模拟。总共局面数为 $3^9=19683$ 种。
-
-288 Best Tournament Schedule
-题意 有 $1\le N\le 2005$ 支队伍参加巡回赛，所有队伍两两之间都需安排一次比赛，要求同一巡回赛中每支队伍最多只参...
+2...
         </div>
         <div class="abstract-post-meta">
             <!-- date  -->
@@ -766,9 +761,24 @@
     
     
     
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
     <div class="total-and-search">
         <div class="total-archive">
-        Total : 25
+        Total : 26
         </div>
         <!-- search  -->
         
@@ -781,6 +791,11 @@
     
     <div class="archive-year"> 2021 </div>
     <ul class="year-list">
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">06/13</span><a class="archive-post-title" href= "../../../06/13/Deep-Retrieval/" >Deep Retrieval</a>
+        </li>
     
     
         <li class="archive-post-item">
@@ -943,21 +958,23 @@
     
         <span class="sidebar-tag-name" data-tags="AC自动机"><span class="iconfont-archer">&#xe606;</span>AC自动机</span>
     
-        <span class="sidebar-tag-name" data-tags="domjudge"><span class="iconfont-archer">&#xe606;</span>domjudge</span>
+        <span class="sidebar-tag-name" data-tags="DR"><span class="iconfont-archer">&#xe606;</span>DR</span>
     
         <span class="sidebar-tag-name" data-tags="KMP"><span class="iconfont-archer">&#xe606;</span>KMP</span>
+    
+        <span class="sidebar-tag-name" data-tags="domjudge"><span class="iconfont-archer">&#xe606;</span>domjudge</span>
     
         <span class="sidebar-tag-name" data-tags="ICPC"><span class="iconfont-archer">&#xe606;</span>ICPC</span>
     
         <span class="sidebar-tag-name" data-tags="贪心"><span class="iconfont-archer">&#xe606;</span>贪心</span>
+    
+        <span class="sidebar-tag-name" data-tags="polya"><span class="iconfont-archer">&#xe606;</span>polya</span>
     
         <span class="sidebar-tag-name" data-tags="vim"><span class="iconfont-archer">&#xe606;</span>vim</span>
     
         <span class="sidebar-tag-name" data-tags="git bash"><span class="iconfont-archer">&#xe606;</span>git bash</span>
     
         <span class="sidebar-tag-name" data-tags="斜率优化"><span class="iconfont-archer">&#xe606;</span>斜率优化</span>
-    
-        <span class="sidebar-tag-name" data-tags="polya"><span class="iconfont-archer">&#xe606;</span>polya</span>
     
     </div>
     <div class="iconfont-archer sidebar-tags-empty">&#xe678;</div>

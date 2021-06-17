@@ -266,7 +266,7 @@ height:50vh;
                 
                 
                     <div class="post-intro-read">
-                        <span>字数统计: <span class="post-count word-count">4.8k</span>阅读时长: <span class="post-count reading-time">19 min</span></span>
+                        <span>字数统计: <span class="post-count word-count">5.2k</span>阅读时长: <span class="post-count reading-time">20 min</span></span>
                     </div>
                 
                 <div class="post-intro-meta">
@@ -395,7 +395,19 @@ height:50vh;
         <div class="container container-unloaded">
             <main class="main post-page">
     <article class="article-entry">
-        <p>290 Defend the Milky Way</p>
+        <p>293 Game with Q an C</p>
+<p><strong>题意</strong> 有长度为 $2n-1(1\le n\le 2005)$ 且仅包含 ‘Q’, ‘C’ 俩字符的字符串，按顺序逐个添加字符构造新字符串，每次添加一个字符后可<strong>选择性</strong>地交换 2 个位置上的字符。要求当新字符串长度为<strong>奇数</strong>时是回文串，判断是否可行，若可行则输出任一方案。</p>
+<p><strong>分析</strong> 构造。考虑一次性添加 2 个字符，维护 $\overline Q \overline C x\overline C \overline Q$ 格式，其中 $x$ 表示回文中心，$\overline Q$ 表示连续字符 Q，分 CC, CQ, QC, QQ 四种情况考虑即可。</p>
+<hr>
+<p>292 Field for the Cemetery</p>
+<p><strong>题意</strong> 在 $q\times c(0\le q, c\le 10^{1000})$ 的棋盘上最多能放置多少个 $n\times 1(1\le n\le 10^{1000})$ 个长方形。</p>
+<p><strong>分析</strong> 模拟。</p>
+<hr>
+<p>291 Evolution</p>
+<p><strong>题意</strong> 在 $q\times c(1\le q,c\le 1000)$ 大小的网格图上有 $1\le n\le 22204$ 种细菌族，第 $i$ 种细菌族初始位置为 $(x_i, y_i)$ 且第 $i$ 秒才开始分裂。细菌族每秒钟从 $(x, y)$ 向 $(x-1, y),(x+1,y),(x,y-1),(x,y+1)$ 四个方向分裂：不会向已有细菌格子的方向分裂。求 $0\le t\le 10^9$ 秒后第 $i$ 中细菌族占领的格子数量。</p>
+<p><strong>分析</strong> 模拟。BFS。</p>
+<hr>
+<p>290 Defend the Milky Way</p>
 <p><strong>题意</strong> 给三维空间中 $1\le N\le 100$ 个点，求在凸包顶点/平面上的点。</p>
 <p><strong>分析</strong> 计算几何。</p>
 <hr>
@@ -590,6 +602,11 @@ height:50vh;
     <!-- paginator  -->
     <ul class="post-paginator">
         <li class="next">
+            
+                <div class="nextSlogan">Next Post</div>
+                <a href= "../../../06/13/Deep-Retrieval/" title= "Deep Retrieval">
+                    <div class="nextTitle">Deep Retrieval</div>
+                </a>
             
         </li>
         <li class="previous">
@@ -1043,9 +1060,24 @@ top:50vh;
     
     
     
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
     <div class="total-and-search">
         <div class="total-archive">
-        Total : 25
+        Total : 26
         </div>
         <!-- search  -->
         
@@ -1058,6 +1090,11 @@ top:50vh;
     
     <div class="archive-year"> 2021 </div>
     <ul class="year-list">
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">06/13</span><a class="archive-post-title" href= "../../../06/13/Deep-Retrieval/" >Deep Retrieval</a>
+        </li>
     
     
         <li class="archive-post-item">
@@ -1220,21 +1257,23 @@ top:50vh;
     
         <span class="sidebar-tag-name" data-tags="AC自动机"><span class="iconfont-archer">&#xe606;</span>AC自动机</span>
     
-        <span class="sidebar-tag-name" data-tags="domjudge"><span class="iconfont-archer">&#xe606;</span>domjudge</span>
+        <span class="sidebar-tag-name" data-tags="DR"><span class="iconfont-archer">&#xe606;</span>DR</span>
     
         <span class="sidebar-tag-name" data-tags="KMP"><span class="iconfont-archer">&#xe606;</span>KMP</span>
+    
+        <span class="sidebar-tag-name" data-tags="domjudge"><span class="iconfont-archer">&#xe606;</span>domjudge</span>
     
         <span class="sidebar-tag-name" data-tags="ICPC"><span class="iconfont-archer">&#xe606;</span>ICPC</span>
     
         <span class="sidebar-tag-name" data-tags="贪心"><span class="iconfont-archer">&#xe606;</span>贪心</span>
+    
+        <span class="sidebar-tag-name" data-tags="polya"><span class="iconfont-archer">&#xe606;</span>polya</span>
     
         <span class="sidebar-tag-name" data-tags="vim"><span class="iconfont-archer">&#xe606;</span>vim</span>
     
         <span class="sidebar-tag-name" data-tags="git bash"><span class="iconfont-archer">&#xe606;</span>git bash</span>
     
         <span class="sidebar-tag-name" data-tags="斜率优化"><span class="iconfont-archer">&#xe606;</span>斜率优化</span>
-    
-        <span class="sidebar-tag-name" data-tags="polya"><span class="iconfont-archer">&#xe606;</span>polya</span>
     
     </div>
     <div class="iconfont-archer sidebar-tags-empty">&#xe678;</div>
