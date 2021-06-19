@@ -266,7 +266,7 @@ height:50vh;
                 
                 
                     <div class="post-intro-read">
-                        <span>字数统计: <span class="post-count word-count">5.2k</span>阅读时长: <span class="post-count reading-time">20 min</span></span>
+                        <span>字数统计: <span class="post-count word-count">5.6k</span>阅读时长: <span class="post-count reading-time">22 min</span></span>
                     </div>
                 
                 <div class="post-intro-meta">
@@ -395,7 +395,41 @@ height:50vh;
         <div class="container container-unloaded">
             <main class="main post-page">
     <article class="article-entry">
-        <p>293 Game with Q an C</p>
+        <p>300 Train</p>
+<p><strong>题意</strong> 给定水平/垂直方向的火车轨道顶点顺序，在不发生碰撞的前提下，求火车的最大长度。轨道顶点数为 $1\le N\le 4000$，点坐标 $(x_i, y_i), |x_i|, |y_i|\le 10^4$。</p>
+<p><strong>分析</strong> 模拟。将点坐标离散化成 $N\times N$ 的网格图，记录当前火车所占据的线段以及车头/车尾坐标，模拟火车行进和碰撞。模拟过程中，记录火车的最大长度。</p>
+<hr>
+<p>299 Triangle</p>
+<p><strong>题意</strong> 有 $3\le N\le 1000$ 个大数 $1\le a_i\le 10^{500}$，找出 3 个数使之能构成三角形的边。</p>
+<p><strong>分析</strong> 模拟+大数。排序，取相邻的 3 个数判断即可。</p>
+<hr>
+<p>298 King Berl VI</p>
+<p><strong>题意</strong> $2\le N\le 10^4$ 个变量 $A_i$，$0\le M\le10^5$ 个约束：$A_i\ge A_j + C_k$。要求解 $|A_i|\le 10^4$，且最大化 $A_N-A_1$。判断是否有解，若有解输出任一方案。</p>
+<p><strong>分析</strong> </p>
+<p><strong>参考</strong> <a href="https://www.cnblogs.com/jffifa/archive/2012/05/12/2497072.html" target="_blank" rel="noopener">最短路、最长路与差分约束的最大解、最小解</a></p>
+<hr>
+<p>297 Fair-play</p>
+<p><strong>题意</strong> （简单题）</p>
+<p><strong>分析</strong> 模拟。</p>
+<hr>
+<p>296 Sasha vs. Kate</p>
+<p><strong>题意</strong> 给一大数 $1\le N\le 10^{1000}$，求从 $N$ 去掉 $0\le K\le 999$ 个数位后的最大值。</p>
+<p><strong>分析</strong> 贪心。</p>
+<hr>
+<p>295 Identifier Duplicated!</p>
+<p><strong>题意</strong> 给定一字符串，求长度介于$[q, c],1\le q\le c\le 63$ 等价的字符串数量。若一个字符串经过若干次操作转换成另一字符串，则这两个字符串等价。允许的操作有：</p>
+<ol>
+<li>使用相同的拉丁字符替换成俄文字符，反之亦然。</li>
+<li>改变单词之间的空格符数量，但不能完全删除。</li>
+<li>添加前导/尾部空格。</li>
+</ol>
+<p><strong>分析</strong> 模拟。</p>
+<hr>
+<p>294 He’s Circles</p>
+<p><strong>题意</strong> 使用 2 种颜色对长度为 $1\le N\le 2\times10^5$ 的项链染色，在旋转置换的条件下求本质不同的染色方案。</p>
+<p><strong>分析</strong> Polya+BigNumber。</p>
+<hr>
+<p>293 Game with Q an C</p>
 <p><strong>题意</strong> 有长度为 $2n-1(1\le n\le 2005)$ 且仅包含 ‘Q’, ‘C’ 俩字符的字符串，按顺序逐个添加字符构造新字符串，每次添加一个字符后可<strong>选择性</strong>地交换 2 个位置上的字符。要求当新字符串长度为<strong>奇数</strong>时是回文串，判断是否可行，若可行则输出任一方案。</p>
 <p><strong>分析</strong> 构造。考虑一次性添加 2 个字符，维护 $\overline Q \overline C x\overline C \overline Q$ 格式，其中 $x$ 表示回文中心，$\overline Q$ 表示连续字符 Q，分 CC, CQ, QC, QQ 四种情况考虑即可。</p>
 <hr>
@@ -1071,6 +1105,12 @@ top:50vh;
     
     
     
+    
+    
+    
+    
+    
+    
     <div class="total-and-search">
         <div class="total-archive">
         Total : 26
@@ -1253,21 +1293,21 @@ top:50vh;
     
         <span class="sidebar-tag-name" data-tags="AC自动机"><span class="iconfont-archer">&#xe606;</span>AC自动机</span>
     
-        <span class="sidebar-tag-name" data-tags="DR"><span class="iconfont-archer">&#xe606;</span>DR</span>
-    
         <span class="sidebar-tag-name" data-tags="domjudge"><span class="iconfont-archer">&#xe606;</span>domjudge</span>
     
-        <span class="sidebar-tag-name" data-tags="KMP"><span class="iconfont-archer">&#xe606;</span>KMP</span>
+        <span class="sidebar-tag-name" data-tags="DR"><span class="iconfont-archer">&#xe606;</span>DR</span>
     
         <span class="sidebar-tag-name" data-tags="ICPC"><span class="iconfont-archer">&#xe606;</span>ICPC</span>
     
         <span class="sidebar-tag-name" data-tags="贪心"><span class="iconfont-archer">&#xe606;</span>贪心</span>
     
+        <span class="sidebar-tag-name" data-tags="KMP"><span class="iconfont-archer">&#xe606;</span>KMP</span>
+    
+        <span class="sidebar-tag-name" data-tags="polya"><span class="iconfont-archer">&#xe606;</span>polya</span>
+    
         <span class="sidebar-tag-name" data-tags="vim"><span class="iconfont-archer">&#xe606;</span>vim</span>
     
         <span class="sidebar-tag-name" data-tags="git bash"><span class="iconfont-archer">&#xe606;</span>git bash</span>
-    
-        <span class="sidebar-tag-name" data-tags="polya"><span class="iconfont-archer">&#xe606;</span>polya</span>
     
         <span class="sidebar-tag-name" data-tags="斜率优化"><span class="iconfont-archer">&#xe606;</span>斜率优化</span>
     

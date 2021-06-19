@@ -351,11 +351,13 @@
                 <span>SGU-253-300</span>
         </a>
         <div class="abstract-content">
-            293 Game with Q an C
-题意 有长度为 $2n-1(1\le n\le 2005)$ 且仅包含 ‘Q’, ‘C’ 俩字符的字符串，按顺序逐个添加字符构造新字符串，每次添加一个字符后可选择性地交换 2 个位置上的字符。要求当新字符串长度为奇数时是回文串，判断是否可行，若可行则输出任一方案。
-分析 构造。考虑一次性添加 2 个字符，维护 $\overline Q \overline C x\overline C \overline Q$ 格式，其中 $x$ 表示回文中心，$\overline Q$ 表示连续字符 Q，分 CC, CQ, QC, QQ 四种情况考虑即可。
+            300 Train
+题意 给定水平/垂直方向的火车轨道顶点顺序，在不发生碰撞的前提下，求火车的最大长度。轨道顶点数为 $1\le N\le 4000$，点坐标 $(x_i, y_i), |x_i|, |y_i|\le 10^4$。
+分析 模拟。将点坐标离散化成 $N\times N$ 的网格图，记录当前火车所占据的线段以及车头/车尾坐标，模拟火车行进和碰撞。模拟过程中，记录火车的最大长度。
 
-2...
+299 Triangle
+题意 有 $3\le N\le 1000$ 个大数 $1\le a_i\le 10^{500}$，找出 3 个数使之能构成三角形的边。
+分析 模拟+大数。排序，取相邻的 3...
         </div>
         <div class="abstract-post-meta">
             <!-- date  -->
@@ -458,6 +460,12 @@
     <div class="sidebar-content sidebar-content-show-archive">
           <div class="sidebar-panel-archives">
     <!-- 在ejs中将archive按照时间排序 -->
+    
+    
+    
+    
+    
+    
     
     
     
@@ -954,21 +962,21 @@
     
         <span class="sidebar-tag-name" data-tags="AC自动机"><span class="iconfont-archer">&#xe606;</span>AC自动机</span>
     
-        <span class="sidebar-tag-name" data-tags="DR"><span class="iconfont-archer">&#xe606;</span>DR</span>
-    
         <span class="sidebar-tag-name" data-tags="domjudge"><span class="iconfont-archer">&#xe606;</span>domjudge</span>
     
-        <span class="sidebar-tag-name" data-tags="KMP"><span class="iconfont-archer">&#xe606;</span>KMP</span>
+        <span class="sidebar-tag-name" data-tags="DR"><span class="iconfont-archer">&#xe606;</span>DR</span>
     
         <span class="sidebar-tag-name" data-tags="ICPC"><span class="iconfont-archer">&#xe606;</span>ICPC</span>
     
         <span class="sidebar-tag-name" data-tags="贪心"><span class="iconfont-archer">&#xe606;</span>贪心</span>
     
+        <span class="sidebar-tag-name" data-tags="KMP"><span class="iconfont-archer">&#xe606;</span>KMP</span>
+    
+        <span class="sidebar-tag-name" data-tags="polya"><span class="iconfont-archer">&#xe606;</span>polya</span>
+    
         <span class="sidebar-tag-name" data-tags="vim"><span class="iconfont-archer">&#xe606;</span>vim</span>
     
         <span class="sidebar-tag-name" data-tags="git bash"><span class="iconfont-archer">&#xe606;</span>git bash</span>
-    
-        <span class="sidebar-tag-name" data-tags="polya"><span class="iconfont-archer">&#xe606;</span>polya</span>
     
         <span class="sidebar-tag-name" data-tags="斜率优化"><span class="iconfont-archer">&#xe606;</span>斜率优化</span>
     
