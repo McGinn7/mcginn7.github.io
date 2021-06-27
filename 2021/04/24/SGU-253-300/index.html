@@ -266,7 +266,7 @@ height:50vh;
                 
                 
                     <div class="post-intro-read">
-                        <span>字数统计: <span class="post-count word-count">5.6k</span>阅读时长: <span class="post-count reading-time">22 min</span></span>
+                        <span>字数统计: <span class="post-count word-count">6.2k</span>阅读时长: <span class="post-count reading-time">24 min</span></span>
                     </div>
                 
                 <div class="post-intro-meta">
@@ -404,9 +404,29 @@ height:50vh;
 <p><strong>分析</strong> 模拟+大数。排序，取相邻的 3 个数判断即可。</p>
 <hr>
 <p>298 King Berl VI</p>
-<p><strong>题意</strong> $2\le N\le 10^4$ 个变量 $A_i$，$0\le M\le10^5$ 个约束：$A_i\ge A_j + C_k$。要求解 $|A_i|\le 10^4$，且最大化 $A_N-A_1$。判断是否有解，若有解输出任一方案。</p>
-<p><strong>分析</strong> </p>
-<p><strong>参考</strong> <a href="https://www.cnblogs.com/jffifa/archive/2012/05/12/2497072.html" target="_blank" rel="noopener">最短路、最长路与差分约束的最大解、最小解</a></p>
+<p><strong>题意</strong> $2\le N\le 10^4$ 个变量 $A_i$，$0\le M\le10^5$ 个约束：$A_i\ge A_j + C_k, 0\le C_k\le 10^3$。要求解 $|A_i|\le 10^4$，且最小化 $A_N-A_1$。判断是否有解，若有解输出任一方案。</p>
+<p><strong>分析</strong> 差分约束。</p>
+<ol>
+<li><p><strong>差分约束系统</strong> 是 $n$ 元一次不等式组，有 $n$ 个变量 $x_1, x_2, \dots, x_n$ 以及 $m$ 个约束条件 $x_i-x_j\le C_k$。求一组解 $(x_1, x_2, \dots, x_n)=(a_1, a_2, \dots, a_n)$ 满足所有的约束条件。</p>
+</li>
+<li><p>对于形如 $x_i-x_j\le C_k$ 的约束条件，可以转换成 $x_i\le x_j+C_k$，这与<strong>单源最短路</strong>中的三角不等式 $dist_i\le dist_j+cost(j, i)$ 类似。将变量 $x_i$ 视为有向图中的节点，约束条件 $x_i-x_j\le C_k$ 视为一条边权为 $C_k$ 且从 $j$ 向 $i$ 的<strong>有向边</strong>，同时添加从<strong>超级源点</strong>到每个点的有向边，边权视情况设置。从而将差分约束问题转化成单源最短路问题。</p>
+</li>
+<li><p>在某个变量确定的情况下，形如 $x_i-x_j\le C_k$ 约束条件的问题下，单源最短路给出一种<strong>最大解</strong>。对于从超级源点 $S$ 到 $T$ 的任意一条路径 $P=(S,v_1, v_2, \dots,v_n,T)$，有约束条件：</p>
+<script type="math/tex; mode=display">
+x_{v_1} -x_S\le 0 \\
+x_{v_2} -x_{v_1}\le w(v_1, v_2) \\
+\dots \\
+x_{T} -x_{v_n}\le w(v_n,T) \\</script><p>相加得到 $x_T-x_S\le w(P)$，其中 $w(P)=w(v_1,v_2)+\dots+w(v_n,T)$。</p>
+<p>记 $P^{\ast}$ 为最短路，有 $x_T-x_S\le w(P^\ast)\le w(P)$，即 $x_T$ 的<strong>最大值</strong>为 $x_S+w(P^\ast)$。</p>
+</li>
+<li><p>对于形如 $x_i-x_j\ge C_k$ 的差分约束问题，类比单源最长路 $dist_i\ge dist_j+cost(j,i)$ 的三角不等式，将问题转换成单源最长路问题，得到的解为最小解。</p>
+</li>
+<li><p>如何求解单源最长路？单源最长路和单源最短路问题是<strong>对偶</strong>的。定义原图为 $G(V, E)$，有向边为 $w(i, j)$。将<strong>边权取反</strong>后得到对偶图 $G’(V, E)$，新的有向边为 $w’(i, j)=-w(i, j)$。对于任一路径 $p$ 有 $w(p)=-w’(p)$。显然，对偶图 $G’(V, E)$ 的最短路对应原图 $G(V, E)$ 的最长路。</p>
+</li>
+<li><p>回到 SGU 298 问题上，要让 $A_N-A_1$ 尽可能小，想法是让 $A_1$ 尽可能大而 $A_N$ 尽可能小。做法是先构造 $A_j\le A_i+(-C_k)$ 让 $A_1$ 尽可能大，然后构造 $A_i\le A_j+ C_k$ 让 $A_N$ 尽可能小。</p>
+</li>
+</ol>
+<p><strong>参考</strong> <a href="https://oi-wiki.org/graph/diff-constraints/" target="_blank" rel="noopener">OI Wiki-差分约束</a>；<a href="https://www.cnblogs.com/jffifa/archive/2012/05/12/2497072.html" target="_blank" rel="noopener">最短路、最长路与差分约束的最大解、最小解</a>。</p>
 <hr>
 <p>297 Fair-play</p>
 <p><strong>题意</strong> （简单题）</p>
@@ -1111,9 +1131,24 @@ top:50vh;
     
     
     
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
     <div class="total-and-search">
         <div class="total-archive">
-        Total : 26
+        Total : 27
         </div>
         <!-- search  -->
         
@@ -1129,7 +1164,12 @@ top:50vh;
     
     
         <li class="archive-post-item">
-            <span class="archive-post-date">06/13</span><a class="archive-post-title" href= "" >Deep Retrieval</a>
+            <span class="archive-post-date">06/27</span><a class="archive-post-title" href= "" >SGU-301-350</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">06/13</span><a class="archive-post-title" href= "../../13/Deep-Retrieval/" >Deep Retrieval</a>
         </li>
     
     
@@ -1293,23 +1333,23 @@ top:50vh;
     
         <span class="sidebar-tag-name" data-tags="AC自动机"><span class="iconfont-archer">&#xe606;</span>AC自动机</span>
     
+        <span class="sidebar-tag-name" data-tags="DR"><span class="iconfont-archer">&#xe606;</span>DR</span>
+    
         <span class="sidebar-tag-name" data-tags="domjudge"><span class="iconfont-archer">&#xe606;</span>domjudge</span>
     
-        <span class="sidebar-tag-name" data-tags="DR"><span class="iconfont-archer">&#xe606;</span>DR</span>
+        <span class="sidebar-tag-name" data-tags="KMP"><span class="iconfont-archer">&#xe606;</span>KMP</span>
     
         <span class="sidebar-tag-name" data-tags="ICPC"><span class="iconfont-archer">&#xe606;</span>ICPC</span>
     
         <span class="sidebar-tag-name" data-tags="贪心"><span class="iconfont-archer">&#xe606;</span>贪心</span>
-    
-        <span class="sidebar-tag-name" data-tags="KMP"><span class="iconfont-archer">&#xe606;</span>KMP</span>
-    
-        <span class="sidebar-tag-name" data-tags="polya"><span class="iconfont-archer">&#xe606;</span>polya</span>
     
         <span class="sidebar-tag-name" data-tags="vim"><span class="iconfont-archer">&#xe606;</span>vim</span>
     
         <span class="sidebar-tag-name" data-tags="git bash"><span class="iconfont-archer">&#xe606;</span>git bash</span>
     
         <span class="sidebar-tag-name" data-tags="斜率优化"><span class="iconfont-archer">&#xe606;</span>斜率优化</span>
+    
+        <span class="sidebar-tag-name" data-tags="polya"><span class="iconfont-archer">&#xe606;</span>polya</span>
     
     </div>
     <div class="iconfont-archer sidebar-tags-empty">&#xe678;</div>
