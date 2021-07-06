@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://mcginn7.github.io/"/>
-  <updated>2021-06-27T07:44:24.364Z</updated>
+  <updated>2021-07-06T14:40:00.635Z</updated>
   <id>http://mcginn7.github.io/</id>
   
   <author>
@@ -21,9 +21,17 @@
     <link href="http://mcginn7.github.io/2021/06/27/SGU-301-350/"/>
     <id>http://mcginn7.github.io/2021/06/27/SGU-301-350/</id>
     <published>2021-06-27T07:44:24.000Z</published>
-    <updated>2021-06-27T07:44:24.364Z</updated>
+    <updated>2021-07-06T14:40:00.635Z</updated>
+    
+    <content type="html"><![CDATA[<p>310 Hippopotamus</p><p><strong>题意</strong> 长度为 $1\le N\le 60$ 二进制串，任意连续长度为 $1\le M\le 15$ 的窗口中至少需要包含 $0\le K\le M$ 个 1，求满足条件的二进制串数量。</p><p><strong>分析</strong> $dp(i, mask)$ 表示当前长度为 $i$ 最后 $M$ 位状态为 $mask$ 的方案数。</p><hr><p>309 Real Fun</p><p><strong>题意</strong> 给二维平面上 $4\le N\le 20000$ 个点 $(x, y), |x|,|y|\le 10^9$，使用 3 个相同的正方形覆盖所有点，求正方形最小边长。</p><p><strong>分析</strong> 聚类？</p><hr><p>308 Hyperboloid Distance</p><p><strong>题意</strong> 给定单页双曲面 $x^2+y^2-z^2=1$ 以及表面上两点 $A(x_A, y_A, z_A), B(x_B, y_B, z_B), -1\le z_A, z_B\le 1$，求 $AB$ 在双曲面上的距离。</p><p><strong>分析</strong> 微分法。</p><hr><p>307 Cipher</p><p><strong>题意</strong> 给定大小为 $(H-1)\times (W-1), 2\le H,W\le 300$ 的矩阵 $B$，矩阵 $A$ 和矩阵 $B$ 满足关系式  $B_{i,j}=A_{i,j}+A_{i+1,j}+A_{i, j+1}+A_{i+1,j+1}$。求矩阵 $A$，或判断无解。</p><p><strong>分析</strong> 若已知矩阵 $A$ 的第一行和第一列，结合矩阵 $B$ 可倒推出整个矩阵 $A$：</p><script type="math/tex; mode=display">A_{i+1,j+1}=B_{i,j}-A_{i,j}-A_{i+1,j}-A_{i, j+1}</script><p>进一步推导可得，在不考虑矩阵 $B$ 的情况下，$A_{i, j}$ 仅和 $A_{0,0}, A_{i,0}, A_{0, j}$ 有关：</p><script type="math/tex; mode=display">A_{i,j}=(-1)^{i+j+1}A_{0,0}+(-1)^jA_{i,0}+(-1)^iA_{0,j}</script><p>枚举 $A_{0, 0}$，原问题转化成一个 2-sat 问题：$A_{i,0}$ 和 $A_{0, j}$ 的相关性。</p><hr><p>306</p><p><strong>题意</strong></p><p><strong>分析</strong></p><hr><p>305</p><p><strong>题意</strong></p><p><strong>分析</strong></p><hr><p>304</p><p><strong>题意</strong></p><p><strong>分析</strong></p><hr><p>303</p><p><strong>题意</strong></p><p><strong>分析</strong></p><hr><p>302</p><p><strong>题意</strong></p><p><strong>分析</strong></p><hr><p>301</p><p><strong>题意</strong></p><p><strong>分析</strong></p>]]></content>
     
     <summary type="html">
+    
+      
+      
+        &lt;p&gt;310 Hippopotamus&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;题意&lt;/strong&gt; 长度为 $1\le N\le 60$ 二进制串，任意连续长度为 $1\le M\le 15$ 的窗口中至少需要包含 $0\le K\le M$ 个 1，求满足条件的二进制串数量。&lt;/p&gt;
+      
     
     </summary>
     
