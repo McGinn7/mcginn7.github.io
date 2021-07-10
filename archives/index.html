@@ -351,16 +351,11 @@
                 <span>SGU-301-350</span>
         </a>
         <div class="abstract-content">
-            310 Hippopotamus
-题意 长度为 $1\le N\le 60$ 二进制串，任意连续长度为 $1\le M\le 15$ 的窗口中至少需要包含 $0\le K\le M$ 个 1，求满足条件的二进制串数量。
-分析 $dp(i, mask)$ 表示当前长度为 $i$ 最后 $M$ 位状态为 $mask$ 的方案数。
-
-309 Real Fun
-题意 给二维平面上 $4\le N\le 20000$ 个点 $(x, y), |x|,|y|\le 10^9$，使用 3 个相同的正方形覆盖所有点，求正方形最小边长。
-分析 聚类？
-
-308 Hyperboloid Distance
-题...
+            313 Circular Railway
+题意 $2\le L\le 10^9$ 个点均匀分布到环形上，顺序标号 1 至 $L$，相邻点距离为 1。分别有 $1\le N\le 50000$ 个起点和终点，分配起点和终点一一映射，使得总距离和最小。求最小总距离和以及一种分配方案。
+分析 当点分布在链上时，贪心即可：从左往右，能匹配就匹配。
+将环拆成链，枚举环的拆分位置，然后退化成链的做法，时间复杂度为 $O(N^2)$。
+考虑逐格递推，即考虑每条线段对于总距离的贡献。记起点值为 $+1$，终点为 $-1$，线段长度为 $L_i$，那么每条线段的距离贡献为：$|PrefixSum(i)|\...
         </div>
         <div class="abstract-post-meta">
             <!-- date  -->
@@ -1075,12 +1070,6 @@ tmin()要求：返回二进制补码表示的最小整数。
     
     
     
-    
-    
-    
-    
-    
-    
     <div class="total-and-search">
         <div class="total-archive">
         Total : 27
@@ -1241,12 +1230,12 @@ tmin()要求：返回二进制补码表示的最小整数。
     
     
         <li class="archive-post-item">
-            <span class="archive-post-date">07/19</span><a class="archive-post-title" href= "../../../../2018/07/19/The Binding of Isaac Afterbirth+总结/" >The Binding of Isaac:Afterbirth+总结</a>
+            <span class="archive-post-date">07/19</span><a class="archive-post-title" href= "../../../../2018/07/19/The Binding of Isaac Afterbirth+总结-ChenMingqin.work/" >The Binding of Isaac:Afterbirth+总结</a>
         </li>
     
     
         <li class="archive-post-item">
-            <span class="archive-post-date">07/19</span><a class="archive-post-title" href= "../../../../2018/07/19/The Binding of Isaac Afterbirth+总结-ChenMingqin.work/" >The Binding of Isaac:Afterbirth+总结</a>
+            <span class="archive-post-date">07/19</span><a class="archive-post-title" href= "../../../../2018/07/19/The Binding of Isaac Afterbirth+总结/" >The Binding of Isaac:Afterbirth+总结</a>
         </li>
     
     
@@ -1278,13 +1267,13 @@ tmin()要求：返回二进制补码表示的最小整数。
     
         <span class="sidebar-tag-name" data-tags="贪心"><span class="iconfont-archer">&#xe606;</span>贪心</span>
     
-        <span class="sidebar-tag-name" data-tags="vim"><span class="iconfont-archer">&#xe606;</span>vim</span>
-    
-        <span class="sidebar-tag-name" data-tags="git bash"><span class="iconfont-archer">&#xe606;</span>git bash</span>
+        <span class="sidebar-tag-name" data-tags="polya"><span class="iconfont-archer">&#xe606;</span>polya</span>
     
         <span class="sidebar-tag-name" data-tags="斜率优化"><span class="iconfont-archer">&#xe606;</span>斜率优化</span>
     
-        <span class="sidebar-tag-name" data-tags="polya"><span class="iconfont-archer">&#xe606;</span>polya</span>
+        <span class="sidebar-tag-name" data-tags="vim"><span class="iconfont-archer">&#xe606;</span>vim</span>
+    
+        <span class="sidebar-tag-name" data-tags="git bash"><span class="iconfont-archer">&#xe606;</span>git bash</span>
     
     </div>
     <div class="iconfont-archer sidebar-tags-empty">&#xe678;</div>

@@ -266,7 +266,7 @@ height:50vh;
                 
                 
                     <div class="post-intro-read">
-                        <span>字数统计: <span class="post-count word-count">412</span>阅读时长: <span class="post-count reading-time">1 min</span></span>
+                        <span>字数统计: <span class="post-count word-count">755</span>阅读时长: <span class="post-count reading-time">3 min</span></span>
                     </div>
                 
                 <div class="post-intro-meta">
@@ -395,7 +395,23 @@ height:50vh;
         <div class="container container-unloaded">
             <main class="main post-page">
     <article class="article-entry">
-        <p>310 Hippopotamus</p>
+        <p>313 Circular Railway</p>
+<p><strong>题意</strong> $2\le L\le 10^9$ 个点均匀分布到环形上，顺序标号 1 至 $L$，相邻点距离为 1。分别有 $1\le N\le 50000$ 个起点和终点，分配起点和终点一一映射，使得总距离和最小。求最小总距离和以及一种分配方案。</p>
+<p><strong>分析</strong> 当点分布在链上时，贪心即可：从左往右，能匹配就匹配。</p>
+<p>将环拆成链，枚举环的拆分位置，然后退化成链的做法，时间复杂度为 $O(N^2)$。</p>
+<p>考虑逐格递推，即考虑每条线段对于总距离的贡献。记起点值为 $+1$，终点为 $-1$，线段长度为 $L_i$，那么每条线段的距离贡献为：$|PrefixSum(i)|\times L_i$。当 $PrefixSum(i)&gt; 0$ 时，线段左侧的起点需要到线段右侧找相匹配的终点，因此最终方案必须穿过 $PrefixSum(i)$ 次。</p>
+<p>剩下的问题就是考虑将绝对值符号去掉，这里可以使用离线+树状数组维护。</p>
+<p><strong>代码</strong> <a href>sgu 313</a></p>
+<hr>
+<p>312 4-3 King</p>
+<p><strong>题意</strong></p>
+<p><strong>分析</strong></p>
+<hr>
+<p>311 Ice-cream Tycoon</p>
+<p><strong>题意</strong> 有 $10^5$ 次操作，操作分 2 种：ARRIVE n c，表示有 n 个值为 c 的数；BUY n t，取当前最小的 n 个数且总和不超过 t，若满足条件输出 HAPPY 否则输出 UNHAPPY。</p>
+<p><strong>分析</strong> 线段树模拟。</p>
+<hr>
+<p>310 Hippopotamus</p>
 <p><strong>题意</strong> 长度为 $1\le N\le 60$ 二进制串，任意连续长度为 $1\le M\le 15$ 的窗口中至少需要包含 $0\le K\le M$ 个 1，求满足条件的二进制串数量。</p>
 <p><strong>分析</strong> $dp(i, mask)$ 表示当前长度为 $i$ 最后 $M$ 位状态为 $mask$ 的方案数。</p>
 <hr>
@@ -922,12 +938,6 @@ top:50vh;
     
     
     
-    
-    
-    
-    
-    
-    
     <div class="total-and-search">
         <div class="total-archive">
         Total : 27
@@ -1088,12 +1098,12 @@ top:50vh;
     
     
         <li class="archive-post-item">
-            <span class="archive-post-date">07/19</span><a class="archive-post-title" href= "../../../../2018/07/19/The Binding of Isaac Afterbirth+总结/" >The Binding of Isaac:Afterbirth+总结</a>
+            <span class="archive-post-date">07/19</span><a class="archive-post-title" href= "../../../../2018/07/19/The Binding of Isaac Afterbirth+总结-ChenMingqin.work/" >The Binding of Isaac:Afterbirth+总结</a>
         </li>
     
     
         <li class="archive-post-item">
-            <span class="archive-post-date">07/19</span><a class="archive-post-title" href= "../../../../2018/07/19/The Binding of Isaac Afterbirth+总结-ChenMingqin.work/" >The Binding of Isaac:Afterbirth+总结</a>
+            <span class="archive-post-date">07/19</span><a class="archive-post-title" href= "../../../../2018/07/19/The Binding of Isaac Afterbirth+总结/" >The Binding of Isaac:Afterbirth+总结</a>
         </li>
     
     
@@ -1125,13 +1135,13 @@ top:50vh;
     
         <span class="sidebar-tag-name" data-tags="贪心"><span class="iconfont-archer">&#xe606;</span>贪心</span>
     
-        <span class="sidebar-tag-name" data-tags="vim"><span class="iconfont-archer">&#xe606;</span>vim</span>
-    
-        <span class="sidebar-tag-name" data-tags="git bash"><span class="iconfont-archer">&#xe606;</span>git bash</span>
+        <span class="sidebar-tag-name" data-tags="polya"><span class="iconfont-archer">&#xe606;</span>polya</span>
     
         <span class="sidebar-tag-name" data-tags="斜率优化"><span class="iconfont-archer">&#xe606;</span>斜率优化</span>
     
-        <span class="sidebar-tag-name" data-tags="polya"><span class="iconfont-archer">&#xe606;</span>polya</span>
+        <span class="sidebar-tag-name" data-tags="vim"><span class="iconfont-archer">&#xe606;</span>vim</span>
+    
+        <span class="sidebar-tag-name" data-tags="git bash"><span class="iconfont-archer">&#xe606;</span>git bash</span>
     
     </div>
     <div class="iconfont-archer sidebar-tags-empty">&#xe678;</div>

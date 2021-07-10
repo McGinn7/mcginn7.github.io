@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://mcginn7.github.io/"/>
-  <updated>2021-07-06T14:40:00.635Z</updated>
+  <updated>2021-07-10T07:00:20.542Z</updated>
   <id>http://mcginn7.github.io/</id>
   
   <author>
@@ -21,16 +21,16 @@
     <link href="http://mcginn7.github.io/2021/06/27/SGU-301-350/"/>
     <id>http://mcginn7.github.io/2021/06/27/SGU-301-350/</id>
     <published>2021-06-27T07:44:24.000Z</published>
-    <updated>2021-07-06T14:40:00.635Z</updated>
+    <updated>2021-07-10T07:00:20.542Z</updated>
     
-    <content type="html"><![CDATA[<p>310 Hippopotamus</p><p><strong>题意</strong> 长度为 $1\le N\le 60$ 二进制串，任意连续长度为 $1\le M\le 15$ 的窗口中至少需要包含 $0\le K\le M$ 个 1，求满足条件的二进制串数量。</p><p><strong>分析</strong> $dp(i, mask)$ 表示当前长度为 $i$ 最后 $M$ 位状态为 $mask$ 的方案数。</p><hr><p>309 Real Fun</p><p><strong>题意</strong> 给二维平面上 $4\le N\le 20000$ 个点 $(x, y), |x|,|y|\le 10^9$，使用 3 个相同的正方形覆盖所有点，求正方形最小边长。</p><p><strong>分析</strong> 聚类？</p><hr><p>308 Hyperboloid Distance</p><p><strong>题意</strong> 给定单页双曲面 $x^2+y^2-z^2=1$ 以及表面上两点 $A(x_A, y_A, z_A), B(x_B, y_B, z_B), -1\le z_A, z_B\le 1$，求 $AB$ 在双曲面上的距离。</p><p><strong>分析</strong> 微分法。</p><hr><p>307 Cipher</p><p><strong>题意</strong> 给定大小为 $(H-1)\times (W-1), 2\le H,W\le 300$ 的矩阵 $B$，矩阵 $A$ 和矩阵 $B$ 满足关系式  $B_{i,j}=A_{i,j}+A_{i+1,j}+A_{i, j+1}+A_{i+1,j+1}$。求矩阵 $A$，或判断无解。</p><p><strong>分析</strong> 若已知矩阵 $A$ 的第一行和第一列，结合矩阵 $B$ 可倒推出整个矩阵 $A$：</p><script type="math/tex; mode=display">A_{i+1,j+1}=B_{i,j}-A_{i,j}-A_{i+1,j}-A_{i, j+1}</script><p>进一步推导可得，在不考虑矩阵 $B$ 的情况下，$A_{i, j}$ 仅和 $A_{0,0}, A_{i,0}, A_{0, j}$ 有关：</p><script type="math/tex; mode=display">A_{i,j}=(-1)^{i+j+1}A_{0,0}+(-1)^jA_{i,0}+(-1)^iA_{0,j}</script><p>枚举 $A_{0, 0}$，原问题转化成一个 2-sat 问题：$A_{i,0}$ 和 $A_{0, j}$ 的相关性。</p><hr><p>306</p><p><strong>题意</strong></p><p><strong>分析</strong></p><hr><p>305</p><p><strong>题意</strong></p><p><strong>分析</strong></p><hr><p>304</p><p><strong>题意</strong></p><p><strong>分析</strong></p><hr><p>303</p><p><strong>题意</strong></p><p><strong>分析</strong></p><hr><p>302</p><p><strong>题意</strong></p><p><strong>分析</strong></p><hr><p>301</p><p><strong>题意</strong></p><p><strong>分析</strong></p>]]></content>
+    <content type="html"><![CDATA[<p>313 Circular Railway</p><p><strong>题意</strong> $2\le L\le 10^9$ 个点均匀分布到环形上，顺序标号 1 至 $L$，相邻点距离为 1。分别有 $1\le N\le 50000$ 个起点和终点，分配起点和终点一一映射，使得总距离和最小。求最小总距离和以及一种分配方案。</p><p><strong>分析</strong> 当点分布在链上时，贪心即可：从左往右，能匹配就匹配。</p><p>将环拆成链，枚举环的拆分位置，然后退化成链的做法，时间复杂度为 $O(N^2)$。</p><p>考虑逐格递推，即考虑每条线段对于总距离的贡献。记起点值为 $+1$，终点为 $-1$，线段长度为 $L_i$，那么每条线段的距离贡献为：$|PrefixSum(i)|\times L_i$。当 $PrefixSum(i)&gt; 0$ 时，线段左侧的起点需要到线段右侧找相匹配的终点，因此最终方案必须穿过 $PrefixSum(i)$ 次。</p><p>剩下的问题就是考虑将绝对值符号去掉，这里可以使用离线+树状数组维护。</p><p><strong>代码</strong> <a href>sgu 313</a></p><hr><p>312 4-3 King</p><p><strong>题意</strong></p><p><strong>分析</strong></p><hr><p>311 Ice-cream Tycoon</p><p><strong>题意</strong> 有 $10^5$ 次操作，操作分 2 种：ARRIVE n c，表示有 n 个值为 c 的数；BUY n t，取当前最小的 n 个数且总和不超过 t，若满足条件输出 HAPPY 否则输出 UNHAPPY。</p><p><strong>分析</strong> 线段树模拟。</p><hr><p>310 Hippopotamus</p><p><strong>题意</strong> 长度为 $1\le N\le 60$ 二进制串，任意连续长度为 $1\le M\le 15$ 的窗口中至少需要包含 $0\le K\le M$ 个 1，求满足条件的二进制串数量。</p><p><strong>分析</strong> $dp(i, mask)$ 表示当前长度为 $i$ 最后 $M$ 位状态为 $mask$ 的方案数。</p><hr><p>309 Real Fun</p><p><strong>题意</strong> 给二维平面上 $4\le N\le 20000$ 个点 $(x, y), |x|,|y|\le 10^9$，使用 3 个相同的正方形覆盖所有点，求正方形最小边长。</p><p><strong>分析</strong> 聚类？</p><hr><p>308 Hyperboloid Distance</p><p><strong>题意</strong> 给定单页双曲面 $x^2+y^2-z^2=1$ 以及表面上两点 $A(x_A, y_A, z_A), B(x_B, y_B, z_B), -1\le z_A, z_B\le 1$，求 $AB$ 在双曲面上的距离。</p><p><strong>分析</strong> 微分法。</p><hr><p>307 Cipher</p><p><strong>题意</strong> 给定大小为 $(H-1)\times (W-1), 2\le H,W\le 300$ 的矩阵 $B$，矩阵 $A$ 和矩阵 $B$ 满足关系式  $B_{i,j}=A_{i,j}+A_{i+1,j}+A_{i, j+1}+A_{i+1,j+1}$。求矩阵 $A$，或判断无解。</p><p><strong>分析</strong> 若已知矩阵 $A$ 的第一行和第一列，结合矩阵 $B$ 可倒推出整个矩阵 $A$：</p><script type="math/tex; mode=display">A_{i+1,j+1}=B_{i,j}-A_{i,j}-A_{i+1,j}-A_{i, j+1}</script><p>进一步推导可得，在不考虑矩阵 $B$ 的情况下，$A_{i, j}$ 仅和 $A_{0,0}, A_{i,0}, A_{0, j}$ 有关：</p><script type="math/tex; mode=display">A_{i,j}=(-1)^{i+j+1}A_{0,0}+(-1)^jA_{i,0}+(-1)^iA_{0,j}</script><p>枚举 $A_{0, 0}$，原问题转化成一个 2-sat 问题：$A_{i,0}$ 和 $A_{0, j}$ 的相关性。</p><hr><p>306</p><p><strong>题意</strong></p><p><strong>分析</strong></p><hr><p>305</p><p><strong>题意</strong></p><p><strong>分析</strong></p><hr><p>304</p><p><strong>题意</strong></p><p><strong>分析</strong></p><hr><p>303</p><p><strong>题意</strong></p><p><strong>分析</strong></p><hr><p>302</p><p><strong>题意</strong></p><p><strong>分析</strong></p><hr><p>301</p><p><strong>题意</strong></p><p><strong>分析</strong></p>]]></content>
     
     <summary type="html">
     
       
       
-        &lt;p&gt;310 Hippopotamus&lt;/p&gt;
-&lt;p&gt;&lt;strong&gt;题意&lt;/strong&gt; 长度为 $1\le N\le 60$ 二进制串，任意连续长度为 $1\le M\le 15$ 的窗口中至少需要包含 $0\le K\le M$ 个 1，求满足条件的二进制串数量。&lt;/p&gt;
+        &lt;p&gt;313 Circular Railway&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;题意&lt;/strong&gt; $2\le L\le 10^9$ 个点均匀分布到环形上，顺序标号 1 至 $L$，相邻点距离为 1。分别有 $1\le N\le 50000$ 个起点和终点，分配起点和终点一一映
       
     
     </summary>
