@@ -401,7 +401,7 @@ height:50vh;
 <p>将环拆成链，枚举环的拆分位置，然后退化成链的做法，时间复杂度为 $O(N^2)$。</p>
 <p>考虑逐格递推，即考虑每条线段对于总距离的贡献。记起点值为 $+1$，终点为 $-1$，线段长度为 $L_i$，那么每条线段的距离贡献为：$|PrefixSum(i)|\times L_i$。当 $PrefixSum(i)&gt; 0$ 时，线段左侧的起点需要到线段右侧找相匹配的终点，因此最终方案必须穿过 $PrefixSum(i)$ 次。</p>
 <p>剩下的问题就是考虑将绝对值符号去掉，这里可以使用离线+树状数组维护。</p>
-<p><strong>代码</strong> <a href>sgu 313</a></p>
+<p><strong>代码</strong> <a href="https://github.com/McGinn7/Template-for-ICPC/blob/master/SGU/313.cpp" target="_blank" rel="noopener">sgu 313</a></p>
 <hr>
 <p>312 4-3 King</p>
 <p><strong>题意</strong></p>
@@ -938,6 +938,12 @@ top:50vh;
     
     
     
+    
+    
+    
+    
+    
+    
     <div class="total-and-search">
         <div class="total-archive">
         Total : 27
@@ -1135,13 +1141,13 @@ top:50vh;
     
         <span class="sidebar-tag-name" data-tags="贪心"><span class="iconfont-archer">&#xe606;</span>贪心</span>
     
-        <span class="sidebar-tag-name" data-tags="polya"><span class="iconfont-archer">&#xe606;</span>polya</span>
-    
-        <span class="sidebar-tag-name" data-tags="斜率优化"><span class="iconfont-archer">&#xe606;</span>斜率优化</span>
-    
         <span class="sidebar-tag-name" data-tags="vim"><span class="iconfont-archer">&#xe606;</span>vim</span>
     
         <span class="sidebar-tag-name" data-tags="git bash"><span class="iconfont-archer">&#xe606;</span>git bash</span>
+    
+        <span class="sidebar-tag-name" data-tags="斜率优化"><span class="iconfont-archer">&#xe606;</span>斜率优化</span>
+    
+        <span class="sidebar-tag-name" data-tags="polya"><span class="iconfont-archer">&#xe606;</span>polya</span>
     
     </div>
     <div class="iconfont-archer sidebar-tags-empty">&#xe678;</div>
