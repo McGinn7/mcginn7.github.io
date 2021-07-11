@@ -364,11 +364,13 @@ height:50vh;
                 <span>SGU-301-350</span>
         </a>
         <div class="abstract-content">
-            313 Circular Railway
-题意 $2\le L\le 10^9$ 个点均匀分布到环形上，顺序标号 1 至 $L$，相邻点距离为 1。分别有 $1\le N\le 50000$ 个起点和终点，分配起点和终点一一映射，使得总距离和最小。求最小总距离和以及一种分配方案。
-分析 当点分布在链上时，贪心即可：从左往右，能匹配就匹配。
-将环拆成链，枚举环的拆分位置，然后退化成链的做法，时间复杂度为 $O(N^2)$。
-考虑逐格递推，即考虑每条线段对于总距离的贡献。记起点值为 $+1$，终点为 $-1$，线段长度为 $L_i$，那么每条线段的距离贡献为：$|PrefixSum(i)|\...
+            314 Shortest Paths
+题意 给定 $2\le N\le 10^4$ 个点，$2\le M\le 5\times 10^4$ 条边的有向图，求 $S$ 到 $T$ 前 $2\le K\le 10^4$ 条最短路径长度。
+分析 K 短路模板题。
+参考 从枚举到 K 短路 - 知乎 (zhihu.com)
+
+313 Circular Railway
+题意 $2\le L\le 10^9$ 个点均匀分布到环形上，顺序标号 1 至 $L$，相邻点距离为 1。分别有 $1\le N\le 50000$ 个起点和终点，分配起点和终点一一映射，使得总距离和最小。求最小总距离和以及一种分配...
         </div>
         <div class="abstract-post-meta">
             <!-- date  -->
@@ -1181,6 +1183,8 @@ tmin()要求：返回二进制补码表示的最小整数。
     
     
     
+    
+    
     <div class="total-and-search">
         <div class="total-archive">
         Total : 27
@@ -1199,17 +1203,17 @@ tmin()要求：返回二进制补码表示的最小整数。
     
     
         <li class="archive-post-item">
-            <span class="archive-post-date">06/27</span><a class="archive-post-title" href= "" >SGU-301-350</a>
+            <span class="archive-post-date">06/27</span><a class="archive-post-title" href= "../../../06/27/SGU-301-350/" >SGU-301-350</a>
         </li>
     
     
         <li class="archive-post-item">
-            <span class="archive-post-date">06/13</span><a class="archive-post-title" href= "../../13/Deep-Retrieval/" >Deep Retrieval</a>
+            <span class="archive-post-date">06/13</span><a class="archive-post-title" href= "../../../06/13/Deep-Retrieval/" >Deep Retrieval</a>
         </li>
     
     
         <li class="archive-post-item">
-            <span class="archive-post-date">04/24</span><a class="archive-post-title" href= "../../../04/24/SGU-253-300/" >SGU-253-300</a>
+            <span class="archive-post-date">04/24</span><a class="archive-post-title" href= "" >SGU-253-300</a>
         </li>
     
     
@@ -1341,12 +1345,12 @@ tmin()要求：返回二进制补码表示的最小整数。
     
     
         <li class="archive-post-item">
-            <span class="archive-post-date">07/19</span><a class="archive-post-title" href= "../../../../2018/07/19/The Binding of Isaac Afterbirth+总结-ChenMingqin.work/" >The Binding of Isaac:Afterbirth+总结</a>
+            <span class="archive-post-date">07/19</span><a class="archive-post-title" href= "../../../../2018/07/19/The Binding of Isaac Afterbirth+总结/" >The Binding of Isaac:Afterbirth+总结</a>
         </li>
     
     
         <li class="archive-post-item">
-            <span class="archive-post-date">07/19</span><a class="archive-post-title" href= "../../../../2018/07/19/The Binding of Isaac Afterbirth+总结/" >The Binding of Isaac:Afterbirth+总结</a>
+            <span class="archive-post-date">07/19</span><a class="archive-post-title" href= "../../../../2018/07/19/The Binding of Isaac Afterbirth+总结-ChenMingqin.work/" >The Binding of Isaac:Afterbirth+总结</a>
         </li>
     
     
@@ -1364,27 +1368,27 @@ tmin()要求：返回二进制补码表示的最小整数。
         <div class="sidebar-panel-tags">
     <div class="sidebar-tags-name">
     
-        <span class="sidebar-tag-name" data-tags="DR"><span class="iconfont-archer">&#xe606;</span>DR</span>
-    
-        <span class="sidebar-tag-name" data-tags="KMP"><span class="iconfont-archer">&#xe606;</span>KMP</span>
-    
         <span class="sidebar-tag-name" data-tags="AhoCorasick"><span class="iconfont-archer">&#xe606;</span>AhoCorasick</span>
     
         <span class="sidebar-tag-name" data-tags="AC自动机"><span class="iconfont-archer">&#xe606;</span>AC自动机</span>
+    
+        <span class="sidebar-tag-name" data-tags="DR"><span class="iconfont-archer">&#xe606;</span>DR</span>
+    
+        <span class="sidebar-tag-name" data-tags="domjudge"><span class="iconfont-archer">&#xe606;</span>domjudge</span>
     
         <span class="sidebar-tag-name" data-tags="ICPC"><span class="iconfont-archer">&#xe606;</span>ICPC</span>
     
         <span class="sidebar-tag-name" data-tags="贪心"><span class="iconfont-archer">&#xe606;</span>贪心</span>
     
-        <span class="sidebar-tag-name" data-tags="domjudge"><span class="iconfont-archer">&#xe606;</span>domjudge</span>
+        <span class="sidebar-tag-name" data-tags="斜率优化"><span class="iconfont-archer">&#xe606;</span>斜率优化</span>
+    
+        <span class="sidebar-tag-name" data-tags="polya"><span class="iconfont-archer">&#xe606;</span>polya</span>
     
         <span class="sidebar-tag-name" data-tags="vim"><span class="iconfont-archer">&#xe606;</span>vim</span>
     
         <span class="sidebar-tag-name" data-tags="git bash"><span class="iconfont-archer">&#xe606;</span>git bash</span>
     
-        <span class="sidebar-tag-name" data-tags="polya"><span class="iconfont-archer">&#xe606;</span>polya</span>
-    
-        <span class="sidebar-tag-name" data-tags="斜率优化"><span class="iconfont-archer">&#xe606;</span>斜率优化</span>
+        <span class="sidebar-tag-name" data-tags="KMP"><span class="iconfont-archer">&#xe606;</span>KMP</span>
     
     </div>
     <div class="iconfont-archer sidebar-tags-empty">&#xe678;</div>
