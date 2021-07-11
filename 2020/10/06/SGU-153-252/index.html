@@ -1,0 +1,1614 @@
+<!DOCTYPE html>
+<html lang="">
+    <!-- title -->
+
+
+
+
+<!-- keywords -->
+
+
+
+
+<head><meta name="generator" content="Hexo 3.9.0">
+    <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <meta name="author" content="Mcginn">
+    <meta name="renderer" content="webkit">
+    <meta name="copyright" content="Mcginn">
+    
+    <meta name="keywords" content="hexo,mcginn,mcginn7,ICPC,hexo-theme,hexo-blog">
+    
+    <meta name="description" content>
+    <meta http-equiv="Cache-control" content="no-cache">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <title>SGU 153-252 · Mcginn&#39;s Blog</title>
+    <style type="text/css">
+    @font-face {
+        font-family: 'Oswald-Regular';
+        src: url("../../../../font/Oswald-Regular.ttf");
+    }
+
+    body {
+        margin: 0;
+    }
+
+    header,
+    footer,
+    .back-top,
+    .sidebar,
+    .container,
+    .site-intro-meta,
+    .toc-wrapper {
+        display: none;
+    }
+
+    .site-intro {
+        position: relative;
+        z-index: 3;
+        width: 100%;
+        /* height: 50vh; */
+        overflow: hidden;
+    }
+
+    .site-intro-placeholder {
+        position: absolute;
+        z-index: -2;
+        top: 0;
+        left: 0;
+        width: calc(100% + 300px);
+        height: 100%;
+        background: repeating-linear-gradient(-45deg, #444 0, #444 80px, #333 80px, #333 160px);
+        background-position: center center;
+        transform: translate3d(-226px, 0, 0);
+        animation: gradient-move 2.5s ease-out 0s infinite;
+    }
+
+    @keyframes gradient-move {
+        0% {
+            transform: translate3d(-226px, 0, 0);
+        }
+        100% {
+            transform: translate3d(0, 0, 0);
+        }
+    }
+
+</style>
+
+    <link rel="preload" href="../../../../css/style.css?v=20180824" as="style" onload="this.onload=null;this.rel='stylesheet'">
+    <link rel="stylesheet" href="../../../../css/mobile.css?v=20180824" media="(max-width: 980px)">
+    
+    <link rel="preload" href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.2.5/jquery.fancybox.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+    
+    <!-- /*! loadCSS. [c]2017 Filament Group, Inc. MIT License */
+/* This file is meant as a standalone workflow for
+- testing support for link[rel=preload]
+- enabling async CSS loading in browsers that do not support rel=preload
+- applying rel preload css once loaded, whether supported or not.
+*/ -->
+<script>
+(function( w ){
+	"use strict";
+	// rel=preload support test
+	if( !w.loadCSS ){
+		w.loadCSS = function(){};
+	}
+	// define on the loadCSS obj
+	var rp = loadCSS.relpreload = {};
+	// rel=preload feature support test
+	// runs once and returns a function for compat purposes
+	rp.support = (function(){
+		var ret;
+		try {
+			ret = w.document.createElement( "link" ).relList.supports( "preload" );
+		} catch (e) {
+			ret = false;
+		}
+		return function(){
+			return ret;
+		};
+	})();
+
+	// if preload isn't supported, get an asynchronous load by using a non-matching media attribute
+	// then change that media back to its intended value on load
+	rp.bindMediaToggle = function( link ){
+		// remember existing media attr for ultimate state, or default to 'all'
+		var finalMedia = link.media || "all";
+
+		function enableStylesheet(){
+			link.media = finalMedia;
+		}
+
+		// bind load handlers to enable media
+		if( link.addEventListener ){
+			link.addEventListener( "load", enableStylesheet );
+		} else if( link.attachEvent ){
+			link.attachEvent( "onload", enableStylesheet );
+		}
+
+		// Set rel and non-applicable media type to start an async request
+		// note: timeout allows this to happen async to let rendering continue in IE
+		setTimeout(function(){
+			link.rel = "stylesheet";
+			link.media = "only x";
+		});
+		// also enable media after 3 seconds,
+		// which will catch very old browsers (android 2.x, old firefox) that don't support onload on link
+		setTimeout( enableStylesheet, 3000 );
+	};
+
+	// loop through link elements in DOM
+	rp.poly = function(){
+		// double check this to prevent external calls from running
+		if( rp.support() ){
+			return;
+		}
+		var links = w.document.getElementsByTagName( "link" );
+		for( var i = 0; i < links.length; i++ ){
+			var link = links[ i ];
+			// qualify links to those with rel=preload and as=style attrs
+			if( link.rel === "preload" && link.getAttribute( "as" ) === "style" && !link.getAttribute( "data-loadcss" ) ){
+				// prevent rerunning on link
+				link.setAttribute( "data-loadcss", true );
+				// bind listeners to toggle media back
+				rp.bindMediaToggle( link );
+			}
+		}
+	};
+
+	// if unsupported, run the polyfill
+	if( !rp.support() ){
+		// run once at least
+		rp.poly();
+
+		// rerun poly on an interval until onload
+		var run = w.setInterval( rp.poly, 500 );
+		if( w.addEventListener ){
+			w.addEventListener( "load", function(){
+				rp.poly();
+				w.clearInterval( run );
+			} );
+		} else if( w.attachEvent ){
+			w.attachEvent( "onload", function(){
+				rp.poly();
+				w.clearInterval( run );
+			} );
+		}
+	}
+
+
+	// commonjs
+	if( typeof exports !== "undefined" ){
+		exports.loadCSS = loadCSS;
+	}
+	else {
+		w.loadCSS = loadCSS;
+	}
+}( typeof global !== "undefined" ? global : this ) );
+</script>
+
+    <link rel="icon" href="../../../../assets/m.ico">
+    <link rel="preload" href="https://cdn.jsdelivr.net/npm/webfontloader@1.6.28/webfontloader.min.js" as="script">
+    <link rel="preload" href="https://cdn.jsdelivr.net/npm/jquery@3.3.1/dist/jquery.min.js" as="script">
+    <link rel="preload" href="../../../../scripts/main.js" as="script">
+    <link rel="preload" as="font" href="../../../../font/Oswald-Regular.ttf" crossorigin>
+    <link rel="preload" as="font" href="https://at.alicdn.com/t/font_327081_1dta1rlogw17zaor.woff" crossorigin>
+    
+    <!-- fancybox -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.2.5/jquery.fancybox.min.js" defer></script>
+    <!-- 百度统计  -->
+    
+    <!-- 谷歌统计  --><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+    
+</head>
+
+    
+        <body class="post-body">
+    
+    
+<!-- hexo-inject:begin --><!-- hexo-inject:end --><header class="header">
+
+    <div class="read-progress"></div>
+    <div class="header-sidebar-menu">&#xe775;</div>
+    <!-- post页的toggle banner  -->
+    
+    <div class="banner">
+            <div class="blog-title">
+                <a href="../../../../index.html" >Mcginn&#39;s Blog</a>
+            </div>
+            <div class="post-title">
+                <a href="#" class="post-name">SGU 153-252</a>
+            </div>
+    </div>
+    
+    <a class="home-link" href=/>Mcginn's Blog</a>
+</header>
+    <div class="wrapper">
+        <div class="site-intro" style="
+
+
+
+
+
+
+
+height:50vh;
+">
+    
+    <!-- 主页  -->
+    
+    
+    <!-- 404页  -->
+            
+    <div class="site-intro-placeholder"></div>
+    <div class="site-intro-img" style="background-image: url(../../../../intro/post-bg.jpg)"></div>
+    <div class="site-intro-meta">
+        <!-- 标题  -->
+        <h1 class="intro-title">
+            <!-- 主页  -->
+            
+            SGU 153-252
+            <!-- 404 -->
+            
+        </h1>
+        <!-- 副标题 -->
+        <p class="intro-subtitle">
+            <!-- 主页副标题  -->
+            
+            
+            <!-- 404 -->
+            
+        </p>
+        <!-- 文章页meta -->
+        
+            <div class="post-intros">
+                <!-- 文章页标签  -->
+                
+                
+                    <div class="post-intro-read">
+                        <span>字数统计: <span class="post-count word-count">10.4k</span>阅读时长: <span class="post-count reading-time">41 min</span></span>
+                    </div>
+                
+                <div class="post-intro-meta">
+                    <span class="post-intro-calander iconfont-archer">&#xe676;</span>
+                    <span class="post-intro-time">2020/10/06</span>
+                    
+                    <span id="busuanzi_container_page_pv" class="busuanzi-pv">
+                        <span class="iconfont-archer">&#xe602;</span>
+                        <span id="busuanzi_value_page_pv"></span>
+                    </span>
+                    
+                    <span class="shareWrapper">
+                        <span class="iconfont-archer shareIcon">&#xe71d;</span>
+                        <span class="shareText">Share</span>
+                        <ul class="shareList">
+                            <li class="iconfont-archer share-qr" data-type="qr">&#xe75b;
+                                <div class="share-qrcode"></div>
+                            </li>
+                            <li class="iconfont-archer" data-type="weibo">&#xe619;</li>
+                            <li class="iconfont-archer" data-type="qzone">&#xe62e;</li>
+                            <li class="iconfont-archer" data-type="twitter">&#xe634;</li>
+                            <li class="iconfont-archer" data-type="facebook">&#xe67a;</li>
+                        </ul>
+                    </span>
+                </div>
+            </div>
+        
+    </div>
+</div>
+        <script>
+ 
+  // get user agent
+  var browser = {
+    versions: function () {
+      var u = window.navigator.userAgent;
+      return {
+        userAgent: u,
+        trident: u.indexOf('Trident') > -1, //IE内核
+        presto: u.indexOf('Presto') > -1, //opera内核
+        webKit: u.indexOf('AppleWebKit') > -1, //苹果、谷歌内核
+        gecko: u.indexOf('Gecko') > -1 && u.indexOf('KHTML') == -1, //火狐内核
+        mobile: !!u.match(/AppleWebKit.*Mobile.*/), //是否为移动终端
+        ios: !!u.match(/\(i[^;]+;( U;)? CPU.+Mac OS X/), //ios终端
+        android: u.indexOf('Android') > -1 || u.indexOf('Linux') > -1, //android终端或者uc浏览器
+        iPhone: u.indexOf('iPhone') > -1 || u.indexOf('Mac') > -1, //是否为iPhone或者安卓QQ浏览器
+        iPad: u.indexOf('iPad') > -1, //是否为iPad
+        webApp: u.indexOf('Safari') == -1, //是否为web应用程序，没有头部与底部
+        weixin: u.indexOf('MicroMessenger') == -1, //是否为微信浏览器
+        uc: u.indexOf('UCBrowser') > -1 //是否为android下的UC浏览器
+      };
+    }()
+  }
+  console.log("userAgent:" + browser.versions.userAgent);
+
+  // callback
+  function fontLoaded() {
+    console.log('font loaded');
+    if (document.getElementsByClassName('site-intro-meta')) {
+      document.getElementsByClassName('intro-title')[0].classList.add('intro-fade-in');
+      document.getElementsByClassName('intro-subtitle')[0].classList.add('intro-fade-in');
+      var postIntros = document.getElementsByClassName('post-intros')[0]
+      if (postIntros) {
+        postIntros.classList.add('post-fade-in');
+      }
+    }
+  }
+
+  // UC不支持跨域，所以直接显示
+  function asyncCb(){
+    if (browser.versions.uc) {
+      console.log("UCBrowser");
+      fontLoaded();
+    } else {
+      WebFont.load({
+        custom: {
+          families: ['Oswald-Regular']
+        },
+        loading: function () {  //所有字体开始加载
+          // console.log('loading');
+        },
+        active: function () {  //所有字体已渲染
+          fontLoaded();
+        },
+        inactive: function () { //字体预加载失败，无效字体或浏览器不支持加载
+          console.log('inactive: timeout');
+          fontLoaded();
+        },
+        timeout: 5000 // Set the timeout to two seconds
+      });
+    }
+  }
+
+  function asyncErr(){
+    console.warn('script load from CDN failed, will load local script')
+  }
+
+  // load webfont-loader async, and add callback function
+  function async(u, cb, err) {
+    var d = document, t = 'script',
+      o = d.createElement(t),
+      s = d.getElementsByTagName(t)[0];
+    o.src = u;
+    if (cb) { o.addEventListener('load', function (e) { cb(null, e); }, false); }
+    if (err) { o.addEventListener('error', function (e) { err(null, e); }, false); }
+    s.parentNode.insertBefore(o, s);
+  }
+
+  var asyncLoadWithFallBack = function(arr, success, reject) {
+      var currReject = function(){
+        reject()
+        arr.shift()
+        if(arr.length)
+          async(arr[0], success, currReject)
+        }
+
+      async(arr[0], success, currReject)
+  }
+
+  asyncLoadWithFallBack([
+    "https://cdn.jsdelivr.net/npm/webfontloader@1.6.28/webfontloader.min.js", 
+    "https://cdn.bootcss.com/webfont/1.6.28/webfontloader.js",
+    "../../../../lib/webfontloader.min.js"
+  ], asyncCb, asyncErr)
+</script>        
+        <img class="loading" src="../../../../assets/loading.svg" style="display: block; margin: 6rem auto 0 auto; width: 6rem; height: 6rem;" />
+        <div class="container container-unloaded">
+            <main class="main post-page">
+    <article class="article-entry">
+        <h1 id="计划"><a href="#计划" class="headerlink" title="计划"></a>计划</h1><p>计划一年内（截止 2021 年 1 月 1 日）把 SGU 500 刷完，形式以所有题目给出翻译后的简要题意和解题思路概要。</p>
+<p><a href="https://github.com/McGinn7/ACMSGURU-Code" target="_blank" rel="noopener">AC 代码库</a></p>
+<h1 id="题目"><a href="#题目" class="headerlink" title="题目"></a>题目</h1><p>153 <strong>Playing with matches</strong></p>
+<p><strong>题意</strong>  有 $1\le N \le 10^9$ 根火柴，Little 和 Petya 轮流取，每次能取 $1, P_1, P_2, \dots , P_m(2\le P_i \le 9, 0\le m \le 8)$ 根火柴，判断先/后手必胜。</p>
+<p><strong>分析</strong> 当 $N$ 较小时，可用 dp 计算火柴为 $n$ 时状态（必胜/必败）。由于 $P_i\le 9$，每个点的状态只与前面的 9 个状态有关，从而每个状态的 SG 值最大为 10。并且根据 SG 值的定义，前面 9 个状态的 SG 值两两不同，因此 9 个状态的总数约为 $10!=3,628,800‬$。通过找出循环节，即可计算 $N$ 的 SG 值，从而判断胜负态。</p>
+<hr>
+<p>154 <strong>Factorial</strong></p>
+<p><strong>题意</strong>  求最小自然数 $N$，满足 $N!$ 有 $0 \le Q \le 10^8$ 个尾数 0。</p>
+<p><strong>分析</strong>  尾数 0 只与 $N!$ 的质因子 2 和 5 有关。求 $N!$ 中质因子 $p$ 的个数：</p>
+<script type="math/tex; mode=display">
+\frac N p + \frac N {p^2} + \dots</script><p>显然， 5 的个数少于 2 的个数，因此尾数 0 只与 5 的个数相关。</p>
+<p>上述公式具有<strong>非递减</strong>性质，因此可以<strong>二分</strong>计算最小自然数 $N$。</p>
+<hr>
+<p>155 <strong>Cartesian Tree</strong></p>
+<p><strong>题意</strong>  给定 $1\le N\le 50000$ 个 <key, value> 对，要求利用 key 值构造一棵<strong>二叉搜索树</strong>，并且满足<strong>小根堆</strong>的性质：如果 y 是 x 的父节点，则有 y.value &lt; x.value。数据保证 key 值和 value 值两两不同。</key,></p>
+<p><strong>分析</strong>  Cartisian Tree 模板题。 </p>
+<hr>
+<p>156 <strong>Strange Graph</strong></p>
+<p><strong>题意</strong>  给 $3\le N \le 10^4$ 个点 $M\le 10^5$ 条边的无向图，该图满足以下性质：</p>
+<ol>
+<li>所有点的度数 $deg(v)\ge 2$。</li>
+<li>当 $deg(v)=2$ 时，与 $v$ 相邻的两个点不相连。</li>
+<li>当 $deg(v)&gt;2$ 时，存在点 $u\in N(v)$，满足：$deg(u)=2$；$\forall w_1, w_2\in N(v), (w_1, w_2)\in E$。其中，$N(v)$ 表示与 $v$ 相邻的点集。</li>
+</ol>
+<p>数据保证无重边和自环。</p>
+<p>判断该图是否存在<strong>哈密顿回路</strong>，不存在时输出 -1；否则输出一种方案。</p>
+<p><strong>分析</strong> </p>
+<p>当 $deg(v)&gt;2$ 时，点集 $N(v)/u$ 构成完全图，因此总是能构造出<strong>哈密顿路</strong>。</p>
+<p>将点集 $N(v)/u$ 缩点，构造的新图中所有点的度数均为 2，问题可以转化成在新图中找出<strong>欧拉回路</strong>。</p>
+<p>而度数均为 2 的图，只可能是多个环。因此剩余问题仅需判断新图是否联通即可。</p>
+<hr>
+<p>157 <strong>Patience</strong></p>
+<p><strong>题意</strong>  纸牌接龙游戏，A~K（共 13 张牌）放置到 14 个格子中，其中一个为空格且 A 固定到第 1 个格子中。在前 $14-n$ 张牌有序的前提下，求能够将牌排好序且最后一格为空格的方案数。</p>
+<p>移牌规则为：当空格<strong>左侧</strong>为 $x$ 时，可将 $x+1$ 直接移动到空格上。</p>
+<p><strong>分析</strong>  最后局面为 A23…JQK_，反向构造合法序列即可。注意正向移牌时，$x+1$ 的前一个数为 $x$。因此反向构造时只有当 $a[i+1]=a[i]+1$ 时，才能将 $a[i+1]$ 和空格交换形成新合法序列。</p>
+<hr>
+<p>158 <strong>Commuter Train</strong></p>
+<p><strong>题意</strong>  有长为 $0&lt;L\le 5000$ 的公交路线。有 $0&lt;M\le 300$ 个乘客，乘客在坐标 $P_i$ 处，坐标非递减排序（$0\le P_1 \le \dots \le P_M \le L$）。有 $0&lt; N\le 300$ 个站点，每个站点距离第 1 个站点的距离为 $D_i(0=D_1&lt;D_2&lt;\dots &lt; D_N\le L)$。</p>
+<p>第 1 个站点位置 $S$ 未确定，要求求出 $S$ 使得每个乘客距离其<strong>最近</strong>的站点距离之和<strong>最大</strong>。</p>
+<p><strong>分析</strong>  在确定 $S$ 后，乘客与最近站点的距离和可表示为关于 $S$ 的一次函数。随着 $S$ 的增大，每个乘客的最近站点会发生变化，但新的距离和仍可表示为一次函数，且在一段距离范围内该函数不会改变。</p>
+<p>距离和函数改变点在于其中一个乘客的最近站点变化。由于乘客的最近站点随 $S$ 增大的增大，因此总的变化次数为 $O(NM)$，且站点变化只会 +1。</p>
+<hr>
+<p>159 <strong>Self-Replicating Numbers</strong></p>
+<p><strong>题意</strong>  在 $2\le b \le 36$ 进制下，求 $1\le n\le 2000$ 个位的数满足 $x^2\equiv x\pmod {b^n}$。</p>
+<p><strong>分析</strong> 爆搜。  </p>
+<hr>
+<p>160 <strong>Magic Multiplying Machine</strong></p>
+<p><strong>题意</strong>  给 $1\le N \le 10^4$ 个数 $1\le a_i\le M(2\le M \le 10^3)$，求最大得分 score：</p>
+<script type="math/tex; mode=display">
+score=\prod a_i \mod M</script><p>并给出任意一种方案，按<strong>递增</strong>顺序输出取出值的下标。</p>
+<p><strong>分析</strong>  背包问题。</p>
+<hr>
+<p>161</p>
+<p><strong>题意</strong>  </p>
+<p><strong>分析</strong></p>
+<hr>
+<p>162 <strong>Pyramids</strong></p>
+<p><strong>题意</strong>  给定四面体各边（AB, AC, AD, BC, BD, CD）长度，求体积。</p>
+<p><strong>分析</strong> 建个坐标系，强算各个点坐标。</p>
+<hr>
+<p>163 <strong>Wise King</strong></p>
+<p><strong>题意</strong>  给 $1 \le N\le 100$ 个数 $a_i, |a_i|\le 3$，以及一个指数 $0&lt;E\le 3$。从 $N$ 个数中取若干个数，使得 $\sum a_i ^E$ 最大。</p>
+<p><strong>分析</strong> 模拟。</p>
+<hr>
+<p>164 <strong>Airlines</strong></p>
+<p><strong>题意</strong>  有 $1\le N\le 200$ 座城市，每两个城市都有一条航线（双向飞行），每条航线属于 $M$ 家公司中的其中一家。现要求收购不超过 $\lfloor \frac{M+1}2\rfloor$ 家公司，使得<strong>任意</strong>两个城市<strong>最多</strong>飞 3 条航线可达。</p>
+<p><strong>分析</strong> 根据抽屉原理，至少有一座城市所有航线关联的公司为 $\lfloor\frac {2M}N \rfloor \le \lfloor \frac{M+1}2\rfloor$，因此以城市为中心，收购该城市所有公司即可满足任意两座城市之间最多飞 2 条航线即可到达。</p>
+<hr>
+<p>165 <strong>Basketball</strong></p>
+<p><strong>题意</strong> 有 $1\le N \le 6000$ 名球员，每名球员的身高 $h_i$ 在 [1.95, 2.05] 范围内。现要求给球员排序，使得任意两个球员之间满足 $|\sum_{i=1}^{K} (h_i - 2)| \le 0.1$。给出一种球员顺序或判断无解。</p>
+<p><strong>分析</strong> 将所有球员的身高 - 2，将球员身高分成负数和正数。从最小负数（或最大正数）开始取，根据前缀和的正负取异号身高的球员即可。由于球员身高限定在 [1.95, 2.05] 之间，因此不会违反限定条件。</p>
+<hr>
+<p>166</p>
+<p><strong>题意</strong>  </p>
+<p><strong>分析</strong></p>
+<hr>
+<p>167 <strong>I-country</strong></p>
+<p><strong>题意</strong> 给 $N\times M(1\le N, M\le 15)$ 的网格，每个网格有个价值 $0 \le V_{ij}\le 10^3 $ 。允许占领其中 $K$ 个网格，要求任意两个格子之间使用上下左右四个方向中的<strong>两个</strong>方向可达，求最大的价值和并给出一种方案。 </p>
+<p><strong>分析</strong> 最后占领的形状为菱形，使用 dp 解决上半部分（三角形）：$dp(i,j,k)$ 表示前 i 行共占领了 k 个网格且第 i 行占领的格子数为 j 的最大价值和。状态转移时保持 j 非递减即可。最后枚举中间行，将上下两个三角形合并成菱形。</p>
+<hr>
+<p>168 <strong>Matrix</strong></p>
+<p><strong>题意</strong> 给定 $N\times M(1\le N, M\le 1000)$ 大小的矩阵 $A$，求矩阵 $B$ 满足</p>
+<script type="math/tex; mode=display">
+B_{ij}=\min_{y\ge j\and x\ge i+j-y} A_{xy}</script><p><strong>分析</strong> 随便做。</p>
+<hr>
+<p>169 <strong>Numbers</strong></p>
+<p><strong>题意</strong> 定义 $P(n)$ 为 $n$ 的所有数位之积；如果 $P(n)\neq 0 \and P(n)|n$ 定义 $n$ 是 good number; 如果 $n$ 和 $n+1$ 都是 good number 定义 $n$ 是 prefect number。给定 $1\le K \le 10^6$，求所有 $K$ 位的 perfect number 数量。</p>
+<p><strong>分析</strong> 显然的事实是 $n$ 的个位数在 [1, 8] 范围内，如果 $n = 10x+y$，则 $n+1=10x+y$ 且 $P(n)=y\times P(x), P(n+1)=(y+1)\times P(x)$。因为 $n,n+1$ 都是 good number，所以有 $P(n)|n\and P(n+1)|(n+1)$，推断出 $P(x)|n\and P(x)|(n+1)$。又因为 $n,n+1$ 是互质的，所以 $\gcd(n, n+1)=1$，进而得出 $P(x)=1$。最后 $n=11\dots1w$ 的形式。</p>
+<hr>
+<p>170 <strong>Particles</strong></p>
+<p><strong>题意</strong> 有两个 5000 长度的 +- 序列，每次操作可以交换相邻的 +- 粒子。求最少操作次数将序列 1 转变为序列 2。</p>
+<p><strong>分析</strong> （<em>猜测</em>）按序匹配 -/+，计算其距离之和即可。</p>
+<hr>
+<p>171 <strong>Sarov zones</strong></p>
+<p><strong>题意</strong> 有 $1\le K\le 100$ 赛区，每个赛区选 $N_i$ 个人，总共 $\sum N_i$ 个人，每个人有个能力值 $P_i$ 以及权重 $W_i$，相应的赛区有强度值 $Q_i$。若选手能力值大于赛区强度 $P_i &gt; Q_j$ 则晋级。求一种方案使得晋级选手的权重和最大。</p>
+<p><strong>分析</strong> 先选权重大的选手，选取最大 $Q_j &lt; P_i$ 即可。</p>
+<hr>
+<p>172 <strong>eXam</strong></p>
+<p><strong>题意</strong> $1\le M \le 30000$ 学生从 $1\le N \le 200$ 门课中选 2 门考试，学校安排所有考试在两日内，求一种方案或判断不可能。所有学生的考试课程不同在同一天考试。</p>
+<p><strong>分析</strong> 二分图染色。</p>
+<hr>
+<p>173</p>
+<p><strong>题意</strong></p>
+<p><strong>分析</strong></p>
+<hr>
+<p>174 <strong>Walls</strong></p>
+<p><strong>题意</strong> 给定 $1\le M \le 200000$ 条线段，坐标范围 $|x_i|,|y_i|\le 10^9$，保证线段只在端点相交。求第几条线段加入后有封闭多边形。</p>
+<p><strong>分析</strong> 并查集。</p>
+<hr>
+<p>175 <strong>Encoding</strong></p>
+<p><strong>题意</strong> 假设有字符串 $W=w_1w_2\dots w_n$，编码函数 $phi(W)$ 如下：</p>
+<script type="math/tex; mode=display">
+phi(W) = \begin{cases} 1,& len(W)=1\\ phi(w_Nw_{N-1}\dots w_{K+1}+phi(w_Kw_{K-1}\dots w_1)),&else   \end{cases}</script><p>其中 $K = \lfloor \frac {len(W)}2 \rfloor$。</p>
+<p>先给定 $1\le len(W)\le 10^9$ 长度以及原字符串的位置 $q$，求编码字符串中对应原位置 $q$ 的位置。</p>
+<p><strong>分析</strong> 判断 $q$ 在左右哪个子串中，划分成子问题求解即可。</p>
+<hr>
+<p>176 <strong>Flow construction</strong></p>
+<p><strong>题意</strong> 有 $1\le N\le 100$ 个结点和 $M$ 条管道，管道从结点 $U_i$ 流向 $V_i$ 且容量上限为 $Z_i$。化学物质从结点 1 经过若干管道流进结点 $N$，现要求部分管道<strong>必须流满</strong>($C_i = 1$)的前提下，该管道网络的最小流量。</p>
+<p><strong>分析</strong> 有源汇上下界最小流。</p>
+<hr>
+<p>177 <strong>Square</strong></p>
+<p><strong>题意</strong>  给 $1000×1000$ 的矩形，进行 $5000$ 次染色，每次将一个子矩形染成黑色或白色。初始所有格子都是白色的情况下，染色完后的白色格子数。</p>
+<p><strong>分析</strong> 扫描线+线段树；bitset。</p>
+<hr>
+<p>178 <strong>Golden chain</strong></p>
+<p><strong>题意</strong>  给长为 $1\le N\le 10^{16}$ 长的金链条，Peter 每天需要支付 1 长度的金条，支付的方式有两种：一种是直接支付 1 长度金条；另一种是支付大于 1 长度的金条并使用之前支付的金条找零。零钱的组成由 Peter 指定。Peter 每次可以从长金条上切掉 1 长度的金条，将长金条切分成 3 段。现想知道最少切几次可以满足 $N$ 天的支出。 </p>
+<p><strong>分析</strong> 假设最终切出 k 个 1 长度金条，那么将剩下的 N - k 长度视为完整的金条，允许切 k 刀划分成 k + 1 段。前 k 天直接支付 1 长度即可。第 k + 1 天切出 k + 1 长度金条，找零 k 个 1 长度从而k + 2 ~ 2k + 1 天继续每天支付 1 长度。第 2k + 2 天切出 2k + 2 长度金条，兑换出之前支付的金条又开始循环（假设切不出 2k + 2 长度，那么也能找出类似的策略来满足每天 1 长度的支付）。因此切 k 次的最多能满足 $k + (k + 1) + 2(k + 1) + … + 2^k(k+1)=2^{k+1}(k+1)-1$ 天的支付需求，枚举 k 即可。 </p>
+<hr>
+<p>179 <strong>Brackets light</strong></p>
+<p><strong>题意</strong>  给长为 10000 合法的括号序列(仅包含 ‘(‘ 和 ‘)’，并且字典序 ‘(‘ &lt; ‘)’)，求下一个字典序的合法括号序列。 </p>
+<p><strong>分析</strong> 从后往前找第一个能 ‘(‘ 转为 ‘)’ 的位置，之后尽量填 ‘(‘ 来保证中间不会有更小字典序且满足题意的括号序列。尽量的意思就是在该位置填 ‘(‘ 后仍有足够的位置放置 ‘)’，这个可以通过前缀和思想解决。</p>
+<hr>
+<p>180 <strong>Inversions</strong></p>
+<p><strong>题意</strong>  $1\le N\le 65537$ 个数 $0\le A_i\le 10^9$ 的逆序对数。</p>
+<p><strong>分析</strong> 。</p>
+<hr>
+<p>181 <strong>X-Sequence</strong></p>
+<p><strong>题意</strong>  。</p>
+<p><strong>分析</strong> 找循环节。</p>
+<hr>
+<p>182 <strong>Open the brackets</strong></p>
+<p><strong>题意</strong>  给由 10 个变量组成的布尔表达式，运算符包括：!, (), ||, &amp;, &lt;=&gt;, =&gt;, #，变量名从 ‘a’ 到 ‘j’ 共 10 个。要求去掉括号 () 运算符的等价布尔表达式，字符数量小于 32768。</p>
+<p><strong>分析</strong> 10 个布尔变量的组合数为 2^10 = 1024 种，仅使用 !, ||, &amp; 来枚举所有情况的字符数不会超过 32768：使用 || 拼接不同组合，数量为 2 <em> 2^10 = 2048；! 的数量为 10 </em> 2^9 = 5120；&amp; 组合 10 个变量的数量为 9 <em> 2^10 = 9216，变量名的数量为 10 </em> 2^10 = 10240。</p>
+<hr>
+<p>183 <strong>Painting the balls</strong></p>
+<p><strong>题意</strong>  初始有 $2\le N\le 10^4$ 个白球，可花费 $1\le C_i\le 10^4$ 染料将第 i 个球染成黑球。现要求在<strong>任意连续</strong> $2\le M\le 100$ 个球中至少有 2 个黑球，求最少需要花费多少染料。</p>
+<p><strong>分析</strong> $dp(i, j)$ 表示将第 $i$ 个位置染黑的前提下，前一个黑球位置 $p \ge i-j$ 的最小代价。</p>
+<p>状态转移方程为</p>
+<script type="math/tex; mode=display">
+dp(i, j) = \min_{i - j - k \ge i - M} {dp(i - j, k)} + C_i</script><hr>
+<p>185 <strong>Two shortest</strong></p>
+<p><strong>题意</strong>  给 $2\le N\le 400$ 个点带边权的无向图，找出两条无共用边的两条最短路（允许有交点）。</p>
+<p><strong>分析</strong> 最小费用流。</p>
+<hr>
+<p>187 <strong>Twist and whirl - want to cheat</strong></p>
+<p><strong>题意</strong>  （splay 模板题）</p>
+<hr>
+<p>188 <strong>Factory guard</strong></p>
+<p><strong>题意</strong>  有 $1\le N\le 20$ 个人站在 1000 长度圆环上的整数点位置，每个人有行走速度 $-100\le V_i \le 100$ 以及两两不同的位置 $0\le L_i\le 999$。$V_i \lt 0$ 表示逆时针行走，$V_i \gt 0$ 则表示顺时针行走。每个人会向对面走来的人打招呼，求 $1\le T\le 50$ 时间后每个人打招呼的次数。</p>
+<p><strong>分析</strong> 可以求顺时针和逆时针第一次碰面的时间，之后再相遇的时间是固定的。</p>
+<p><strong>todo</strong> 数据范围能否变大？</p>
+<hr>
+<p>190 Dominoes</p>
+<p><strong>题意</strong>  $40×40$ 的棋盘上有 $P$ 个格子被移除，判断能否用 1×2 或 2×1 的多米诺覆盖所有未被移除的格子且不相交。</p>
+<p><strong>分析</strong> 相邻格子的 x+y 奇偶性不同，因此原问题可以转变为二分图的最大匹配。</p>
+<hr>
+<p>192 RGB</p>
+<p><strong>题意</strong>  给 300 条线段，每条线段的颜色为 RGB 三种中的一种，任意两条线段至多一个交点。将线段投影到 X 轴，每段投影的颜色为离 X 轴最近线段的颜色。求投影后每种颜色的长度之和。</p>
+<p><strong>分析</strong> 求出所有交点后划分投影线段区间，每段区间取中点并判断中点所在线段的颜色。</p>
+<hr>
+<p>193 <strong>Chinese Girls’ Amusement</strong></p>
+<p><strong>题意</strong>  有 $3\le N\le 10^{2000}$ 玩丢手绢游戏，手持手绢的人将手绢传递给顺时针方向的第 $1\le K\le \lfloor\frac N2\rfloor$ 个人，当手绢丢回第一个人时游戏结束。要求游戏过程中每个人都要拿过手绢，求最大满足要求的 $K$ 值。 </p>
+<p><strong>分析</strong> 假设经过 $p$ 次传回第一个人，那么有 $pK \mod N = 0$，而要求每个人都要拿过手绢，因此 $p=N$，也就是说 $NK = lcm(K, N)$，等价于 $\gcd (K, N) = 1$ 即 $K$ 和 $N$ 互质。</p>
+<p>假设 $N= 2n+1$，当 $K=\lfloor\frac N2\rfloor=n$ 时，$\gcd (K, N)=\gcd(n, 2n+1)=\gcd(n, n+1)=1$。所以当 $N$ 是奇数时，能取到上限 $\lfloor\frac N2\rfloor$。</p>
+<p>当 $N=2n$ 时，若 $K = \lfloor\frac N2\rfloor=n$，则 $\gcd(K, N) = \gcd(n, 2n) = n &gt; 1$； 若 $K=n-1$，则 $\gcd(K, N)=\gcd(n-1, 2n)=\gcd(n-1, 2)$，当 $n$ 是偶数时，gcd = 1；若 $K=n-2$，则 $\gcd(K, N)=\gcd(n-2, 2n)=\gcd(n-2, 4)$，当 $n$ 是奇数时，gcd = 1。</p>
+<p>综上，$K$ 的取值仅三种情况，分类讨论即可。</p>
+<p>PS：上述结论可通过小数据打表辅助观察得到。</p>
+<hr>
+<p>194 <strong>Reactor Cooling</strong></p>
+<p><strong>题意</strong>  。</p>
+<p><strong>分析</strong> 无源汇上下界最大流。</p>
+<hr>
+<p>195 <strong>New Year Bonus Grant</strong></p>
+<p><strong>题意</strong>  有 $2\le N\le 5×10^5$ 名员工，每名员工有<strong>唯一</strong>上级（即上下级关系构成一棵树）。每名员工可以分配拨款给其中一名下属，或接受来自上级的拨款，但是不能同时分配和接受拨款。求拨款总和可能的最大值。</p>
+<p><strong>分析</strong> 树形 dp，每名员工根据是否分配了拨款划分成两个状态，分别记录最大拨款值即可。</p>
+<hr>
+<p>196 <strong>Matrix Multiplication</strong></p>
+<p><strong>题意</strong>  。</p>
+<p><strong>分析</strong> 模拟。</p>
+<hr>
+<p>197 <strong>Nice Patterns Strike Back</strong></p>
+<p><strong>题意</strong>  对长 $1\le N\le 10^{100}$ 宽 $1\le M\le 5$ 的矩形黑白染色，要求任意 2×2 的子矩形不能完全同色（即 4 白色或 4 黑色）。求合理的方案数，结果对 $1\le P\le 10000$  取模。</p>
+<p><strong>分析</strong> 按行染色，显然就是矩阵 + 快速幂，对于 $N$ 的处理需要大数或者手动模拟整数除法。</p>
+<hr>
+<p>198 <strong>Get Out!</strong></p>
+<p><strong>题意</strong>  给平面上 $1\le N\le 300$ 个圆 $(x_i, y_i, r_i)$ 表示岛屿，一个圆 $(X, Y,R)$ 表示船。判断这艘船能否自由航行，即不被岛屿与岛屿之间的缝隙卡住而无法走出群岛区域。</p>
+<p><strong>分析</strong> 将每个岛屿的半径增加 $R$，当两个新圆相交（不包括相切）时，船只无法通过这两个岛屿之间的缝隙。<del>剩下的问题转化为判断一个点是否被多边形包围。</del></p>
+<hr>
+<p>199 <strong>Beautiful People</strong></p>
+<p><strong>题意</strong>  一个俱乐部中有 $2\le N\le 10^5$ 个人，每个人有能力值 $1\le S_i\le 10^9$ 和魅力值 $1\le B_i\le 10^9$。现想邀请尽可能多的人参加派对，但是当 $S_i\le S_j\and B_i\ge B_j$ 时两个人存在矛盾。在不邀请有矛盾的两个人来派对的前提下，问最多能邀请多少人。</p>
+<p><strong>分析</strong> 按 $pair(S_i, B_i)$ 排序，问题转变成最长上升子序列。</p>
+<hr>
+<p>200 <strong>Cracking RSA</strong></p>
+<p><strong>题意</strong>  给 $1\le m\le 100$ 个数 $1\le b_i\le 10^9$，所有数的质因子是前 $1\le t\le 100$ 个质数。求 {1, 2, …, m} 的所有子集数量，子集所对应 $\prod b_i$ 是完全平方数。</p>
+<p><strong>分析</strong> $\prod b_i$ 是完全平方数，说明每个质因子的指数都是偶数，那么我们只关心 $b_i$ 每个质因子的指数奇偶性，本质上就是解模 2 意义下的方程组解的数量（套高斯消元板子即可）。 </p>
+<hr>
+<p>201 <strong>Non Absorbing DFA</strong></p>
+<p><strong>题意</strong>  给一个 $1\le K\le 1000$ 个状态的有限状态自动机，字符集为小写字母。除了常规的状态转移外，还有转移 $X(u, c) $：当 $X(u, c)=0$ 时正常转移；当 $X(u, c)=1$ 时不进行匹配，但是可以进入相应的状态（可以认为是等价状态的转移）。求长度为 $1\le N\le 60$ 的所有字符串中被该自动机接受的字符串数量。</p>
+<p><strong>分析</strong> 大数模拟。</p>
+<hr>
+<p>202 <strong>The Towers of Hanoi Revisited</strong></p>
+<p><strong>题意</strong>  $4\le M\le 65$ 塔汉诺塔问题，将 $1\le N\le 64$ 圆盘从第一柱塔移动到第 $M$ 柱塔上，求最少的操作次数以及具体的移动方案。</p>
+<p><strong>分析</strong> 三塔汉诺塔推广，先将 $N-1$ 个圆盘均摊到其他塔上，将第 $N$ 个圆盘直接移动到目标塔上，然后重复操作将 $N-1$ 个圆盘依次移动到目标塔上。</p>
+<hr>
+<p>203 <strong>Hyperhuffman</strong></p>
+<p><strong>题意</strong> 给 $2\le N\le 5×10^5$ 个字符在某一字符串的出现次数 $1\le P_i\le 10^9, P_i\le P_{i+1}$，使用哈夫曼编码字符，求编码后的字符串长度。</p>
+<p><strong>分析</strong> 由于 $P_i$ 本身有序，因此对于合并得到的 $P_i+P_j$ 可由队列维护（该队列天然也是有序的），因此总的时间复杂度是 $O(N)$。</p>
+<hr>
+<p>204 <strong>Little Jumper</strong></p>
+<p><strong>题意</strong> </p>
+<p><strong>分析</strong></p>
+<hr>
+<p>205 <strong>Quantization Problem</strong></p>
+<p><strong>题意</strong> 给 $m×s,1\le m\le s\le 128$ 编码表 $A_{ij}$，需要编码 $1\le n\le 1000$ 个数 $1\le x_i\le 10^6$，规则：假设第 $i$ 个数使用了第 $k_i$ 列，则第 $i+1$ 个数只能使用第 $k_i\mod m$ 行的数来编码。求 $\sum|x_i-A_{k_{i-1}\mod m, k_i}|$ 的最小值。</p>
+<p><strong>分析</strong> $dp(i, j)$ 表示第 $i$ 个数使用第 $j=k_i\mod m$ 列编码的最小值。</p>
+<hr>
+<p>206</p>
+<hr>
+<p>207</p>
+<hr>
+<p>208 <strong>Toral Tickets</strong></p>
+<p><strong>题意</strong> 给 $N\times M, 1\le N, M\le 20$ 大小的橡胶板，按长边卷成圆柱体（底面周长为短边），然后再将圆柱体卷成环状（类似泳圈），每个格子可染色黑/白，求<strong>本质不同</strong>的环状物。当橡胶板为正方形时，有两种方案卷成圆柱体。 </p>
+<p><strong>分析</strong> 当其中一条边为 1 时，本质上是<strong>项链染色</strong>问题。在本题背景下，仅需要多考虑一个方向上的旋转，但是不方便直接计算每个置换的循环数（polya 计数）。本题矩形大小较小，因此可以模拟计算每个置换的循环数。</p>
+<p><strong>标签</strong> Polya</p>
+<hr>
+<p>209 <strong>Areas</strong></p>
+<p><strong>题意</strong> 给平面上 $1\le N\le 80$ 条直线，这些直线会划分出有限面积和无线面积的区域，求有限面积的各个区域的面积。</p>
+<p><strong>分析</strong> （未代码验证）直线交求出交点坐标，处理出各个交点的相邻交点。有限面积区域都是凸包，利用这个性质可以处理所有的有限面积区域。判重可以利用连续 3 个点 index 来区分。</p>
+<p><strong>TAG</strong> Geometry</p>
+<hr>
+<p>210 <strong>Beloved Sons</strong></p>
+<p><strong>题意</strong> 有 $1\le N\le 400$ 个男生匹配 $1\le M\le 1000$ 个女生，每个男生有 $K_i$ 个喜欢的女生。当男生和其喜欢的女生配对时，产生价值 $1\le A_i \le 1000$，否则无价值。求最大的 $\sqrt{\sum A_i^2}$。</p>
+<p><strong>分析</strong> KM 算法。</p>
+<p><strong>TAG</strong> KM   </p>
+<hr>
+<p>211 <strong>Strange Counter</strong></p>
+<p><strong>题意</strong> 实现特殊二进制的累加器，特殊处在于每位能存 [0, 2] 之间的 3 个数。进行 $1\le M\le 10^4$ 次操作，每次加上 $2^{x_i}，0\le x_i\lt N, N\le 10^3$，并要求每次修改的位数不能超过 4。数据保证总和小于 $2^{N}$。</p>
+<p><strong>分析</strong> （未代码验证）模拟，过程中如果发生连续进位，在修改位数超过 4 时，不再进位。当加法没有发生进位时，在处理之前的遗留进位。</p>
+<hr>
+<p>212 <strong>Data Transmission</strong></p>
+<p><strong>题意</strong> </p>
+<p><strong>分析</strong></p>
+<p><strong>TAG</strong> Network-flow</p>
+<hr>
+<p>213 <strong>Strong Defence</strong></p>
+<p><strong>题意</strong> 给 $2\le N\le 400$ 个点的无向图以及起点 $S$ 和终点 $T$。将边集划分成若干不相交的集合，使得去掉任意集合后 $S, T$ 不联通。求最大集合数量。 </p>
+<p><strong>分析</strong></p>
+<hr>
+<p>214 <strong>Weird Dissimilarity</strong></p>
+<p><strong>题意</strong> 给 200 大小的字符集 $\sum$ ，字符 $c_1, c_2$ 的距离给定为 $d(c_1, c_2)$。现给出长度不超过 2000 的字符串 $s_1, s_2$，要求找出两个<strong>等长</strong>的字符串 $\alpha,\beta$，满足：$s_1$ 是 $\alpha$ 的<strong>子序列</strong>，$s_2$ 是 $\beta$ 的子序列，且 </p>
+<script type="math/tex; mode=display">
+\sum_{i=1}^{|\alpha|} d(\alpha_i,\beta_i)</script><p>最小。</p>
+<p><strong>分析</strong> 最长公共子序列。</p>
+<hr>
+<p>215 <strong>PL/Cool</strong></p>
+<p><strong>题意</strong> 表达式解析以及计算。</p>
+<p><strong>分析</strong></p>
+<hr>
+<p>216 <strong>Royal Federation</strong></p>
+<p><strong>题意</strong> 给 $1\le N\le 10^4$ 大小的树以及常数 $1\le B\le N$，要求将树分割成若干大小介于 $[B, 3B]$ 的区域，每个区域不一定联通但需要存在一个控制点连接该区域的点，找出一个可行方案。</p>
+<p><strong>分析</strong> （理论）不断将树的大小二分，即找重心。</p>
+<hr>
+<p>217 <strong>Two Cylinders</strong></p>
+<p><strong>题意</strong> 给三维空间中无限长的两个圆柱体，半径分别为 $1\le R_1, R_2\le 100$，其轴线相互垂直，求交区域面积。</p>
+<p><strong>分析</strong> </p>
+<hr>
+<p>218 <strong>Unstable Systems</strong></p>
+<p><strong>题意</strong> 有 $N$ 台工作站和 $N$ 个程序，工作站 $i$ 运行程序 $j$ 出错的不稳定性为 $|a_{i, j}|\le 10^6$。在一台工作站运行一个程序的前提下，求解一个分配方案最小化不稳定性的最大值。</p>
+<p><strong>分析</strong> （理论）二分最大值，求解二分图的最大匹配。</p>
+<hr>
+<p>219 <strong>Synchrograph</strong></p>
+<p><strong>题意</strong> 给 $1\le N\le 1000$ 个点, $1\le M\le 50000$ 条边的有向图，边权是不超过 $10^9$ 的非负整数。当一个点的所有入边边权均为正数时，视为激活状态并且可以将所有入边边权减一，所有出边边权加一。现要求判断每个点是否能经过若干操作后变成激活状态。</p>
+<p><strong>分析</strong> （理论）<del>考虑最简单的情况，相邻两个点存在双向边且边权均为 0，那么这 2 个点都不可能变成激活状态。</del></p>
+<hr>
+<p>220 <strong>Little Bishops</strong></p>
+<p><strong>题意 </strong> 给大小为 $n\times n, 1\le n\le 10$ 的国际象棋棋盘，放置 $0\le k\le n^2$ 个象。象只能沿对角线方向走，步数不限但会互相攻击路径上的其它象。求放置后不会互相攻击的方案数。 </p>
+<p><strong>分析</strong> dp。</p>
+<hr>
+<p>221 <strong>Big Bishops</strong></p>
+<p><strong>题意</strong> （与 220 Little Bishops 相同），棋盘大小为 $n\times n, 1\le n\le 50$，求方案数。</p>
+<p><strong>分析</strong></p>
+<hr>
+<p>222 <strong>Little Rooks</strong></p>
+<p><strong>题意</strong></p>
+<p><strong>分析</strong></p>
+<hr>
+<p>223 <strong>Little Kings</strong></p>
+<p><strong>题意</strong> 在 $n\times n, 1\le n\le 10$ 的棋盘上放置国王，国王会攻击相邻的 8 个格子。求放置 $k$ 个国王且不互相攻击的方案数。</p>
+<p><strong>分析</strong> 状压 dp。</p>
+<hr>
+<p>224 <strong>Little Queens</strong></p>
+<p><strong>题意</strong></p>
+<p><strong>分析</strong></p>
+<hr>
+<p>225 <strong>Little Knights</strong></p>
+<p><strong>题意</strong></p>
+<p><strong>分析</strong></p>
+<hr>
+<p>226 <strong>Colored graph</strong></p>
+<p><strong>题意</strong> $2\le N\le 200$ 个点，$0\le M\le N^2$ 条边的有向图，每条边为三种颜色中的一种。求点 1 到点 N 的最短距离，要求路径上不能出现连续相同颜色的边。</p>
+<p><strong>分析</strong> 最短路</p>
+<hr>
+<p>227 <strong>The art to the broad masses!</strong></p>
+<p><strong>题意</strong> 给 $1\le N\le 50$ 个半圆弧，判断交点数量是否有限，若有限输出所有交点。</p>
+<p><strong>分析</strong> 本质上求解两圆交点，然后仅保留半圆上的点（可以利用叉积计算）。</p>
+<hr>
+<p>228 <strong>Archipelago</strong></p>
+<p><strong>题意</strong> 已知正 $3\le N\le 150$ 边形的两个点，按顺时针方向标号，第 $N_1$ 个点的坐标为 $(x_1, y_1)$，第 $N_2$ 个点的坐标为 $(x_2, y_2)$。求正 $N$ 边形的所有顶点坐标，按标号顺序输出。</p>
+<p><strong>分析</strong> 计算几何。</p>
+<hr>
+<p>229 <strong>Divide and conquer</strong></p>
+<p><strong>题意</strong></p>
+<p><strong>分析</strong></p>
+<hr>
+<p>230 <strong>Weighings</strong></p>
+<p><strong>题意</strong> 有 $1\le N\le 100$ 个硬币，第 $i$ 个硬币重量为 $i$ 克，每个硬币放入无差别的盒子中。目前已知 $1\le M\le 10000$ 个重量关系 $1\le P, Q\le N$，表示盒子 $P$ 的重量大于盒子 $Q$ 的重量。求每个硬币放入的盒子编号，输出任一种方案，若无解输出 “No solution”。</p>
+<p><strong>分析</strong> 拓扑序。</p>
+<hr>
+<p>231 Prime Sum</p>
+<p><strong>题意</strong> 求 $1\le N\le 10^6$ 范围内的质数对 $(A, B), A\le B$，满足 $A+B$ 也是质数的数量。</p>
+<p><strong>分析</strong> 除 2 外，质数都是奇数。而奇数+奇数=偶数，因此问题转化为质数对 $(2, B)$ 的方案数。</p>
+<hr>
+<p>232 Infinite Fraction</p>
+<p><strong>题意</strong> 给长为 $1\le N\le 1.5\times10^5$ 的数字串 $D, 0\le D_i\le9$ 以及常数 $0\le K\le 10^9$，构造无限循环小数 $A_i$，其中 $A_{i, j}=D_{(i+jK)\mod N}$，其中 $j\ge 0$ 表示第几个小数。在所有可能的小数 $A_i$ 中找出最大的小数。</p>
+<p><strong>分析</strong> 每个无限循环小数的重复部分长度是一致的，因为步长 $K$ 和环长 $N$ 是固定的，并且长度为 $\frac{N}{gcd(N,K)}$，因此 $A_i$ 比较大小时仅需要比较 $\frac{N}{gcd(N,K)}$ 长即可。到这步时比较容易想到用<strong>后缀数组</strong>处理，将前 $N$ 个 $A_i$ 的重复部分拼接起来比较各个 $A_i$ 的序即可。但是这种做法空间复杂度为 $O(\frac{N^2}{gcd(N,K)})$，不适用于 $N$ 很大的情况。考虑 $A_i$ 的重复部分包含了 $A_{i+1,0}, A_{i+1,1}$ 等部分，复用这部分数据仅需要将 $A_i$ 的重复部分再复制一份即可，总共需要额外 $gcd(N, K)\frac N{gcd(N,K)}=N$ 的空间（这里 $gcd(N,K)$ 表示循环个数）。</p>
+<hr>
+<p>233 The Greatest Angle</p>
+<p><strong>题意</strong> $1\le N\le 10^4$ 个测试，每次测试给一个圆 $(x_0, y_0, r)$ 以及点 $A(x_a, y_a)$，点 $B(x_b, y_b)$，在圆上找到一点 C 使得角 ACB 最大。若有多解输出任一解。</p>
+<p><strong>分析</strong></p>
+<hr>
+<p>234 Black-White King Strikes Back</p>
+<p><strong>题意</strong> 给大小为 $M\times N, 1\le M,N\le 200$ 的棋盘，需要在棋盘上放置卫兵，但是卫兵会攻击上下左右的所有生物，即包括其他卫兵。在有些格子不能放置卫兵的前提下，求最多能放置多少个卫兵使得卫兵不会互相攻击。</p>
+<p><strong>分析</strong> 二分图的最大独立集。假设每个格子的坐标为 $(x, y)$，则根据 $x+y$ 的奇偶性可划分出 2 个点集，并且冲突仅出现在两个点集之间，点集内部没有冲突。将冲突表示成边的话，问题就转换成找出二分图的最大独立集。</p>
+<p><strong>Konig定理</strong></p>
+<p>假设二分图的最大匹配数为 M，最小覆盖数为 m，则有:</p>
+<ol>
+<li>m ≤ M。令最大匹配的点集为 C，二分图为 <v, e>。假设有 m &gt; M，所以存在点 a, b ∉ C 且 (a, b) ∈E，这与最大匹配的定义矛盾，因此假设不成立。</v,></li>
+<li>m ≥ M。在最大匹配中，每对匹配没有公共点，因此覆盖匹配边至少需要 M 个点，因此有 m ≥ M。</li>
+</ol>
+<p>综上二分图有：最小覆盖数 = 最大匹配数。</p>
+<p><strong>二分图最小点覆盖的构造方案</strong></p>
+<p>基于二分图中最小点覆盖数等于最大匹配数的结论来构造方案，首先有两个认知：</p>
+<ol>
+<li>每对匹配有且仅有一个点在方案中；</li>
+<li>没有配对且有连边的点，由有匹配的点来覆盖其之间的连边。</li>
+</ol>
+<p>那么根据上面的认知，则有构造方案：</p>
+<ol>
+<li>选取二分图左侧无匹配的所有点，根据认知 2 这些点必须由右侧在匹配中的点来覆盖（理论上，此时无匹配的左侧点也找不到无匹配的右侧点，否则就违反了最大匹配的定义）。</li>
+<li>在选取了部分右匹配点进方案后，根据认知 1，相应的左侧匹配点就不能选择了。之后，将这些不能选择的左侧点视为无匹配点，寻找其他右匹配点来覆盖非匹配边。</li>
+<li>在步骤 1,2 中未访问过的点，只剩匹配点之间自己的连边，可以任选一点。</li>
+</ol>
+<p>步骤 1,2 本质上是在寻找增广路，并且覆盖了左侧无匹配点与右侧之间的连边。在最大匹配的前提下，步骤 1,2 找不到新匹配，因此增广路的终点必然是左侧。</p>
+<p>右侧无匹配点与左侧之间的连边情况也是类似的，仿照步骤 1,2 即可。显然，处理左侧无匹配点和右侧无匹配点不存在冲突，因此可以在一次 BFS 中处理。</p>
+<hr>
+<p>235 The Queen</p>
+<p><strong>题意</strong> 在大小为 $2\le N\le 300$ 的国际象棋棋盘上，有且仅有一个白棋皇后以及其他种类的白棋和黑棋。白皇后只可以攻击黑棋，在仅有白皇后可以移动的前提下，求白皇后在 $0\le M\le 50$ 步后可以到达哪些位置。</p>
+<p><strong>分析</strong> 模拟。</p>
+<hr>
+<p>236 Greedy Path</p>
+<p><strong>题意</strong> 给 $3\le N\le 50$  个点，$M$ 条边的带权有向图，每条边有权值 $1\le C_{ij}\le 100$ 和 $1\le T_{ij}\le 100$。求一个环使得 $\sum C_{ij}/\sum T_{ij}$ 最大。</p>
+<p><strong>分析</strong></p>
+<hr>
+<p>237 Galaxy X: Episode I - Masters of Mind</p>
+<p><strong>题意</strong> 给定长度为 255 且包含 ‘*‘,’?’,’!’ 的正则表达式，基于该正则构造长度和字典序都是最小的回文串。各符号含义：’*‘ 匹配任意长度的任意字符；’?’ 恰好匹配一个字符；’!’ 恰好匹配三个字符。</p>
+<p><strong>分析</strong> DP；’!’替换成 3 个 ‘?’。</p>
+<hr>
+<p>238 Uncle Vasya and Bags for Potatoes</p>
+<p><strong>题意</strong> （将题目中的地板抽象成一个点）给一棵大小为 $N+1$ 的树，每次操作将根节点的一个儿子节点替换成根。在给定初始状态后，经过若干次操作可以得到多少种不同的状态。</p>
+<p><strong>分析</strong> 每种状态根据只与树根编号有关，因此答案为 $N+1$（特判 $N=1$ 时答案为 1）。</p>
+<hr>
+<p>239 Minesweeper</p>
+<p><strong>题意</strong> 在 $2\times N, 1\le N\le 1000$ 的扫雷游戏中，地雷只会出现在第 1 列，已知第 2 列数字的前提下，求所有可能埋雷的方案数。</p>
+<p><strong>分析</strong> dp(i, mask)。</p>
+<hr>
+<p>240 Runaway</p>
+<p><strong>题意</strong> 给 $1\le N\le 100$ 个点，$1\le M\le 10000$ 条边的无向图，每条边有初始温度 $0\le R_i\le 10000$，每秒温度增长值 $0\le P_i\le 10000$，通过该边的时间 $1\le T_i\le 10000$。角色最高能忍受的温度为 $1\le H\le 10000$，已知当前角色位置为 $S$，需要从 $E$ 个出口中离开地图，希望最小化路径中的最高温度。</p>
+<p><strong>分析</strong> dp。</p>
+<hr>
+<p>241 The United Fields of Chessboardia</p>
+<p><strong>题意</strong> 给大小分别为 $N\times N,0\le N\le 20$ 和 $M\times M, 0\le M\le 20$ 的棋盘，第 2 个棋盘的左下角与第 1 个棋盘的右上角重叠一部分。求放置 $0\le K\le 10^9$ 个车的方案数，满足任意 2 个车不互相攻击。</p>
+<p><strong>分析</strong> 状压 dp。</p>
+<hr>
+<p>242 Student’s Morning</p>
+<p><strong>题意</strong> 有 $0\le N\le 200$ 个学生以及 $0\le K\le 200$ 所学校。需要去访问所有学校，但每所学校至少需要 2 个学生，并且每个学生都有自己的学校偏好列表，求解是否存在一种方案，若有则输出一种。</p>
+<p><strong>分析</strong> 最大流可解。</p>
+<hr>
+<p>243 Broken Chessboard</p>
+<p><strong>题意</strong> 大小为 $1\le N\le 5$ 的正方形棋盘碎成若干个连通块，这些连通块散落后可能会发生翻转 90/180/270 的情况。现要求复原该正方形，输出任一方案。</p>
+<p><strong>分析</strong> 搜索+剪枝。</p>
+<hr>
+<p>244 Height, Bisector and Median</p>
+<p><strong>题意</strong> 给 △ABC 的高  AH, 角平分线 AD 以及中位线 AM（所有长度不超过 100）。判断是否能构造出 △ABC，若能输出任一方案。</p>
+<p><strong>分析</strong></p>
+<hr>
+<p>245 Black-White Army</p>
+<p><strong>题意</strong> 给大小为 $N\times M, 1\le N,M\le 300$ 的国际象棋棋盘，主角有且仅有一个棋子（可从 pawn, rook, knight, bishop 和 king 中选一类型），对手棋子散布在棋盘上不会主动移动但如果可以就会攻击主角的棋子。主角若击杀对方棋子，可根据棋子类型获得不同的分数。现给定双方棋子的位置，求主角最多能获得多少分数。</p>
+<p><strong>分析</strong> 因为棋盘上的路径是可逆的，那么主角击杀棋子的顺序是无关的，即可贪心地击杀对方棋子。在击杀对面棋子后，一些原本不可达的位置可能就可以在不被对方攻击的情况下到达了，这个更新需要遍历整个棋盘，可以 lazy update。</p>
+<hr>
+<p>246 Black &amp; White</p>
+<p><strong>题意</strong> 给长度为 $2N-1$ 长度由黑色/白色珠子构成的项链，其中有 $K$ 个黑色珠子。如果项链能找到 2 个黑色珠子将项链分成两部分且其中一部分长度为 $N$，则定义为好项链。找出最小的 $K$ 使得所有项链都是好项链。</p>
+<p><strong>分析</strong> 记项链长度 $L=2N-1$，将问题转化成最多能放置多少个黑色珠子使得两两之间的长度不为 $N$。考虑最坏的情况，位置 $i$ 放置黑珠，位置 $i+(N+1)$ 放置白珠，位置 $i+2(N+1)$ 放置黑珠，以此类推。最后会回到位置 $i$，即 $i+k(N+1)\equiv i\pmod L$，到这步可以解出 $k=\frac{LCM(N+1,L)}{N+1}$，即在这个循环中有 $k$ 个位置，按照黑色交替染色最多可以放置 $\lfloor \frac {k} 2\rfloor$。因为项链长度为 $L$，这样的循环共有 $L/k$ 个，整个项链最多可以放置 $\lfloor\frac k 2\rfloor \frac Lk$ 个黑子珠子满足两两之间长度不为 $N$。</p>
+<hr>
+<p>247 Difficult Choice</p>
+<p><strong>题意</strong> $0\le N\le 100$ 次测试，每个测试给一个奇质数 $P\lt 1000$，需要从 $[1, 2P]$ 中选取 $P$ 个数满足和是 $P$ 的倍数，求方案数。</p>
+<p><strong>分析</strong> 将数分为集合 $A=\{x|x\in[1,P]\}$ 和集合 $B=\{x|x\in[P+1,2P]\}$。假设从 $A$ 中取 $a_1, a_2, \dots,a_n$，从 $B$ 中取 $b_1, b_2, \dots, b_m$，满足 $n+m=P$ 且 $\sum a_i +\sum b_i =kP$，则有推论：记 $c_i=(a_i-1+d)\mod P+1$，有 $\forall d\in[1,P)，\sum c_i+\sum b_i \neq kP$，即在有一组合法解的前提下可构造不出 $P-1$ 个<strong>非法解</strong>。</p>
+<p>首先证明序列 $a_i$ 和序列 $c_i$ 不一致，使用反证法证明：$\exist d\in [1,P)$，使得 $a_i=c_j=(a_j-1+d)\mod P+1$。因为 $c_i$ 是 $a_i$ 的一个置换，可以计算出每个循环的长度为 $P/\gcd(d,P)=P$。在<strong>没有全选集合 $A$</strong> 的情况下有 $n&lt;P$，故假设不成立从而有 $a_i$ 和 $c_i$ 不一致。</p>
+<p>因为有 $n&lt;P, d&lt;P$ 且 $P$ 是质数，所以 $nd\neq 0\pmod P$，则 $\sum c_i + \sum b_i \neq \sum a_i+\sum b_i=kP$。</p>
+<p>综上，在所有选取方案（包括非法）中，每 $P$ 组有一组解，因此方案数为 $\frac{C(2P, P)-2}{P}+2$，常数 2 表示全选 A 和全选 B。</p>
+<hr>
+<p>248 Integer Linear Programming</p>
+<p><strong>题意</strong> 整形线性规划问题，给定 $0\lt N\le 3$ 个变量 $x_i$，最小化目标函数为 $f(x_1, x_2,\dots,x_N)=\sum x_i$，约束为 $\sum c_ix_i = V$，其中 $0\lt c_i, V\le 10^6$。求解非负整数解 $(x_1, x_2,\dots, x_N)$。</p>
+<p><strong>分析</strong> 将变量视为空间为 $c_i$ 价值为 1 的物品，问题转化成完全背包问题。</p>
+<hr>
+<p>249 Matrix</p>
+<p><strong>题意</strong> 使用 $[0, 2^{N+M}), N+M\le 20$ 的所有数构造 $2^N\times 2^M$ 大小的矩阵，满足相邻格子中的数在二进制表示下仅一位不同。矩阵是环形的，即第一列和最后一列相邻，第一行和最后一行相邻。</p>
+<p><strong>分析</strong> 将二进制位拆分成两部分，第一部分占 $N$ 位，第二部分占 $M$ 位。构造思想：同一行的数前 $N$ 位相同，通过后 $M$ 位造环；不同行的数后 $M$ 位按列一一对应，仅前 $N$ 位中有一位不同，即通过前 $N$ 位构造行之间的环。因为第一部分和第二部分是相互独立的，所以本质上是求 $2^K$ 的环构造方案。</p>
+<p>使用数学归纳法构造方案：</p>
+<ol>
+<li>当 $K=2$ 时，有 00, 01, 11, 10。</li>
+<li>当 $K&gt;2$ 时，假设 $K-1$ 的序列为 $x_1, x_2, \dots, x_{2^{K-1}}$，基于 $x_i$ 构造 $\overline {0x_i}, \overline {1x_i}$，新构造的两个数仅一位不同，并且可以构造出新序列 $\overline{0x_i}, \overline{1x_i}, \overline{1x_{i+1}}, \overline{0x_{i+1}}$。显然，新序列也是符合题意的环。</li>
+</ol>
+<hr>
+<p>250 Constructive Plan</p>
+<p><strong>题意</strong> 给 $N\times M, 1\le N,M\le 180$ 大小的 01 矩阵，求一个由全 0 构成的 C 字形最大面积。C 字形由三个矩形构成，左边界在同一列，中间矩形的宽度严格小于上下两个矩形的宽度。</p>
+<p><strong>分析</strong> 枚举 C 字形的上下边界，处理出三个矩形的公共矩形，之后需要考虑 2 种情况。一种是不向外扩展，则在公共矩形右边界所在列中部挖一个孔，形成 C 字形。另一种是向右侧扩展，因为上下矩形两者宽度互不影响，因此只需要预处理以给定矩形左上角顶点的最大矩形和以给定矩形左下角顶点的最大矩形，然后尝试扩展形成更大的 C 字形。</p>
+<hr>
+<p>251 Polymania</p>
+<p><strong>题意</strong>  已知有 $3\le N\le 8$ 个二维平面上的点，每个点有正整数权重 $0&lt;R_i\le 100$ 且 $R_{N-1}=R_N$。要求任意 3 个点构成三角形面积等于权重之和，若有解输出所有点坐标。</p>
+<p><strong>分析</strong> 假设固定点 N-1 和点 N 这一线段长度，那么其他点距离点 N-1 和点 N 所在直线的距离便固定了，即其他点的位置根据其权重 Ri 固定在某一直线上。</p>
+<p>假设有权重不同的点 A 和点 B，因为 $R_{N-1}=R_N$，所以 A,B 不会在线段 (N-1, N) 的同一侧，并且线段 (N-1, N) 的中点必须在线段 (A, B) 上。可以通过反证法验证，不能在添加一点 C 满足条件。因此满足题意的最多 4 个点，根据该限制构造答案即可。</p>
+<hr>
+<p>252 Railway Communication</p>
+<p><strong>题意</strong> 给 $1\le N\le 100$ 个点和 $0\le M\le 1000$ 条边的有向无环图，<strong>任意两点有且仅有一条边</strong>。求解<strong>最少</strong>路径数量， 满足：每个点有且仅有一个条路径经过；每条边最多被一条路径使用。其中，路径定义为若干条连续边组成。在路径最少的前提下，最小化使用边的权值总和。 </p>
+<p><strong>分析</strong> 最小费用最大流。将每个点拆分入点和出点，流量为 1 费用为边权。</p>
+
+    </article>
+    <!-- license  -->
+    
+    <!-- paginator  -->
+    <ul class="post-paginator">
+        <li class="next">
+            
+                <div class="nextSlogan">Next Post</div>
+                <a href= "../../../../2021/04/24/SGU-253-300/" title= "SGU-253-300">
+                    <div class="nextTitle">SGU-253-300</div>
+                </a>
+            
+        </li>
+        <li class="previous">
+            
+                <div class="prevSlogan">Previous Post</div>
+                <a href= "../../../05/10/Kuhn-Munkres-Algorithm/" title= "Kuhn-Munkres Algorithm">
+                    <div class="prevTitle">Kuhn-Munkres Algorithm</div>
+                </a>
+            
+        </li>
+    </ul>
+    <!-- 评论插件 -->
+    <!-- 来必力City版安装代码 -->
+
+<!-- City版安装代码已完成 -->
+    
+    
+
+    <!-- partial('_partial/comment/changyan') -->
+    <!--PC版-->
+
+
+    
+<div id="gitalk-container"></div>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.css">
+<script src="https://cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.min.js"></script>
+<script>
+	const gitalk = new Gitalk({
+		clientID: '38ea5d8ced7dd6f7499f',
+		clientSecret: 'ec2ab733801f235f78cd1d8016be50f7b92dd808',
+		repo: 'mcginn7.github.io',
+		owner: 'mcginn7',
+		admin: ['mcginn7'],
+		id: location.pathname,      // Ensure uniqueness and length less than 50
+		distractionFreeMode: false  // Facebook-like distraction free mode
+	})
+	gitalk.render('gitalk-container')
+</script>
+
+
+    
+
+    <!-- 评论 -->
+</main>
+            <!-- profile -->
+            
+        </div>
+        <footer class="footer footer-unloaded">
+    <!-- social  -->
+    
+    <div class="social">
+        
+    
+        
+            
+                <a href="mailto:mingqinchen@foxmail.com" class="iconfont-archer email" title=email ></a>
+            
+        
+    
+        
+            
+                <a href="//github.com/mcginn7" class="iconfont-archer github" target="_blank" title=github></a>
+            
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+
+    </div>
+    
+    <!-- powered by Hexo  -->
+    <div class="copyright">
+        <span id="hexo-power">Powered by <a href="https://hexo.io/" target="_blank">Hexo</a></span><span class="iconfont-archer power">&#xe635;</span><span id="theme-info">theme <a href="https://github.com/fi3ework/hexo-theme-archer" target="_blank">Archer</a></span>
+    </div>
+    <!-- 不蒜子  -->
+    
+    <div class="busuanzi-container">
+    
+     
+    <span id="busuanzi_container_site_pv">PV: <span id="busuanzi_value_site_pv"></span> :)</span>
+    
+    </div>
+    
+</footer>
+
+    </div>
+    <!-- toc -->
+    
+    <div class="toc-wrapper" style=
+    
+
+
+
+
+
+
+
+top:50vh;
+
+    >
+        <div class="toc-catalog">
+            <span class="iconfont-archer catalog-icon">&#xe613;</span><span>CATALOG</span>
+        </div>
+        <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#计划"><span class="toc-number">1.</span> <span class="toc-text">计划</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#题目"><span class="toc-number">2.</span> <span class="toc-text">题目</span></a></li></ol>
+    </div>
+    
+    <div class="back-top iconfont-archer">&#xe639;</div>
+    <div class="sidebar sidebar-hide">
+    <ul class="sidebar-tabs sidebar-tabs-active-0">
+        <li class="sidebar-tab-archives"><span class="iconfont-archer">&#xe67d;</span><span class="tab-name">Archive</span></li>
+        <li class="sidebar-tab-tags"><span class="iconfont-archer">&#xe61b;</span><span class="tab-name">Tag</span></li>
+        <li class="sidebar-tab-categories"><span class="iconfont-archer">&#xe666;</span><span class="tab-name">Cate</span></li>
+    </ul>
+    <div class="sidebar-content sidebar-content-show-archive">
+          <div class="sidebar-panel-archives">
+    <!-- 在ejs中将archive按照时间排序 -->
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    <div class="total-and-search">
+        <div class="total-archive">
+        Total : 27
+        </div>
+        <!-- search  -->
+        
+    </div>
+    
+    <div class="post-archive">
+    
+    
+    
+    
+    <div class="archive-year"> 2021 </div>
+    <ul class="year-list">
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">06/27</span><a class="archive-post-title" href= "../../27/SGU-301-350/" >SGU-301-350</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">06/13</span><a class="archive-post-title" href= "" >Deep Retrieval</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">04/24</span><a class="archive-post-title" href= "../../../04/24/SGU-253-300/" >SGU-253-300</a>
+        </li>
+    
+    
+    
+    
+    
+        </ul>
+    
+    <div class="archive-year"> 2020 </div>
+    <ul class="year-list">
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">10/06</span><a class="archive-post-title" href= "../../../../2020/10/06/SGU-153-252/" >SGU 153-252</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">05/10</span><a class="archive-post-title" href= "../../../../2020/05/10/Kuhn-Munkres-Algorithm/" >Kuhn-Munkres Algorithm</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">02/23</span><a class="archive-post-title" href= "../../../../2020/02/23/CSAPP-cachelab/" >CSAPP - cachelab</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">02/21</span><a class="archive-post-title" href= "../../../../2020/02/21/CSAPP-archlab/" >CSAPP - archlab</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">02/19</span><a class="archive-post-title" href= "../../../../2020/02/19/CSAPP-attacklab/" >CSAPP - attacklab</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">02/16</span><a class="archive-post-title" href= "../../../../2020/02/16/CSAPP-bomblab/" >CSAPP - bomblab</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">02/14</span><a class="archive-post-title" href= "../../../../2020/02/14/CSAPP-datalab/" >CSAPP - datalab</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">01/09</span><a class="archive-post-title" href= "../../../../2020/01/09/Vim-for-windows-配置/" >Windows 下使用 Vim</a>
+        </li>
+    
+    
+    
+    
+    
+        </ul>
+    
+    <div class="archive-year"> 2019 </div>
+    <ul class="year-list">
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">11/20</span><a class="archive-post-title" href= "../../../../2019/11/20/Palindromic-Factorization/" >回文分解算法</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">11/15</span><a class="archive-post-title" href= "../../../../2019/11/15/SGU-100-152/" >SGU 100~152</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">10/31</span><a class="archive-post-title" href= "../../../../2019/10/31/polya/" >Pólya计数法</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">07/22</span><a class="archive-post-title" href= "../../../../2019/07/22/B-Tree/" >B-Tree</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">05/31</span><a class="archive-post-title" href= "../../../../2019/05/31/AhoCorasick-Algorithm/" >AhoCorasick Algorithm</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">05/24</span><a class="archive-post-title" href= "../../../../2019/05/24/Knuth-Morris-Pratt-Algorithm/" >Knuth-Morris-Pratt Algorithm</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">05/12</span><a class="archive-post-title" href= "../../../../2019/05/12/ICPC-Resolver-踩坑/" >ICPC Resolver 踩坑</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">04/03</span><a class="archive-post-title" href= "../../../../2019/04/03/斜率优化/" >斜率优化</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">03/31</span><a class="archive-post-title" href= "../../../../2019/03/31/Nowcoder-出题人的数组/" >Nowcoder-出题人的数组</a>
+        </li>
+    
+    
+    
+    
+    
+        </ul>
+    
+    <div class="archive-year"> 2018 </div>
+    <ul class="year-list">
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">10/09</span><a class="archive-post-title" href= "../../../../2018/10/09/论文笔记-Tips-and-Tricks-for-Visual-Question-Answering/" >论文笔记 Tips and Tricks for Visual Question Answering</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">10/04</span><a class="archive-post-title" href= "../../../../2018/10/04/DOMjudge配置/" >DOMjudge 配置</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">08/18</span><a class="archive-post-title" href= "../../../../2018/08/18/论文笔记 Semantic Compositional Networks for Visual Captioning/" >论文笔记 Semantic Compositional Networks for Visual Captioning</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">07/19</span><a class="archive-post-title" href= "../../../../2018/07/19/The Binding of Isaac Afterbirth+总结/" >The Binding of Isaac:Afterbirth+总结</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">07/19</span><a class="archive-post-title" href= "../../../../2018/07/19/The Binding of Isaac Afterbirth+总结-ChenMingqin.work/" >The Binding of Isaac:Afterbirth+总结</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">07/17</span><a class="archive-post-title" href= "../../../../2018/07/17/论文阅读记录/" >论文阅读记录</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">06/05</span><a class="archive-post-title" href= "../../../../2018/06/05/apt-offline管理Ubuntu离线安装软件包/" >Ubuntu离线安装软件包</a>
+        </li>
+    
+    </div>
+  </div>
+        <div class="sidebar-panel-tags">
+    <div class="sidebar-tags-name">
+    
+        <span class="sidebar-tag-name" data-tags="AhoCorasick"><span class="iconfont-archer">&#xe606;</span>AhoCorasick</span>
+    
+        <span class="sidebar-tag-name" data-tags="AC自动机"><span class="iconfont-archer">&#xe606;</span>AC自动机</span>
+    
+        <span class="sidebar-tag-name" data-tags="DR"><span class="iconfont-archer">&#xe606;</span>DR</span>
+    
+        <span class="sidebar-tag-name" data-tags="domjudge"><span class="iconfont-archer">&#xe606;</span>domjudge</span>
+    
+        <span class="sidebar-tag-name" data-tags="KMP"><span class="iconfont-archer">&#xe606;</span>KMP</span>
+    
+        <span class="sidebar-tag-name" data-tags="ICPC"><span class="iconfont-archer">&#xe606;</span>ICPC</span>
+    
+        <span class="sidebar-tag-name" data-tags="贪心"><span class="iconfont-archer">&#xe606;</span>贪心</span>
+    
+        <span class="sidebar-tag-name" data-tags="vim"><span class="iconfont-archer">&#xe606;</span>vim</span>
+    
+        <span class="sidebar-tag-name" data-tags="git bash"><span class="iconfont-archer">&#xe606;</span>git bash</span>
+    
+        <span class="sidebar-tag-name" data-tags="polya"><span class="iconfont-archer">&#xe606;</span>polya</span>
+    
+        <span class="sidebar-tag-name" data-tags="斜率优化"><span class="iconfont-archer">&#xe606;</span>斜率优化</span>
+    
+    </div>
+    <div class="iconfont-archer sidebar-tags-empty">&#xe678;</div>
+    <div class="tag-load-fail" style="display: none; color: #ccc; font-size: 0.6rem;">
+    缺失模块。<br/>
+    1、请确保node版本大于6.2<br/>
+    2、在博客根目录（注意不是archer根目录）执行以下命令：<br/>
+    <span style="color: #f75357; font-size: 1rem; line-height: 2rem;">npm i hexo-generator-json-content --save</span><br/>
+    3、在根目录_config.yml里添加配置：
+    <pre style="color: #787878; font-size: 0.6rem;">
+jsonContent:
+  meta: false
+  pages: false
+  posts:
+    title: true
+    date: true
+    path: true
+    text: false
+    raw: false
+    content: false
+    slug: false
+    updated: false
+    comments: false
+    link: false
+    permalink: false
+    excerpt: false
+    categories: true
+    tags: true</pre>
+    </div> 
+    <div class="sidebar-tags-list"></div>
+</div>
+        <div class="sidebar-panel-categories">
+    <div class="sidebar-categories-name">
+    
+    </div>
+    <div class="iconfont-archer sidebar-categories-empty">&#xe678;</div>
+    <div class="sidebar-categories-list"></div>
+</div>
+    </div>
+</div> 
+    <script>
+    var siteMeta = {
+        root: "/",
+        author: "Mcginn"
+    }
+</script>
+    <!-- CDN failover -->
+    <script src="https://cdn.jsdelivr.net/npm/jquery@3.3.1/dist/jquery.min.js"></script>
+    <script type="text/javascript">
+        if (typeof window.$ === 'undefined')
+        {
+            console.warn('jquery load from jsdelivr failed, will load local script')
+            document.write('<script src="../../../../lib/jquery.min.js">\x3C/script>')
+        }
+    </script>
+    <script src="../../../../scripts/main.js"></script>
+    <!-- algolia -->
+    
+    <!-- busuanzi  -->
+    
+    <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+    
+    <!-- CNZZ  -->
+    
+    </div>
+    <!-- async load share.js -->
+    
+        <script src="../../../../scripts/share.js" async></script><!-- hexo-inject:begin --><!-- hexo-inject:end -->    
+     
+    </body>
+</html>
+
+

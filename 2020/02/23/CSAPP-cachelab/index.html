@@ -1,0 +1,1244 @@
+<!DOCTYPE html>
+<html lang="">
+    <!-- title -->
+
+
+
+
+<!-- keywords -->
+
+
+
+
+<head><meta name="generator" content="Hexo 3.9.0">
+    <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <meta name="author" content="Mcginn">
+    <meta name="renderer" content="webkit">
+    <meta name="copyright" content="Mcginn">
+    
+    <meta name="keywords" content="hexo,mcginn,mcginn7,ICPC,hexo-theme,hexo-blog">
+    
+    <meta name="description" content>
+    <meta http-equiv="Cache-control" content="no-cache">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <title>CSAPP - cachelab · Mcginn&#39;s Blog</title>
+    <style type="text/css">
+    @font-face {
+        font-family: 'Oswald-Regular';
+        src: url("../../../../font/Oswald-Regular.ttf");
+    }
+
+    body {
+        margin: 0;
+    }
+
+    header,
+    footer,
+    .back-top,
+    .sidebar,
+    .container,
+    .site-intro-meta,
+    .toc-wrapper {
+        display: none;
+    }
+
+    .site-intro {
+        position: relative;
+        z-index: 3;
+        width: 100%;
+        /* height: 50vh; */
+        overflow: hidden;
+    }
+
+    .site-intro-placeholder {
+        position: absolute;
+        z-index: -2;
+        top: 0;
+        left: 0;
+        width: calc(100% + 300px);
+        height: 100%;
+        background: repeating-linear-gradient(-45deg, #444 0, #444 80px, #333 80px, #333 160px);
+        background-position: center center;
+        transform: translate3d(-226px, 0, 0);
+        animation: gradient-move 2.5s ease-out 0s infinite;
+    }
+
+    @keyframes gradient-move {
+        0% {
+            transform: translate3d(-226px, 0, 0);
+        }
+        100% {
+            transform: translate3d(0, 0, 0);
+        }
+    }
+
+</style>
+
+    <link rel="preload" href="../../../../css/style.css?v=20180824" as="style" onload="this.onload=null;this.rel='stylesheet'">
+    <link rel="stylesheet" href="../../../../css/mobile.css?v=20180824" media="(max-width: 980px)">
+    
+    <link rel="preload" href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.2.5/jquery.fancybox.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+    
+    <!-- /*! loadCSS. [c]2017 Filament Group, Inc. MIT License */
+/* This file is meant as a standalone workflow for
+- testing support for link[rel=preload]
+- enabling async CSS loading in browsers that do not support rel=preload
+- applying rel preload css once loaded, whether supported or not.
+*/ -->
+<script>
+(function( w ){
+	"use strict";
+	// rel=preload support test
+	if( !w.loadCSS ){
+		w.loadCSS = function(){};
+	}
+	// define on the loadCSS obj
+	var rp = loadCSS.relpreload = {};
+	// rel=preload feature support test
+	// runs once and returns a function for compat purposes
+	rp.support = (function(){
+		var ret;
+		try {
+			ret = w.document.createElement( "link" ).relList.supports( "preload" );
+		} catch (e) {
+			ret = false;
+		}
+		return function(){
+			return ret;
+		};
+	})();
+
+	// if preload isn't supported, get an asynchronous load by using a non-matching media attribute
+	// then change that media back to its intended value on load
+	rp.bindMediaToggle = function( link ){
+		// remember existing media attr for ultimate state, or default to 'all'
+		var finalMedia = link.media || "all";
+
+		function enableStylesheet(){
+			link.media = finalMedia;
+		}
+
+		// bind load handlers to enable media
+		if( link.addEventListener ){
+			link.addEventListener( "load", enableStylesheet );
+		} else if( link.attachEvent ){
+			link.attachEvent( "onload", enableStylesheet );
+		}
+
+		// Set rel and non-applicable media type to start an async request
+		// note: timeout allows this to happen async to let rendering continue in IE
+		setTimeout(function(){
+			link.rel = "stylesheet";
+			link.media = "only x";
+		});
+		// also enable media after 3 seconds,
+		// which will catch very old browsers (android 2.x, old firefox) that don't support onload on link
+		setTimeout( enableStylesheet, 3000 );
+	};
+
+	// loop through link elements in DOM
+	rp.poly = function(){
+		// double check this to prevent external calls from running
+		if( rp.support() ){
+			return;
+		}
+		var links = w.document.getElementsByTagName( "link" );
+		for( var i = 0; i < links.length; i++ ){
+			var link = links[ i ];
+			// qualify links to those with rel=preload and as=style attrs
+			if( link.rel === "preload" && link.getAttribute( "as" ) === "style" && !link.getAttribute( "data-loadcss" ) ){
+				// prevent rerunning on link
+				link.setAttribute( "data-loadcss", true );
+				// bind listeners to toggle media back
+				rp.bindMediaToggle( link );
+			}
+		}
+	};
+
+	// if unsupported, run the polyfill
+	if( !rp.support() ){
+		// run once at least
+		rp.poly();
+
+		// rerun poly on an interval until onload
+		var run = w.setInterval( rp.poly, 500 );
+		if( w.addEventListener ){
+			w.addEventListener( "load", function(){
+				rp.poly();
+				w.clearInterval( run );
+			} );
+		} else if( w.attachEvent ){
+			w.attachEvent( "onload", function(){
+				rp.poly();
+				w.clearInterval( run );
+			} );
+		}
+	}
+
+
+	// commonjs
+	if( typeof exports !== "undefined" ){
+		exports.loadCSS = loadCSS;
+	}
+	else {
+		w.loadCSS = loadCSS;
+	}
+}( typeof global !== "undefined" ? global : this ) );
+</script>
+
+    <link rel="icon" href="../../../../assets/m.ico">
+    <link rel="preload" href="https://cdn.jsdelivr.net/npm/webfontloader@1.6.28/webfontloader.min.js" as="script">
+    <link rel="preload" href="https://cdn.jsdelivr.net/npm/jquery@3.3.1/dist/jquery.min.js" as="script">
+    <link rel="preload" href="../../../../scripts/main.js" as="script">
+    <link rel="preload" as="font" href="../../../../font/Oswald-Regular.ttf" crossorigin>
+    <link rel="preload" as="font" href="https://at.alicdn.com/t/font_327081_1dta1rlogw17zaor.woff" crossorigin>
+    
+    <!-- fancybox -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.2.5/jquery.fancybox.min.js" defer></script>
+    <!-- 百度统计  -->
+    
+    <!-- 谷歌统计  --><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+    
+</head>
+
+    
+        <body class="post-body">
+    
+    
+<!-- hexo-inject:begin --><!-- hexo-inject:end --><header class="header">
+
+    <div class="read-progress"></div>
+    <div class="header-sidebar-menu">&#xe775;</div>
+    <!-- post页的toggle banner  -->
+    
+    <div class="banner">
+            <div class="blog-title">
+                <a href="../../../../index.html" >Mcginn&#39;s Blog</a>
+            </div>
+            <div class="post-title">
+                <a href="#" class="post-name">CSAPP - cachelab</a>
+            </div>
+    </div>
+    
+    <a class="home-link" href=/>Mcginn's Blog</a>
+</header>
+    <div class="wrapper">
+        <div class="site-intro" style="
+
+
+
+
+
+
+
+height:50vh;
+">
+    
+    <!-- 主页  -->
+    
+    
+    <!-- 404页  -->
+            
+    <div class="site-intro-placeholder"></div>
+    <div class="site-intro-img" style="background-image: url(../../../../intro/post-bg.jpg)"></div>
+    <div class="site-intro-meta">
+        <!-- 标题  -->
+        <h1 class="intro-title">
+            <!-- 主页  -->
+            
+            CSAPP - cachelab
+            <!-- 404 -->
+            
+        </h1>
+        <!-- 副标题 -->
+        <p class="intro-subtitle">
+            <!-- 主页副标题  -->
+            
+            
+            <!-- 404 -->
+            
+        </p>
+        <!-- 文章页meta -->
+        
+            <div class="post-intros">
+                <!-- 文章页标签  -->
+                
+                
+                    <div class="post-intro-read">
+                        <span>字数统计: <span class="post-count word-count">3.5k</span>阅读时长: <span class="post-count reading-time">18 min</span></span>
+                    </div>
+                
+                <div class="post-intro-meta">
+                    <span class="post-intro-calander iconfont-archer">&#xe676;</span>
+                    <span class="post-intro-time">2020/02/23</span>
+                    
+                    <span id="busuanzi_container_page_pv" class="busuanzi-pv">
+                        <span class="iconfont-archer">&#xe602;</span>
+                        <span id="busuanzi_value_page_pv"></span>
+                    </span>
+                    
+                    <span class="shareWrapper">
+                        <span class="iconfont-archer shareIcon">&#xe71d;</span>
+                        <span class="shareText">Share</span>
+                        <ul class="shareList">
+                            <li class="iconfont-archer share-qr" data-type="qr">&#xe75b;
+                                <div class="share-qrcode"></div>
+                            </li>
+                            <li class="iconfont-archer" data-type="weibo">&#xe619;</li>
+                            <li class="iconfont-archer" data-type="qzone">&#xe62e;</li>
+                            <li class="iconfont-archer" data-type="twitter">&#xe634;</li>
+                            <li class="iconfont-archer" data-type="facebook">&#xe67a;</li>
+                        </ul>
+                    </span>
+                </div>
+            </div>
+        
+    </div>
+</div>
+        <script>
+ 
+  // get user agent
+  var browser = {
+    versions: function () {
+      var u = window.navigator.userAgent;
+      return {
+        userAgent: u,
+        trident: u.indexOf('Trident') > -1, //IE内核
+        presto: u.indexOf('Presto') > -1, //opera内核
+        webKit: u.indexOf('AppleWebKit') > -1, //苹果、谷歌内核
+        gecko: u.indexOf('Gecko') > -1 && u.indexOf('KHTML') == -1, //火狐内核
+        mobile: !!u.match(/AppleWebKit.*Mobile.*/), //是否为移动终端
+        ios: !!u.match(/\(i[^;]+;( U;)? CPU.+Mac OS X/), //ios终端
+        android: u.indexOf('Android') > -1 || u.indexOf('Linux') > -1, //android终端或者uc浏览器
+        iPhone: u.indexOf('iPhone') > -1 || u.indexOf('Mac') > -1, //是否为iPhone或者安卓QQ浏览器
+        iPad: u.indexOf('iPad') > -1, //是否为iPad
+        webApp: u.indexOf('Safari') == -1, //是否为web应用程序，没有头部与底部
+        weixin: u.indexOf('MicroMessenger') == -1, //是否为微信浏览器
+        uc: u.indexOf('UCBrowser') > -1 //是否为android下的UC浏览器
+      };
+    }()
+  }
+  console.log("userAgent:" + browser.versions.userAgent);
+
+  // callback
+  function fontLoaded() {
+    console.log('font loaded');
+    if (document.getElementsByClassName('site-intro-meta')) {
+      document.getElementsByClassName('intro-title')[0].classList.add('intro-fade-in');
+      document.getElementsByClassName('intro-subtitle')[0].classList.add('intro-fade-in');
+      var postIntros = document.getElementsByClassName('post-intros')[0]
+      if (postIntros) {
+        postIntros.classList.add('post-fade-in');
+      }
+    }
+  }
+
+  // UC不支持跨域，所以直接显示
+  function asyncCb(){
+    if (browser.versions.uc) {
+      console.log("UCBrowser");
+      fontLoaded();
+    } else {
+      WebFont.load({
+        custom: {
+          families: ['Oswald-Regular']
+        },
+        loading: function () {  //所有字体开始加载
+          // console.log('loading');
+        },
+        active: function () {  //所有字体已渲染
+          fontLoaded();
+        },
+        inactive: function () { //字体预加载失败，无效字体或浏览器不支持加载
+          console.log('inactive: timeout');
+          fontLoaded();
+        },
+        timeout: 5000 // Set the timeout to two seconds
+      });
+    }
+  }
+
+  function asyncErr(){
+    console.warn('script load from CDN failed, will load local script')
+  }
+
+  // load webfont-loader async, and add callback function
+  function async(u, cb, err) {
+    var d = document, t = 'script',
+      o = d.createElement(t),
+      s = d.getElementsByTagName(t)[0];
+    o.src = u;
+    if (cb) { o.addEventListener('load', function (e) { cb(null, e); }, false); }
+    if (err) { o.addEventListener('error', function (e) { err(null, e); }, false); }
+    s.parentNode.insertBefore(o, s);
+  }
+
+  var asyncLoadWithFallBack = function(arr, success, reject) {
+      var currReject = function(){
+        reject()
+        arr.shift()
+        if(arr.length)
+          async(arr[0], success, currReject)
+        }
+
+      async(arr[0], success, currReject)
+  }
+
+  asyncLoadWithFallBack([
+    "https://cdn.jsdelivr.net/npm/webfontloader@1.6.28/webfontloader.min.js", 
+    "https://cdn.bootcss.com/webfont/1.6.28/webfontloader.js",
+    "../../../../lib/webfontloader.min.js"
+  ], asyncCb, asyncErr)
+</script>        
+        <img class="loading" src="../../../../assets/loading.svg" style="display: block; margin: 6rem auto 0 auto; width: 6rem; height: 6rem;" />
+        <div class="container container-unloaded">
+            <main class="main post-page">
+    <article class="article-entry">
+        <h2 id="题目"><a href="#题目" class="headerlink" title="题目"></a>题目</h2><h3 id="Part-A-Cache-Simuator"><a href="#Part-A-Cache-Simuator" class="headerlink" title="Part A. Cache Simuator"></a>Part A. Cache Simuator</h3><h4 id="要求"><a href="#要求" class="headerlink" title="要求"></a>要求</h4><p>将 <code>valgrind</code> 存储跟踪作为输入，在 csim.c 中实现一个缓存模拟器，结果输出：命中，不命中和驱逐的数量（hit, miss, eviction）。需要支持以下参数输入：</p>
+<ul>
+<li>-s：用于组索引的位数。</li>
+<li>-E：每组行数。</li>
+<li>-b：用于块的位数。</li>
+<li>-t：保存 valgrind 跟踪记录的文件。</li>
+</ul>
+<p>Valgrind 输出格式为：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">I 0400d7d4,8</span><br><span class="line"> M 0421c7f0,4</span><br><span class="line"> L 04f6b868,8</span><br><span class="line"> S 7ff0005c8,8</span><br></pre></td></tr></table></figure>
+<p>每行格式为 <code>[space]operation address,size</code>，L 表示加载数据，S 表示存储数据，M 表示修改数据（加载后存储）。指令 M 的存储必然命中，因此其结果只有两种：2 命中或 1 未命中 1 命中。</p>
+<p>size 表示内存访问的字节数。测试数据保证内存访问不会出现跨越缓存块的边界，因此 size 在该实验中可忽略。</p>
+<p>在该实验中只关注<strong>数据缓存</strong>，因此操作 I（表示指令加载）可忽略。</p>
+<h4 id="做法"><a href="#做法" class="headerlink" title="做法"></a>做法</h4><p>因为只需要输出 (hit, miss, eviction) 三元组，所以实际实现过程中不必要完全复刻 cache 的过程。</p>
+<p>对于参数 (s, E, b, t) 输入，使用 <code>getopt</code> 指令即可。</p>
+<p>构造二维数组 cache[1 &lt;&lt; s][E] 记录（标记，有效位）。因为组索引的位数 s 必然大于 0，所以有效位和标记位可以压入一个 64 位整数中。</p>
+<p>在要驱逐缓存行时，使用 LRU 策略，因此还需要构造二维数组 last_used_time[1 &lt;&lt; s][E] 记录每个缓存行上次使用时间。</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">"cachelab.h"</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;stdio.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;string.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;getopt.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;stdlib.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;unistd.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;limits.h&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> BUFFER_SIZE 50</span></span><br><span class="line"><span class="keyword">char</span> buf[BUFFER_SIZE];</span><br><span class="line"></span><br><span class="line"><span class="keyword">int</span> s;	  <span class="comment">// Number of set index bits</span></span><br><span class="line"><span class="keyword">int</span> E;	  <span class="comment">// Associativity, number of lines per set</span></span><br><span class="line"><span class="keyword">int</span> b;	  <span class="comment">// Number of block bits</span></span><br><span class="line"><span class="keyword">char</span> *t;	<span class="comment">// Name of the valgrind trace to replay</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">int</span> cache_size;</span><br><span class="line"><span class="keyword">long</span> <span class="keyword">long</span> *cache;       <span class="comment">// format: tag | valid</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">unsigned</span> time_stamp;</span><br><span class="line"><span class="keyword">unsigned</span> *last_used_time;</span><br><span class="line"></span><br><span class="line"><span class="keyword">int</span> hit_count;</span><br><span class="line"><span class="keyword">int</span> miss_count;</span><br><span class="line"><span class="keyword">int</span> eviction_count;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">memoryAccess</span><span class="params">(<span class="keyword">long</span> <span class="keyword">long</span> addr)</span> </span>&#123;</span><br><span class="line">	++time_stamp;</span><br><span class="line"></span><br><span class="line">	<span class="keyword">int</span> set_idx = (addr &gt;&gt; b) &amp; ((<span class="number">1</span> &lt;&lt; s) - <span class="number">1</span>);</span><br><span class="line">	<span class="keyword">long</span> <span class="keyword">long</span> tag = addr &gt;&gt; (b + s);</span><br><span class="line"></span><br><span class="line">	<span class="keyword">long</span> <span class="keyword">long</span> *set_cache = cache + set_idx * E;</span><br><span class="line">	<span class="keyword">unsigned</span> *set_used_time = last_used_time + set_idx * E;</span><br><span class="line"></span><br><span class="line">	<span class="keyword">int</span> i;</span><br><span class="line">	<span class="keyword">unsigned</span> LRU_i = <span class="number">-1</span>;</span><br><span class="line">	<span class="keyword">unsigned</span> LRU_valid;</span><br><span class="line">	<span class="keyword">unsigned</span> LRU_time;</span><br><span class="line">	<span class="keyword">for</span> (i = <span class="number">0</span>; i &lt; E; ++i) &#123;</span><br><span class="line">		<span class="keyword">unsigned</span> valid = set_cache[i] &amp; <span class="number">1</span>;</span><br><span class="line">		<span class="keyword">long</span> <span class="keyword">long</span> tag_i = set_cache[i] &gt;&gt; <span class="number">1</span>;</span><br><span class="line">		<span class="keyword">if</span> (valid &gt; <span class="number">0</span> &amp;&amp; tag == tag_i) &#123;</span><br><span class="line">			++hit_count;</span><br><span class="line">			set_used_time[i] = time_stamp;</span><br><span class="line">			<span class="keyword">return</span> ;</span><br><span class="line">		&#125; <span class="keyword">else</span> &#123;</span><br><span class="line">			<span class="keyword">if</span> (LRU_i == <span class="number">-1</span></span><br><span class="line">			  || valid &lt; LRU_valid</span><br><span class="line">			  || (valid == LRU_valid&amp;&amp;</span><br><span class="line">			      set_used_time[i] &lt; LRU_time)) &#123;</span><br><span class="line">				LRU_i = i;</span><br><span class="line">				LRU_valid = valid;</span><br><span class="line">				LRU_time = set_used_time[i];</span><br><span class="line">			&#125;</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	++miss_count;</span><br><span class="line">	eviction_count += LRU_valid;</span><br><span class="line">	set_used_time[LRU_i] = time_stamp;</span><br><span class="line">	set_cache[LRU_i] = tag &lt;&lt; <span class="number">1</span> | <span class="number">1</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">(<span class="keyword">int</span> argc, <span class="keyword">char</span> *argv[])</span> </span>&#123;</span><br><span class="line">	<span class="keyword">char</span> *optString = <span class="string">"s:E:b:t:"</span>;</span><br><span class="line">	<span class="keyword">int</span> opt = getopt(argc, argv, optString);</span><br><span class="line">	<span class="keyword">while</span> (~opt) &#123;</span><br><span class="line">		<span class="keyword">switch</span> (opt) &#123;</span><br><span class="line">			<span class="keyword">case</span> <span class="string">'s'</span>: s = atoi(optarg); <span class="keyword">break</span>;</span><br><span class="line">			<span class="keyword">case</span> <span class="string">'E'</span>: E = atoi(optarg); <span class="keyword">break</span>;</span><br><span class="line">			<span class="keyword">case</span> <span class="string">'b'</span>: b = atoi(optarg); <span class="keyword">break</span>;</span><br><span class="line">			<span class="keyword">case</span> <span class="string">'t'</span>: t = optarg; <span class="keyword">break</span>;</span><br><span class="line">		&#125;</span><br><span class="line">		opt = getopt(argc, argv, optString);</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	time_stamp = <span class="number">0</span>;</span><br><span class="line">	hit_count = miss_count = eviction_count = <span class="number">0</span>;</span><br><span class="line">	cache_size = E &lt;&lt; s;</span><br><span class="line">	cache = (<span class="keyword">long</span> <span class="keyword">long</span> *) <span class="built_in">malloc</span>(<span class="keyword">sizeof</span>(*cache) * cache_size);</span><br><span class="line">	last_used_time = (<span class="keyword">unsigned</span> *) <span class="built_in">malloc</span>(<span class="keyword">sizeof</span>(*last_used_time) * cache_size);</span><br><span class="line">	<span class="built_in">memset</span>(cache, <span class="number">0</span>, <span class="keyword">sizeof</span>(*cache) * cache_size);</span><br><span class="line"></span><br><span class="line">	FILE *fp = fopen(t, <span class="string">"r"</span>);</span><br><span class="line">	<span class="keyword">while</span> (fgets(buf, BUFFER_SIZE, fp) != <span class="literal">NULL</span>) &#123;</span><br><span class="line">		<span class="keyword">int</span> len = <span class="built_in">strlen</span>(buf);</span><br><span class="line">		<span class="keyword">if</span> (len &lt;= <span class="number">2</span> || buf[<span class="number">0</span>] != <span class="string">' '</span>) <span class="keyword">continue</span>;</span><br><span class="line">		<span class="keyword">char</span> op = buf[<span class="number">1</span>];</span><br><span class="line">		<span class="keyword">if</span> (!(op == <span class="string">'L'</span> || op == <span class="string">'S'</span> || op == <span class="string">'M'</span>))</span><br><span class="line">			<span class="keyword">continue</span>;</span><br><span class="line">		<span class="keyword">int</span> i;</span><br><span class="line">		<span class="keyword">for</span> (i = <span class="number">0</span>; i &lt; len; ++i)</span><br><span class="line">			<span class="keyword">if</span> (buf[i] == <span class="string">','</span>) &#123;	    <span class="comment">// replace ',' with '\0'</span></span><br><span class="line">				buf[i] = <span class="string">'\0'</span>;</span><br><span class="line">				<span class="keyword">break</span>;</span><br><span class="line">			&#125;</span><br><span class="line">		buf[<span class="number">1</span>] = <span class="string">'0'</span>, buf[<span class="number">2</span>] = <span class="string">'x'</span>;</span><br><span class="line">		<span class="keyword">long</span> <span class="keyword">long</span> addr;</span><br><span class="line">		<span class="built_in">sscanf</span>(buf + <span class="number">1</span>, <span class="string">"%llx"</span>, &amp;addr);</span><br><span class="line">		<span class="built_in">printf</span>(<span class="string">"op = %c, addr = %llx, "</span>, op, addr);</span><br><span class="line">		memoryAccess(addr);</span><br><span class="line">		<span class="keyword">if</span> (op == <span class="string">'M'</span>) ++hit_count;</span><br><span class="line">	&#125;</span><br><span class="line">	printSummary(hit_count, miss_count, eviction_count);</span><br><span class="line"></span><br><span class="line">	fclose(fp);</span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="Part-B-Optimizing-Matrix-Transpose"><a href="#Part-B-Optimizing-Matrix-Transpose" class="headerlink" title="Part B. Optimizing Matrix Transpose"></a>Part B. Optimizing Matrix Transpose</h3><h4 id="要求-1"><a href="#要求-1" class="headerlink" title="要求"></a>要求</h4><p>实现函数 <code>void trans(int M, int N, int A[N][M], int B[M][N])</code> 转置矩阵 A 并存储到矩阵 B 中，限制：</p>
+<ul>
+<li>缓存参数为：s = 5, E = 1, b = 5。</li>
+<li>最多能够定义 12 个 int 类型的局部变量。</li>
+<li>不允许修改矩阵 A，但能任意修改矩阵 B。</li>
+</ul>
+<h4 id="做法-1"><a href="#做法-1" class="headerlink" title="做法"></a>做法</h4><p>b = 5 表示每个块缓存 $2^5=32$ 字节，即每 8 个 int 元素组索引加一，每个缓存行缓存 8 个地址连续的 int 元素。</p>
+<p>s = 5 表示高速缓存中有 $2^5 =32$ 个组，则组索引的循环节大小为 32×8 = 256，即每 256 个 int 元素组索引开始重复。</p>
+<p>利用<strong>局部性原理</strong>，尝试 8×8 分块转置：</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">transpose_submit</span><span class="params">(<span class="keyword">int</span> M, <span class="keyword">int</span> N, <span class="keyword">int</span> A[N][M], <span class="keyword">int</span> B[M][N])</span> </span>&#123;</span><br><span class="line">	<span class="meta">#<span class="meta-keyword">define</span> min(a,b) ((a)&lt;(b)?(a):(b))</span></span><br><span class="line">	<span class="meta">#<span class="meta-keyword">define</span> rep(i,l,r) for(i=(l);i&lt;(r);++i)</span></span><br><span class="line">	<span class="meta">#<span class="meta-keyword">define</span> repd(i,l,r,d) for(i=(l);i&lt;(r);i+=(d))</span></span><br><span class="line">	<span class="meta">#<span class="meta-keyword">define</span> per(i,l,r) for(i=(r)-1;i&gt;=(l);--i)</span></span><br><span class="line">	<span class="meta">#<span class="meta-keyword">define</span> perd(i,l,r,d) for(i=(r)-1;i&gt;=(l);i-=(d))</span></span><br><span class="line"></span><br><span class="line">	<span class="keyword">unsigned</span> x, y, i, j;</span><br><span class="line">	repd(x, <span class="number">0</span>, N, <span class="number">8</span>)</span><br><span class="line">		repd(y, <span class="number">0</span>, M, <span class="number">8</span>) &#123;</span><br><span class="line">			rep(i, x, min(N, x + <span class="number">8</span>))</span><br><span class="line">				rep(j, y, min(M, y + <span class="number">8</span>))</span><br><span class="line">					B[j][i] = A[i][j];</span><br><span class="line">		&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>使用 <code>make &amp;&amp; ./driver.py</code> 测试：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">Cache Lab summary:</span><br><span class="line">                        Points   Max pts      Misses</span><br><span class="line">Csim correctness          27.0        27</span><br><span class="line">Trans perf 32x32           6.9         8         343</span><br><span class="line">Trans perf 64x64           0.0         8        4723</span><br><span class="line">Trans perf 61x67           8.8        10        2118</span><br><span class="line">          Total points    42.7        53</span><br></pre></td></tr></table></figure>
+<p>在 32×32 和 61×67 效果还行，但是在 64×64 上 miss 很多。</p>
+<p>使用以下指令查看具体的内存跟踪记录：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">./<span class="built_in">test</span>-trans -N 64 -M 64</span><br><span class="line">./csim-ref -v -s 5 -E 1 -b 5 -t ./trace.f0</span><br><span class="line">...</span><br><span class="line">L 30df6c,4 miss eviction</span><br><span class="line">S 34dc78,4 miss eviction</span><br><span class="line">L 30df70,4 hit</span><br><span class="line">S 34dd78,4 miss eviction</span><br><span class="line">L 30df74,4 hit</span><br><span class="line">S 34de78,4 miss eviction</span><br><span class="line">L 30df78,4 hit</span><br><span class="line">S 34df78,4 miss eviction</span><br><span class="line">L 30df7c,4 miss eviction</span><br><span class="line">S 34e078,4 miss eviction</span><br><span class="line">L 30e060,4 miss eviction</span><br><span class="line">S 34d97c,4 miss eviction</span><br><span class="line">L 30e064,4 hit</span><br><span class="line">S 34da7c,4 miss eviction</span><br><span class="line">...</span><br></pre></td></tr></table></figure>
+<p>可以看到，每次在加载（L）后的存储（S）指令就会 miss，并驱逐一条缓存。</p>
+<p>当 $SetIndex(A[i][j])=SetIndex(B[i][j])$ 时，8×8 分块中的组索引分布如下：</p>
+<img src="/2020/02/23/CSAPP-cachelab/auad.png">
+<p>前 4 行定义为 $A_u$ 和 $B_u$，后 4 行定义为 $A_d$ 和 $B_d$。</p>
+<p>读取 $A[0][j]$ 时，依次存储 $B[j][0]$。注意到，组 0 每次都加载 A 后，均因为 B 也有相同的组索引 0 而被覆盖掉，从而丢失了 A 的空间局部性。</p>
+<p>对于这种情况，可以开辟 8 个 int 的局部变量将 $A[0][j]$ 全读入，再更新 $B[j][0]$。因为循环变量已使用了 $x, y, i, j$，因此额外的 8 个 int 是限制上限。</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">transpose_submit</span><span class="params">(<span class="keyword">int</span> M, <span class="keyword">int</span> N, <span class="keyword">int</span> A[N][M], <span class="keyword">int</span> B[M][N])</span> </span>&#123;</span><br><span class="line">	<span class="meta">#<span class="meta-keyword">define</span> min(a,b) ((a)&lt;(b)?(a):(b))</span></span><br><span class="line">	<span class="meta">#<span class="meta-keyword">define</span> rep(i,l,r) for(i=(l);i&lt;(r);++i)</span></span><br><span class="line">	<span class="meta">#<span class="meta-keyword">define</span> repd(i,l,r,d) for(i=(l);i&lt;(r);i+=(d))</span></span><br><span class="line">	<span class="meta">#<span class="meta-keyword">define</span> per(i,l,r) for(i=(r)-1;i&gt;=(l);--i)</span></span><br><span class="line">	<span class="meta">#<span class="meta-keyword">define</span> perd(i,l,r,d) for(i=(r)-1;i&gt;=(l);i-=(d))</span></span><br><span class="line"></span><br><span class="line">	<span class="keyword">unsigned</span> x, y, i, j;</span><br><span class="line">	<span class="keyword">int</span> a[<span class="number">8</span>];</span><br><span class="line">	repd(x, <span class="number">0</span>, N, <span class="number">8</span>)</span><br><span class="line">		repd(y, <span class="number">0</span>, M, <span class="number">8</span>)</span><br><span class="line">			rep(i, x, min(N, x + <span class="number">8</span>)) &#123;</span><br><span class="line">				rep(j, y, min(M, y + <span class="number">8</span>)) a[j - y] = A[i][j];</span><br><span class="line">				rep(j, y, min(M, y + <span class="number">8</span>)) B[j][i] = a[j - y];</span><br><span class="line">			&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>使用 <code>make &amp;&amp; ./driver.py</code> 测试：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">Cache Lab summary:</span><br><span class="line">                        Points   Max pts      Misses</span><br><span class="line">Csim correctness          27.0        27</span><br><span class="line">Trans perf 32x32           8.0         8         289</span><br><span class="line">Trans perf 64x64           0.0         8        4613</span><br><span class="line">Trans perf 61x67          10.0        10        1999</span><br><span class="line">          Total points    45.0        53</span><br></pre></td></tr></table></figure>
+<p>64×64 的 miss 几乎不变，而 32×32 和 61×67 已满分。</p>
+<p>目前为止，已经充分利用了 A 的空间局部性，然而对于 B 而言在 64×64 却非如此。</p>
+<img src="/2020/02/23/CSAPP-cachelab/auad.png">
+<p>在读取 $A[i][j]$ 后，先存储 $B_u(0, 8, 16, 24)$，然后存储 $B_d(0, 8, 16, 24)$，即后 4 行的缓存覆盖掉了前 4 行的缓存，从而丢失了 B 的空间局部性。</p>
+<p>那么解决方法自然而然是先写 B 的前 4 行再写后 4 行。</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">transpose_submit</span><span class="params">(<span class="keyword">int</span> M, <span class="keyword">int</span> N, <span class="keyword">int</span> A[N][M], <span class="keyword">int</span> B[M][N])</span> </span>&#123;</span><br><span class="line">	<span class="meta">#<span class="meta-keyword">define</span> min(a,b) ((a)&lt;(b)?(a):(b))</span></span><br><span class="line">	<span class="meta">#<span class="meta-keyword">define</span> rep(i,l,r) for(i=(l);i&lt;(r);++i)</span></span><br><span class="line">	<span class="meta">#<span class="meta-keyword">define</span> repd(i,l,r,d) for(i=(l);i&lt;(r);i+=(d))</span></span><br><span class="line">	<span class="meta">#<span class="meta-keyword">define</span> per(i,l,r) for(i=(r)-1;i&gt;=(l);--i)</span></span><br><span class="line">	<span class="meta">#<span class="meta-keyword">define</span> perd(i,l,r,d) for(i=(r)-1;i&gt;=(l);i-=(d))</span></span><br><span class="line"></span><br><span class="line">	<span class="keyword">unsigned</span> x, y, i, j;</span><br><span class="line">	<span class="keyword">int</span> a[<span class="number">8</span>];</span><br><span class="line">	repd(x, <span class="number">0</span>, N, <span class="number">8</span>)</span><br><span class="line">		repd(y, <span class="number">0</span>, M, <span class="number">8</span>) &#123;</span><br><span class="line">			rep(i, x, min(N, x + <span class="number">8</span>)) &#123;</span><br><span class="line">				rep(j, y, min(M, y + <span class="number">4</span>)) a[j - y] = A[i][j];</span><br><span class="line">				rep(j, y, min(M, y + <span class="number">4</span>)) B[j][i] = a[j - y];</span><br><span class="line">			&#125;</span><br><span class="line">			rep(i, x, min(N, x + <span class="number">8</span>)) &#123;</span><br><span class="line">				rep(j, y + <span class="number">4</span>, min(M, y + <span class="number">8</span>)) a[j - y] = A[i][j];</span><br><span class="line">				rep(j, y + <span class="number">4</span>, min(M, y + <span class="number">8</span>)) B[j][i] = a[j - y];</span><br><span class="line">			&#125;</span><br><span class="line">		&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>使用 <code>make &amp;&amp; ./driver.py</code> 测试：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">Cache Lab summary:</span><br><span class="line">                        Points   Max pts      Misses</span><br><span class="line">Csim correctness          27.0        27</span><br><span class="line">Trans perf 32x32           7.4         8         321</span><br><span class="line">Trans perf 64x64           4.0         8        1653</span><br><span class="line">Trans perf 61x67          10.0        10        1953</span><br><span class="line">          Total points    48.4        53</span><br></pre></td></tr></table></figure>
+<p>32×32 的 miss 略微提升，但是 64×64 的 miss 已显著下降（4613→1653）。</p>
+<p> 进一步的优化需要打印出 64×64 的组索引数值数组（这里本文假设了 $A[i][j]$ 和 $B[i][j]$ 的组索引相同，直觉上是冲突最多的，未经过严格证明）。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">00 00 00 00 00 00 00 00 01 01 01 01 01 01 01 01 02 ...</span><br><span class="line">08 08 08 08 08 08 08 08 09 09 09 09 09 09 09 09 0a ...</span><br><span class="line">10 10 10 10 10 10 10 10 11 11 11 11 11 11 11 11 12 ...</span><br><span class="line">18 18 18 18 18 18 18 18 19 19 19 19 19 19 19 19 1a ...</span><br><span class="line">00 00 00 00 00 00 00 00 01 01 01 01 01 01 01 01 02 ...</span><br><span class="line">08 08 08 08 08 08 08 08 09 09 09 09 09 09 09 09 0a ...</span><br><span class="line">10 10 10 10 10 10 10 10 11 11 11 11 11 11 11 11 12 ...</span><br><span class="line">18 18 18 18 18 18 18 18 19 19 19 19 19 19 19 19 1a ...</span><br><span class="line">00 00 00 00 00 00 00 00 01 01 01 01 01 01 01 01 02 ...</span><br><span class="line">...</span><br></pre></td></tr></table></figure>
+<p>观察可以得出以下结论：</p>
+<ol>
+<li>当 8×8 块的左上角坐标<strong>不在</strong>对角线上时，$A[i][j]$ 的组索引和 $B[j][i]$ 的组索引没有交集。</li>
+<li>当 8×8 块的左上角坐标<strong>在</strong>对角线上时，此时冲突最为严重。</li>
+</ol>
+<p>针对观察 1 的结论：在读完 A 的前 4 列后，A 的最后 4 行已被缓存而不会被覆盖。然而，在上一实现中，处理后 4 列时又从前 4 行开始读 A，浪费了已缓存的后 4 行。</p>
+<p>所以，这里对于处理 A 的后 4 列时，从后往前读 A 的行，充分利用缓存。过程转变如下图所示：</p>
+<img src="/2020/02/23/CSAPP-cachelab/traversals.png">
+<p>此外，由于每次只读 A 每行的 4 列，实际上用于缓存 A 的局部变量仅需 4 个。但这样的话会浪费上限为 12 的限制。因此，对于额外的 4 个局部变量可缓存 8×8 块<strong>第一行</strong>的后 4 列。这样充分利用了高速缓存的 8 个 int，从而在处理第一行的后 4 列时不用再从内存读取而避免了 miss 。</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">transpose_submit</span><span class="params">(<span class="keyword">int</span> M, <span class="keyword">int</span> N, <span class="keyword">int</span> A[N][M], <span class="keyword">int</span> B[M][N])</span> </span>&#123;</span><br><span class="line">	<span class="meta">#<span class="meta-keyword">define</span> min(a,b) ((a)&lt;(b)?(a):(b))</span></span><br><span class="line">	<span class="meta">#<span class="meta-keyword">define</span> rep(i,l,r) for(i=(l);i&lt;(r);++i)</span></span><br><span class="line">	<span class="meta">#<span class="meta-keyword">define</span> repd(i,l,r,d) for(i=(l);i&lt;(r);i+=(d))</span></span><br><span class="line">	<span class="meta">#<span class="meta-keyword">define</span> per(i,l,r) for(i=(r)-1;i&gt;=(l);--i)</span></span><br><span class="line">	<span class="meta">#<span class="meta-keyword">define</span> perd(i,l,r,d) for(i=(r)-1;i&gt;=(l);i-=(d))</span></span><br><span class="line"></span><br><span class="line">	<span class="keyword">int</span> x, y, i, j, a[<span class="number">8</span>];</span><br><span class="line">	repd(x, <span class="number">0</span>, N, <span class="number">8</span>)</span><br><span class="line">		repd(y, <span class="number">0</span>, M, <span class="number">8</span>) &#123;</span><br><span class="line">			rep(j, y, min(M, y + <span class="number">8</span>)) a[j - y] = A[x][j];</span><br><span class="line">			rep(j, y, min(M, y + <span class="number">4</span>)) B[j][x] = a[j - y];</span><br><span class="line">			rep(i, x + <span class="number">1</span>, min(N, x + <span class="number">8</span>)) &#123;</span><br><span class="line">				rep(j, y, min(M, y + <span class="number">4</span>)) a[j - y] = A[i][j];</span><br><span class="line">				rep(j, y, min(M, y + <span class="number">4</span>)) B[j][i] = a[j - y];</span><br><span class="line">			&#125;</span><br><span class="line">			per(i, x + <span class="number">1</span>, min(N, x + <span class="number">8</span>)) &#123;</span><br><span class="line">				rep(j, y + <span class="number">4</span>, min(M, y + <span class="number">8</span>)) a[j - y - <span class="number">4</span>] = A[i][j];</span><br><span class="line">				rep(j, y + <span class="number">4</span>, min(M, y + <span class="number">8</span>)) B[j][i] = a[j - y - <span class="number">4</span>];</span><br><span class="line">			&#125;</span><br><span class="line">			rep(j, y + <span class="number">4</span>, min(M, y + <span class="number">8</span>)) B[j][x] = a[j - y];</span><br><span class="line">		&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>使用 <code>make &amp;&amp; ./driver.py</code> 测试：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">Cache Lab summary:</span><br><span class="line">                        Points   Max pts      Misses</span><br><span class="line">Csim correctness          27.0        27</span><br><span class="line">Trans perf 32x32           7.8         8         309</span><br><span class="line">Trans perf 64x64           7.3         8        1357</span><br><span class="line">Trans perf 61x67          10.0        10        1940</span><br><span class="line">          Total points    52.1        53</span><br></pre></td></tr></table></figure>
+<p>剩余优化在于处于对角线的 8×8 分块，其冲突主要在于 A 的缓存组索引和 B 的缓存组索引相同。这里只需要针对这种情况构造一种冲突较少的方案即可。</p>
+<p>本文构造的方案为：</p>
+<ol>
+<li>将 A 的前 4 行依次存储到 B 的前 4 行（<strong>不转置</strong>），此时缓存中均是 $B_u $。转置 B 前 4 行的两个 4×4 子矩阵。由于缓存的存在，转置子矩阵不会导致任何的 miss。</li>
+<li>同样处理后 4 行。注意，此时缓存的是 $B_d$。</li>
+<li>剩下的就是交换 $B_u$ 的右子矩阵和 $B_d$ 的左子矩阵，利用 8 个局部变量容易做到。</li>
+</ol>
+<img src="/2020/02/23/CSAPP-cachelab/pipeline.png">
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">transpose_submit</span><span class="params">(<span class="keyword">int</span> M, <span class="keyword">int</span> N, <span class="keyword">int</span> A[N][M], <span class="keyword">int</span> B[M][N])</span> </span>&#123;</span><br><span class="line">    <span class="meta">#<span class="meta-keyword">define</span> min(a,b) ((a)&lt;(b)?(a):(b))</span></span><br><span class="line">    <span class="meta">#<span class="meta-keyword">define</span> rep(i,l,r) for(i=(l);i&lt;(r);++i)</span></span><br><span class="line">    <span class="meta">#<span class="meta-keyword">define</span> repd(i,l,r,d) for(i=(l);i&lt;(r);i+=(d))</span></span><br><span class="line">    <span class="meta">#<span class="meta-keyword">define</span> per(i,l,r) for(i=(r)-1;i&gt;=(l);--i)</span></span><br><span class="line">    <span class="meta">#<span class="meta-keyword">define</span> perd(i,l,r,d) for(i=(r)-1;i&gt;=(l);i-=(d))</span></span><br><span class="line"></span><br><span class="line">    <span class="keyword">int</span> x, y, i, j, a[<span class="number">8</span>];</span><br><span class="line">    repd(x, <span class="number">0</span>, N, <span class="number">8</span>) repd(y, <span class="number">0</span>, M, <span class="number">8</span>)</span><br><span class="line">        <span class="keyword">if</span> (x != y || x + <span class="number">8</span> &gt; min(N, M) || y + <span class="number">8</span> &gt; min(N, M)) &#123;</span><br><span class="line">            rep(j, y, min(M, y + <span class="number">8</span>)) a[j - y] = A[x][j];</span><br><span class="line">            rep(j, y, min(M, y + <span class="number">4</span>)) B[j][x] = a[j - y];</span><br><span class="line"></span><br><span class="line">            rep(i, x + <span class="number">1</span>, min(N, x + <span class="number">8</span>)) &#123;</span><br><span class="line">                rep(j, y, min(M, y + <span class="number">4</span>)) a[j - y] = A[i][j];</span><br><span class="line">                rep(j, y, min(M, y + <span class="number">4</span>)) B[j][i] = a[j - y];</span><br><span class="line">            &#125;</span><br><span class="line">            y += <span class="number">4</span>;</span><br><span class="line">            per(i, x + <span class="number">1</span>, min(N, x + <span class="number">8</span>)) &#123;</span><br><span class="line">                rep(j, y, min(M, y + <span class="number">4</span>)) a[j - y] = A[i][j];</span><br><span class="line">                rep(j, y, min(M, y + <span class="number">4</span>)) B[j][i] = a[j - y];</span><br><span class="line">            &#125;</span><br><span class="line">            rep(j, y, min(M, y + <span class="number">4</span>)) B[j][x] = a[<span class="number">4</span> + j - y];</span><br><span class="line">            y -= <span class="number">4</span>;</span><br><span class="line">        &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">            a[<span class="number">0</span>] = x; x = y; y = a[<span class="number">0</span>];</span><br><span class="line">            <span class="comment">// Upper part</span></span><br><span class="line">            rep(i, <span class="number">0</span>, <span class="number">4</span>) &#123;</span><br><span class="line">                rep(j, <span class="number">0</span>, <span class="number">8</span>) a[j] = A[y + i][x + j];</span><br><span class="line">                rep(j, <span class="number">0</span>, <span class="number">8</span>) B[x + i][y + j] = a[j];</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="comment">// trans(0, 0)</span></span><br><span class="line">            rep(i, <span class="number">0</span>, <span class="number">4</span>) rep(j, i + <span class="number">1</span>, <span class="number">4</span>) &#123;</span><br><span class="line">                a[<span class="number">0</span>] = B[x + i][y + j];</span><br><span class="line">                B[x + i][y + j] = B[x + j][y + i];</span><br><span class="line">                B[x + j][y + i] = a[<span class="number">0</span>];</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="comment">// trans(0, 4)</span></span><br><span class="line">            y += <span class="number">4</span>;</span><br><span class="line">            rep(i, <span class="number">0</span>, <span class="number">4</span>) rep(j, i + <span class="number">1</span>, <span class="number">4</span>) &#123;</span><br><span class="line">                a[<span class="number">0</span>] = B[x + i][y + j];</span><br><span class="line">                B[x + i][y + j] = B[x + j][y + i];</span><br><span class="line">                B[x + j][y + i] = a[<span class="number">0</span>];</span><br><span class="line">            &#125;</span><br><span class="line">            y -= <span class="number">4</span>;</span><br><span class="line">            <span class="comment">// Lower part</span></span><br><span class="line">            rep(i, <span class="number">4</span>, <span class="number">8</span>) &#123;</span><br><span class="line">                rep(j, <span class="number">0</span>, <span class="number">8</span>) a[j] = A[y + i][x + j];</span><br><span class="line">                rep(j, <span class="number">0</span>, <span class="number">8</span>) B[x + i][y + j] = a[j];</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="comment">// trans(4, 0)</span></span><br><span class="line">            x += <span class="number">4</span>;</span><br><span class="line">            rep(i, <span class="number">0</span>, <span class="number">4</span>) rep(j, i + <span class="number">1</span>, <span class="number">4</span>) &#123;</span><br><span class="line">                a[<span class="number">0</span>] = B[x + i][y + j];</span><br><span class="line">                B[x + i][y + j] = B[x + j][y + i];</span><br><span class="line">                B[x + j][y + i] = a[<span class="number">0</span>];</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="comment">// trans(4, 4)</span></span><br><span class="line">            y += <span class="number">4</span>;</span><br><span class="line">            rep(i, <span class="number">0</span>, <span class="number">4</span>) rep(j, i + <span class="number">1</span>, <span class="number">4</span>) &#123;</span><br><span class="line">                a[<span class="number">0</span>] = B[x + i][y + j];</span><br><span class="line">                B[x + i][y + j] = B[x + j][y + i];</span><br><span class="line">                B[x + j][y + i] = a[<span class="number">0</span>];</span><br><span class="line">            &#125;</span><br><span class="line">            y -= <span class="number">4</span>;</span><br><span class="line">            x -= <span class="number">4</span>;</span><br><span class="line">            <span class="comment">// swap Bur, Bdl</span></span><br><span class="line">            rep(i, <span class="number">0</span>, <span class="number">4</span>) &#123;</span><br><span class="line">                rep(j, <span class="number">0</span>, <span class="number">4</span>) a[j] = B[x + <span class="number">4</span> + i][y + j];</span><br><span class="line">                rep(j, <span class="number">4</span>, <span class="number">8</span>) a[j] = B[x + i][y + j];</span><br><span class="line">                rep(j, <span class="number">4</span>, <span class="number">8</span>) B[x + i][y + j] = a[j - <span class="number">4</span>];</span><br><span class="line">                rep(j, <span class="number">0</span>, <span class="number">4</span>) B[x + <span class="number">4</span> + i][y + j] = a[j + <span class="number">4</span>];</span><br><span class="line">            &#125;</span><br><span class="line">            a[<span class="number">0</span>] = x; x = y; y = a[<span class="number">0</span>];</span><br><span class="line">        &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>使用 <code>make &amp;&amp; ./driver.py</code> 测试：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">Cache Lab summary:</span><br><span class="line">                        Points   Max pts      Misses</span><br><span class="line">Csim correctness          27.0        27</span><br><span class="line">Trans perf 32x32           8.0         8         261</span><br><span class="line">Trans perf 64x64           8.0         8        1261</span><br><span class="line">Trans perf 61x67          10.0        10        1966</span><br><span class="line">          Total points    53.0        53</span><br></pre></td></tr></table></figure>
+
+    </article>
+    <!-- license  -->
+    
+    <!-- paginator  -->
+    <ul class="post-paginator">
+        <li class="next">
+            
+                <div class="nextSlogan">Next Post</div>
+                <a href= "../../../05/10/Kuhn-Munkres-Algorithm/" title= "Kuhn-Munkres Algorithm">
+                    <div class="nextTitle">Kuhn-Munkres Algorithm</div>
+                </a>
+            
+        </li>
+        <li class="previous">
+            
+                <div class="prevSlogan">Previous Post</div>
+                <a href= "../../21/CSAPP-archlab/" title= "CSAPP - archlab">
+                    <div class="prevTitle">CSAPP - archlab</div>
+                </a>
+            
+        </li>
+    </ul>
+    <!-- 评论插件 -->
+    <!-- 来必力City版安装代码 -->
+
+<!-- City版安装代码已完成 -->
+    
+    
+
+    <!-- partial('_partial/comment/changyan') -->
+    <!--PC版-->
+
+
+    
+<div id="gitalk-container"></div>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.css">
+<script src="https://cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.min.js"></script>
+<script>
+	const gitalk = new Gitalk({
+		clientID: '38ea5d8ced7dd6f7499f',
+		clientSecret: 'ec2ab733801f235f78cd1d8016be50f7b92dd808',
+		repo: 'mcginn7.github.io',
+		owner: 'mcginn7',
+		admin: ['mcginn7'],
+		id: location.pathname,      // Ensure uniqueness and length less than 50
+		distractionFreeMode: false  // Facebook-like distraction free mode
+	})
+	gitalk.render('gitalk-container')
+</script>
+
+
+    
+
+    <!-- 评论 -->
+</main>
+            <!-- profile -->
+            
+        </div>
+        <footer class="footer footer-unloaded">
+    <!-- social  -->
+    
+    <div class="social">
+        
+    
+        
+            
+                <a href="mailto:mingqinchen@foxmail.com" class="iconfont-archer email" title=email ></a>
+            
+        
+    
+        
+            
+                <a href="//github.com/mcginn7" class="iconfont-archer github" target="_blank" title=github></a>
+            
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+
+    </div>
+    
+    <!-- powered by Hexo  -->
+    <div class="copyright">
+        <span id="hexo-power">Powered by <a href="https://hexo.io/" target="_blank">Hexo</a></span><span class="iconfont-archer power">&#xe635;</span><span id="theme-info">theme <a href="https://github.com/fi3ework/hexo-theme-archer" target="_blank">Archer</a></span>
+    </div>
+    <!-- 不蒜子  -->
+    
+    <div class="busuanzi-container">
+    
+     
+    <span id="busuanzi_container_site_pv">PV: <span id="busuanzi_value_site_pv"></span> :)</span>
+    
+    </div>
+    
+</footer>
+
+    </div>
+    <!-- toc -->
+    
+    <div class="toc-wrapper" style=
+    
+
+
+
+
+
+
+
+top:50vh;
+
+    >
+        <div class="toc-catalog">
+            <span class="iconfont-archer catalog-icon">&#xe613;</span><span>CATALOG</span>
+        </div>
+        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#题目"><span class="toc-number">1.</span> <span class="toc-text">题目</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Part-A-Cache-Simuator"><span class="toc-number">1.1.</span> <span class="toc-text">Part A. Cache Simuator</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#要求"><span class="toc-number">1.1.1.</span> <span class="toc-text">要求</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#做法"><span class="toc-number">1.1.2.</span> <span class="toc-text">做法</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Part-B-Optimizing-Matrix-Transpose"><span class="toc-number">1.2.</span> <span class="toc-text">Part B. Optimizing Matrix Transpose</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#要求-1"><span class="toc-number">1.2.1.</span> <span class="toc-text">要求</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#做法-1"><span class="toc-number">1.2.2.</span> <span class="toc-text">做法</span></a></li></ol></li></ol></li></ol>
+    </div>
+    
+    <div class="back-top iconfont-archer">&#xe639;</div>
+    <div class="sidebar sidebar-hide">
+    <ul class="sidebar-tabs sidebar-tabs-active-0">
+        <li class="sidebar-tab-archives"><span class="iconfont-archer">&#xe67d;</span><span class="tab-name">Archive</span></li>
+        <li class="sidebar-tab-tags"><span class="iconfont-archer">&#xe61b;</span><span class="tab-name">Tag</span></li>
+        <li class="sidebar-tab-categories"><span class="iconfont-archer">&#xe666;</span><span class="tab-name">Cate</span></li>
+    </ul>
+    <div class="sidebar-content sidebar-content-show-archive">
+          <div class="sidebar-panel-archives">
+    <!-- 在ejs中将archive按照时间排序 -->
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    <div class="total-and-search">
+        <div class="total-archive">
+        Total : 27
+        </div>
+        <!-- search  -->
+        
+    </div>
+    
+    <div class="post-archive">
+    
+    
+    
+    
+    <div class="archive-year"> 2021 </div>
+    <ul class="year-list">
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">06/27</span><a class="archive-post-title" href= "../../27/SGU-301-350/" >SGU-301-350</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">06/13</span><a class="archive-post-title" href= "" >Deep Retrieval</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">04/24</span><a class="archive-post-title" href= "../../../04/24/SGU-253-300/" >SGU-253-300</a>
+        </li>
+    
+    
+    
+    
+    
+        </ul>
+    
+    <div class="archive-year"> 2020 </div>
+    <ul class="year-list">
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">10/06</span><a class="archive-post-title" href= "../../../../2020/10/06/SGU-153-252/" >SGU 153-252</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">05/10</span><a class="archive-post-title" href= "../../../../2020/05/10/Kuhn-Munkres-Algorithm/" >Kuhn-Munkres Algorithm</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">02/23</span><a class="archive-post-title" href= "../../../../2020/02/23/CSAPP-cachelab/" >CSAPP - cachelab</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">02/21</span><a class="archive-post-title" href= "../../../../2020/02/21/CSAPP-archlab/" >CSAPP - archlab</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">02/19</span><a class="archive-post-title" href= "../../../../2020/02/19/CSAPP-attacklab/" >CSAPP - attacklab</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">02/16</span><a class="archive-post-title" href= "../../../../2020/02/16/CSAPP-bomblab/" >CSAPP - bomblab</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">02/14</span><a class="archive-post-title" href= "../../../../2020/02/14/CSAPP-datalab/" >CSAPP - datalab</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">01/09</span><a class="archive-post-title" href= "../../../../2020/01/09/Vim-for-windows-配置/" >Windows 下使用 Vim</a>
+        </li>
+    
+    
+    
+    
+    
+        </ul>
+    
+    <div class="archive-year"> 2019 </div>
+    <ul class="year-list">
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">11/20</span><a class="archive-post-title" href= "../../../../2019/11/20/Palindromic-Factorization/" >回文分解算法</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">11/15</span><a class="archive-post-title" href= "../../../../2019/11/15/SGU-100-152/" >SGU 100~152</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">10/31</span><a class="archive-post-title" href= "../../../../2019/10/31/polya/" >Pólya计数法</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">07/22</span><a class="archive-post-title" href= "../../../../2019/07/22/B-Tree/" >B-Tree</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">05/31</span><a class="archive-post-title" href= "../../../../2019/05/31/AhoCorasick-Algorithm/" >AhoCorasick Algorithm</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">05/24</span><a class="archive-post-title" href= "../../../../2019/05/24/Knuth-Morris-Pratt-Algorithm/" >Knuth-Morris-Pratt Algorithm</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">05/12</span><a class="archive-post-title" href= "../../../../2019/05/12/ICPC-Resolver-踩坑/" >ICPC Resolver 踩坑</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">04/03</span><a class="archive-post-title" href= "../../../../2019/04/03/斜率优化/" >斜率优化</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">03/31</span><a class="archive-post-title" href= "../../../../2019/03/31/Nowcoder-出题人的数组/" >Nowcoder-出题人的数组</a>
+        </li>
+    
+    
+    
+    
+    
+        </ul>
+    
+    <div class="archive-year"> 2018 </div>
+    <ul class="year-list">
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">10/09</span><a class="archive-post-title" href= "../../../../2018/10/09/论文笔记-Tips-and-Tricks-for-Visual-Question-Answering/" >论文笔记 Tips and Tricks for Visual Question Answering</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">10/04</span><a class="archive-post-title" href= "../../../../2018/10/04/DOMjudge配置/" >DOMjudge 配置</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">08/18</span><a class="archive-post-title" href= "../../../../2018/08/18/论文笔记 Semantic Compositional Networks for Visual Captioning/" >论文笔记 Semantic Compositional Networks for Visual Captioning</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">07/19</span><a class="archive-post-title" href= "../../../../2018/07/19/The Binding of Isaac Afterbirth+总结/" >The Binding of Isaac:Afterbirth+总结</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">07/19</span><a class="archive-post-title" href= "../../../../2018/07/19/The Binding of Isaac Afterbirth+总结-ChenMingqin.work/" >The Binding of Isaac:Afterbirth+总结</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">07/17</span><a class="archive-post-title" href= "../../../../2018/07/17/论文阅读记录/" >论文阅读记录</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">06/05</span><a class="archive-post-title" href= "../../../../2018/06/05/apt-offline管理Ubuntu离线安装软件包/" >Ubuntu离线安装软件包</a>
+        </li>
+    
+    </div>
+  </div>
+        <div class="sidebar-panel-tags">
+    <div class="sidebar-tags-name">
+    
+        <span class="sidebar-tag-name" data-tags="AhoCorasick"><span class="iconfont-archer">&#xe606;</span>AhoCorasick</span>
+    
+        <span class="sidebar-tag-name" data-tags="AC自动机"><span class="iconfont-archer">&#xe606;</span>AC自动机</span>
+    
+        <span class="sidebar-tag-name" data-tags="DR"><span class="iconfont-archer">&#xe606;</span>DR</span>
+    
+        <span class="sidebar-tag-name" data-tags="domjudge"><span class="iconfont-archer">&#xe606;</span>domjudge</span>
+    
+        <span class="sidebar-tag-name" data-tags="KMP"><span class="iconfont-archer">&#xe606;</span>KMP</span>
+    
+        <span class="sidebar-tag-name" data-tags="ICPC"><span class="iconfont-archer">&#xe606;</span>ICPC</span>
+    
+        <span class="sidebar-tag-name" data-tags="贪心"><span class="iconfont-archer">&#xe606;</span>贪心</span>
+    
+        <span class="sidebar-tag-name" data-tags="vim"><span class="iconfont-archer">&#xe606;</span>vim</span>
+    
+        <span class="sidebar-tag-name" data-tags="git bash"><span class="iconfont-archer">&#xe606;</span>git bash</span>
+    
+        <span class="sidebar-tag-name" data-tags="polya"><span class="iconfont-archer">&#xe606;</span>polya</span>
+    
+        <span class="sidebar-tag-name" data-tags="斜率优化"><span class="iconfont-archer">&#xe606;</span>斜率优化</span>
+    
+    </div>
+    <div class="iconfont-archer sidebar-tags-empty">&#xe678;</div>
+    <div class="tag-load-fail" style="display: none; color: #ccc; font-size: 0.6rem;">
+    缺失模块。<br/>
+    1、请确保node版本大于6.2<br/>
+    2、在博客根目录（注意不是archer根目录）执行以下命令：<br/>
+    <span style="color: #f75357; font-size: 1rem; line-height: 2rem;">npm i hexo-generator-json-content --save</span><br/>
+    3、在根目录_config.yml里添加配置：
+    <pre style="color: #787878; font-size: 0.6rem;">
+jsonContent:
+  meta: false
+  pages: false
+  posts:
+    title: true
+    date: true
+    path: true
+    text: false
+    raw: false
+    content: false
+    slug: false
+    updated: false
+    comments: false
+    link: false
+    permalink: false
+    excerpt: false
+    categories: true
+    tags: true</pre>
+    </div> 
+    <div class="sidebar-tags-list"></div>
+</div>
+        <div class="sidebar-panel-categories">
+    <div class="sidebar-categories-name">
+    
+    </div>
+    <div class="iconfont-archer sidebar-categories-empty">&#xe678;</div>
+    <div class="sidebar-categories-list"></div>
+</div>
+    </div>
+</div> 
+    <script>
+    var siteMeta = {
+        root: "/",
+        author: "Mcginn"
+    }
+</script>
+    <!-- CDN failover -->
+    <script src="https://cdn.jsdelivr.net/npm/jquery@3.3.1/dist/jquery.min.js"></script>
+    <script type="text/javascript">
+        if (typeof window.$ === 'undefined')
+        {
+            console.warn('jquery load from jsdelivr failed, will load local script')
+            document.write('<script src="../../../../lib/jquery.min.js">\x3C/script>')
+        }
+    </script>
+    <script src="../../../../scripts/main.js"></script>
+    <!-- algolia -->
+    
+    <!-- busuanzi  -->
+    
+    <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+    
+    <!-- CNZZ  -->
+    
+    </div>
+    <!-- async load share.js -->
+    
+        <script src="../../../../scripts/share.js" async></script><!-- hexo-inject:begin --><!-- hexo-inject:end -->    
+     
+    </body>
+</html>
+
+

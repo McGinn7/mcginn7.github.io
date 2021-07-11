@@ -1,0 +1,1259 @@
+<!DOCTYPE html>
+<html lang="">
+    <!-- title -->
+
+
+
+
+<!-- keywords -->
+
+
+
+
+<head><meta name="generator" content="Hexo 3.9.0">
+    <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <meta name="author" content="Mcginn">
+    <meta name="renderer" content="webkit">
+    <meta name="copyright" content="Mcginn">
+    
+    <meta name="keywords" content="hexo,mcginn,mcginn7,ICPC,hexo-theme,hexo-blog">
+    
+    <meta name="description" content>
+    <meta http-equiv="Cache-control" content="no-cache">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <title>CSAPP - datalab · Mcginn&#39;s Blog</title>
+    <style type="text/css">
+    @font-face {
+        font-family: 'Oswald-Regular';
+        src: url("../../../../font/Oswald-Regular.ttf");
+    }
+
+    body {
+        margin: 0;
+    }
+
+    header,
+    footer,
+    .back-top,
+    .sidebar,
+    .container,
+    .site-intro-meta,
+    .toc-wrapper {
+        display: none;
+    }
+
+    .site-intro {
+        position: relative;
+        z-index: 3;
+        width: 100%;
+        /* height: 50vh; */
+        overflow: hidden;
+    }
+
+    .site-intro-placeholder {
+        position: absolute;
+        z-index: -2;
+        top: 0;
+        left: 0;
+        width: calc(100% + 300px);
+        height: 100%;
+        background: repeating-linear-gradient(-45deg, #444 0, #444 80px, #333 80px, #333 160px);
+        background-position: center center;
+        transform: translate3d(-226px, 0, 0);
+        animation: gradient-move 2.5s ease-out 0s infinite;
+    }
+
+    @keyframes gradient-move {
+        0% {
+            transform: translate3d(-226px, 0, 0);
+        }
+        100% {
+            transform: translate3d(0, 0, 0);
+        }
+    }
+
+</style>
+
+    <link rel="preload" href="../../../../css/style.css?v=20180824" as="style" onload="this.onload=null;this.rel='stylesheet'">
+    <link rel="stylesheet" href="../../../../css/mobile.css?v=20180824" media="(max-width: 980px)">
+    
+    <link rel="preload" href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.2.5/jquery.fancybox.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+    
+    <!-- /*! loadCSS. [c]2017 Filament Group, Inc. MIT License */
+/* This file is meant as a standalone workflow for
+- testing support for link[rel=preload]
+- enabling async CSS loading in browsers that do not support rel=preload
+- applying rel preload css once loaded, whether supported or not.
+*/ -->
+<script>
+(function( w ){
+	"use strict";
+	// rel=preload support test
+	if( !w.loadCSS ){
+		w.loadCSS = function(){};
+	}
+	// define on the loadCSS obj
+	var rp = loadCSS.relpreload = {};
+	// rel=preload feature support test
+	// runs once and returns a function for compat purposes
+	rp.support = (function(){
+		var ret;
+		try {
+			ret = w.document.createElement( "link" ).relList.supports( "preload" );
+		} catch (e) {
+			ret = false;
+		}
+		return function(){
+			return ret;
+		};
+	})();
+
+	// if preload isn't supported, get an asynchronous load by using a non-matching media attribute
+	// then change that media back to its intended value on load
+	rp.bindMediaToggle = function( link ){
+		// remember existing media attr for ultimate state, or default to 'all'
+		var finalMedia = link.media || "all";
+
+		function enableStylesheet(){
+			link.media = finalMedia;
+		}
+
+		// bind load handlers to enable media
+		if( link.addEventListener ){
+			link.addEventListener( "load", enableStylesheet );
+		} else if( link.attachEvent ){
+			link.attachEvent( "onload", enableStylesheet );
+		}
+
+		// Set rel and non-applicable media type to start an async request
+		// note: timeout allows this to happen async to let rendering continue in IE
+		setTimeout(function(){
+			link.rel = "stylesheet";
+			link.media = "only x";
+		});
+		// also enable media after 3 seconds,
+		// which will catch very old browsers (android 2.x, old firefox) that don't support onload on link
+		setTimeout( enableStylesheet, 3000 );
+	};
+
+	// loop through link elements in DOM
+	rp.poly = function(){
+		// double check this to prevent external calls from running
+		if( rp.support() ){
+			return;
+		}
+		var links = w.document.getElementsByTagName( "link" );
+		for( var i = 0; i < links.length; i++ ){
+			var link = links[ i ];
+			// qualify links to those with rel=preload and as=style attrs
+			if( link.rel === "preload" && link.getAttribute( "as" ) === "style" && !link.getAttribute( "data-loadcss" ) ){
+				// prevent rerunning on link
+				link.setAttribute( "data-loadcss", true );
+				// bind listeners to toggle media back
+				rp.bindMediaToggle( link );
+			}
+		}
+	};
+
+	// if unsupported, run the polyfill
+	if( !rp.support() ){
+		// run once at least
+		rp.poly();
+
+		// rerun poly on an interval until onload
+		var run = w.setInterval( rp.poly, 500 );
+		if( w.addEventListener ){
+			w.addEventListener( "load", function(){
+				rp.poly();
+				w.clearInterval( run );
+			} );
+		} else if( w.attachEvent ){
+			w.attachEvent( "onload", function(){
+				rp.poly();
+				w.clearInterval( run );
+			} );
+		}
+	}
+
+
+	// commonjs
+	if( typeof exports !== "undefined" ){
+		exports.loadCSS = loadCSS;
+	}
+	else {
+		w.loadCSS = loadCSS;
+	}
+}( typeof global !== "undefined" ? global : this ) );
+</script>
+
+    <link rel="icon" href="../../../../assets/m.ico">
+    <link rel="preload" href="https://cdn.jsdelivr.net/npm/webfontloader@1.6.28/webfontloader.min.js" as="script">
+    <link rel="preload" href="https://cdn.jsdelivr.net/npm/jquery@3.3.1/dist/jquery.min.js" as="script">
+    <link rel="preload" href="../../../../scripts/main.js" as="script">
+    <link rel="preload" as="font" href="../../../../font/Oswald-Regular.ttf" crossorigin>
+    <link rel="preload" as="font" href="https://at.alicdn.com/t/font_327081_1dta1rlogw17zaor.woff" crossorigin>
+    
+    <!-- fancybox -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.2.5/jquery.fancybox.min.js" defer></script>
+    <!-- 百度统计  -->
+    
+    <!-- 谷歌统计  --><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+    
+</head>
+
+    
+        <body class="post-body">
+    
+    
+<!-- hexo-inject:begin --><!-- hexo-inject:end --><header class="header">
+
+    <div class="read-progress"></div>
+    <div class="header-sidebar-menu">&#xe775;</div>
+    <!-- post页的toggle banner  -->
+    
+    <div class="banner">
+            <div class="blog-title">
+                <a href="../../../../index.html" >Mcginn&#39;s Blog</a>
+            </div>
+            <div class="post-title">
+                <a href="#" class="post-name">CSAPP - datalab</a>
+            </div>
+    </div>
+    
+    <a class="home-link" href=/>Mcginn's Blog</a>
+</header>
+    <div class="wrapper">
+        <div class="site-intro" style="
+
+
+
+
+
+
+
+height:50vh;
+">
+    
+    <!-- 主页  -->
+    
+    
+    <!-- 404页  -->
+            
+    <div class="site-intro-placeholder"></div>
+    <div class="site-intro-img" style="background-image: url(../../../../intro/post-bg.jpg)"></div>
+    <div class="site-intro-meta">
+        <!-- 标题  -->
+        <h1 class="intro-title">
+            <!-- 主页  -->
+            
+            CSAPP - datalab
+            <!-- 404 -->
+            
+        </h1>
+        <!-- 副标题 -->
+        <p class="intro-subtitle">
+            <!-- 主页副标题  -->
+            
+            
+            <!-- 404 -->
+            
+        </p>
+        <!-- 文章页meta -->
+        
+            <div class="post-intros">
+                <!-- 文章页标签  -->
+                
+                
+                    <div class="post-intro-read">
+                        <span>字数统计: <span class="post-count word-count">1.9k</span>阅读时长: <span class="post-count reading-time">8 min</span></span>
+                    </div>
+                
+                <div class="post-intro-meta">
+                    <span class="post-intro-calander iconfont-archer">&#xe676;</span>
+                    <span class="post-intro-time">2020/02/14</span>
+                    
+                    <span id="busuanzi_container_page_pv" class="busuanzi-pv">
+                        <span class="iconfont-archer">&#xe602;</span>
+                        <span id="busuanzi_value_page_pv"></span>
+                    </span>
+                    
+                    <span class="shareWrapper">
+                        <span class="iconfont-archer shareIcon">&#xe71d;</span>
+                        <span class="shareText">Share</span>
+                        <ul class="shareList">
+                            <li class="iconfont-archer share-qr" data-type="qr">&#xe75b;
+                                <div class="share-qrcode"></div>
+                            </li>
+                            <li class="iconfont-archer" data-type="weibo">&#xe619;</li>
+                            <li class="iconfont-archer" data-type="qzone">&#xe62e;</li>
+                            <li class="iconfont-archer" data-type="twitter">&#xe634;</li>
+                            <li class="iconfont-archer" data-type="facebook">&#xe67a;</li>
+                        </ul>
+                    </span>
+                </div>
+            </div>
+        
+    </div>
+</div>
+        <script>
+ 
+  // get user agent
+  var browser = {
+    versions: function () {
+      var u = window.navigator.userAgent;
+      return {
+        userAgent: u,
+        trident: u.indexOf('Trident') > -1, //IE内核
+        presto: u.indexOf('Presto') > -1, //opera内核
+        webKit: u.indexOf('AppleWebKit') > -1, //苹果、谷歌内核
+        gecko: u.indexOf('Gecko') > -1 && u.indexOf('KHTML') == -1, //火狐内核
+        mobile: !!u.match(/AppleWebKit.*Mobile.*/), //是否为移动终端
+        ios: !!u.match(/\(i[^;]+;( U;)? CPU.+Mac OS X/), //ios终端
+        android: u.indexOf('Android') > -1 || u.indexOf('Linux') > -1, //android终端或者uc浏览器
+        iPhone: u.indexOf('iPhone') > -1 || u.indexOf('Mac') > -1, //是否为iPhone或者安卓QQ浏览器
+        iPad: u.indexOf('iPad') > -1, //是否为iPad
+        webApp: u.indexOf('Safari') == -1, //是否为web应用程序，没有头部与底部
+        weixin: u.indexOf('MicroMessenger') == -1, //是否为微信浏览器
+        uc: u.indexOf('UCBrowser') > -1 //是否为android下的UC浏览器
+      };
+    }()
+  }
+  console.log("userAgent:" + browser.versions.userAgent);
+
+  // callback
+  function fontLoaded() {
+    console.log('font loaded');
+    if (document.getElementsByClassName('site-intro-meta')) {
+      document.getElementsByClassName('intro-title')[0].classList.add('intro-fade-in');
+      document.getElementsByClassName('intro-subtitle')[0].classList.add('intro-fade-in');
+      var postIntros = document.getElementsByClassName('post-intros')[0]
+      if (postIntros) {
+        postIntros.classList.add('post-fade-in');
+      }
+    }
+  }
+
+  // UC不支持跨域，所以直接显示
+  function asyncCb(){
+    if (browser.versions.uc) {
+      console.log("UCBrowser");
+      fontLoaded();
+    } else {
+      WebFont.load({
+        custom: {
+          families: ['Oswald-Regular']
+        },
+        loading: function () {  //所有字体开始加载
+          // console.log('loading');
+        },
+        active: function () {  //所有字体已渲染
+          fontLoaded();
+        },
+        inactive: function () { //字体预加载失败，无效字体或浏览器不支持加载
+          console.log('inactive: timeout');
+          fontLoaded();
+        },
+        timeout: 5000 // Set the timeout to two seconds
+      });
+    }
+  }
+
+  function asyncErr(){
+    console.warn('script load from CDN failed, will load local script')
+  }
+
+  // load webfont-loader async, and add callback function
+  function async(u, cb, err) {
+    var d = document, t = 'script',
+      o = d.createElement(t),
+      s = d.getElementsByTagName(t)[0];
+    o.src = u;
+    if (cb) { o.addEventListener('load', function (e) { cb(null, e); }, false); }
+    if (err) { o.addEventListener('error', function (e) { err(null, e); }, false); }
+    s.parentNode.insertBefore(o, s);
+  }
+
+  var asyncLoadWithFallBack = function(arr, success, reject) {
+      var currReject = function(){
+        reject()
+        arr.shift()
+        if(arr.length)
+          async(arr[0], success, currReject)
+        }
+
+      async(arr[0], success, currReject)
+  }
+
+  asyncLoadWithFallBack([
+    "https://cdn.jsdelivr.net/npm/webfontloader@1.6.28/webfontloader.min.js", 
+    "https://cdn.bootcss.com/webfont/1.6.28/webfontloader.js",
+    "../../../../lib/webfontloader.min.js"
+  ], asyncCb, asyncErr)
+</script>        
+        <img class="loading" src="../../../../assets/loading.svg" style="display: block; margin: 6rem auto 0 auto; width: 6rem; height: 6rem;" />
+        <div class="container container-unloaded">
+            <main class="main post-page">
+    <article class="article-entry">
+        <h2 id="自动测试"><a href="#自动测试" class="headerlink" title="自动测试"></a>自动测试</h2><ol>
+<li><p>使用 dlc 检测代码是否符合题目要求</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">unix&gt; ./dlc bits.c</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>编译并调用自动测试程序</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">unix&gt; make</span><br><span class="line">unix&gt; ./btest</span><br></pre></td></tr></table></figure>
+</li>
+</ol>
+<h2 id="题目"><a href="#题目" class="headerlink" title="题目"></a>题目</h2><h3 id="bitXor-x-y"><a href="#bitXor-x-y" class="headerlink" title="bitXor(x, y)"></a>bitXor(x, y)</h3><p><strong>要求</strong>：仅使用 ~ 和 &amp; 完成异或运算。</p>
+<p><strong>运算</strong>：~ &amp;</p>
+<p><strong>做法</strong>：画出 &amp; 运算符的真值表，配合 ~ 运算符易得。</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">bitXor</span><span class="params">(<span class="keyword">int</span> x, <span class="keyword">int</span> y)</span> </span>&#123;</span><br><span class="line">  <span class="keyword">return</span> ~(x&amp;y)&amp;~(~x&amp;~y);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="tmin"><a href="#tmin" class="headerlink" title="tmin()"></a>tmin()</h3><p><strong>要求</strong>：返回二进制补码表示的<strong>最小整数</strong>。</p>
+<p><strong>运算</strong>： ! ~ &amp; ^ | + &lt;&lt; &gt;&gt;</p>
+<p><strong>做法</strong>：补码表示的最小整数为 $10\dots 0$，即符号位为 1，其余位为 0。</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">tmin</span><span class="params">(<span class="keyword">void</span>)</span> </span>&#123;</span><br><span class="line">  <span class="keyword">return</span> <span class="number">1</span>&lt;&lt;<span class="number">31</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="isTmax-x"><a href="#isTmax-x" class="headerlink" title="isTmax(x)"></a>isTmax(x)</h3><p><strong>要求</strong>：判断 x 是否为补码表示的最大整数。</p>
+<p><strong>运算</strong>：! ~ &amp; ^ | +</p>
+<p><strong>做法</strong>：当 x 为最大整数时，补码表示为 $01\dots 1$，即符号位为 0，其余位为 1，可得 x + 1 = ~x。</p>
+<p>然而当 x = -1 时，前述等式也成立，因此需要排除掉这种情况。</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">isTmax</span><span class="params">(<span class="keyword">int</span> x)</span> </span>&#123;</span><br><span class="line">  <span class="keyword">return</span> !((~x^(x+<span class="number">1</span>)) | !(x+<span class="number">1</span>));</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="allOddBits-x"><a href="#allOddBits-x" class="headerlink" title="allOddBits(x)"></a>allOddBits(x)</h3><p><strong>要求</strong>：判断 x 二进制表示下的奇数位是否全为 1。</p>
+<p><strong>运算</strong>：! ~ &amp; ^ | + &lt;&lt; &gt;&gt;</p>
+<p><strong>做法</strong>：规则允许使用最大为 0xFF 的整数，因此可使用 &amp; 运算每 8 位合并 x 的所有位，然后使用 ^ 运算判断奇数位是否全为 1。</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">allOddBits</span><span class="params">(<span class="keyword">int</span> x)</span> </span>&#123;</span><br><span class="line">  <span class="keyword">return</span> !(((x&gt;&gt;<span class="number">24</span>) &amp; (x&gt;&gt;<span class="number">16</span>) &amp; (x&gt;&gt;<span class="number">8</span>) &amp; x &amp; <span class="number">0xAA</span>) ^ <span class="number">0xAA</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="negate-x"><a href="#negate-x" class="headerlink" title="negate(x)"></a>negate(x)</h3><p><strong>要求</strong>：计算返回 -x。</p>
+<p><strong>运算</strong>：! ~ &amp; ^ | + &lt;&lt; &gt;&gt;</p>
+<p><strong>做法</strong>：首先将有符号数转换成<strong>无符号数</strong>以便于位运算处理。</p>
+<p>相互转换的规则是：数值可能会改变，但<strong>位模式不变</strong>。因此，补码转换为无符号数为：</p>
+<script type="math/tex; mode=display">
+T2U_w(x)=\left\{\begin{array}{lr}x+2^w, && x < 0 \\ x, && x\ge 0\end{array}\right.</script><p>假设 $x \neq 0$，有 $x+(-x)=0$，两侧同加上 $2^w$ 并移项得</p>
+<script type="math/tex; mode=display">
+-x + 2^w = 2^w - x = (2^w-1-x)+1=\sim x +1</script><p>在 $x &gt; 0$ 时，$-x$ 的补码表示与 $-x+2^w$ 的位模式相同，等于 $\sim x + 1$。</p>
+<p>在 $x \le 0$ 时，$-x + 2^w$ 超出 $w$ 位二进制的表示范围，其结果为 $-x$ 的二进制表示。</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">negate</span><span class="params">(<span class="keyword">int</span> x)</span> </span>&#123;</span><br><span class="line">  <span class="keyword">return</span> ~x+<span class="number">1</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="isAsciiDigit-x"><a href="#isAsciiDigit-x" class="headerlink" title="isAsciiDigit(x)"></a>isAsciiDigit(x)</h3><p><strong>要求</strong>：判断值 x 是否在范围 [0x30, 0x39] 中。</p>
+<p><strong>运算</strong>： ! ~ &amp; ^ | + &lt;&lt; &gt;&gt;</p>
+<p><strong>做法</strong>：首先前 $w - 4$ 位的值必须为 3，该判断容易实现。</p>
+<p>剩余 4 位划分成 [0, 7] 和 [8, 9] 的两个区间来处理。</p>
+<p>第 4 位为 0 时，剩余 3 位可为任意值，表示区间 [0, 7]。</p>
+<p>第 4 位为 1 时，8 和 9 的二进制表示分别为 1000 和 1001，即高 3 位必须为 100。</p>
+<p>利用<strong>掩码表示</strong>的思想，x 为 110111(0x37) 的子集或是 111001(0x39) 的子集。</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">isAsciiDigit</span><span class="params">(<span class="keyword">int</span> x)</span> </span>&#123;</span><br><span class="line">  <span class="keyword">return</span> (!((x&gt;&gt;<span class="number">4</span>)^<span class="number">3</span>)) &amp; (!(x^(x&amp;<span class="number">0x37</span>)) | !(x^(x&amp;<span class="number">0x39</span>)));</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="conditional-x-y-z"><a href="#conditional-x-y-z" class="headerlink" title="conditional(x, y, z)"></a>conditional(x, y, z)</h3><p><strong>要求</strong>：执行三目运算符 x ? y : z：当 x 不为 0 时，返回 y；否则返回 z。</p>
+<p><strong>运算</strong>：! ~ &amp; ^ | + &lt;&lt; &gt;&gt;</p>
+<p><strong>做法</strong>：核心思想是利用 x 得出位模式等于 -1（全为 1）的值，使用 &amp; 运算和 ~ 运算得到 y 或 z 的位模式，最后使用 | 得到结果。</p>
+<p>! 运算将 x 映射到 [0, 1] 区间，使用函数 $f(x)=!x + (-1)$ 取出 y，则 $\sim f(x)$ 取出 z。</p>
+<p>当 $x \neq 0$ 时，$f(x)=-1$，其位模式全为 1，因此 $f(x) \&amp; y = y$。</p>
+<p>当 $x = 0$ 时，$f(x)=0$，其位模式全为 0，因此 $f(x)\&amp;y=0$。</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">conditional</span><span class="params">(<span class="keyword">int</span> x, <span class="keyword">int</span> y, <span class="keyword">int</span> z)</span> </span>&#123;</span><br><span class="line">  x = !x + ~<span class="number">0</span>;</span><br><span class="line">  <span class="keyword">return</span> (y &amp; x) | (z &amp; ~x);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="isLessOrEqual-x-y"><a href="#isLessOrEqual-x-y" class="headerlink" title="isLessOrEqual(x, y)"></a>isLessOrEqual(x, y)</h3><p><strong>要求</strong>：判断 x &lt;= y。</p>
+<p><strong>运算</strong>：! ~ &amp; ^ | + &lt;&lt; &gt;&gt;</p>
+<p><strong>做法</strong>：将问题转换成判断 $a + b \le0$，新问题下需要注意<strong>溢出问题</strong>。</p>
+<p>当 $a+b&lt;0$ 时，其符号位为 1，因此执行 $a+b$ 并取出符号位可解决问题。但是，存在 $a+b$ <strong>上溢出</strong>导致其符号位也为 1 的情况。</p>
+<p>进一步地，当 $a$ 和 $b$ 符号位相同时，$a+b&lt;0$ 当且仅当符号位均为 1。符号位不同时，$a+b$ 不存在溢出问题。</p>
+<p>$a+b=0$ 特判 $x=y$ 即可。</p>
+<p>注意取符号位是 &amp;1 操作不可省略，因为机器使用了<strong>算术右移</strong>。</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">isLessOrEqual</span><span class="params">(<span class="keyword">int</span> x, <span class="keyword">int</span> y)</span> </span>&#123;</span><br><span class="line">  <span class="keyword">return</span> (!(x^y)) | ((x&amp;~y)&gt;&gt;<span class="number">31</span>&amp;<span class="number">1</span>) | ((!((x^y)&gt;&gt;<span class="number">31</span>))&amp;((x+(~y+<span class="number">1</span>))&gt;&gt;<span class="number">31</span>));</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="logicalNeg-x"><a href="#logicalNeg-x" class="headerlink" title="logicalNeg(x)"></a>logicalNeg(x)</h3><p><strong>要求</strong>：计算 !x：当 x = 0 时返回 1；当 x ≠ 0 时返回 0。</p>
+<p><strong>运算</strong>：~ &amp; ^ | + &lt;&lt; &gt;&gt;</p>
+<p><strong>做法</strong>：当 $x \neq 0$ 时，$x|(-x)$ 的符号位必然为 1。</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">logicalNeg</span><span class="params">(<span class="keyword">int</span> x)</span> </span>&#123;</span><br><span class="line">  <span class="keyword">return</span> ~(x|(~x+<span class="number">1</span>))&gt;&gt;<span class="number">31</span>&amp;<span class="number">1</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="howManyBits-x"><a href="#howManyBits-x" class="headerlink" title="howManyBits(x)"></a>howManyBits(x)</h3><p><strong>要求</strong>：使用二进制补码表示 x 的最少位数。</p>
+<p><strong>运算</strong>：! ~ &amp; ^ | + &lt;&lt; &gt;&gt;</p>
+<p><strong>做法</strong>：当 $x \ge 0$ 时，位数取决于 1 的最高位数；当 $x &lt; 0$ 时，位数则取决于 0 的最高位数（根据补码表示的定义，符号位起连续的 1 可合并起来用一个位表示）。</p>
+<p>首先考虑将负数取反，将问题统一成计算 1 的最高位，利用<strong>算术右移</strong>即可完成， 即 $x=x \oplus (x &gt;&gt;31)$。</p>
+<p>然后使用<strong>二分法</strong>计算 1 的最高位：判断高 16 位是否大于 0，若大于 0 说明高 16 位中存在 1，否则 1 在低 16 位中。使用 conditional 函数更新 x（取出高 16 位或低 16 位）。迭代判断 8 位、4 位等等。</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">howManyBits</span><span class="params">(<span class="keyword">int</span> x)</span> </span>&#123;</span><br><span class="line">  <span class="keyword">int</span> bit;</span><br><span class="line">  <span class="keyword">int</span> res = <span class="number">1</span>;</span><br><span class="line">  x = x ^ (x &gt;&gt; <span class="number">31</span>);</span><br><span class="line"></span><br><span class="line">  bit = !!(x &gt;&gt; <span class="number">16</span>) &lt;&lt; <span class="number">4</span>;</span><br><span class="line">  res = res + bit;</span><br><span class="line">  x = x &gt;&gt; bit;</span><br><span class="line"></span><br><span class="line">  bit = !!(x &gt;&gt; <span class="number">8</span>) &lt;&lt; <span class="number">3</span>;</span><br><span class="line">  res = res + bit;</span><br><span class="line">  x = x &gt;&gt; bit;</span><br><span class="line"></span><br><span class="line">  bit = !!(x &gt;&gt; <span class="number">4</span>) &lt;&lt; <span class="number">2</span>;</span><br><span class="line">  res = res + bit;</span><br><span class="line">  x = x &gt;&gt; bit;</span><br><span class="line"></span><br><span class="line">  bit = !!(x &gt;&gt; <span class="number">2</span>) &lt;&lt; <span class="number">1</span>;</span><br><span class="line">  res = res + bit;</span><br><span class="line">  x = x &gt;&gt; bit;</span><br><span class="line"></span><br><span class="line">  bit = !!(x &gt;&gt; <span class="number">1</span>);</span><br><span class="line">  res = res + bit;</span><br><span class="line">  x = x &gt;&gt; bit;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">return</span> x + res;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="floatScale2-uf"><a href="#floatScale2-uf" class="headerlink" title="floatScale2(uf)"></a>floatScale2(uf)</h3><p><strong>要求</strong>：计算 2 * uf，若 uf 为特殊值值时，直接返回 uf。</p>
+<p><strong>运算</strong>：Integer/unsigned 相关运算；||，&amp;&amp;，if 和 while 等判断语句。</p>
+<p><strong>做法</strong>：这道题需要对浮点数表示比较了解，单精度（float）表示包括：1 位符号，8 位阶码，23 位尾数。这里使用 e 表示阶码的无符号数，B 表示阶码的偏置值，f 表示尾数值。</p>
+<ol>
+<li><p>当 e 全 0 时，表示非规格化的值，真实值 $V=f\times 2^{1-B}$。</p>
+<p>乘上系数 2 时，阶码是否变动看 2f 是否大于等于 1，即 f 最高位是否为 1。由于阶码在尾数的高位，该情况下位数左移 1 位即可。</p>
+</li>
+<li><p>当 e 不全 0 也不全 1 时，表示规格化的值，真实值 $V=(1+f)\times 2^{e - B}$。</p>
+<p>阶码 + 1 即可。</p>
+</li>
+<li><p>当 e 全 1 时，表示特殊值。</p>
+</li>
+</ol>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">unsigned</span> <span class="title">floatScale2</span><span class="params">(<span class="keyword">unsigned</span> uf)</span> </span>&#123;</span><br><span class="line">  <span class="keyword">unsigned</span> s = uf &gt;&gt; <span class="number">31</span> &amp; <span class="number">1</span>;</span><br><span class="line">  <span class="keyword">unsigned</span> e = uf &gt;&gt; <span class="number">23</span> &amp; <span class="number">0xff</span>;</span><br><span class="line">  <span class="keyword">unsigned</span> f = uf ^ (s &lt;&lt; <span class="number">31</span>) ^ (e &lt;&lt; <span class="number">23</span>);</span><br><span class="line">  <span class="keyword">if</span> (!(e^<span class="number">0xff</span>)) <span class="keyword">return</span> uf;</span><br><span class="line">  <span class="keyword">if</span> (!e) <span class="keyword">return</span> (s &lt;&lt; <span class="number">31</span>) | (f &lt;&lt; <span class="number">1</span>);</span><br><span class="line">  <span class="keyword">return</span> (s &lt;&lt; <span class="number">31</span>) | ((e + <span class="number">1</span>) &lt;&lt; <span class="number">23</span>) | f;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="floatFloat2Int-uf"><a href="#floatFloat2Int-uf" class="headerlink" title="floatFloat2Int(uf)"></a>floatFloat2Int(uf)</h3><p><strong>要求</strong>：将浮点数 uf 转换成整数。 </p>
+<p><strong>运算</strong>：Integer/unsigned 相关运算；||，&amp;&amp;，if 和 while 等判断语句。</p>
+<p><strong>做法</strong>：当浮点数是 0 和规格化的值时，才有可能用整数表示，其余部分注意整数表示范围即可。</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">floatFloat2Int</span><span class="params">(<span class="keyword">unsigned</span> uf)</span> </span>&#123;</span><br><span class="line">  <span class="keyword">int</span> s = uf &gt;&gt; <span class="number">31</span> &amp; <span class="number">1</span>;</span><br><span class="line">  <span class="keyword">int</span> e = uf &gt;&gt; <span class="number">23</span> &amp; <span class="number">0xff</span>;</span><br><span class="line">  <span class="keyword">int</span> f = uf ^ (s &lt;&lt; <span class="number">31</span>) ^ (e &lt;&lt; <span class="number">23</span>);</span><br><span class="line">  <span class="keyword">if</span> (!(e | f)) <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">  e = e - <span class="number">0x7f</span>;</span><br><span class="line">  <span class="keyword">if</span> (e &lt; <span class="number">0</span>) <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">  <span class="keyword">if</span> (e &gt; <span class="number">30</span> + (s &amp; !f)) <span class="keyword">return</span> <span class="number">0x80000000</span>u;</span><br><span class="line">  f = ((<span class="number">1</span> &lt;&lt; <span class="number">23</span>) | f) &gt;&gt; (<span class="number">23</span> - e);</span><br><span class="line">  <span class="keyword">if</span> (s) <span class="keyword">return</span> -f;</span><br><span class="line">  <span class="keyword">return</span> f;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="floatPower2-x"><a href="#floatPower2-x" class="headerlink" title="floatPower2(x)"></a>floatPower2(x)</h3><p><strong>要求</strong>：使用浮点数表示 2^x。无法表示时：过小返回 0，过大返回 +INF。</p>
+<p><strong>运算</strong>：Integer/unsigned 相关运算；||，&amp;&amp;，if 和 while 等判断语句。</p>
+<p><strong>做法</strong>：</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">unsigned</span> <span class="title">floatPower2</span><span class="params">(<span class="keyword">int</span> x)</span> </span>&#123;</span><br><span class="line">  x = x + <span class="number">0x7f</span>;</span><br><span class="line">  <span class="keyword">if</span> (x &lt; <span class="number">0</span>) <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">  <span class="keyword">return</span> x &lt; <span class="number">0xff</span> ? x &lt;&lt; <span class="number">23</span> : <span class="number">0x7f800000</span>u;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+    </article>
+    <!-- license  -->
+    
+    <!-- paginator  -->
+    <ul class="post-paginator">
+        <li class="next">
+            
+                <div class="nextSlogan">Next Post</div>
+                <a href= "../../16/CSAPP-bomblab/" title= "CSAPP - bomblab">
+                    <div class="nextTitle">CSAPP - bomblab</div>
+                </a>
+            
+        </li>
+        <li class="previous">
+            
+                <div class="prevSlogan">Previous Post</div>
+                <a href= "../../../01/09/Vim-for-windows-配置/" title= "Windows 下使用 Vim">
+                    <div class="prevTitle">Windows 下使用 Vim</div>
+                </a>
+            
+        </li>
+    </ul>
+    <!-- 评论插件 -->
+    <!-- 来必力City版安装代码 -->
+
+<!-- City版安装代码已完成 -->
+    
+    
+
+    <!-- partial('_partial/comment/changyan') -->
+    <!--PC版-->
+
+
+    
+<div id="gitalk-container"></div>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.css">
+<script src="https://cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.min.js"></script>
+<script>
+	const gitalk = new Gitalk({
+		clientID: '38ea5d8ced7dd6f7499f',
+		clientSecret: 'ec2ab733801f235f78cd1d8016be50f7b92dd808',
+		repo: 'mcginn7.github.io',
+		owner: 'mcginn7',
+		admin: ['mcginn7'],
+		id: location.pathname,      // Ensure uniqueness and length less than 50
+		distractionFreeMode: false  // Facebook-like distraction free mode
+	})
+	gitalk.render('gitalk-container')
+</script>
+
+
+    
+
+    <!-- 评论 -->
+</main>
+            <!-- profile -->
+            
+        </div>
+        <footer class="footer footer-unloaded">
+    <!-- social  -->
+    
+    <div class="social">
+        
+    
+        
+            
+                <a href="mailto:mingqinchen@foxmail.com" class="iconfont-archer email" title=email ></a>
+            
+        
+    
+        
+            
+                <a href="//github.com/mcginn7" class="iconfont-archer github" target="_blank" title=github></a>
+            
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+
+    </div>
+    
+    <!-- powered by Hexo  -->
+    <div class="copyright">
+        <span id="hexo-power">Powered by <a href="https://hexo.io/" target="_blank">Hexo</a></span><span class="iconfont-archer power">&#xe635;</span><span id="theme-info">theme <a href="https://github.com/fi3ework/hexo-theme-archer" target="_blank">Archer</a></span>
+    </div>
+    <!-- 不蒜子  -->
+    
+    <div class="busuanzi-container">
+    
+     
+    <span id="busuanzi_container_site_pv">PV: <span id="busuanzi_value_site_pv"></span> :)</span>
+    
+    </div>
+    
+</footer>
+
+    </div>
+    <!-- toc -->
+    
+    <div class="toc-wrapper" style=
+    
+
+
+
+
+
+
+
+top:50vh;
+
+    >
+        <div class="toc-catalog">
+            <span class="iconfont-archer catalog-icon">&#xe613;</span><span>CATALOG</span>
+        </div>
+        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#自动测试"><span class="toc-number">1.</span> <span class="toc-text">自动测试</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#题目"><span class="toc-number">2.</span> <span class="toc-text">题目</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#bitXor-x-y"><span class="toc-number">2.1.</span> <span class="toc-text">bitXor(x, y)</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#tmin"><span class="toc-number">2.2.</span> <span class="toc-text">tmin()</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#isTmax-x"><span class="toc-number">2.3.</span> <span class="toc-text">isTmax(x)</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#allOddBits-x"><span class="toc-number">2.4.</span> <span class="toc-text">allOddBits(x)</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#negate-x"><span class="toc-number">2.5.</span> <span class="toc-text">negate(x)</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#isAsciiDigit-x"><span class="toc-number">2.6.</span> <span class="toc-text">isAsciiDigit(x)</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#conditional-x-y-z"><span class="toc-number">2.7.</span> <span class="toc-text">conditional(x, y, z)</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#isLessOrEqual-x-y"><span class="toc-number">2.8.</span> <span class="toc-text">isLessOrEqual(x, y)</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#logicalNeg-x"><span class="toc-number">2.9.</span> <span class="toc-text">logicalNeg(x)</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#howManyBits-x"><span class="toc-number">2.10.</span> <span class="toc-text">howManyBits(x)</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#floatScale2-uf"><span class="toc-number">2.11.</span> <span class="toc-text">floatScale2(uf)</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#floatFloat2Int-uf"><span class="toc-number">2.12.</span> <span class="toc-text">floatFloat2Int(uf)</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#floatPower2-x"><span class="toc-number">2.13.</span> <span class="toc-text">floatPower2(x)</span></a></li></ol></li></ol>
+    </div>
+    
+    <div class="back-top iconfont-archer">&#xe639;</div>
+    <div class="sidebar sidebar-hide">
+    <ul class="sidebar-tabs sidebar-tabs-active-0">
+        <li class="sidebar-tab-archives"><span class="iconfont-archer">&#xe67d;</span><span class="tab-name">Archive</span></li>
+        <li class="sidebar-tab-tags"><span class="iconfont-archer">&#xe61b;</span><span class="tab-name">Tag</span></li>
+        <li class="sidebar-tab-categories"><span class="iconfont-archer">&#xe666;</span><span class="tab-name">Cate</span></li>
+    </ul>
+    <div class="sidebar-content sidebar-content-show-archive">
+          <div class="sidebar-panel-archives">
+    <!-- 在ejs中将archive按照时间排序 -->
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    <div class="total-and-search">
+        <div class="total-archive">
+        Total : 27
+        </div>
+        <!-- search  -->
+        
+    </div>
+    
+    <div class="post-archive">
+    
+    
+    
+    
+    <div class="archive-year"> 2021 </div>
+    <ul class="year-list">
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">06/27</span><a class="archive-post-title" href= "../../27/SGU-301-350/" >SGU-301-350</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">06/13</span><a class="archive-post-title" href= "" >Deep Retrieval</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">04/24</span><a class="archive-post-title" href= "../../../04/24/SGU-253-300/" >SGU-253-300</a>
+        </li>
+    
+    
+    
+    
+    
+        </ul>
+    
+    <div class="archive-year"> 2020 </div>
+    <ul class="year-list">
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">10/06</span><a class="archive-post-title" href= "../../../../2020/10/06/SGU-153-252/" >SGU 153-252</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">05/10</span><a class="archive-post-title" href= "../../../../2020/05/10/Kuhn-Munkres-Algorithm/" >Kuhn-Munkres Algorithm</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">02/23</span><a class="archive-post-title" href= "../../../../2020/02/23/CSAPP-cachelab/" >CSAPP - cachelab</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">02/21</span><a class="archive-post-title" href= "../../../../2020/02/21/CSAPP-archlab/" >CSAPP - archlab</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">02/19</span><a class="archive-post-title" href= "../../../../2020/02/19/CSAPP-attacklab/" >CSAPP - attacklab</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">02/16</span><a class="archive-post-title" href= "../../../../2020/02/16/CSAPP-bomblab/" >CSAPP - bomblab</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">02/14</span><a class="archive-post-title" href= "../../../../2020/02/14/CSAPP-datalab/" >CSAPP - datalab</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">01/09</span><a class="archive-post-title" href= "../../../../2020/01/09/Vim-for-windows-配置/" >Windows 下使用 Vim</a>
+        </li>
+    
+    
+    
+    
+    
+        </ul>
+    
+    <div class="archive-year"> 2019 </div>
+    <ul class="year-list">
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">11/20</span><a class="archive-post-title" href= "../../../../2019/11/20/Palindromic-Factorization/" >回文分解算法</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">11/15</span><a class="archive-post-title" href= "../../../../2019/11/15/SGU-100-152/" >SGU 100~152</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">10/31</span><a class="archive-post-title" href= "../../../../2019/10/31/polya/" >Pólya计数法</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">07/22</span><a class="archive-post-title" href= "../../../../2019/07/22/B-Tree/" >B-Tree</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">05/31</span><a class="archive-post-title" href= "../../../../2019/05/31/AhoCorasick-Algorithm/" >AhoCorasick Algorithm</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">05/24</span><a class="archive-post-title" href= "../../../../2019/05/24/Knuth-Morris-Pratt-Algorithm/" >Knuth-Morris-Pratt Algorithm</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">05/12</span><a class="archive-post-title" href= "../../../../2019/05/12/ICPC-Resolver-踩坑/" >ICPC Resolver 踩坑</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">04/03</span><a class="archive-post-title" href= "../../../../2019/04/03/斜率优化/" >斜率优化</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">03/31</span><a class="archive-post-title" href= "../../../../2019/03/31/Nowcoder-出题人的数组/" >Nowcoder-出题人的数组</a>
+        </li>
+    
+    
+    
+    
+    
+        </ul>
+    
+    <div class="archive-year"> 2018 </div>
+    <ul class="year-list">
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">10/09</span><a class="archive-post-title" href= "../../../../2018/10/09/论文笔记-Tips-and-Tricks-for-Visual-Question-Answering/" >论文笔记 Tips and Tricks for Visual Question Answering</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">10/04</span><a class="archive-post-title" href= "../../../../2018/10/04/DOMjudge配置/" >DOMjudge 配置</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">08/18</span><a class="archive-post-title" href= "../../../../2018/08/18/论文笔记 Semantic Compositional Networks for Visual Captioning/" >论文笔记 Semantic Compositional Networks for Visual Captioning</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">07/19</span><a class="archive-post-title" href= "../../../../2018/07/19/The Binding of Isaac Afterbirth+总结/" >The Binding of Isaac:Afterbirth+总结</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">07/19</span><a class="archive-post-title" href= "../../../../2018/07/19/The Binding of Isaac Afterbirth+总结-ChenMingqin.work/" >The Binding of Isaac:Afterbirth+总结</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">07/17</span><a class="archive-post-title" href= "../../../../2018/07/17/论文阅读记录/" >论文阅读记录</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">06/05</span><a class="archive-post-title" href= "../../../../2018/06/05/apt-offline管理Ubuntu离线安装软件包/" >Ubuntu离线安装软件包</a>
+        </li>
+    
+    </div>
+  </div>
+        <div class="sidebar-panel-tags">
+    <div class="sidebar-tags-name">
+    
+        <span class="sidebar-tag-name" data-tags="AhoCorasick"><span class="iconfont-archer">&#xe606;</span>AhoCorasick</span>
+    
+        <span class="sidebar-tag-name" data-tags="AC自动机"><span class="iconfont-archer">&#xe606;</span>AC自动机</span>
+    
+        <span class="sidebar-tag-name" data-tags="DR"><span class="iconfont-archer">&#xe606;</span>DR</span>
+    
+        <span class="sidebar-tag-name" data-tags="domjudge"><span class="iconfont-archer">&#xe606;</span>domjudge</span>
+    
+        <span class="sidebar-tag-name" data-tags="KMP"><span class="iconfont-archer">&#xe606;</span>KMP</span>
+    
+        <span class="sidebar-tag-name" data-tags="ICPC"><span class="iconfont-archer">&#xe606;</span>ICPC</span>
+    
+        <span class="sidebar-tag-name" data-tags="贪心"><span class="iconfont-archer">&#xe606;</span>贪心</span>
+    
+        <span class="sidebar-tag-name" data-tags="vim"><span class="iconfont-archer">&#xe606;</span>vim</span>
+    
+        <span class="sidebar-tag-name" data-tags="git bash"><span class="iconfont-archer">&#xe606;</span>git bash</span>
+    
+        <span class="sidebar-tag-name" data-tags="polya"><span class="iconfont-archer">&#xe606;</span>polya</span>
+    
+        <span class="sidebar-tag-name" data-tags="斜率优化"><span class="iconfont-archer">&#xe606;</span>斜率优化</span>
+    
+    </div>
+    <div class="iconfont-archer sidebar-tags-empty">&#xe678;</div>
+    <div class="tag-load-fail" style="display: none; color: #ccc; font-size: 0.6rem;">
+    缺失模块。<br/>
+    1、请确保node版本大于6.2<br/>
+    2、在博客根目录（注意不是archer根目录）执行以下命令：<br/>
+    <span style="color: #f75357; font-size: 1rem; line-height: 2rem;">npm i hexo-generator-json-content --save</span><br/>
+    3、在根目录_config.yml里添加配置：
+    <pre style="color: #787878; font-size: 0.6rem;">
+jsonContent:
+  meta: false
+  pages: false
+  posts:
+    title: true
+    date: true
+    path: true
+    text: false
+    raw: false
+    content: false
+    slug: false
+    updated: false
+    comments: false
+    link: false
+    permalink: false
+    excerpt: false
+    categories: true
+    tags: true</pre>
+    </div> 
+    <div class="sidebar-tags-list"></div>
+</div>
+        <div class="sidebar-panel-categories">
+    <div class="sidebar-categories-name">
+    
+    </div>
+    <div class="iconfont-archer sidebar-categories-empty">&#xe678;</div>
+    <div class="sidebar-categories-list"></div>
+</div>
+    </div>
+</div> 
+    <script>
+    var siteMeta = {
+        root: "/",
+        author: "Mcginn"
+    }
+</script>
+    <!-- CDN failover -->
+    <script src="https://cdn.jsdelivr.net/npm/jquery@3.3.1/dist/jquery.min.js"></script>
+    <script type="text/javascript">
+        if (typeof window.$ === 'undefined')
+        {
+            console.warn('jquery load from jsdelivr failed, will load local script')
+            document.write('<script src="../../../../lib/jquery.min.js">\x3C/script>')
+        }
+    </script>
+    <script src="../../../../scripts/main.js"></script>
+    <!-- algolia -->
+    
+    <!-- busuanzi  -->
+    
+    <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+    
+    <!-- CNZZ  -->
+    
+    </div>
+    <!-- async load share.js -->
+    
+        <script src="../../../../scripts/share.js" async></script><!-- hexo-inject:begin --><!-- hexo-inject:end -->    
+     
+    </body>
+</html>
+
+
