@@ -266,7 +266,7 @@ height:50vh;
                 
                 
                     <div class="post-intro-read">
-                        <span>字数统计: <span class="post-count word-count">823</span>阅读时长: <span class="post-count reading-time">3 min</span></span>
+                        <span>字数统计: <span class="post-count word-count">1.8k</span>阅读时长: <span class="post-count reading-time">7 min</span></span>
                     </div>
                 
                 <div class="post-intro-meta">
@@ -395,7 +395,45 @@ height:50vh;
         <div class="container container-unloaded">
             <main class="main post-page">
     <article class="article-entry">
-        <p>314 Shortest Paths</p>
+        <p>323 Aviamachinations</p>
+<p><strong>题意</strong> Berland 上有 $1\le N\le 2000$​ 座城市，$1\le M\le 2000$​ 家航空公司经营着 $0\le K\le 2\times 10^5$​​​ 条航线。每条航线往返于两座城市之间，由其中一家公司经营且有一个出售价格 $1\le P_i\le 10^5$​。两座城市之间可能存在多条不同公司经营的航线。现在某一家公司要去收购其他公司的航线，使得任意两座城市都可以通过中转航线到达，求最小收购价格。</p>
+<p><strong>分析</strong> 模拟+最小生成树。暴力做法是，枚举垄断公司，先用该公司的航线合并相互可达的城市，然后从头搞一遍最小生成树求最小价格。暴力做法的时间复杂度是 $O(MK)$，显然是会超时的。</p>
+<p>从另一个角度入手，在不考虑垄断公司的前提下，先求最小生成树，然后往树上加垄断公司的航线边，再去掉环上价格最高的边即可。但这个做法要做到 $O(MN)$ 是比较困难的。</p>
+<p>从结果角度来看，垄断公司的航线不是自家经营的航线，就是在最小生成树上的航线，也就是暴力做法中只需要枚举最小生成树上的边即可。</p>
+<hr>
+<p>322 The Great Union</p>
+<p><strong>题意</strong> 给 2 棵 $1\le N\le 2000$​​ 个点的树，需要通过若干操作将 2 棵树改成完全一致：往树上加一条边，然后去除环上的一条边使得操作后仍是一棵树。求最少的操作次数。</p>
+<p><strong>分析</strong> 最少次数为非公共边的数量。每次往树 A 加树 B 的边，然后去除环上的非公共边。</p>
+<hr>
+<p>321 The Spy Network</p>
+<p><strong>题意</strong> 给定一棵 $1\le N\le 2\times 10^5$ 个节点根为 1 的有根数，树边权重为 0 或 1，要求任意节点到根的边权和大于等于路径长度的一半。在允许修改边权的操作下，求最少需要修改多少条边的边权，并给出任一方案。</p>
+<p><strong>分析</strong> 贪心+二分。显然地，修改的树边距离根越近越好，对于每个节点可以二分其到根路径上的边界点，边界点以上树边的边权都修改为 1。</p>
+<hr>
+<p>320 The Influence of the Mafia</p>
+<p><strong>题意</strong> 给 $N\times M(1\le N,M\le 500)$ 大小的网格图，该图被划分成若干联通区域，同一区域使用同一数字表示，数字范围是 0 到 9。若一片区域所占据的格子数不少于 $K$，则这片区域中的任一格子都不能通行。求能到达网格图边界的格子数量。</p>
+<p><strong>分析</strong> 模拟+BFS。</p>
+<hr>
+<p>319 </p>
+<p><strong>题意</strong></p>
+<p><strong>分析</strong></p>
+<hr>
+<p>318 Grants</p>
+<p><strong>题意</strong> 有 $1\le M\le 100$ 个用户以及 $1\le N\le 100$ 个文件，每个用户有需要访问的文件集合 $S_i$。管理员通过设定用户组下发文件的访问权限：每个文件最多分配给一个用户组；用户可以加入任意多的用户组，但必须也仅能访问需要的文件集合。求管理最少需要划分多少个用户组来满足用户的访问需求。</p>
+<p><strong>分析</strong></p>
+<hr>
+<p>317 Fast Ride</p>
+<p><strong>题意</strong> 有 $1\le N\le 5000$ 个马厩，第 i 个马厩位置在 $0\le X_i\le 10^8$ 且有 $0&lt;M_i$ 匹马。第 j 只马速度为 $1\le v_j\le 10^8$，最大驰骋距离为 $1\le d_j\le 10^8$。从位置 0 骑马到位置 $1\le B\le 10^8$，求最小花费时间。</p>
+<p><strong>分析</strong> DP。</p>
+<hr>
+<p>316 Code Tanks</p>
+<p><strong>题意 </strong> (省略)</p>
+<p><strong>分析</strong> 模拟。</p>
+<hr>
+<p>315 </p>
+<p><strong>题意</strong></p>
+<p><strong>分析</strong></p>
+<hr>
+<p>314 Shortest Paths</p>
 <p><strong>题意</strong> 给定 $2\le N\le 10^4$ 个点，$2\le M\le 5\times 10^4$ 条边的有向图，求 $S$ 到 $T$ 前 $2\le K\le 10^4$ 条最短路径长度。</p>
 <p><strong>分析</strong> K 短路模板题。</p>
 <p><strong>参考</strong> <a href="https://zhuanlan.zhihu.com/p/56269536" target="_blank" rel="noopener">从枚举到 K 短路 - 知乎 (zhihu.com)</a></p>
@@ -941,6 +979,10 @@ top:50vh;
     
     
     
+    
+    
+    
+    
     <div class="total-and-search">
         <div class="total-archive">
         Total : 27
@@ -1017,11 +1059,6 @@ top:50vh;
         </li>
     
     
-        <li class="archive-post-item">
-            <span class="archive-post-date">01/09</span><a class="archive-post-title" href= "../../../../2020/01/09/Vim-for-windows-配置/" >Windows 下使用 Vim</a>
-        </li>
-    
-    
     
     
     
@@ -1086,6 +1123,11 @@ top:50vh;
     
     
         <li class="archive-post-item">
+            <span class="archive-post-date">10/10</span><a class="archive-post-title" href= "../../../../2018/10/10/Vim-for-windows-配置/" >Windows 下使用 Vim</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
             <span class="archive-post-date">10/09</span><a class="archive-post-title" href= "../../../../2018/10/09/论文笔记-Tips-and-Tricks-for-Visual-Question-Answering/" >论文笔记 Tips and Tricks for Visual Question Answering</a>
         </li>
     
@@ -1128,6 +1170,8 @@ top:50vh;
     
         <span class="sidebar-tag-name" data-tags="AC自动机"><span class="iconfont-archer">&#xe606;</span>AC自动机</span>
     
+        <span class="sidebar-tag-name" data-tags="domjudge"><span class="iconfont-archer">&#xe606;</span>domjudge</span>
+    
         <span class="sidebar-tag-name" data-tags="DR"><span class="iconfont-archer">&#xe606;</span>DR</span>
     
         <span class="sidebar-tag-name" data-tags="KMP"><span class="iconfont-archer">&#xe606;</span>KMP</span>
@@ -1135,8 +1179,6 @@ top:50vh;
         <span class="sidebar-tag-name" data-tags="ICPC"><span class="iconfont-archer">&#xe606;</span>ICPC</span>
     
         <span class="sidebar-tag-name" data-tags="贪心"><span class="iconfont-archer">&#xe606;</span>贪心</span>
-    
-        <span class="sidebar-tag-name" data-tags="domjudge"><span class="iconfont-archer">&#xe606;</span>domjudge</span>
     
         <span class="sidebar-tag-name" data-tags="vim"><span class="iconfont-archer">&#xe606;</span>vim</span>
     
