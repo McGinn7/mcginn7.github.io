@@ -266,7 +266,7 @@ height:50vh;
                 
                 
                     <div class="post-intro-read">
-                        <span>字数统计: <span class="post-count word-count">1.8k</span>阅读时长: <span class="post-count reading-time">7 min</span></span>
+                        <span>字数统计: <span class="post-count word-count">2.6k</span>阅读时长: <span class="post-count reading-time">10 min</span></span>
                     </div>
                 
                 <div class="post-intro-meta">
@@ -395,7 +395,37 @@ height:50vh;
         <div class="container container-unloaded">
             <main class="main post-page">
     <article class="article-entry">
-        <p>323 Aviamachinations</p>
+        <p>330 Numbers</p>
+<p><strong>题意</strong> 给两数 $A, B(2\le A\lt B\le 10^{12})$。每次选择 $A$ 的一个约数 $d$ 累加，即 $A’=A+d,d|A$。判断是否能在 500 次操作内将 $A$ 转换成 $B$。</p>
+<p><strong>分析</strong> 从二进制的角度考虑。</p>
+<hr>
+<p>329 Black-and-White Triangle</p>
+<p><strong>题意</strong> 长度为 $1\le N\le 5$ 的大等边三角形划分成 $N^2$​ 个小三角形，每个小三角形有 4 种染色样式。现给定 4 种染色样式的数量，求染色方案数使得相邻三角形的相邻边是同一颜色。</p>
+<img src="/2021/06/27/SGU-301-350/sgu_329.png" title="染色样式">
+<p><strong>分析</strong> $dp(i, j, x_1, x_2, x_3, x_4, mask, last)$ 表示染色至格子 $(i, j)$​ 染色样式各使用了 $x_1, x_2, x_3, x_4$ 以及过去 $N$ 个小三角形向下边的颜色状态 $mask$，前一个小三角形相邻边的颜色为 $last$ 的染色方案数。</p>
+<hr>
+<p>? 328 A Coloring Game</p>
+<p><strong>题意</strong> $1\le N\le 10^5$​ 个位置排成一排，每个位置有 3 种状态：未染色；黑色；白色。2 名玩家轮流给未染色的位置染色，要求相邻位置不能染相同颜色。不能进行染色的玩家失败，在两名玩家都采取最优操作的条件判断先手胜或后手胜。</p>
+<p><strong>分析</strong></p>
+<hr>
+<p>327 Yet Another Palindrome</p>
+<p><strong>题意</strong> 给 $1\le N\le 14$ 个仅包含小写拉丁字母的字符串 $S_i(1\le |S_i|\le 30)$，求一个最短回文串使得所有 $S_i$ 都是其连续子串。</p>
+<p><strong>分析</strong> 每个字符串可能出现回文串的前半部分、后半部分、跨越对称轴三种情况。根据回文串的性质，若 $S_i$ 出现在后半部分，将其翻转后就出现在了回文串的前半部分，因此只需要考虑出现在回文串前半部分和跨越对称轴 2 种情况。因为 $N\le14$ 不大，可以尝试 DFS 或直接状压 DP 记录当前回文串的前半部分。跨域对称轴的情况需要特殊处理。</p>
+<hr>
+<p>326 Perspective</p>
+<p><strong>题意</strong> 有 $2\le N\le 20$​ 支队伍，每支队伍最多再参加 $r_i$​ 场比赛，第 i 支队伍和第 j 支队伍允许最多进行 $a_{i,j}$​ 场比赛。每场比赛必然会分成胜负，获胜方得分 +1。目前每只队伍得分为 $w_i$​​，是否存在一种比赛结果使得第 1 支队伍最后得分最大（允许和其他队伍得分并列）。</p>
+<p><strong>分析</strong> 显然，第 1 支队伍的所有场次均获胜，即最后得分为 $w_1+\min (r_1, \sum a_{1,j})$。剩下的问题就是分配其他队伍的比赛胜负使得最大值不超过第一支队伍的最后得分。</p>
+<p>一种比较显然（但不简单）的做法是构造网络流：左部分点表示比赛，右部分点表示队伍，根据题意构造边的流量即可。</p>
+<hr>
+<p>325 Palindrome</p>
+<p><strong>题意</strong> 给长度为 $10^6$ 仅包含大写拉丁字母的字符串，每次操作交换相邻的两个字符，求最少操作次数使得字符串变成回文串。若不能转化成回文串，输出 -1。</p>
+<p><strong>分析</strong> 同一字符的相对顺序不变，因此可以知道每个字符在回文串中相匹配的字符。基于这个观察，从外向内<strong>贪心</strong>模拟这个匹配过程即可。</p>
+<hr>
+<p>324 The Text Formatting</p>
+<p><strong>题意</strong></p>
+<p><strong>分析</strong> 模拟。</p>
+<hr>
+<p>323 Aviamachinations</p>
 <p><strong>题意</strong> Berland 上有 $1\le N\le 2000$​ 座城市，$1\le M\le 2000$​ 家航空公司经营着 $0\le K\le 2\times 10^5$​​​ 条航线。每条航线往返于两座城市之间，由其中一家公司经营且有一个出售价格 $1\le P_i\le 10^5$​。两座城市之间可能存在多条不同公司经营的航线。现在某一家公司要去收购其他公司的航线，使得任意两座城市都可以通过中转航线到达，求最小收购价格。</p>
 <p><strong>分析</strong> 模拟+最小生成树。暴力做法是，枚举垄断公司，先用该公司的航线合并相互可达的城市，然后从头搞一遍最小生成树求最小价格。暴力做法的时间复杂度是 $O(MK)$，显然是会超时的。</p>
 <p>从另一个角度入手，在不考虑垄断公司的前提下，先求最小生成树，然后往树上加垄断公司的航线边，再去掉环上价格最高的边即可。但这个做法要做到 $O(MN)$ 是比较困难的。</p>
@@ -981,8 +1011,6 @@ top:50vh;
     
     
     
-    
-    
     <div class="total-and-search">
         <div class="total-archive">
         Total : 27
@@ -1174,19 +1202,19 @@ top:50vh;
     
         <span class="sidebar-tag-name" data-tags="DR"><span class="iconfont-archer">&#xe606;</span>DR</span>
     
-        <span class="sidebar-tag-name" data-tags="KMP"><span class="iconfont-archer">&#xe606;</span>KMP</span>
-    
         <span class="sidebar-tag-name" data-tags="ICPC"><span class="iconfont-archer">&#xe606;</span>ICPC</span>
     
         <span class="sidebar-tag-name" data-tags="贪心"><span class="iconfont-archer">&#xe606;</span>贪心</span>
+    
+        <span class="sidebar-tag-name" data-tags="KMP"><span class="iconfont-archer">&#xe606;</span>KMP</span>
     
         <span class="sidebar-tag-name" data-tags="vim"><span class="iconfont-archer">&#xe606;</span>vim</span>
     
         <span class="sidebar-tag-name" data-tags="git bash"><span class="iconfont-archer">&#xe606;</span>git bash</span>
     
-        <span class="sidebar-tag-name" data-tags="polya"><span class="iconfont-archer">&#xe606;</span>polya</span>
-    
         <span class="sidebar-tag-name" data-tags="斜率优化"><span class="iconfont-archer">&#xe606;</span>斜率优化</span>
+    
+        <span class="sidebar-tag-name" data-tags="polya"><span class="iconfont-archer">&#xe606;</span>polya</span>
     
     </div>
     <div class="iconfont-archer sidebar-tags-empty">&#xe678;</div>

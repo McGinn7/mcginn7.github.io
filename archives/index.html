@@ -351,9 +351,14 @@
                 <span>SGU-301-350</span>
         </a>
         <div class="abstract-content">
-            323 Aviamachinations
-题意 Berland 上有 $1\le N\le 2000$​ 座城市，$1\le M\le 2000$​ 家航空公司经营着 $0\le K\le 2\times 10^5$​​​ 条航线。每条航线往返于两座城市之间，由其中一家公司经营且有一个出售价格 $1\le P_i\le 10^5$​。两座城市之间可能存在多条不同公司经营的航线。现在某一家公司要去收购其他公司的航线，使得任意两座城市都可以通过中转航线到达，求最小收购价格。
-分析 模拟+最小生成树。暴力做法是，枚举垄断公司，先用该公司的航线合并相互可达的城市，然后从头搞一遍最小生成树求最小价...
+            330 Numbers
+题意 给两数 $A, B(2\le A\lt B\le 10^{12})$。每次选择 $A$ 的一个约数 $d$ 累加，即 $A’=A+d,d|A$。判断是否能在 500 次操作内将 $A$ 转换成 $B$。
+分析 从二进制的角度考虑。
+
+329 Black-and-White Triangle
+题意 长度为 $1\le N\le 5$ 的大等边三角形划分成 $N^2$​ 个小三角形，每个小三角形有 4 种染色样式。现给定 4 种染色样式的数量，求染色方案数使得相邻三角形的相邻边是同一颜色。
+
+分析 $dp(i, j, x_1, x_2, x_3, x_4, ma...
         </div>
         <div class="abstract-post-meta">
             <!-- date  -->
@@ -1068,8 +1073,6 @@ tmin()要求：返回二进制补码表示的最小整数。
     
     
     
-    
-    
     <div class="total-and-search">
         <div class="total-archive">
         Total : 27
@@ -1261,19 +1264,19 @@ tmin()要求：返回二进制补码表示的最小整数。
     
         <span class="sidebar-tag-name" data-tags="DR"><span class="iconfont-archer">&#xe606;</span>DR</span>
     
-        <span class="sidebar-tag-name" data-tags="KMP"><span class="iconfont-archer">&#xe606;</span>KMP</span>
-    
         <span class="sidebar-tag-name" data-tags="ICPC"><span class="iconfont-archer">&#xe606;</span>ICPC</span>
     
         <span class="sidebar-tag-name" data-tags="贪心"><span class="iconfont-archer">&#xe606;</span>贪心</span>
+    
+        <span class="sidebar-tag-name" data-tags="KMP"><span class="iconfont-archer">&#xe606;</span>KMP</span>
     
         <span class="sidebar-tag-name" data-tags="vim"><span class="iconfont-archer">&#xe606;</span>vim</span>
     
         <span class="sidebar-tag-name" data-tags="git bash"><span class="iconfont-archer">&#xe606;</span>git bash</span>
     
-        <span class="sidebar-tag-name" data-tags="polya"><span class="iconfont-archer">&#xe606;</span>polya</span>
-    
         <span class="sidebar-tag-name" data-tags="斜率优化"><span class="iconfont-archer">&#xe606;</span>斜率优化</span>
+    
+        <span class="sidebar-tag-name" data-tags="polya"><span class="iconfont-archer">&#xe606;</span>polya</span>
     
     </div>
     <div class="iconfont-archer sidebar-tags-empty">&#xe678;</div>
