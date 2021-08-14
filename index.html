@@ -364,14 +364,18 @@ height:50vh;
                 <span>SGU-301-350</span>
         </a>
         <div class="abstract-content">
-            330 Numbers
-题意 给两数 $A, B(2\le A\lt B\le 10^{12})$。每次选择 $A$ 的一个约数 $d$ 累加，即 $A’=A+d,d|A$。判断是否能在 500 次操作内将 $A$ 转换成 $B$。
-分析 从二进制的角度考虑。
+            340 TeX2HTML
+题意 解析 tex 中的公式表达，转换成 HTML 标签。
+分析 parser。
 
-329 Black-and-White Triangle
-题意 长度为 $1\le N\le 5$ 的大等边三角形划分成 $N^2$​ 个小三角形，每个小三角形有 4 种染色样式。现给定 4 种染色样式的数量，求染色方案数使得相邻三角形的相邻边是同一颜色。
+339 Segments
+题意 增加、删除一维坐标上的线段：$+\ L\ R$ 添加线段 $[L, R]$ 并输出该区间内的线段数量；$-\ L \ R$ 若存在一条线段 $[L, R]$ 则删除。操作次数 $1\le Q\le 2.5 \times 10^5$。
+分析 二维线段树。
 
-分析 $dp(i, j, x_1, x_2, x_3, x_4, ma...
+338 
+
+337 Keven
+题意 若长度为偶数的字符串前半部分和后半部分不同的字符数量不超过 $K$，则定义为 $K_{even}$ 字符串。给定整数 $K$ 和初始长度为奇数且不超过 200...
         </div>
         <div class="abstract-post-meta">
             <!-- date  -->
@@ -1342,12 +1346,12 @@ tmin()要求：返回二进制补码表示的最小整数。
     
     
         <li class="archive-post-item">
-            <span class="archive-post-date">07/19</span><a class="archive-post-title" href= "../../../../2018/07/19/The Binding of Isaac Afterbirth+总结-ChenMingqin.work/" >The Binding of Isaac:Afterbirth+总结</a>
+            <span class="archive-post-date">07/19</span><a class="archive-post-title" href= "../../../../2018/07/19/The Binding of Isaac Afterbirth+总结/" >The Binding of Isaac:Afterbirth+总结</a>
         </li>
     
     
         <li class="archive-post-item">
-            <span class="archive-post-date">07/19</span><a class="archive-post-title" href= "../../../../2018/07/19/The Binding of Isaac Afterbirth+总结/" >The Binding of Isaac:Afterbirth+总结</a>
+            <span class="archive-post-date">07/19</span><a class="archive-post-title" href= "../../../../2018/07/19/The Binding of Isaac Afterbirth+总结-ChenMingqin.work/" >The Binding of Isaac:Afterbirth+总结</a>
         </li>
     
     
@@ -1373,11 +1377,11 @@ tmin()要求：返回二进制补码表示的最小整数。
     
         <span class="sidebar-tag-name" data-tags="DR"><span class="iconfont-archer">&#xe606;</span>DR</span>
     
+        <span class="sidebar-tag-name" data-tags="KMP"><span class="iconfont-archer">&#xe606;</span>KMP</span>
+    
         <span class="sidebar-tag-name" data-tags="ICPC"><span class="iconfont-archer">&#xe606;</span>ICPC</span>
     
         <span class="sidebar-tag-name" data-tags="贪心"><span class="iconfont-archer">&#xe606;</span>贪心</span>
-    
-        <span class="sidebar-tag-name" data-tags="KMP"><span class="iconfont-archer">&#xe606;</span>KMP</span>
     
         <span class="sidebar-tag-name" data-tags="vim"><span class="iconfont-archer">&#xe606;</span>vim</span>
     
@@ -1451,26 +1455,9 @@ jsonContent:
     <!-- CNZZ  -->
     
     </div>
-    <!-- async load share.js -->
+    <!-- async load share.js --><!-- hexo-inject:begin --><!-- hexo-inject:end -->
      
-    <script type="text/x-mathjax-config">
-    MathJax.Hub.Config({
-        tex2jax: {
-            inlineMath: [ ["$","$"], ["\\(","\\)"] ],
-            skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'],
-            processEscapes: true
-        }
-    });
-    MathJax.Hub.Queue(function() {
-        var all = MathJax.Hub.getAllJax();
-        for (var i = 0; i < all.length; ++i)
-            all[i].SourceElement().parentNode.className += ' has-jax';
-    });
-</script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML"></script><!-- hexo-inject:begin --><!-- hexo-inject:end -->
-
-
-</body>
+    </body>
 </html>
 
 
