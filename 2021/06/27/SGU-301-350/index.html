@@ -266,7 +266,7 @@ height:50vh;
                 
                 
                     <div class="post-intro-read">
-                        <span>字数统计: <span class="post-count word-count">3.4k</span>阅读时长: <span class="post-count reading-time">13 min</span></span>
+                        <span>字数统计: <span class="post-count word-count">3.8k</span>阅读时长: <span class="post-count reading-time">14 min</span></span>
                     </div>
                 
                 <div class="post-intro-meta">
@@ -395,7 +395,30 @@ height:50vh;
         <div class="container container-unloaded">
             <main class="main post-page">
     <article class="article-entry">
-        <p>340 TeX2HTML</p>
+        <p>345 Revolution</p>
+<p><strong>题意</strong> 给 $3\le N\le 5\times 10^4$ 个点的凸包，有 $1\le P\le 5\times 10^4$​ 次询问：每次询问给一条直线，若凸包被直线切分成 2 部分，求较小部分的面积。</p>
+<p><strong>分析</strong> 计算几何。凸包面积使用叉积计算后可以使用前缀和快速计算，假设已知直线和凸包的交点，就可以 O(1) 求得切割部分面积。</p>
+<p>利用叉积计算将凸包点集区分成左右两部分，由于凸包的点是有序的，那么就可以得到与直线相交的线段。</p>
+<hr>
+<p>344 Weed</p>
+<p><strong>题意</strong> 给 $N\times M(1\le N,M\le 1000)$ 网格，每个格子上要么长了杂草要么没长。当一个没长杂草的格子有 2 个及以上长杂草的相邻格子，那么这个格子之后也会长杂草。求最终网格图中每个格子的状态。</p>
+<p><strong>分析</strong> 模拟。</p>
+<hr>
+<p>? 343 VaR</p>
+<p><strong>题意</strong></p>
+<p><strong>分析</strong></p>
+<hr>
+<p>342 Reihenfolge</p>
+<p><strong>题意</strong> 给一大整数 $A(1\le A\le 10^{3000})$​ 以及正整数 $B(1\le B\le 10^6)$​，令 $A=s_1B^{k_1}+s_2B^{k_2}+\dots+s_nB^{k_n}$​，其中 $|s_i|=1$​，求最小需要个数 $n$​。</p>
+<p><strong>分析</strong> 记 $k_n\ge k_{n-1}\ge\dots\ge k_1$​，当 $k_1\gt 0$ 时，问题转换成 $A/B$ 的最小个数 $n’$。当 $k_1=0$ 时，令 $A=A’B+r(0\lt r\lt B)$，此时花费代价 $r$ 转移至状态 $A’$；另一种表示为 $A=(A’+1)B-(B-r)$，含义为花费代价 $B-r$ 转移至状态 $A’+1$。</p>
+<p>表面上每次状态转移都会产生新的 2 种状态，实质上<strong>再走一步</strong>可以发现 $A’$ 和 $A’+1$ 的两个后继状态也是相同的（可记为 $A’’$ 和 $A’’+1$），套用 DP 思想即可。</p>
+<p><strong>代码</strong> <a href="https://github.com/McGinn7/Template-for-ICPC/blob/master/SGU/342.java" target="_blank" rel="noopener">342.java</a></p>
+<hr>
+<p>? 341Circuits</p>
+<p>题意</p>
+<p>分析</p>
+<hr>
+<p>340 TeX2HTML</p>
 <p><strong>题意</strong> 解析 tex 中的公式表达，转换成 HTML 标签。</p>
 <p><strong>分析</strong> parser。</p>
 <hr>
@@ -1055,6 +1078,10 @@ top:50vh;
     
     
     
+    
+    
+    
+    
     <div class="total-and-search">
         <div class="total-archive">
         Total : 27
@@ -1242,9 +1269,9 @@ top:50vh;
     
         <span class="sidebar-tag-name" data-tags="AC自动机"><span class="iconfont-archer">&#xe606;</span>AC自动机</span>
     
-        <span class="sidebar-tag-name" data-tags="domjudge"><span class="iconfont-archer">&#xe606;</span>domjudge</span>
-    
         <span class="sidebar-tag-name" data-tags="DR"><span class="iconfont-archer">&#xe606;</span>DR</span>
+    
+        <span class="sidebar-tag-name" data-tags="domjudge"><span class="iconfont-archer">&#xe606;</span>domjudge</span>
     
         <span class="sidebar-tag-name" data-tags="KMP"><span class="iconfont-archer">&#xe606;</span>KMP</span>
     
@@ -1326,9 +1353,26 @@ jsonContent:
     </div>
     <!-- async load share.js -->
     
-        <script src="../../../../scripts/share.js" async></script><!-- hexo-inject:begin --><!-- hexo-inject:end -->    
+        <script src="../../../../scripts/share.js" async></script>    
      
-    </body>
+    <script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+        tex2jax: {
+            inlineMath: [ ["$","$"], ["\\(","\\)"] ],
+            skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'],
+            processEscapes: true
+        }
+    });
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax();
+        for (var i = 0; i < all.length; ++i)
+            all[i].SourceElement().parentNode.className += ' has-jax';
+    });
+</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML"></script><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+
+
+</body>
 </html>
 
 

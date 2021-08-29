@@ -351,18 +351,13 @@
                 <span>SGU-301-350</span>
         </a>
         <div class="abstract-content">
-            340 TeX2HTML
-题意 解析 tex 中的公式表达，转换成 HTML 标签。
-分析 parser。
+            345 Revolution
+题意 给 $3\le N\le 5\times 10^4$ 个点的凸包，有 $1\le P\le 5\times 10^4$​ 次询问：每次询问给一条直线，若凸包被直线切分成 2 部分，求较小部分的面积。
+分析 计算几何。凸包面积使用叉积计算后可以使用前缀和快速计算，假设已知直线和凸包的交点，就可以 O(1) 求得切割部分面积。
+利用叉积计算将凸包点集区分成左右两部分，由于凸包的点是有序的，那么就可以得到与直线相交的线段。
 
-339 Segments
-题意 增加、删除一维坐标上的线段：$+\ L\ R$ 添加线段 $[L, R]$ 并输出该区间内的线段数量；$-\ L \ R$ 若存在一条线段 $[L, R]$ 则删除。操作次数 $1\le Q\le 2.5 \times 10^5$。
-分析 二维线段树。
-
-338 
-
-337 Keven
-题意 若长度为偶数的字符串前半部分和后半部分不同的字符数量不超过 $K$，则定义为 $K_{even}$ 字符串。给定整数 $K$ 和初始长度为奇数且不超过 200...
+344 Weed
+题意 给 $N\times M(1\le N,M\le 1000)$ 网格，每个格子上要么长了杂草要么没长。当一个没...
         </div>
         <div class="abstract-post-meta">
             <!-- date  -->
@@ -523,6 +518,10 @@
     <div class="sidebar-content sidebar-content-show-archive">
           <div class="sidebar-panel-archives">
     <!-- 在ejs中将archive按照时间排序 -->
+    
+    
+    
+    
     
     
     
@@ -1037,9 +1036,9 @@
     
         <span class="sidebar-tag-name" data-tags="AC自动机"><span class="iconfont-archer">&#xe606;</span>AC自动机</span>
     
-        <span class="sidebar-tag-name" data-tags="domjudge"><span class="iconfont-archer">&#xe606;</span>domjudge</span>
-    
         <span class="sidebar-tag-name" data-tags="DR"><span class="iconfont-archer">&#xe606;</span>DR</span>
+    
+        <span class="sidebar-tag-name" data-tags="domjudge"><span class="iconfont-archer">&#xe606;</span>domjudge</span>
     
         <span class="sidebar-tag-name" data-tags="KMP"><span class="iconfont-archer">&#xe606;</span>KMP</span>
     
@@ -1121,7 +1120,24 @@ jsonContent:
     </div>
     <!-- async load share.js -->
      
-    </body>
+    <script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+        tex2jax: {
+            inlineMath: [ ["$","$"], ["\\(","\\)"] ],
+            skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'],
+            processEscapes: true
+        }
+    });
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax();
+        for (var i = 0; i < all.length; ++i)
+            all[i].SourceElement().parentNode.className += ' has-jax';
+    });
+</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML"></script>
+
+
+</body>
 </html>
 
 
