@@ -266,7 +266,7 @@ height:50vh;
                 
                 
                     <div class="post-intro-read">
-                        <span>字数统计: <span class="post-count word-count">3.8k</span>阅读时长: <span class="post-count reading-time">14 min</span></span>
+                        <span>字数统计: <span class="post-count word-count">4.9k</span>阅读时长: <span class="post-count reading-time">19 min</span></span>
                     </div>
                 
                 <div class="post-intro-meta">
@@ -395,7 +395,37 @@ height:50vh;
         <div class="container container-unloaded">
             <main class="main post-page">
     <article class="article-entry">
-        <p>345 Revolution</p>
+        <p>350 XOR-omania</p>
+<p><strong>题意</strong> 有 $1\le N\le 100$ 个未知的整数序列 $1\le A_i\le 2^{31}$，两两异或得到序列 $B_k=A_i\ xor\ A_j,1\le k\le \frac {N(N-1)} 2$，数据保证序列 $A_i$ 大于 2 个元素的任意子集的异或和均不为 0。已知序列 $B_i$，求序列 $A_i$ 的一种解（保证有解）。</p>
+<p><strong>分析</strong> 从<strong>结果角度</strong>入手，假设使用序列 $A’_i$ 可以得到序列 $B_i$，那么序列 $A_i=A_1\bigoplus A’_i$ 亦能得到序列 $B_i$。在已知 $A_1=0$ 的条件下，对于所有的 $i$ 有 $\exists j, A_i=B_j$。</p>
+<p>假设得到了 $A_1, A_2, \dots, A_{i-1}$，可以枚举 $A_i=B_j$，然后检查 $A_1 \bigoplus B_j,A_2\bigoplus B_j,\dots, A_{i-1}\bigoplus B_j $ 是否都存在，但这只是 $A_i=B_j$ 的必要不充分条件。</p>
+<p>但是题目中还保证了序列 $A_i$ 大于 2 个元素的任意子集的异或和均不为 0，也就是说不存在 $A_i=A_j\bigoplus A_k$，上述条件就是 $A_i=B_j$ 的充要条件。</p>
+<hr>
+<p>349 Wolves and Sheep</p>
+<p><strong>题意</strong> 有 $0\le N\le 10^5$ 只羊和 $0\le M\le 10^5$ 只狼，羊和狼均使用线段 $(X_1, Y_1, X_2, Y_2)$，其中 $-1000\le X_1, X_2\le 1000, 1\le Y_1, Y_2 \le 1000$。猎人在原点 $(0,0)$ 处准备射杀所有的狼，子弹使用射线表示，所有与之相交的动物均会死亡。判断猎人是否能在不杀死羊的前提下杀死所有的狼，若能求最少射击次数。</p>
+<p><strong>分析</strong> 注意，所有的羊和狼都分布在一、二象限。将所有的点极角排序，将羊表示线段的角度区间剔除。因为狼所表示的线段可能被切分成若干段，在剔除羊之后需要合并跨区间的线段。剩下的问题可以转换成一维的线段问题，解法是按一维线段的左端点排序，不断更新取范围内的线段右端点的最小值。</p>
+<hr>
+<p>348 Twisting the Number</p>
+<p><strong>题意</strong> 定义集合运算 $W(p)$​​​​ 为正整数 $p$​​​​ 二进制位循环生成的数字集合，给定正整数 $1\le n \le 10^{18}$​​​​​，求最小整数 $m$​​​​ 使得集合 $\{1, 2, \dots, n\}$​​​​ 是 $\cup_{i=1}^m W(i)$​​​​ 的子集。</p>
+<p><strong>分析</strong> 集合运算 $W(p)$​​ 位数保持不变，因此 $m$​​ 的二进制位数和 $n$​​​ 的二进制位数保持一致。记 $f(n)$ 表示 $n$ 的循环表示最小正整数，则有 $ans\in [f(n),n]$​。</p>
+<p>（<strong>再走一步</strong>）当 $n\neq 2^n-1$​​​​​​ 即 $n$​​​​​​ 的二进制不全为 1 时，考虑 $n-1$​​​​​​​​ 的二进制位表示，此时 $n-1=(11\dots 01111)_2$​​​​，注意末尾部分是一个 0 带了一串 1，那么 $f(n-1)$​​​ 有一个特点是头部 2 位必然是 $10\dots$​​​。如果将连续的 0 和 1 分别视为一个整体 $\overline 0$​​​ 和 $\overline 1$​​​，可记 $f(n-1)=\overline 1\ \overline 0\ \overline 1\dots$​​​。考虑 $n-1$​​​ 末尾的 $\overline 1$​​​，对于 $n’\in [n-\overline 1, n-1)$​​​，由于 0 个数的增加，显然有 $f(n’)\le f(n-1)$​​​，也就是说 $f(n’)$​​​ 不会改变答案。之后继续考虑 $n-\overline 1 -1 = 1011\dots1$，然后“抹”去 $n$ 二进制中的 1 即可，而 1 的个数最多不超过 60 位。</p>
+<hr>
+<p>347 Join the Strings</p>
+<p><strong>题意</strong> 给 $1\le N\le 100$ 个字符串 $S_i(1\le |S_i|\le 100)$，将这些字符串拼接成一个大字符串，求字典序最小的大字符串。</p>
+<p><strong>分析</strong> 经典贪心，考虑相邻两个元素的字典序大小即可。</p>
+<hr>
+<p>346 Snooker</p>
+<p><strong>题意</strong> 斯诺克规则：</p>
+<ol>
+<li>有 15 个红球以及其它 6 种颜色球各 1 个，红球价值 1 分，其他彩球各 2 至 7 分。</li>
+<li>玩家需轮流打进红球和彩球，即打进红球后下一个必须打彩球，反之亦然。</li>
+<li>当玩家打进彩球时，如果桌面上还有红球或者上一次进球是红球时，这个彩球会被重新放回桌面上。本质上是需要先打完所有红球，然后才能打完所有彩球（具体参考样例解释）。</li>
+<li>当桌面上只剩彩球时，玩家需要按照彩球分值递增的顺序进球。</li>
+</ol>
+<p>玩家得分为进球的分值总和，给定目前桌面的各种球的数量以及上一个进球颜色，求玩家所能获得的最大得分。</p>
+<p><strong>分析</strong> 模拟。</p>
+<hr>
+<p>345 Revolution</p>
 <p><strong>题意</strong> 给 $3\le N\le 5\times 10^4$ 个点的凸包，有 $1\le P\le 5\times 10^4$​ 次询问：每次询问给一条直线，若凸包被直线切分成 2 部分，求较小部分的面积。</p>
 <p><strong>分析</strong> 计算几何。凸包面积使用叉积计算后可以使用前缀和快速计算，假设已知直线和凸包的交点，就可以 O(1) 求得切割部分面积。</p>
 <p>利用叉积计算将凸包点集区分成左右两部分，由于凸包的点是有序的，那么就可以得到与直线相交的线段。</p>
@@ -1078,10 +1108,6 @@ top:50vh;
     
     
     
-    
-    
-    
-    
     <div class="total-and-search">
         <div class="total-archive">
         Total : 27
@@ -1242,12 +1268,12 @@ top:50vh;
     
     
         <li class="archive-post-item">
-            <span class="archive-post-date">07/19</span><a class="archive-post-title" href= "../../../../2018/07/19/The Binding of Isaac Afterbirth+总结/" >The Binding of Isaac:Afterbirth+总结</a>
+            <span class="archive-post-date">07/19</span><a class="archive-post-title" href= "../../../../2018/07/19/The Binding of Isaac Afterbirth+总结-ChenMingqin.work/" >The Binding of Isaac:Afterbirth+总结</a>
         </li>
     
     
         <li class="archive-post-item">
-            <span class="archive-post-date">07/19</span><a class="archive-post-title" href= "../../../../2018/07/19/The Binding of Isaac Afterbirth+总结-ChenMingqin.work/" >The Binding of Isaac:Afterbirth+总结</a>
+            <span class="archive-post-date">07/19</span><a class="archive-post-title" href= "../../../../2018/07/19/The Binding of Isaac Afterbirth+总结/" >The Binding of Isaac:Afterbirth+总结</a>
         </li>
     
     
@@ -1283,9 +1309,9 @@ top:50vh;
     
         <span class="sidebar-tag-name" data-tags="git bash"><span class="iconfont-archer">&#xe606;</span>git bash</span>
     
-        <span class="sidebar-tag-name" data-tags="斜率优化"><span class="iconfont-archer">&#xe606;</span>斜率优化</span>
-    
         <span class="sidebar-tag-name" data-tags="polya"><span class="iconfont-archer">&#xe606;</span>polya</span>
+    
+        <span class="sidebar-tag-name" data-tags="斜率优化"><span class="iconfont-archer">&#xe606;</span>斜率优化</span>
     
     </div>
     <div class="iconfont-archer sidebar-tags-empty">&#xe678;</div>

@@ -351,13 +351,9 @@
                 <span>SGU-301-350</span>
         </a>
         <div class="abstract-content">
-            345 Revolution
-题意 给 $3\le N\le 5\times 10^4$ 个点的凸包，有 $1\le P\le 5\times 10^4$​ 次询问：每次询问给一条直线，若凸包被直线切分成 2 部分，求较小部分的面积。
-分析 计算几何。凸包面积使用叉积计算后可以使用前缀和快速计算，假设已知直线和凸包的交点，就可以 O(1) 求得切割部分面积。
-利用叉积计算将凸包点集区分成左右两部分，由于凸包的点是有序的，那么就可以得到与直线相交的线段。
-
-344 Weed
-题意 给 $N\times M(1\le N,M\le 1000)$ 网格，每个格子上要么长了杂草要么没长。当一个没...
+            350 XOR-omania
+题意 有 $1\le N\le 100$ 个未知的整数序列 $1\le A_i\le 2^{31}$，两两异或得到序列 $B_k=A_i\ xor\ A_j,1\le k\le \frac {N(N-1)} 2$，数据保证序列 $A_i$ 大于 2 个元素的任意子集的异或和均不为 0。已知序列 $B_i$，求序列 $A_i$ 的一种解（保证有解）。
+分析 从结果角度入手，假设使用序列 $A’_i$ 可以得到序列 $B_i$，那么序列 $A_i=A_1\bigoplus A’_i$ 亦能得到序列 $B_i$。在已知 $A_1=0$ 的条件下，对于所有的 $i$...
         </div>
         <div class="abstract-post-meta">
             <!-- date  -->
@@ -489,10 +485,6 @@
     <div class="sidebar-content sidebar-content-show-archive">
           <div class="sidebar-panel-archives">
     <!-- 在ejs中将archive按照时间排序 -->
-    
-    
-    
-    
     
     
     
@@ -980,12 +972,12 @@
     
     
         <li class="archive-post-item">
-            <span class="archive-post-date">07/19</span><a class="archive-post-title" href= "../../../../2018/07/19/The Binding of Isaac Afterbirth+总结/" >The Binding of Isaac:Afterbirth+总结</a>
+            <span class="archive-post-date">07/19</span><a class="archive-post-title" href= "../../../../2018/07/19/The Binding of Isaac Afterbirth+总结-ChenMingqin.work/" >The Binding of Isaac:Afterbirth+总结</a>
         </li>
     
     
         <li class="archive-post-item">
-            <span class="archive-post-date">07/19</span><a class="archive-post-title" href= "../../../../2018/07/19/The Binding of Isaac Afterbirth+总结-ChenMingqin.work/" >The Binding of Isaac:Afterbirth+总结</a>
+            <span class="archive-post-date">07/19</span><a class="archive-post-title" href= "../../../../2018/07/19/The Binding of Isaac Afterbirth+总结/" >The Binding of Isaac:Afterbirth+总结</a>
         </li>
     
     
@@ -1021,9 +1013,9 @@
     
         <span class="sidebar-tag-name" data-tags="git bash"><span class="iconfont-archer">&#xe606;</span>git bash</span>
     
-        <span class="sidebar-tag-name" data-tags="斜率优化"><span class="iconfont-archer">&#xe606;</span>斜率优化</span>
-    
         <span class="sidebar-tag-name" data-tags="polya"><span class="iconfont-archer">&#xe606;</span>polya</span>
+    
+        <span class="sidebar-tag-name" data-tags="斜率优化"><span class="iconfont-archer">&#xe606;</span>斜率优化</span>
     
     </div>
     <div class="iconfont-archer sidebar-tags-empty">&#xe678;</div>
