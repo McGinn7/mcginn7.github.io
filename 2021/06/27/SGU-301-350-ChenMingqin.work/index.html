@@ -22,7 +22,7 @@
     <meta name="description" content>
     <meta http-equiv="Cache-control" content="no-cache">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-    <title>B-Tree · Mcginn&#39;s Blog</title>
+    <title>SGU-301-350 · Mcginn&#39;s Blog</title>
     <style type="text/css">
     @font-face {
         font-family: 'Oswald-Regular';
@@ -217,7 +217,7 @@
                 <a href="../../../../index.html" >Mcginn&#39;s Blog</a>
             </div>
             <div class="post-title">
-                <a href="#" class="post-name">B-Tree</a>
+                <a href="#" class="post-name">SGU-301-350</a>
             </div>
     </div>
     
@@ -247,7 +247,7 @@ height:50vh;
         <h1 class="intro-title">
             <!-- 主页  -->
             
-            B-Tree
+            SGU-301-350
             <!-- 404 -->
             
         </h1>
@@ -266,12 +266,12 @@ height:50vh;
                 
                 
                     <div class="post-intro-read">
-                        <span>字数统计: <span class="post-count word-count">846</span>阅读时长: <span class="post-count reading-time">3 min</span></span>
+                        <span>字数统计: <span class="post-count word-count">4.5k</span>阅读时长: <span class="post-count reading-time">17 min</span></span>
                     </div>
                 
                 <div class="post-intro-meta">
                     <span class="post-intro-calander iconfont-archer">&#xe676;</span>
-                    <span class="post-intro-time">2019/07/22</span>
+                    <span class="post-intro-time">2021/06/27</span>
                     
                     <span id="busuanzi_container_page_pv" class="busuanzi-pv">
                         <span class="iconfont-archer">&#xe602;</span>
@@ -395,49 +395,232 @@ height:50vh;
         <div class="container container-unloaded">
             <main class="main post-page">
     <article class="article-entry">
-        <h2 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h2><p>简单来说，B-Tree 是针对<strong>大数据存取</strong>的平衡树，考虑了<strong>磁盘读取</strong>对查找效率的影响。</p>
-<p>B-Tree 的主要思想是通过<strong>减少磁盘读取次数</strong>来提高数据存取性能，而磁盘读取次数与<strong>树高</strong>相关。故B-Tree 允许每个节点拥有多于 2 个的子节点来减小树高。</p>
-<p>与二叉平衡树类似，B-Tree 中的每个节点存储若干键值（keys）以及子节点地址。</p>
-<img src="/2019/07/22/B-Tree/struct.png">
-<center>图 1. B-Tree 结构图</center>
-
-<h2 id="定义和性质"><a href="#定义和性质" class="headerlink" title="定义和性质"></a>定义和性质</h2><p><strong>阶（order）</strong>：将子节点的允许最大数量定义为阶，如图 1 为 5 阶树。</p>
-<p>$m$ 阶的 B-Tree 满足以下定义：</p>
+        <p>350 XOR-omania</p>
+<p><strong>题意</strong> 有 $1\le N\le 100$ 个未知的整数序列 $1\le A_i\le 2^{31}$，两两异或得到序列 $B_k=A_i\ \bigoplus\ A_j,1\le k\le \frac {N(N-1)} 2$。已知序列 $B_i$，求序列 $A_i$ 的一种解（保证有解）。</p>
+<p><strong>分析</strong> 从<strong>结果角度</strong>入手，假设已知有序列 $A’_i$​​ 可以得到序列 $B_i$​​，那么序列 $A_i=A’_i\bigoplus A’_1$​​​ 也能得到序列 $B_i$​​。假设 $A_1=0$​ 也能得到一种解。</p>
+<p>在 $A_1=0$ 的条件下，则有 $B_k=A_i, i\gt 1$。</p>
+<hr>
+<p>349 </p>
+<hr>
+<p>348 Twisting the Number</p>
+<p><strong>题意</strong> 定义集合运算 $W(p)$​​​​ 为正整数 $p$​​​​ 二进制位循环生成的数字集合，给定正整数 $1\le n \le 10^{18}$​​​​​，求最小整数 $m$​​​​ 使得集合 $\{1, 2, \dots, n\}$​​​​ 是 $\cup_{i=1}^m W(i)$​​​​ 的子集。</p>
+<p><strong>分析</strong> 集合运算 $W(p)$​​ 位数保持不变，因此 $m$​​ 的二进制位数和 $n$​​​ 的二进制位数保持一致。记 $f(n)$ 表示 $n$ 的循环表示最小正整数，则有 $ans\in [f(n),n]$​。</p>
+<p>（<strong>再走一步</strong>）当 $n\neq 2^n-1$​​​​​​ 即 $n$​​​​​​ 的二进制不全为 1 时，考虑 $n-1$​​​​​​​​ 的二进制位表示，此时 $n-1=(11\dots 01111)_2$​​​​，注意末尾部分是一个 0 带了一串 1，那么 $f(n-1)$​​​ 有一个特点是头部 2 位必然是 $10\dots$​​​。如果将连续的 0 和 1 分别视为一个整体 $\overline 0$​​​ 和 $\overline 1$​​​，可记 $f(n-1)=\overline 1\ \overline 0\ \overline 1\dots$​​​。考虑 $n-1$​​​ 末尾的 $\overline 1$​​​，对于 $n’\in [n-\overline 1, n-1)$​​​，由于 0 个数的增加，显然有 $f(n’)\le f(n-1)$​​​，也就是说 $f(n’)$​​​ 不会改变答案。之后继续考虑 $n-\overline 1 -1 = 1011\dots1$，然后“抹”去 $n$ 二进制中的 1 即可，而 1 的个数最多不超过 60 位。</p>
+<hr>
+<p>347 Join the Strings</p>
+<p><strong>题意</strong> 给 $1\le N\le 100$ 个字符串 $S_i(1\le |S_i|\le 100)$，将这些字符串拼接成一个大字符串，求字典序最小的大字符串。</p>
+<p><strong>分析</strong> 经典贪心，考虑相邻两个元素的字典序大小即可。</p>
+<hr>
+<p>346 Snooker</p>
+<p><strong>题意</strong> 斯诺克规则：</p>
 <ol>
-<li>每个节点最多能有 $m$ 个子节点。</li>
-<li>每个内部节点至少有 $\lceil \frac m2\rceil$ 个子节点，内部节点（Internal nodes）为除根节点和叶节点以外的节点。</li>
-<li>拥有 $k+1$ 个子节点的非叶节点存有 $k$ 个键值。</li>
-<li>每个节点中的键值按<strong>递增</strong>排序。</li>
-<li>所有的叶节点高度一样。</li>
+<li>有 15 个红球以及其它 6 种颜色球各 1 个，红球价值 1 分，其他彩球各 2 至 7 分。</li>
+<li>玩家需轮流打进红球和彩球，即打进红球后下一个必须打彩球，反之亦然。</li>
+<li>当玩家打进彩球时，如果桌面上还有红球或者上一次进球是红球时，这个彩球会被重新放回桌面上。本质上是需要先打完所有红球，然后才能打完所有彩球（具体参考样例解释）。</li>
+<li>当桌面上只剩彩球时，玩家需要按照彩球分值递增的顺序进球。</li>
 </ol>
-<h2 id="操作"><a href="#操作" class="headerlink" title="操作"></a>操作</h2><p>对于平衡🌳的操作主要就是<strong>插入（Insertion）</strong>和<strong>删除（Deletion）</strong>。</p>
-<p>以下操作均<strong>基于键值两两不同的假设</strong>进行讨论，同时键值的<strong>数量范围</strong>定义为 $[d, 2d]$，阶 $m=2d+1$。</p>
-<h3 id="插入"><a href="#插入" class="headerlink" title="插入"></a>插入</h3><p>首先找到键值归属的<strong>叶节点</strong>，插入到该节点中，节点的键值数量可能超过上限 $2d$，即当前键值数量为 $2d+1$。</p>
-<p>此时用<strong>中位数</strong>将该节点划分成两个新的节点，每个新节点含有 $d$ 个键值，如图 2 所示。</p>
-<p>之后将键值中位数插入到父节点中，父节点的键值数量 +1，也有可能超上限，故需要<strong>迭代</strong>更新。</p>
-<img src="/2019/07/22/B-Tree/split.png">
-<center>图 2. 节点分裂</center>
-
-<h3 id="删除"><a href="#删除" class="headerlink" title="删除"></a>删除</h3><h4 id="主要思路"><a href="#主要思路" class="headerlink" title="主要思路"></a>主要思路</h4><p>将内部节点中的删除操作转移至叶节点中，然后自下而上重新平衡，达到键值数量要求。</p>
-<h4 id="叶节点"><a href="#叶节点" class="headerlink" title="叶节点"></a>叶节点</h4><p>直接将对应的键值删除即可。</p>
-<h4 id="内部节点"><a href="#内部节点" class="headerlink" title="内部节点"></a>内部节点</h4><p>假设当前删除键值为 $k$，则 $k$  的前继 $prev(k)$ 为左子树中的最大键值，后继 $succ(k)$ 为右子树中的最小键值。</p>
-<p>$prev(k)$ 和 $succ(k)$ 均可替代 $k$ 作为分割左、右子树的新键值，同时这两个键值必然在叶节点中，进而将删除操作转移到叶节点中。</p>
-<h4 id="重平衡"><a href="#重平衡" class="headerlink" title="重平衡"></a>重平衡</h4><p>在叶节点删除键值后可能出现键值数量为 $d-1$ 导致下溢出。此时通过转移<strong>兄弟节点</strong>的键值来完成键值补充，主要分两种情况：</p>
+<p>玩家得分为进球的分值总和，给定目前桌面的各种球的数量以及上一个进球颜色，求玩家所能获得的最大得分。</p>
+<p><strong>分析</strong> 模拟。</p>
+<hr>
+<p>345 Revolution</p>
+<p><strong>题意</strong> 给 $3\le N\le 5\times 10^4$ 个点的凸包，有 $1\le P\le 5\times 10^4$​ 次询问：每次询问给一条直线，若凸包被直线切分成 2 部分，求较小部分的面积。</p>
+<p><strong>分析</strong> 计算几何。凸包面积使用叉积计算后可以使用前缀和快速计算，假设已知直线和凸包的交点，就可以 O(1) 求得切割部分面积。</p>
+<p>利用叉积计算将凸包点集区分成左右两部分，由于凸包的点是有序的，那么就可以得到与直线相交的线段。</p>
+<hr>
+<p>344 Weed</p>
+<p><strong>题意</strong> 给 $N\times M(1\le N,M\le 1000)$ 网格，每个格子上要么长了杂草要么没长。当一个没长杂草的格子有 2 个及以上长杂草的相邻格子，那么这个格子之后也会长杂草。求最终网格图中每个格子的状态。</p>
+<p><strong>分析</strong> 模拟。</p>
+<hr>
+<p>? 343 VaR</p>
+<p><strong>题意</strong></p>
+<p><strong>分析</strong></p>
+<hr>
+<p>342 Reihenfolge</p>
+<p><strong>题意</strong> 给一大整数 $A(1\le A\le 10^{3000})$​ 以及正整数 $B(1\le B\le 10^6)$​，令 $A=s_1B^{k_1}+s_2B^{k_2}+\dots+s_nB^{k_n}$​，其中 $|s_i|=1$​，求最小需要个数 $n$​。</p>
+<p><strong>分析</strong> 记 $k_n\ge k_{n-1}\ge\dots\ge k_1$​，当 $k_1\gt 0$ 时，问题转换成 $A/B$ 的最小个数 $n’$。当 $k_1=0$ 时，令 $A=A’B+r(0\lt r\lt B)$，此时花费代价 $r$ 转移至状态 $A’$；另一种表示为 $A=(A’+1)B-(B-r)$，含义为花费代价 $B-r$ 转移至状态 $A’+1$。</p>
+<p>表面上每次状态转移都会产生新的 2 种状态，实质上<strong>再走一步</strong>可以发现 $A’$ 和 $A’+1$ 的两个后继状态也是相同的（可记为 $A’’$ 和 $A’’+1$），套用 DP 思想即可。</p>
+<p><strong>代码</strong> <a href="https://github.com/McGinn7/Template-for-ICPC/blob/master/SGU/342.java" target="_blank" rel="noopener">342.java</a></p>
+<hr>
+<p>? 341Circuits</p>
+<p>题意</p>
+<p>分析</p>
+<hr>
+<p>340 TeX2HTML</p>
+<p><strong>题意</strong> 解析 tex 中的公式表达，转换成 HTML 标签。</p>
+<p><strong>分析</strong> parser。</p>
+<hr>
+<p>339 Segments</p>
+<p><strong>题意</strong> 增加、删除一维坐标上的线段：$+\ L\ R$ 添加线段 $[L, R]$ 并输出该区间内的线段数量；$-\ L \ R$ 若存在一条线段 $[L, R]$ 则删除。操作次数 $1\le Q\le 2.5 \times 10^5$。</p>
+<p><strong>分析</strong> 二维线段树。</p>
+<hr>
+<p>338 </p>
+<hr>
+<p>337 Keven</p>
+<p><strong>题意</strong> 若长度为偶数的字符串前半部分和后半部分不同的字符数量不超过 $K$，则定义为 $K_{even}$ 字符串。给定整数 $K$ 和初始长度为奇数且不超过 2000 的循环字符串，求循环字符串中长度最长的 $K_{even}$ 子串。</p>
+<p><strong>分析</strong></p>
+<hr>
+<p>336 Elections</p>
+<p><strong>题意</strong> 有 $1\le N\le 10^5$ 个党派参加选举，不同党派存在竞争关系，因此党派 $a$ 可能收集有党派 $b$ 的负面未公开消息。为了赢得选举党派可能组成集团共享信息来最大化选举成功的概率。</p>
+<p>现模拟 $1\le Q\le 2\times 10^5$ 次操作：</p>
 <ol>
-<li><p><strong>合并</strong>：当前节点的左、右兄弟节点均只有 $d$ 个键值，此时可与其中一个兄弟节点及父节点中的分割键值合并，新节点的键值数量为 $2d$，相当于节点分裂的逆操作。此时父节点的键值数量减 1，需要<strong>迭代</strong>重平衡。</p>
-<img src="/2019/07/22/B-Tree/merge.png">
-<center>图 3. 节点合并</center>
-</li>
-<li><p><strong>旋转</strong>：假设右兄弟节点的键值大于 $d$ 个（左兄弟同理），将父节点的分割键值插入到当前节点中，右兄弟节点的第 1 个键值插入到父节点中。此时当前节点、兄弟节点和父节点的键值数量均满足键值数量要求，完成平衡操作。</p>
-<img src="/2019/07/22/B-Tree/rotate.png">
-<center>图 4. 旋转操作</center>
+<li>$1\ a\ b$，操作 1 需判断党派/集团 $a$ 是否掌握有党派/集团 $b$ 的负面消息；</li>
+<li>$2\ a\ b$，操作 2 表示党派/集团 $a$ 和党派/集团 $b$​ 形成集团并共享信息。</li>
+</ol>
+<p><strong>分析</strong> 食物链。</p>
+<hr>
+<p>? 335 Thiefs And Cops</p>
+<p><strong>题意</strong>  在 $H\times W(1\le H, W\le 5\times 10^8)$​ 的网格图上，已知警察的初始坐标 $(X_c, Y_c)$​ 和小偷的初始坐标 $(X_t, Y_t)$​​。警察和小偷均知道自己和对方的位置，然后轮流行动，每次行动<strong>必须</strong>移动到相邻的格子上。警察希望尽快抓到小偷，而小偷则希望自己被抓的时间越晚越好。求警察最快抓到小偷的时间，或判断抓不到。</p>
+<p><strong>分析</strong> </p>
+<hr>
+<p>334 Tiny Puzzle</p>
+<p><strong>题意</strong> 给 9 个小方块的坐标，通过平移将这些方块组合成 3×3 的正方形。对于联通的小方块可分成一组形成联通块，但不能旋转或翻转。求最少需要分成多少组就可以通过平移组成 3×3 的正方形。</p>
+<p><strong>分析</strong> $9!$ 枚举小方块在正方形中的位置，然后再求联通块的数量。</p>
+<hr>
+<p>333 Random Shooting</p>
+<p><strong>题意</strong> 在大小为 $100\times 100$​​ 的正方形板上有一个 $3\le N\le 8$​​ 个点的凸包，随机撒 2 个点在板上，求线段与凸包有交的概率。当线段任一点在凸包内时，则认为线段和凸包有交。</p>
+<p><strong>分析</strong></p>
+<p><strong>参考</strong> <a href="https://blog.csdn.net/woshitanwei/article/details/7353152" target="_blank" rel="noopener">SGU 333 Random Shooting +数据加强版</a></p>
+<hr>
+<p>332 Largest Circle</p>
+<p><strong>题意</strong> 给 $3\le N\le 10^4$ 个点凸包，求凸包内最大圆面积。 </p>
+<p><strong>分析</strong> 二分半径 R，凸包拆解成半平面，半平面的直线向“内”平移 R 后求半平面交，若面积大于0 说明凸包能包含半径 R 的圆，反之不行。</p>
+<hr>
+<p>331 Traffic Jam</p>
+<p><strong>题意</strong></p>
+<p><strong>分析</strong></p>
+<hr>
+<p>330 Numbers</p>
+<p><strong>题意</strong> 给两数 $A, B(2\le A\lt B\le 10^{12})$。每次选择 $A$ 的一个约数 $d$ 累加，即 $A’=A+d,d|A$。判断是否能在 500 次操作内将 $A$ 转换成 $B$。</p>
+<p><strong>分析</strong> 从二进制的角度考虑。</p>
+<hr>
+<p>329 Black-and-White Triangle</p>
+<p><strong>题意</strong> 长度为 $1\le N\le 5$ 的大等边三角形划分成 $N^2$​ 个小三角形，每个小三角形有 4 种染色样式。现给定 4 种染色样式的数量，求染色方案数使得相邻三角形的相邻边是同一颜色。</p>
 
-</li>
-</ol>
-<h2 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h2><ol>
-<li><a href="https://en.wikipedia.org/wiki/B-tree" target="_blank" rel="noopener">wikipeadia</a></li>
-<li><a href="https://www.geeksforgeeks.org/b-tree-set-1-introduction-2/" target="_blank" rel="noopener">geeksforgeeks</a></li>
-</ol>
+<p><strong>分析</strong> $dp(i, j, x_1, x_2, x_3, x_4, mask, last)$ 表示染色至格子 $(i, j)$​ 染色样式各使用了 $x_1, x_2, x_3, x_4$ 以及过去 $N$ 个小三角形向下边的颜色状态 $mask$，前一个小三角形相邻边的颜色为 $last$ 的染色方案数。</p>
+<hr>
+<p>? 328 A Coloring Game</p>
+<p><strong>题意</strong> $1\le N\le 10^5$​ 个位置排成一排，每个位置有 3 种状态：未染色；黑色；白色。2 名玩家轮流给未染色的位置染色，要求相邻位置不能染相同颜色。不能进行染色的玩家失败，在两名玩家都采取最优操作的条件判断先手胜或后手胜。</p>
+<p><strong>分析</strong></p>
+<hr>
+<p>327 Yet Another Palindrome</p>
+<p><strong>题意</strong> 给 $1\le N\le 14$ 个仅包含小写拉丁字母的字符串 $S_i(1\le |S_i|\le 30)$，求一个最短回文串使得所有 $S_i$ 都是其连续子串。</p>
+<p><strong>分析</strong> 每个字符串可能出现回文串的前半部分、后半部分、跨越对称轴三种情况。根据回文串的性质，若 $S_i$ 出现在后半部分，将其翻转后就出现在了回文串的前半部分，因此只需要考虑出现在回文串前半部分和跨越对称轴 2 种情况。因为 $N\le14$ 不大，可以尝试 DFS 或直接状压 DP 记录当前回文串的前半部分。跨域对称轴的情况需要特殊处理。</p>
+<hr>
+<p>326 Perspective</p>
+<p><strong>题意</strong> 有 $2\le N\le 20$​ 支队伍，每支队伍最多再参加 $r_i$​ 场比赛，第 i 支队伍和第 j 支队伍允许最多进行 $a_{i,j}$​ 场比赛。每场比赛必然会分成胜负，获胜方得分 +1。目前每只队伍得分为 $w_i$​​，是否存在一种比赛结果使得第 1 支队伍最后得分最大（允许和其他队伍得分并列）。</p>
+<p><strong>分析</strong> 显然，第 1 支队伍的所有场次均获胜，即最后得分为 $w_1+\min (r_1, \sum a_{1,j})$。剩下的问题就是分配其他队伍的比赛胜负使得最大值不超过第一支队伍的最后得分。</p>
+<p>一种比较显然（但不简单）的做法是构造网络流：左部分点表示比赛，右部分点表示队伍，根据题意构造边的流量即可。</p>
+<hr>
+<p>325 Palindrome</p>
+<p><strong>题意</strong> 给长度为 $10^6$ 仅包含大写拉丁字母的字符串，每次操作交换相邻的两个字符，求最少操作次数使得字符串变成回文串。若不能转化成回文串，输出 -1。</p>
+<p><strong>分析</strong> 同一字符的相对顺序不变，因此可以知道每个字符在回文串中相匹配的字符。基于这个观察，从外向内<strong>贪心</strong>模拟这个匹配过程即可。</p>
+<hr>
+<p>324 The Text Formatting</p>
+<p><strong>题意</strong></p>
+<p><strong>分析</strong> 模拟。</p>
+<hr>
+<p>323 Aviamachinations</p>
+<p><strong>题意</strong> Berland 上有 $1\le N\le 2000$​ 座城市，$1\le M\le 2000$​ 家航空公司经营着 $0\le K\le 2\times 10^5$​​​ 条航线。每条航线往返于两座城市之间，由其中一家公司经营且有一个出售价格 $1\le P_i\le 10^5$​。两座城市之间可能存在多条不同公司经营的航线。现在某一家公司要去收购其他公司的航线，使得任意两座城市都可以通过中转航线到达，求最小收购价格。</p>
+<p><strong>分析</strong> 模拟+最小生成树。暴力做法是，枚举垄断公司，先用该公司的航线合并相互可达的城市，然后从头搞一遍最小生成树求最小价格。暴力做法的时间复杂度是 $O(MK)$，显然是会超时的。</p>
+<p>从另一个角度入手，在不考虑垄断公司的前提下，先求最小生成树，然后往树上加垄断公司的航线边，再去掉环上价格最高的边即可。但这个做法要做到 $O(MN)$ 是比较困难的。</p>
+<p>从结果角度来看，垄断公司的航线不是自家经营的航线，就是在最小生成树上的航线，也就是暴力做法中只需要枚举最小生成树上的边即可。</p>
+<hr>
+<p>322 The Great Union</p>
+<p><strong>题意</strong> 给 2 棵 $1\le N\le 2000$​​ 个点的树，需要通过若干操作将 2 棵树改成完全一致：往树上加一条边，然后去除环上的一条边使得操作后仍是一棵树。求最少的操作次数。</p>
+<p><strong>分析</strong> 最少次数为非公共边的数量。每次往树 A 加树 B 的边，然后去除环上的非公共边。</p>
+<hr>
+<p>321 The Spy Network</p>
+<p><strong>题意</strong> 给定一棵 $1\le N\le 2\times 10^5$ 个节点根为 1 的有根数，树边权重为 0 或 1，要求任意节点到根的边权和大于等于路径长度的一半。在允许修改边权的操作下，求最少需要修改多少条边的边权，并给出任一方案。</p>
+<p><strong>分析</strong> 贪心+二分。显然地，修改的树边距离根越近越好，对于每个节点可以二分其到根路径上的边界点，边界点以上树边的边权都修改为 1。</p>
+<hr>
+<p>320 The Influence of the Mafia</p>
+<p><strong>题意</strong> 给 $N\times M(1\le N,M\le 500)$ 大小的网格图，该图被划分成若干联通区域，同一区域使用同一数字表示，数字范围是 0 到 9。若一片区域所占据的格子数不少于 $K$，则这片区域中的任一格子都不能通行。求能到达网格图边界的格子数量。</p>
+<p><strong>分析</strong> 模拟+BFS。</p>
+<hr>
+<p>319 </p>
+<p><strong>题意</strong></p>
+<p><strong>分析</strong></p>
+<hr>
+<p>318 Grants</p>
+<p><strong>题意</strong> 有 $1\le M\le 100$ 个用户以及 $1\le N\le 100$ 个文件，每个用户有需要访问的文件集合 $S_i$。管理员通过设定用户组下发文件的访问权限：每个文件最多分配给一个用户组；用户可以加入任意多的用户组，但必须也仅能访问需要的文件集合。求管理最少需要划分多少个用户组来满足用户的访问需求。</p>
+<p><strong>分析</strong></p>
+<hr>
+<p>317 Fast Ride</p>
+<p><strong>题意</strong> 有 $1\le N\le 5000$ 个马厩，第 i 个马厩位置在 $0\le X_i\le 10^8$ 且有 $0&lt;M_i$ 匹马。第 j 只马速度为 $1\le v_j\le 10^8$，最大驰骋距离为 $1\le d_j\le 10^8$。从位置 0 骑马到位置 $1\le B\le 10^8$，求最小花费时间。</p>
+<p><strong>分析</strong> DP。</p>
+<hr>
+<p>316 Code Tanks</p>
+<p><strong>题意 </strong> (省略)</p>
+<p><strong>分析</strong> 模拟。</p>
+<hr>
+<p>315 </p>
+<p><strong>题意</strong></p>
+<p><strong>分析</strong></p>
+<hr>
+<p>314 Shortest Paths</p>
+<p><strong>题意</strong> 给定 $2\le N\le 10^4$ 个点，$2\le M\le 5\times 10^4$ 条边的有向图，求 $S$ 到 $T$ 前 $2\le K\le 10^4$ 条最短路径长度。</p>
+<p><strong>分析</strong> K 短路模板题。</p>
+<p><strong>参考</strong> <a href="https://zhuanlan.zhihu.com/p/56269536" target="_blank" rel="noopener">从枚举到 K 短路 - 知乎 (zhihu.com)</a></p>
+<hr>
+<p>313 Circular Railway</p>
+<p><strong>题意</strong> $2\le L\le 10^9$ 个点均匀分布到环形上，顺序标号 1 至 $L$，相邻点距离为 1。分别有 $1\le N\le 50000$ 个起点和终点，分配起点和终点一一映射，使得总距离和最小。求最小总距离和以及一种分配方案。</p>
+<p><strong>分析</strong> 当点分布在链上时，贪心即可：从左往右，能匹配就匹配。</p>
+<p>将环拆成链，枚举环的拆分位置，然后退化成链的做法，时间复杂度为 $O(N^2)$。</p>
+<p>考虑逐格递推，即考虑每条线段对于总距离的贡献。记起点值为 $+1$，终点为 $-1$，线段长度为 $L_i$，那么每条线段的距离贡献为：$|PrefixSum(i)|\times L_i$。当 $PrefixSum(i)&gt; 0$ 时，线段左侧的起点需要到线段右侧找相匹配的终点，因此最终方案必须穿过 $PrefixSum(i)$ 次。</p>
+<p>剩下的问题就是考虑将绝对值符号去掉，这里可以使用离线+树状数组维护。</p>
+<p><strong>代码</strong> <a href="https://github.com/McGinn7/Template-for-ICPC/blob/master/SGU/313.cpp" target="_blank" rel="noopener">sgu 313</a></p>
+<hr>
+<p>312 4-3 King</p>
+<p><strong>题意</strong></p>
+<p><strong>分析</strong></p>
+<hr>
+<p>311 Ice-cream Tycoon</p>
+<p><strong>题意</strong> 有 $10^5$ 次操作，操作分 2 种：ARRIVE n c，表示有 n 个值为 c 的数；BUY n t，取当前最小的 n 个数且总和不超过 t，若满足条件输出 HAPPY 否则输出 UNHAPPY。</p>
+<p><strong>分析</strong> 线段树模拟。</p>
+<hr>
+<p>310 Hippopotamus</p>
+<p><strong>题意</strong> 长度为 $1\le N\le 60$ 二进制串，任意连续长度为 $1\le M\le 15$ 的窗口中至少需要包含 $0\le K\le M$ 个 1，求满足条件的二进制串数量。</p>
+<p><strong>分析</strong> $dp(i, mask)$ 表示当前长度为 $i$ 最后 $M$ 位状态为 $mask$ 的方案数。</p>
+<hr>
+<p>309 Real Fun</p>
+<p><strong>题意</strong> 给二维平面上 $4\le N\le 20000$ 个点 $(x, y), |x|,|y|\le 10^9$，使用 3 个相同的正方形覆盖所有点，求正方形最小边长。</p>
+<p><strong>分析</strong> 聚类？</p>
+<hr>
+<p>308 Hyperboloid Distance</p>
+<p><strong>题意</strong> 给定单页双曲面 $x^2+y^2-z^2=1$ 以及表面上两点 $A(x_A, y_A, z_A), B(x_B, y_B, z_B), -1\le z_A, z_B\le 1$，求 $AB$ 在双曲面上的距离。</p>
+<p><strong>分析</strong> 微分法。</p>
+<hr>
+<p>307 Cipher</p>
+<p><strong>题意</strong> 给定大小为 $(H-1)\times (W-1), 2\le H,W\le 300$ 的矩阵 $B$，矩阵 $A$ 和矩阵 $B$ 满足关系式  $B_{i,j}=A_{i,j}+A_{i+1,j}+A_{i, j+1}+A_{i+1,j+1}$。求矩阵 $A$，或判断无解。</p>
+<p><strong>分析</strong> 若已知矩阵 $A$ 的第一行和第一列，结合矩阵 $B$ 可倒推出整个矩阵 $A$：</p>
+<script type="math/tex; mode=display">
+A_{i+1,j+1}=B_{i,j}-A_{i,j}-A_{i+1,j}-A_{i, j+1}</script><p>进一步推导可得，在不考虑矩阵 $B$ 的情况下，$A_{i, j}$ 仅和 $A_{0,0}, A_{i,0}, A_{0, j}$ 有关：</p>
+<script type="math/tex; mode=display">
+A_{i,j}=(-1)^{i+j+1}A_{0,0}+(-1)^jA_{i,0}+(-1)^iA_{0,j}</script><p>枚举 $A_{0, 0}$，原问题转化成一个 2-sat 问题：$A_{i,0}$ 和 $A_{0, j}$ 的相关性。</p>
+<hr>
+<p>306</p>
+<p><strong>题意</strong></p>
+<p><strong>分析</strong></p>
+<hr>
+<p>305</p>
+<p><strong>题意</strong></p>
+<p><strong>分析</strong></p>
+<hr>
+<p>304</p>
+<p><strong>题意</strong></p>
+<p><strong>分析</strong></p>
+<hr>
+<p>303</p>
+<p><strong>题意</strong></p>
+<p><strong>分析</strong></p>
+<hr>
+<p>302</p>
+<p><strong>题意</strong></p>
+<p><strong>分析</strong></p>
+<hr>
+<p>301</p>
+<p><strong>题意</strong></p>
+<p><strong>分析</strong></p>
 
     </article>
     <!-- license  -->
@@ -447,16 +630,16 @@ height:50vh;
         <li class="next">
             
                 <div class="nextSlogan">Next Post</div>
-                <a href= "../../../10/31/polya/" title= "Pólya计数法">
-                    <div class="nextTitle">Pólya计数法</div>
+                <a href= "../../../09/12/SGU-351-400/" title= "SGU-351-400">
+                    <div class="nextTitle">SGU-351-400</div>
                 </a>
             
         </li>
         <li class="previous">
             
                 <div class="prevSlogan">Previous Post</div>
-                <a href= "../../../05/31/AhoCorasick-Algorithm/" title= "AhoCorasick Algorithm">
-                    <div class="prevTitle">AhoCorasick Algorithm</div>
+                <a href= "../SGU-301-350/" title= "SGU-301-350">
+                    <div class="prevTitle">SGU-301-350</div>
                 </a>
             
         </li>
@@ -587,7 +770,7 @@ top:50vh;
         <div class="toc-catalog">
             <span class="iconfont-archer catalog-icon">&#xe613;</span><span>CATALOG</span>
         </div>
-        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#简介"><span class="toc-number">1.</span> <span class="toc-text">简介</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#定义和性质"><span class="toc-number">2.</span> <span class="toc-text">定义和性质</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#操作"><span class="toc-number">3.</span> <span class="toc-text">操作</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#插入"><span class="toc-number">3.1.</span> <span class="toc-text">插入</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#删除"><span class="toc-number">3.2.</span> <span class="toc-text">删除</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#主要思路"><span class="toc-number">3.2.1.</span> <span class="toc-text">主要思路</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#叶节点"><span class="toc-number">3.2.2.</span> <span class="toc-text">叶节点</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#内部节点"><span class="toc-number">3.2.3.</span> <span class="toc-text">内部节点</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#重平衡"><span class="toc-number">3.2.4.</span> <span class="toc-text">重平衡</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#参考"><span class="toc-number">4.</span> <span class="toc-text">参考</span></a></li></ol>
+        
     </div>
     
     <div class="back-top iconfont-archer">&#xe639;</div>

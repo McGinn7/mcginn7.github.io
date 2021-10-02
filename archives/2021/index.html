@@ -351,19 +351,41 @@
                 <span>SGU-351-400</span>
         </a>
         <div class="abstract-content">
-            352 Beerland Attacks
-题意 $2\le N\le 4000$ 个点 $N-1\le M\le 10^5$ 条边的无向图，给定以 1 为根的一棵最短路径树。对于除 1 外的点 $i$，当 $i$ 的最短路径树上的父边不可用时，1 到 i 的最短距离。
-分析 最短路算法。
-
-351 A Mission for a Scout
-题意 给定二维平面一个圆 $C$ ，圆外两点 $A, B$，以及一常数 $D$ 表示能在圆 $C$ 行走的最大距离。求从点 $A$ 到点 $B$ 的最短距离，输出其中一种方案。
-分析  （计算几何）
-
+            370 Rifleman
+题意 在大小为 $N\times M(1\le N,M\le 10^6)$ 网格图中，从位置 $(1,1)$ 需要设置几条射线以覆盖所有格点。
+分析 容斥原理。网格图的一条射线可以使用 $(dx, dy)$ 表示，其中 $dx,dy$ 互质，问题可以转化为：给定 $dx$，求 $[1, M-1]$ 中与 $dx$ 互质的数的数量。
+因为 $2\times 3\times 5\times 7\times 11\times 13\times 17 \times 19\gt 10^6$，因此 $dx$ 的质因子数量不超过 7 个。根据容斥原理可以在 $O(2^7)$ ...
         </div>
         <div class="abstract-post-meta">
             <!-- date  -->
             <div class="abstract-date">
                 <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2021/09/12</span>
+            </div>
+            <!-- tags  -->
+            
+        </div>
+    </article>
+    
+    
+    
+    
+    
+    
+    <article class="index-post">
+        <a class="abstract-title" href = "../../2021/06/27/SGU-301-350-ChenMingqin.work/" >
+            
+                <span>SGU-301-350</span>
+        </a>
+        <div class="abstract-content">
+            350 XOR-omania
+题意 有 $1\le N\le 100$ 个未知的整数序列 $1\le A_i\le 2^{31}$，两两异或得到序列 $B_k=A_i\ \bigoplus\ A_j,1\le k\le \frac {N(N-1)} 2$。已知序列 $B_i$，求序列 $A_i$ 的一种解（保证有解）。
+分析 从结果角度入手，假设已知有序列 $A’_i$​​ 可以得到序列 $B_i$​​，那么序列 $A_i=A’_i\bigoplus A’_1$​​​ 也能得到序列 $B_i$​​。假设 $A_1=0$​ 也能得到一种解。
+在 $A_1=0$ 的条件下，则有 $B_k=A...
+        </div>
+        <div class="abstract-post-meta">
+            <!-- date  -->
+            <div class="abstract-date">
+                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2021/06/27</span>
             </div>
             <!-- tags  -->
             
@@ -888,9 +910,30 @@
     
     
     
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
     <div class="total-and-search">
         <div class="total-archive">
-        Total : 28
+        Total : 29
         </div>
         <!-- search  -->
         
@@ -907,6 +950,11 @@
     
         <li class="archive-post-item">
             <span class="archive-post-date">09/12</span><a class="archive-post-title" href= "" >SGU-351-400</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">06/27</span><a class="archive-post-title" href= "../../../06/27/SGU-301-350-ChenMingqin.work/" >SGU-301-350</a>
         </li>
     
     
@@ -1080,23 +1128,23 @@
     
         <span class="sidebar-tag-name" data-tags="AC自动机"><span class="iconfont-archer">&#xe606;</span>AC自动机</span>
     
-        <span class="sidebar-tag-name" data-tags="KMP"><span class="iconfont-archer">&#xe606;</span>KMP</span>
-    
         <span class="sidebar-tag-name" data-tags="DR"><span class="iconfont-archer">&#xe606;</span>DR</span>
+    
+        <span class="sidebar-tag-name" data-tags="domjudge"><span class="iconfont-archer">&#xe606;</span>domjudge</span>
+    
+        <span class="sidebar-tag-name" data-tags="KMP"><span class="iconfont-archer">&#xe606;</span>KMP</span>
     
         <span class="sidebar-tag-name" data-tags="ICPC"><span class="iconfont-archer">&#xe606;</span>ICPC</span>
     
         <span class="sidebar-tag-name" data-tags="贪心"><span class="iconfont-archer">&#xe606;</span>贪心</span>
     
-        <span class="sidebar-tag-name" data-tags="domjudge"><span class="iconfont-archer">&#xe606;</span>domjudge</span>
+        <span class="sidebar-tag-name" data-tags="polya"><span class="iconfont-archer">&#xe606;</span>polya</span>
+    
+        <span class="sidebar-tag-name" data-tags="斜率优化"><span class="iconfont-archer">&#xe606;</span>斜率优化</span>
     
         <span class="sidebar-tag-name" data-tags="vim"><span class="iconfont-archer">&#xe606;</span>vim</span>
     
         <span class="sidebar-tag-name" data-tags="git bash"><span class="iconfont-archer">&#xe606;</span>git bash</span>
-    
-        <span class="sidebar-tag-name" data-tags="斜率优化"><span class="iconfont-archer">&#xe606;</span>斜率优化</span>
-    
-        <span class="sidebar-tag-name" data-tags="polya"><span class="iconfont-archer">&#xe606;</span>polya</span>
     
     </div>
     <div class="iconfont-archer sidebar-tags-empty">&#xe678;</div>
