@@ -266,7 +266,7 @@ height:50vh;
                 
                 
                     <div class="post-intro-read">
-                        <span>字数统计: <span class="post-count word-count">2k</span>阅读时长: <span class="post-count reading-time">7 min</span></span>
+                        <span>字数统计: <span class="post-count word-count">3.2k</span>阅读时长: <span class="post-count reading-time">12 min</span></span>
                     </div>
                 
                 <div class="post-intro-meta">
@@ -395,7 +395,58 @@ height:50vh;
         <div class="container container-unloaded">
             <main class="main post-page">
     <article class="article-entry">
-        <p>370 Rifleman</p>
+        <p>380 Synchronised Alpinism</p>
+<p><strong>题意</strong> 两个人从山的左右两个山脚开始爬山，要求两个人每时每刻都必须在同一高度，判断两个人最后是否能够相遇。山简化成多边形，其顶点为 $(1, y_1), (2, y_2),\dots, (n, y_n)$，其中 $y_1=0, y_n=0$。</p>
+<p><strong>分析</strong> </p>
+<hr>
+<p>379 Elevator</p>
+<p><strong>题意</strong> $1\le N\le 100$ 层楼高的建筑中仅有一部电梯，每次能承载 $1\le C\le 10^9$ 个人。已知第 $i$ 层楼有 $0\le A_i\le 10^9$ 个人在等电梯到 -1 层，电梯上升或下降一层楼需花费 $1\le P\le 10^9$ 秒。电梯初始位置在 -1 层，求 $1\le T\le 10^9$ 秒内最多能带多少人到 -1 层。</p>
+<p><strong>分析</strong> 二分。二分人数。</p>
+<hr>
+<p>378 Save the Fisher</p>
+<p><strong>题意</strong></p>
+<p><strong>分析</strong> (没看懂样例，skip)</p>
+<hr>
+<p>377 The Lesson of Physical Culture</p>
+<p><strong>题意</strong> 给 $N\times M(2\le N, M\le 1000)$ 的网格图，要求任意 $2\times 2$ 的正方形中有且仅有 2 个 1，求方案数。</p>
+<p><strong>分析</strong> 构造。考虑第一行状态，若存在相邻的 2 个 1 或 0，那么下一行的状态便固定了。当第一行不存在相邻的相同数字时（即 101010.. 或者 01010…），下一行与第一行相同或者互补。</p>
+<hr>
+<p>376 Berland All-Round Competitions</p>
+<p><strong>题意</strong> $1\le N\le 10^3$ 个选手参与竞赛：先游泳，然后进行 $1\le K\le 10^3$ 段赛马。每匹马有不同的速度，先到达某一阶段的选手优先选下一阶段的马（若存在同时到达的选手，力量值 $P_i$ 的选手优先）。按照选手到达顺序，求选手的排名。</p>
+<p><strong>分析</strong> 模拟。</p>
+<hr>
+<p>375 Amplifiers</p>
+<p><strong>题意</strong> Shurik 想利用电压放大器得到标准电压的 $1\le N\le 2\times 10^9$ 倍电压。电压放大器有两种：从 X 放大至 2X-1；从 X 放大至 2X+1。求最少需要几个电压放大器，或判断无解。</p>
+<p><strong>分析</strong> <strong>二进制</strong>。显然 $N$ 必须是奇数。根据题意有 $X=\frac {N+1} 2$ 或者 $X=\frac {N-1}{2}$ 且 $N$ 二进制位末位是 1，因此 ±1 会影响倒数第二位。当二进制位倒数第二位是 1 时，此时只能 - 1 否则 +1 会导致新的 $X’$ 不为奇数。当二进位倒数第二位是 0 时，此时必须 +1 否则同样导致新 $X’$ 不为奇数。</p>
+<p>因此 $N$ 向下转化时路径是固定的。</p>
+<hr>
+<p>374 Save Vasya</p>
+<p><strong>题意</strong> 求多项式 $(ax+b)^k$ 的系数和，其中 $1\le a, b\le 100, 1\le k\le 20$。</p>
+<p><strong>分析</strong> 模拟。令 $x=1$，则问题转化成 $(a+b)^k$。</p>
+<hr>
+<p>373 Carlsson vs. Winnie-the-Pooh</p>
+<p><strong>题意</strong> 一块圆形披萨被切了 4 刀，Carlsson 和 Winnie 轮流取一小块披萨吃，花费的时间与披萨面积成正比。每个人都希望最大化自己最终吃到的披萨，求最后两人吃到的披萨面积。</p>
+<p><strong>分析</strong> 计算几何+DP。圆形切 4 刀最多划分出 11 个区域，$dp(3^{11})$ 表示每个披萨未被吃/被 Carlsson 吃了/被 Winnie 吃了三种状态，依据状态可以计算出下一个取披萨的人。</p>
+<p>剩下的问题就是如何求各块小披萨的面积了。 </p>
+<hr>
+<p>372 Tea Party</p>
+<p><strong>题意</strong> 一场聚会上有 $1\le K\le 1000$ 个客人，Alice 会在客人离开时送茶包。茶包有红茶和绿茶两种品类，但有 $1\le N\le 1000$ 不同类型。Alice 会给不同客人不同类型的茶包，但不允许连续 3 个茶包都是红茶或绿茶。已知 $N$ 个茶包的价格 $c_i$ 以及品类 $s_i$，求 Alice 至少需要花费多少费用。</p>
+<p><strong>分析</strong> <strong>贪心</strong>。从结果角度入手，假设送出 $a$ 包红茶以及 $b$ 包绿茶且 $a &lt;= b$。因为不能连续送出 3 个茶包，因此 $b &lt;= 2 * (a + 1)$。先按价格 $c_i$ 排序，若不满足该限制条件，则根据条件补充相应品类的茶包。</p>
+<hr>
+<p>371 Subway</p>
+<p><strong>题意</strong> 构造地铁路线方案：地铁由若干 circle lines 和 radial lines 构成，但需要满足：</p>
+<ol>
+<li>每个 circle line 至少 3 个站点，但不超过 10 个站点；</li>
+<li>Circle lines 通过换乘站串联起来形成一条链；</li>
+<li>Radial lines 站点之一在 circle line 上，而另一个站点不在任何 circle lines 上；</li>
+<li>Radial lines 之间不能有相同站点；</li>
+<li>任意站点最多在 2 条 lines 上，即换乘站不能作为 radial line 的站点之一。</li>
+</ol>
+<p>给定站点数 $N$ 和站点对数 $M$，求任一方案或判断无解。</p>
+<p><strong>分析</strong> 构造。站点本质上可以分为 4 类：换乘点、circle line 经过点、radial line 终点、radial line 起点，其数量分别记为 $x, y, z, u$。</p>
+<p>根据题意有 $x+y+z+u=N, 4x+2y+z+3u=M,u=z$ 共 3 个等式，可以枚举 $y$ 来求解其他 3 个值。<strong>注意</strong>条件一会限制 $x, y$ 之间的关系。之后根据求解值构造即可。</p>
+<hr>
+<p>370 Rifleman</p>
 <p><strong>题意</strong> 在大小为 $N\times M(1\le N,M\le 10^6)$ 网格图中，从位置 $(1,1)$ 需要设置几条射线以覆盖所有格点。</p>
 <p><strong>分析</strong> 容斥原理。网格图的一条射线可以使用 $(dx, dy)$ 表示，其中 $dx,dy$ 互质，问题可以转化为：给定 $dx$，求 $[1, M-1]$ 中与 $dx$ 互质的数的数量。</p>
 <p>因为 $2\times 3\times 5\times 7\times 11\times 13\times 17 \times 19\gt 10^6$，因此 $dx$ 的质因子数量不超过 7 个。根据容斥原理可以在 $O(2^7)$ 求出互质数的数量。</p>
@@ -997,10 +1048,6 @@ top:50vh;
     
     
     
-    
-    
-    
-    
     <div class="total-and-search">
         <div class="total-archive">
         Total : 29
@@ -1019,22 +1066,22 @@ top:50vh;
     
     
         <li class="archive-post-item">
-            <span class="archive-post-date">09/12</span><a class="archive-post-title" href= "" >SGU-351-400</a>
+            <span class="archive-post-date">09/12</span><a class="archive-post-title" href= "../../../09/12/SGU-351-400/" >SGU-351-400</a>
         </li>
     
     
         <li class="archive-post-item">
-            <span class="archive-post-date">06/27</span><a class="archive-post-title" href= "../../../06/27/SGU-301-350-ChenMingqin.work/" >SGU-301-350</a>
+            <span class="archive-post-date">06/27</span><a class="archive-post-title" href= "../SGU-301-350-ChenMingqin.work/" >SGU-301-350</a>
         </li>
     
     
         <li class="archive-post-item">
-            <span class="archive-post-date">06/27</span><a class="archive-post-title" href= "../../../06/27/SGU-301-350/" >SGU-301-350</a>
+            <span class="archive-post-date">06/27</span><a class="archive-post-title" href= "" >SGU-301-350</a>
         </li>
     
     
         <li class="archive-post-item">
-            <span class="archive-post-date">06/13</span><a class="archive-post-title" href= "../../../06/13/Deep-Retrieval/" >Deep Retrieval</a>
+            <span class="archive-post-date">06/13</span><a class="archive-post-title" href= "../../13/Deep-Retrieval/" >Deep Retrieval</a>
         </li>
     
     
@@ -1171,12 +1218,12 @@ top:50vh;
     
     
         <li class="archive-post-item">
-            <span class="archive-post-date">07/19</span><a class="archive-post-title" href= "../../../../2018/07/19/The Binding of Isaac Afterbirth+总结-ChenMingqin.work/" >The Binding of Isaac:Afterbirth+总结</a>
+            <span class="archive-post-date">07/19</span><a class="archive-post-title" href= "../../../../2018/07/19/The Binding of Isaac Afterbirth+总结/" >The Binding of Isaac:Afterbirth+总结</a>
         </li>
     
     
         <li class="archive-post-item">
-            <span class="archive-post-date">07/19</span><a class="archive-post-title" href= "../../../../2018/07/19/The Binding of Isaac Afterbirth+总结/" >The Binding of Isaac:Afterbirth+总结</a>
+            <span class="archive-post-date">07/19</span><a class="archive-post-title" href= "../../../../2018/07/19/The Binding of Isaac Afterbirth+总结-ChenMingqin.work/" >The Binding of Isaac:Afterbirth+总结</a>
         </li>
     
     
@@ -1198,9 +1245,9 @@ top:50vh;
     
         <span class="sidebar-tag-name" data-tags="AC自动机"><span class="iconfont-archer">&#xe606;</span>AC自动机</span>
     
-        <span class="sidebar-tag-name" data-tags="DR"><span class="iconfont-archer">&#xe606;</span>DR</span>
-    
         <span class="sidebar-tag-name" data-tags="domjudge"><span class="iconfont-archer">&#xe606;</span>domjudge</span>
+    
+        <span class="sidebar-tag-name" data-tags="DR"><span class="iconfont-archer">&#xe606;</span>DR</span>
     
         <span class="sidebar-tag-name" data-tags="KMP"><span class="iconfont-archer">&#xe606;</span>KMP</span>
     
@@ -1208,13 +1255,13 @@ top:50vh;
     
         <span class="sidebar-tag-name" data-tags="贪心"><span class="iconfont-archer">&#xe606;</span>贪心</span>
     
-        <span class="sidebar-tag-name" data-tags="polya"><span class="iconfont-archer">&#xe606;</span>polya</span>
-    
-        <span class="sidebar-tag-name" data-tags="斜率优化"><span class="iconfont-archer">&#xe606;</span>斜率优化</span>
-    
         <span class="sidebar-tag-name" data-tags="vim"><span class="iconfont-archer">&#xe606;</span>vim</span>
     
         <span class="sidebar-tag-name" data-tags="git bash"><span class="iconfont-archer">&#xe606;</span>git bash</span>
+    
+        <span class="sidebar-tag-name" data-tags="polya"><span class="iconfont-archer">&#xe606;</span>polya</span>
+    
+        <span class="sidebar-tag-name" data-tags="斜率优化"><span class="iconfont-archer">&#xe606;</span>斜率优化</span>
     
     </div>
     <div class="iconfont-archer sidebar-tags-empty">&#xe678;</div>
