@@ -351,12 +351,12 @@
                 <span>SGU-351-400</span>
         </a>
         <div class="abstract-content">
-            380 Synchronised Alpinism
-题意 两个人从山的左右两个山脚开始爬山，要求两个人每时每刻都必须在同一高度，判断两个人最后是否能够相遇。山简化成多边形，其顶点为 $(1, y_1), (2, y_2),\dots, (n, y_n)$，其中 $y_1=0, y_n=0$。
-分析 
+            385 Highlander
+题意 $2\le n\le 100$ 个人玩游戏，一开始每个人拿到印有 $[1, n]$ 数字的卡片。当 A 手上有 B 的卡片时，A 可以淘汰 B 并获取 B 手上的所有卡片。当没有人能被淘汰时，游戏结束且手上有最多卡片的人获胜（若卡片相同时，则两人同时视为冠军）。求游戏结束冠军人数的期望值。
+分析 组合数学+动态规划。能互相淘汰的人一开始就在同一个环上，本质上是对人分群求方案数。$dp(i, j, k)$ 表示前 $i$ 个人组成 $k$ 个最大环为 $j$ 的方案数。
 
-379 Elevator
-题意 $1\le N\le 100$ 层楼高的建筑中仅有一部电梯，每次能承载 $1\le C\le 10^9$ 个人。已知第 $i$ 层楼有 $0\le A_i\le 10^9$ 个人在等电梯到 -1 层，电梯上升或下降一层楼需花费 $1\le P\le 10^9...
+384 Country
+题意 给 $3\le n\le 10^5$ 个点和 $m$...
         </div>
         <div class="abstract-post-meta">
             <!-- date  -->
@@ -923,12 +923,6 @@
     
     
     
-    
-    
-    
-    
-    
-    
     <div class="total-and-search">
         <div class="total-archive">
         Total : 29
@@ -947,22 +941,22 @@
     
     
         <li class="archive-post-item">
-            <span class="archive-post-date">09/12</span><a class="archive-post-title" href= "../../../09/12/SGU-351-400/" >SGU-351-400</a>
+            <span class="archive-post-date">09/12</span><a class="archive-post-title" href= "" >SGU-351-400</a>
         </li>
     
     
         <li class="archive-post-item">
-            <span class="archive-post-date">06/27</span><a class="archive-post-title" href= "../SGU-301-350-ChenMingqin.work/" >SGU-301-350</a>
+            <span class="archive-post-date">06/27</span><a class="archive-post-title" href= "../../../06/27/SGU-301-350-ChenMingqin.work/" >SGU-301-350</a>
         </li>
     
     
         <li class="archive-post-item">
-            <span class="archive-post-date">06/27</span><a class="archive-post-title" href= "" >SGU-301-350</a>
+            <span class="archive-post-date">06/27</span><a class="archive-post-title" href= "../../../06/27/SGU-301-350/" >SGU-301-350</a>
         </li>
     
     
         <li class="archive-post-item">
-            <span class="archive-post-date">06/13</span><a class="archive-post-title" href= "../../13/Deep-Retrieval/" >Deep Retrieval</a>
+            <span class="archive-post-date">06/13</span><a class="archive-post-title" href= "../../../06/13/Deep-Retrieval/" >Deep Retrieval</a>
         </li>
     
     
@@ -1099,12 +1093,12 @@
     
     
         <li class="archive-post-item">
-            <span class="archive-post-date">07/19</span><a class="archive-post-title" href= "../../../../2018/07/19/The Binding of Isaac Afterbirth+总结/" >The Binding of Isaac:Afterbirth+总结</a>
+            <span class="archive-post-date">07/19</span><a class="archive-post-title" href= "../../../../2018/07/19/The Binding of Isaac Afterbirth+总结-ChenMingqin.work/" >The Binding of Isaac:Afterbirth+总结</a>
         </li>
     
     
         <li class="archive-post-item">
-            <span class="archive-post-date">07/19</span><a class="archive-post-title" href= "../../../../2018/07/19/The Binding of Isaac Afterbirth+总结-ChenMingqin.work/" >The Binding of Isaac:Afterbirth+总结</a>
+            <span class="archive-post-date">07/19</span><a class="archive-post-title" href= "../../../../2018/07/19/The Binding of Isaac Afterbirth+总结/" >The Binding of Isaac:Afterbirth+总结</a>
         </li>
     
     
@@ -1126,15 +1120,15 @@
     
         <span class="sidebar-tag-name" data-tags="AC自动机"><span class="iconfont-archer">&#xe606;</span>AC自动机</span>
     
-        <span class="sidebar-tag-name" data-tags="domjudge"><span class="iconfont-archer">&#xe606;</span>domjudge</span>
-    
         <span class="sidebar-tag-name" data-tags="DR"><span class="iconfont-archer">&#xe606;</span>DR</span>
     
-        <span class="sidebar-tag-name" data-tags="KMP"><span class="iconfont-archer">&#xe606;</span>KMP</span>
+        <span class="sidebar-tag-name" data-tags="domjudge"><span class="iconfont-archer">&#xe606;</span>domjudge</span>
     
         <span class="sidebar-tag-name" data-tags="ICPC"><span class="iconfont-archer">&#xe606;</span>ICPC</span>
     
         <span class="sidebar-tag-name" data-tags="贪心"><span class="iconfont-archer">&#xe606;</span>贪心</span>
+    
+        <span class="sidebar-tag-name" data-tags="KMP"><span class="iconfont-archer">&#xe606;</span>KMP</span>
     
         <span class="sidebar-tag-name" data-tags="vim"><span class="iconfont-archer">&#xe606;</span>vim</span>
     
@@ -1210,24 +1204,7 @@ jsonContent:
     </div>
     <!-- async load share.js -->
      
-    <script type="text/x-mathjax-config">
-    MathJax.Hub.Config({
-        tex2jax: {
-            inlineMath: [ ["$","$"], ["\\(","\\)"] ],
-            skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'],
-            processEscapes: true
-        }
-    });
-    MathJax.Hub.Queue(function() {
-        var all = MathJax.Hub.getAllJax();
-        for (var i = 0; i < all.length; ++i)
-            all[i].SourceElement().parentNode.className += ' has-jax';
-    });
-</script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML"></script>
-
-
-</body>
+    </body>
 </html>
 
 
