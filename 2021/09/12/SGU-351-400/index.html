@@ -266,7 +266,7 @@ height:50vh;
                 
                 
                     <div class="post-intro-read">
-                        <span>字数统计: <span class="post-count word-count">4.2k</span>阅读时长: <span class="post-count reading-time">17 min</span></span>
+                        <span>字数统计: <span class="post-count word-count">4.7k</span>阅读时长: <span class="post-count reading-time">19 min</span></span>
                     </div>
                 
                 <div class="post-intro-meta">
@@ -395,7 +395,26 @@ height:50vh;
         <div class="container container-unloaded">
             <main class="main post-page">
     <article class="article-entry">
-        <p>385 Highlander</p>
+        <p>389 Strange Planet</p>
+<p><strong>题意</strong> 给定 $1\le n\le 10^5$ 维的超立方体上的三个点 $A, B, C$。点 $A$ 坐标为 $(x_{A, 0}, x_{A, 1}, \dots, x_{A, n-1}), x_{A, i}\in\{0, 1\}$，点 $B, C$ 坐标格式相同。求超立方体上到点 $A, B, C$ 曼哈顿距离相同的点的数量，结果对 $10^9+7$ 取模。</p>
+<p><strong>分析</strong> 组合数学。</p>
+<p>每一维 $i$ 对距离的贡献都是独立的，因此只需要考虑 $2^3=8$ 种情况。若 $x_{A, i}=x_{B, i}=x_{C, i}$，则其他点到 $A, B, C$ 的曼哈顿距离不会发生变化，此时只需要考虑 $2^3-2=6$ 种情况 $(x_{A, i}, x_{B, i}, x_{C, i})$。但是根据 $dis(P, A) = dis(P, B)=dis(P, C)$ 两个方程显然不足以解决问题。</p>
+<p>进一步地，其实我们只需要知道第 $i$ 维 $x_{A, i}$ 是否等于 $x_{B, i}$，$x_{A, i}$ 是否等于 $x_{C, i}$，$x_{B, i}$ 是否等于 $x_{C, i}$ 即可计算 $P$ 到三个点的距离。<strong>将三者全等的情况排除掉后</strong>，若 $x_{A, i}=x_{B, i}$，则蕴含了 $x_{A, i}\neq x_{C, i}, x_{B, i}\neq x_{C, i}$。设 $x_{A, i}=x_{B, i}\neq x_{C, i}$ 的情况数为 $G_{A, B}$，当 $x_{P, i}$ 分别为 0 和 1 时会有 2 种情况：$dis(P, A)+=1, dis(P, B)+=1$ 或者 $dis(P, C) += 1$。不失一般性，假设 $G_{A, B}$ 中有 $u_{A, B}$ 种情况使得点 $P$ 到点 $A, B$ 的距离都加 1，则有 $dis(P, C) += G_{A, B}-u_{A, B}$。</p>
+<p>3 种情况下可以计算出 $dis(P, A), dis(P, B), dis(P, C)$，列出 2 个方程后剩一个自由元，枚举计算即可。</p>
+<hr>
+<p>388 Soap Opera</p>
+<p><strong>题意</strong></p>
+<p><strong>分析</strong></p>
+<hr>
+<p>387 Lazy Judges</p>
+<p><strong>题意</strong> 给 $1\le N\le 50$ 条线段，使用线段上的点构造正方形，求面积的期望值。</p>
+<p><strong>分析</strong></p>
+<hr>
+<p>386 Happy Birthday, Jedi Knight!</p>
+<p><strong>题意</strong></p>
+<p><strong>分析</strong></p>
+<hr>
+<p>385 Highlander</p>
 <p><strong>题意</strong> $2\le n\le 100$ 个人玩游戏，一开始每个人拿到印有 $[1, n]$ 数字的卡片。当 A 手上有 B 的卡片时，A 可以淘汰 B 并获取 B 手上的所有卡片。当没有人能被淘汰时，游戏结束且手上有最多卡片的人获胜（若卡片相同时，则两人同时视为冠军）。求游戏结束冠军人数的期望值。</p>
 <p><strong>分析</strong> 组合数学+动态规划。能互相淘汰的人一开始就在同一个环上，本质上是对人分群求方案数。$dp(i, j, k)$ 表示前 $i$ 个人组成 $k$ 个最大环为 $j$ 的方案数。</p>
 <hr>
@@ -1088,6 +1107,12 @@ top:50vh;
     
     
     
+    
+    
+    
+    
+    
+    
     <div class="total-and-search">
         <div class="total-archive">
         Total : 29
@@ -1285,7 +1310,7 @@ top:50vh;
     
         <span class="sidebar-tag-name" data-tags="AC自动机"><span class="iconfont-archer">&#xe606;</span>AC自动机</span>
     
-        <span class="sidebar-tag-name" data-tags="DR"><span class="iconfont-archer">&#xe606;</span>DR</span>
+        <span class="sidebar-tag-name" data-tags="KMP"><span class="iconfont-archer">&#xe606;</span>KMP</span>
     
         <span class="sidebar-tag-name" data-tags="domjudge"><span class="iconfont-archer">&#xe606;</span>domjudge</span>
     
@@ -1293,7 +1318,7 @@ top:50vh;
     
         <span class="sidebar-tag-name" data-tags="贪心"><span class="iconfont-archer">&#xe606;</span>贪心</span>
     
-        <span class="sidebar-tag-name" data-tags="KMP"><span class="iconfont-archer">&#xe606;</span>KMP</span>
+        <span class="sidebar-tag-name" data-tags="DR"><span class="iconfont-archer">&#xe606;</span>DR</span>
     
         <span class="sidebar-tag-name" data-tags="vim"><span class="iconfont-archer">&#xe606;</span>vim</span>
     
@@ -1369,9 +1394,26 @@ jsonContent:
     </div>
     <!-- async load share.js -->
     
-        <script src="../../../../scripts/share.js" async></script><!-- hexo-inject:begin --><!-- hexo-inject:end -->    
+        <script src="../../../../scripts/share.js" async></script>    
      
-    </body>
+    <script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+        tex2jax: {
+            inlineMath: [ ["$","$"], ["\\(","\\)"] ],
+            skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'],
+            processEscapes: true
+        }
+    });
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax();
+        for (var i = 0; i < all.length; ++i)
+            all[i].SourceElement().parentNode.className += ' has-jax';
+    });
+</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML"></script><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+
+
+</body>
 </html>
 
 

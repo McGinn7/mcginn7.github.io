@@ -351,12 +351,10 @@
                 <span>SGU-351-400</span>
         </a>
         <div class="abstract-content">
-            385 Highlander
-题意 $2\le n\le 100$ 个人玩游戏，一开始每个人拿到印有 $[1, n]$ 数字的卡片。当 A 手上有 B 的卡片时，A 可以淘汰 B 并获取 B 手上的所有卡片。当没有人能被淘汰时，游戏结束且手上有最多卡片的人获胜（若卡片相同时，则两人同时视为冠军）。求游戏结束冠军人数的期望值。
-分析 组合数学+动态规划。能互相淘汰的人一开始就在同一个环上，本质上是对人分群求方案数。$dp(i, j, k)$ 表示前 $i$ 个人组成 $k$ 个最大环为 $j$ 的方案数。
-
-384 Country
-题意 给 $3\le n\le 10^5$ 个点和 $m$...
+            389 Strange Planet
+题意 给定 $1\le n\le 10^5$ 维的超立方体上的三个点 $A, B, C$。点 $A$ 坐标为 $(x_{A, 0}, x_{A, 1}, \dots, x_{A, n-1}), x_{A, i}\in\{0, 1\}$，点 $B, C$ 坐标格式相同。求超立方体上到点 $A, B, C$ 曼哈顿距离相同的点的数量，结果对 $10^9+7$ 取模。
+分析 组合数学。
+每一维 $i$ 对距离的贡献都是独立的，因此只需要考虑 $2^3=8$ 种情况。若 $x_{A, i}=x_{B, i}=x_{C, i}$，则其他点到 $A, B, C$...
         </div>
         <div class="abstract-post-meta">
             <!-- date  -->
@@ -459,6 +457,12 @@
     <div class="sidebar-content sidebar-content-show-archive">
           <div class="sidebar-panel-archives">
     <!-- 在ejs中将archive按照时间排序 -->
+    
+    
+    
+    
+    
+    
     
     
     
@@ -1011,7 +1015,7 @@
     
         <span class="sidebar-tag-name" data-tags="AC自动机"><span class="iconfont-archer">&#xe606;</span>AC自动机</span>
     
-        <span class="sidebar-tag-name" data-tags="DR"><span class="iconfont-archer">&#xe606;</span>DR</span>
+        <span class="sidebar-tag-name" data-tags="KMP"><span class="iconfont-archer">&#xe606;</span>KMP</span>
     
         <span class="sidebar-tag-name" data-tags="domjudge"><span class="iconfont-archer">&#xe606;</span>domjudge</span>
     
@@ -1019,7 +1023,7 @@
     
         <span class="sidebar-tag-name" data-tags="贪心"><span class="iconfont-archer">&#xe606;</span>贪心</span>
     
-        <span class="sidebar-tag-name" data-tags="KMP"><span class="iconfont-archer">&#xe606;</span>KMP</span>
+        <span class="sidebar-tag-name" data-tags="DR"><span class="iconfont-archer">&#xe606;</span>DR</span>
     
         <span class="sidebar-tag-name" data-tags="vim"><span class="iconfont-archer">&#xe606;</span>vim</span>
     
@@ -1095,7 +1099,24 @@ jsonContent:
     </div>
     <!-- async load share.js -->
      
-    </body>
+    <script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+        tex2jax: {
+            inlineMath: [ ["$","$"], ["\\(","\\)"] ],
+            skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'],
+            processEscapes: true
+        }
+    });
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax();
+        for (var i = 0; i < all.length; ++i)
+            all[i].SourceElement().parentNode.className += ' has-jax';
+    });
+</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML"></script>
+
+
+</body>
 </html>
 
 
