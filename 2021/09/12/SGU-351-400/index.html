@@ -266,7 +266,7 @@ height:50vh;
                 
                 
                     <div class="post-intro-read">
-                        <span>字数统计: <span class="post-count word-count">4.7k</span>阅读时长: <span class="post-count reading-time">19 min</span></span>
+                        <span>字数统计: <span class="post-count word-count">5.3k</span>阅读时长: <span class="post-count reading-time">21 min</span></span>
                     </div>
                 
                 <div class="post-intro-meta">
@@ -395,7 +395,23 @@ height:50vh;
         <div class="container container-unloaded">
             <main class="main post-page">
     <article class="article-entry">
-        <p>389 Strange Planet</p>
+        <p>393 Bergamot Problem</p>
+<p><strong>题意</strong> 前 $1\le N\le 13$ 个小写字母构成大小为 $0\le M\le 50$ 的字典，每个单词仅由 2 个字母构成。设计一个按键布局，放置每个字母到不同的按键上，使得 2 个按键对应唯一的一个单词。求最少的按键数量 $K$。</p>
+<p><strong>分析</strong> 状压 DP。</p>
+<hr>
+<p>392 Cyclic Troubles</p>
+<p><strong>题意</strong> 给 $R\times C(1\le R, C\le 30)$ 的网格图，每个格子上都有一小写字母以及一个方向，指向相邻的格子。有 $1\le Q\le 50$ 个询问，每个询问给定<strong>压缩长度</strong>为 $2000$ 的字符串，判断是否能从某个格子出发拼出该询问字符串。数据保证不存在嵌套压缩，且询问字符串的原始长度不超过 $10^9$。若存在多个可行的起点，输出最小的 pair 对 $(r, c)$。</p>
+<p><strong>分析</strong> 因为每个格子的出度为 1，每个格子最多落入到一个环中。主要难点在于压缩字符串和环上字符串的匹配问题。用 $dp(i, j)$ 表示匹配到压缩字符串位置 $i$ 和环上字符串位置 $j$ 的循环长度。</p>
+<hr>
+<p>391 Mr. X</p>
+<p><strong>题意</strong> 在 $n\times m(1\le n, m\le 10^5)$ 网格图上有 $0\le k\le 10^5$ 个标记点 $(x_i, y_i), 1\le x_i\le n, 1\le y_i\le m$。每次操作允许沿连续两行或两列的中线进行对折，判断是否能通过若干次对折使得所有的标记点叠在一起，并且非标记点不与标记点重合。</p>
+<p><strong>分析</strong> x，y 两坐标轴相互独立。</p>
+<hr>
+<p>390 Tickets</p>
+<p><strong>题意</strong> 给定阈值 $1\le k\le 1000$，当若干连续值的数位和不小于 $k$ 时，计数器加一。求区间 $<a href="1\le l\le r\le 10^{18}">l, r</a>$ 的计数器的值。</p>
+<p><strong>分析</strong> 数位 DP 。$dp(i, ds)$ 表示到第 $i$ 位时，数位和为 $ds$ 的计数值和数位和，即 <count, new_ds>。</count,></p>
+<hr>
+<p>389 Strange Planet</p>
 <p><strong>题意</strong> 给定 $1\le n\le 10^5$ 维的超立方体上的三个点 $A, B, C$。点 $A$ 坐标为 $(x_{A, 0}, x_{A, 1}, \dots, x_{A, n-1}), x_{A, i}\in\{0, 1\}$，点 $B, C$ 坐标格式相同。求超立方体上到点 $A, B, C$ 曼哈顿距离相同的点的数量，结果对 $10^9+7$ 取模。</p>
 <p><strong>分析</strong> 组合数学。</p>
 <p>每一维 $i$ 对距离的贡献都是独立的，因此只需要考虑 $2^3=8$ 种情况。若 $x_{A, i}=x_{B, i}=x_{C, i}$，则其他点到 $A, B, C$ 的曼哈顿距离不会发生变化，此时只需要考虑 $2^3-2=6$ 种情况 $(x_{A, i}, x_{B, i}, x_{C, i})$。但是根据 $dis(P, A) = dis(P, B)=dis(P, C)$ 两个方程显然不足以解决问题。</p>
@@ -403,7 +419,7 @@ height:50vh;
 <p>3 种情况下可以计算出 $dis(P, A), dis(P, B), dis(P, C)$，列出 2 个方程后剩一个自由元，枚举计算即可。</p>
 <hr>
 <p>388 Soap Opera</p>
-<p><strong>题意</strong></p>
+<p><strong>题意</strong> 有 $2\le n\le 100$ 个演员，Juan 和 Rosa 给这些演员进行配对，每对演员都是一男一女。给定 Juan 认为可行的 $m_1$ 个可行方案，保证这 $m_1$ 对不相同。同理给出 Rosa 认为可行的 $m_2$ 个可行方案。（题目应该蕴含了 Juan 和 Rosa 的配对方案没有交集）。求最大演员数量 $k$，使得 Juan 和 Rosa 都能让这 $k$ 个演员两两配对。</p>
 <p><strong>分析</strong></p>
 <hr>
 <p>387 Lazy Judges</p>
@@ -1109,10 +1125,6 @@ top:50vh;
     
     
     
-    
-    
-    
-    
     <div class="total-and-search">
         <div class="total-archive">
         Total : 29
@@ -1131,22 +1143,22 @@ top:50vh;
     
     
         <li class="archive-post-item">
-            <span class="archive-post-date">09/12</span><a class="archive-post-title" href= "" >SGU-351-400</a>
+            <span class="archive-post-date">09/12</span><a class="archive-post-title" href= "../../../09/12/SGU-351-400/" >SGU-351-400</a>
         </li>
     
     
         <li class="archive-post-item">
-            <span class="archive-post-date">06/27</span><a class="archive-post-title" href= "../../../06/27/SGU-301-350-ChenMingqin.work/" >SGU-301-350</a>
+            <span class="archive-post-date">06/27</span><a class="archive-post-title" href= "" >SGU-301-350</a>
         </li>
     
     
         <li class="archive-post-item">
-            <span class="archive-post-date">06/27</span><a class="archive-post-title" href= "../../../06/27/SGU-301-350/" >SGU-301-350</a>
+            <span class="archive-post-date">06/27</span><a class="archive-post-title" href= "../SGU-301-350/" >SGU-301-350</a>
         </li>
     
     
         <li class="archive-post-item">
-            <span class="archive-post-date">06/13</span><a class="archive-post-title" href= "../../../06/13/Deep-Retrieval/" >Deep Retrieval</a>
+            <span class="archive-post-date">06/13</span><a class="archive-post-title" href= "../../13/Deep-Retrieval/" >Deep Retrieval</a>
         </li>
     
     
@@ -1310,6 +1322,8 @@ top:50vh;
     
         <span class="sidebar-tag-name" data-tags="AC自动机"><span class="iconfont-archer">&#xe606;</span>AC自动机</span>
     
+        <span class="sidebar-tag-name" data-tags="DR"><span class="iconfont-archer">&#xe606;</span>DR</span>
+    
         <span class="sidebar-tag-name" data-tags="KMP"><span class="iconfont-archer">&#xe606;</span>KMP</span>
     
         <span class="sidebar-tag-name" data-tags="domjudge"><span class="iconfont-archer">&#xe606;</span>domjudge</span>
@@ -1318,15 +1332,13 @@ top:50vh;
     
         <span class="sidebar-tag-name" data-tags="贪心"><span class="iconfont-archer">&#xe606;</span>贪心</span>
     
-        <span class="sidebar-tag-name" data-tags="DR"><span class="iconfont-archer">&#xe606;</span>DR</span>
-    
         <span class="sidebar-tag-name" data-tags="vim"><span class="iconfont-archer">&#xe606;</span>vim</span>
     
         <span class="sidebar-tag-name" data-tags="git bash"><span class="iconfont-archer">&#xe606;</span>git bash</span>
     
-        <span class="sidebar-tag-name" data-tags="polya"><span class="iconfont-archer">&#xe606;</span>polya</span>
-    
         <span class="sidebar-tag-name" data-tags="斜率优化"><span class="iconfont-archer">&#xe606;</span>斜率优化</span>
+    
+        <span class="sidebar-tag-name" data-tags="polya"><span class="iconfont-archer">&#xe606;</span>polya</span>
     
     </div>
     <div class="iconfont-archer sidebar-tags-empty">&#xe678;</div>
