@@ -346,17 +346,80 @@
     
     
     <article class="index-post">
+        <a class="abstract-title" href = "../2021/12/26/求解无向图最小割/" >
+            
+                <span>求解无向图最小割</span>
+        </a>
+        <div class="abstract-content">
+            背景Stoer-Wagner 算法求解非负边权的无向图全局最小割，即不指定源点和汇点。
+割：去掉图上的若干边，使得源点 $S$ 和汇点 $T$ 不再连通。去掉的边的集合称为割。
+算法12345678910MinimumCutPhase(G, w, a)	A ← &#123;a&#125;	while A ≠ V		加入和集合 A 连接最紧密的点，即边权和最大的点	记录当前阶段的割值(CutOfThePhase)，并合并最后加入集合 A 的 2 个点	MinimumCut(G, w, a)	while |V| &gt; 1		MinimumCutPhase(G, w, a)		基于现阶段割...
+        </div>
+        <div class="abstract-post-meta">
+            <!-- date  -->
+            <div class="abstract-date">
+                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2021/12/26</span>
+            </div>
+            <!-- tags  -->
+            
+            <div class= abstract-tags >
+    
+        <a class="post-tag" href="javascript:void(0);" data-tags = "SW">SW</a>
+    
+</div>
+            
+        </div>
+    </article>
+    
+    
+    
+    
+    
+    
+    <article class="index-post">
+        <a class="abstract-title" href = "../2021/12/19/SGU-401-450/" >
+            
+                <span>SGU-401-450</span>
+        </a>
+        <div class="abstract-content">
+            402 Terrorists in Berland
+题意 给 $3\le N\le 50$ 个点和 $1\le M\le 500$ 条边的有权无向图，第 $i$ 条边的权重为 $1\le w_i\le 10$。现要求破坏一个点以及若干条边，使得剩下的图不连通，求最小的边权和。
+分析
+
+401 Geologist Dubrovsky
+题意 有 $1\le N\le 50$ 条南北走向的河流，第 $i$ 条河宽 $1\le w_i\le 1000$, 流速为 $1\le v_i\le 1000$。主角在静止水流中游泳速度可达 $1\le u\le1000$。判断主角能否在 $t$ 时间内从河...
+        </div>
+        <div class="abstract-post-meta">
+            <!-- date  -->
+            <div class="abstract-date">
+                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2021/12/19</span>
+            </div>
+            <!-- tags  -->
+            
+        </div>
+    </article>
+    
+    
+    
+    
+    
+    
+    <article class="index-post">
         <a class="abstract-title" href = "../2021/09/12/SGU-351-400/" >
             
                 <span>SGU-351-400</span>
         </a>
         <div class="abstract-content">
-            393 Bergamot Problem
-题意 前 $1\le N\le 13$ 个小写字母构成大小为 $0\le M\le 50$ 的字典，每个单词仅由 2 个字母构成。设计一个按键布局，放置每个字母到不同的按键上，使得 2 个按键对应唯一的一个单词。求最少的按键数量 $K$。
-分析 状压 DP。
+            400 The last hour of the contest
+题意 已知 ICPC 封榜前的榜单以及封榜后发放的气球总数，求你所在队伍可能的最高排名和最低排名。
+分析 贪心+模拟。
 
-392 Cyclic Troubles
-题意 给 $R\times C(1\le R, C\le 30)$ 的网格图，每个格子上都有一小写字母以及一个方向，指向相邻的格子。有 $1\le Q\le 50$ 个询问，每个询问给定压缩长度为 $2000$ 的字符串，判断是否能从某个格子出发拼出...
+399 Berodoskar Development
+题意 给 15×15 的网格图，每个格子有 2 种类型：’X’ 表示蓄水池，’.’ 表示空地。有公共边的 ‘X’ 相互连通成一个大蓄水池。现需要从地图边缘搭建管道引流到至少 2 个蓄水池上，管道可复用。求最少需要的管道长度。
+分析 贪心。
+
+398 Friends of Friends
+题意 给 50 个人的好友列表。若 c 不是 a 的好友，且存在...
         </div>
         <div class="abstract-post-meta">
             <!-- date  -->
@@ -574,74 +637,10 @@ Valgrind 输出格式为：
         </div>
     </article>
     
-    
-    
-    
-    
-    
-    <article class="index-post">
-        <a class="abstract-title" href = "../2020/02/21/CSAPP-archlab/" >
-            
-                <span>CSAPP - archlab</span>
-        </a>
-        <div class="abstract-content">
-            知识点
-学习流水线化的 Y86-64 处理器的设计和实现，深刻理解流水线冒险。
-学习循环展开，理解其对程序性能的影响。
-
-题目Part A要求使用 Y86-64 指令集，编写关于 sum_list, rsum_list 和 copy_block 函数的 Y86-64 程序。
-做法参考书本图 4-7 即可，实现也较为简单。
-Part B要求使用硬件控制语言（HCL）修改 sim/seq/seq-full.hcl，使得处理器支持 iaddq 指令。
-做法iaddq 指令将立即数和寄存器相加，并将结果写回寄存器。
-具体参考 irmovq 指令的实现即可。
-Part C要求在 ncopy.ys ...
-        </div>
-        <div class="abstract-post-meta">
-            <!-- date  -->
-            <div class="abstract-date">
-                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2020/02/21</span>
-            </div>
-            <!-- tags  -->
-            
-        </div>
-    </article>
-    
-    
-    
-    
-    
-    
-    <article class="index-post">
-        <a class="abstract-title" href = "../2020/02/19/CSAPP-attacklab/" >
-            
-                <span>CSAPP - attacklab</span>
-        </a>
-        <div class="abstract-content">
-            知识点
-在这个实验中，学习利用缓存溢出（buffer overflow）来改变程序的行为，即完成攻击者的目的效果。
-
-需要掌握 x86-64 的栈和参数传递机制，其结构如下图所示。
-
-其中函数 P 调用了函数 Q，返回地址为函数 P 调用位置的下一条指令。实验攻击均修改该返回地址来完成攻击目的。
-
-
-题目实验中的程序 CTARGET 和 RTARGET 都调用了函数 test：
-12345void test() &#123;    int val;    val = getbuf();    printf("No exploit. Getbuf returned 0x%x\n", val...
-        </div>
-        <div class="abstract-post-meta">
-            <!-- date  -->
-            <div class="abstract-date">
-                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2020/02/19</span>
-            </div>
-            <!-- tags  -->
-            
-        </div>
-    </article>
-    
     <!-- paginator  -->
     
     <nav class="page-nav">
-        <span class="page-number current">1</span><a class="page-number" href="page/2/">2</a><a class="page-number" href="page/3/">3</a><a class="extend next" rel="next" href="page/2/">NEXT &#62;</a>
+        <span class="page-number current">1</span><a class="page-number" href="page/2/">2</a><a class="page-number" href="page/3/">3</a><a class="page-number" href="page/4/">4</a><a class="extend next" rel="next" href="page/2/">NEXT &#62;</a>
     </nav>
     
 </main>
@@ -1090,9 +1089,45 @@ Part C要求在 ncopy.ys ...
     
     
     
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
     <div class="total-and-search">
         <div class="total-archive">
-        Total : 29
+        Total : 31
         </div>
         <!-- search  -->
         
@@ -1105,6 +1140,16 @@ Part C要求在 ncopy.ys ...
     
     <div class="archive-year"> 2021 </div>
     <ul class="year-list">
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">12/26</span><a class="archive-post-title" href= "../../../12/26/求解无向图最小割/" >求解无向图最小割</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">12/19</span><a class="archive-post-title" href= "../../../12/19/SGU-401-450/" >SGU-401-450</a>
+        </li>
     
     
         <li class="archive-post-item">
@@ -1287,9 +1332,9 @@ Part C要求在 ncopy.ys ...
     
         <span class="sidebar-tag-name" data-tags="AC自动机"><span class="iconfont-archer">&#xe606;</span>AC自动机</span>
     
-        <span class="sidebar-tag-name" data-tags="DR"><span class="iconfont-archer">&#xe606;</span>DR</span>
-    
         <span class="sidebar-tag-name" data-tags="KMP"><span class="iconfont-archer">&#xe606;</span>KMP</span>
+    
+        <span class="sidebar-tag-name" data-tags="DR"><span class="iconfont-archer">&#xe606;</span>DR</span>
     
         <span class="sidebar-tag-name" data-tags="domjudge"><span class="iconfont-archer">&#xe606;</span>domjudge</span>
     
@@ -1297,13 +1342,15 @@ Part C要求在 ncopy.ys ...
     
         <span class="sidebar-tag-name" data-tags="贪心"><span class="iconfont-archer">&#xe606;</span>贪心</span>
     
+        <span class="sidebar-tag-name" data-tags="polya"><span class="iconfont-archer">&#xe606;</span>polya</span>
+    
         <span class="sidebar-tag-name" data-tags="vim"><span class="iconfont-archer">&#xe606;</span>vim</span>
     
         <span class="sidebar-tag-name" data-tags="git bash"><span class="iconfont-archer">&#xe606;</span>git bash</span>
     
         <span class="sidebar-tag-name" data-tags="斜率优化"><span class="iconfont-archer">&#xe606;</span>斜率优化</span>
     
-        <span class="sidebar-tag-name" data-tags="polya"><span class="iconfont-archer">&#xe606;</span>polya</span>
+        <span class="sidebar-tag-name" data-tags="SW"><span class="iconfont-archer">&#xe606;</span>SW</span>
     
     </div>
     <div class="iconfont-archer sidebar-tags-empty">&#xe678;</div>

@@ -266,7 +266,7 @@ height:50vh;
                 
                 
                     <div class="post-intro-read">
-                        <span>字数统计: <span class="post-count word-count">5.3k</span>阅读时长: <span class="post-count reading-time">21 min</span></span>
+                        <span>字数统计: <span class="post-count word-count">6.2k</span>阅读时长: <span class="post-count reading-time">24 min</span></span>
                     </div>
                 
                 <div class="post-intro-meta">
@@ -395,7 +395,50 @@ height:50vh;
         <div class="container container-unloaded">
             <main class="main post-page">
     <article class="article-entry">
-        <p>393 Bergamot Problem</p>
+        <p>400 The last hour of the contest</p>
+<p><strong>题意</strong> 已知 ICPC 封榜前的榜单以及封榜后发放的气球总数，求你所在队伍可能的最高排名和最低排名。</p>
+<p><strong>分析</strong> 贪心+模拟。</p>
+<hr>
+<p>399 Berodoskar Development</p>
+<p><strong>题意</strong> 给 15×15 的网格图，每个格子有 2 种类型：’X’ 表示蓄水池，’.’ 表示空地。有公共边的 ‘X’ 相互连通成一个大蓄水池。现需要从地图边缘搭建管道引流到至少 2 个蓄水池上，管道可复用。求最少需要的管道长度。</p>
+<p><strong>分析</strong> 贪心。</p>
+<hr>
+<p>398 Friends of Friends</p>
+<p><strong>题意</strong> 给 50 个人的好友列表。若 c 不是 a 的好友，且存在 b 是 a 和 c 的好友，则 a 和 c 互为 friend of friend。求给定 x 的 friend of friend 列表。</p>
+<p><strong>分析</strong> 模拟。</p>
+<hr>
+<p>397 Text Editor</p>
+<p><strong>题意</strong> （光标模拟）。</p>
+<p><strong>分析</strong> 模拟。</p>
+<hr>
+<p>396 Dance it up!</p>
+<p><strong>题意</strong> 背景类似劲舞团游戏。给长为 $1\le N\le 10^3$ 的按键序列，序列由 $L, R, U, D$ 和 $N$ 构成。每个节拍需要按一个键，$N$ 表示空操作（但即使按了任意键也没有惩罚）。</p>
+<p>游戏开始时，角色左手在 LEFT 键上右手在 RIGHT 键上，每个节拍角色有以下行动模式：</p>
+<ul>
+<li>空操作，不花费任何能量。</li>
+<li>不移动手的位置，但手按下其所在位置的键，花费 1 单位能量。</li>
+<li>将一只手移动到一个空按钮上（即另一只手不在该键上），然后按下该按钮。若这只手前一节拍没有按键行为，花费 3 单元能量，否则花费 9 单元能量。</li>
+<li>将两只手移动到任意位置并按下该位置下的键，花费 10 单元能量。</li>
+</ul>
+<p>不允许出现左手在 RIGHT，右手在 LEFT 的情况，该情况视为游戏失败。</p>
+<p>求完成游戏序列的最小能量花费，并给出任一方案。</p>
+<p><strong>分析</strong> DP。状态转移只与前一节拍的左右手状态相关，按游戏序列动态规划即可。</p>
+<hr>
+<p>395 “Binary Cat” Club</p>
+<p><strong>题意</strong> 给 $1\le N\le 200$ 条按时间序但可能部分缺失的日志，日志有 3 种类型：</p>
+<ul>
+<li>“+ name”：表示名字为 name 的人进入 club；</li>
+<li>“- name”：表示名字为 name 的人离开 club；</li>
+<li>“= visitors”：表示当前 club 有 visitors 个人。</li>
+</ul>
+<p>由于日志可能存在缺失导致连续出现 “+ A”, “+ A”，此时中间需要补充 “-A”。求最少需要补充的日志条数。</p>
+<p><strong>分析</strong> 对于需要补充 “+ name” 和 “- name” 都有一个区间，当有 “= visitors” 查询操作时，贪心利用即可。 </p>
+<hr>
+<p>394 Berhatton</p>
+<p><strong>题意</strong> 给二维平面上 $2\le N\le 10^5$ 个点 $(x_i, y_i), 0\le x_i, y_i\le10^9$，每个点覆盖曼哈顿距离不超过 $1\le w_i\le 10^9$ 的点。求哪些点被覆盖至少 $1\le K\lt N$ 次。</p>
+<p><strong>分析</strong> 扫描线+线段树。将点坐标进行变换 $(x_i+y_i, x_i-y_i)$，则曼哈顿距离变成切比雪夫距离，每个点的覆盖范围是一个正方形。套用扫描线+线段树的做法覆盖点，线段树维护区间最大值，当最大值大于等于 $K$ 时，将该点删除（置为无穷小，保证后续操作不会重复删除即可）。因为每个点最多只会被删除一次，因此整体时间复杂度仍然是 $O(N\log N)$。</p>
+<hr>
+<p>393 Bergamot Problem</p>
 <p><strong>题意</strong> 前 $1\le N\le 13$ 个小写字母构成大小为 $0\le M\le 50$ 的字典，每个单词仅由 2 个字母构成。设计一个按键布局，放置每个字母到不同的按键上，使得 2 个按键对应唯一的一个单词。求最少的按键数量 $K$。</p>
 <p><strong>分析</strong> 状压 DP。</p>
 <hr>
@@ -618,6 +661,11 @@ f(x)=\left\{
     <!-- paginator  -->
     <ul class="post-paginator">
         <li class="next">
+            
+                <div class="nextSlogan">Next Post</div>
+                <a href= "../../../12/19/SGU-401-450/" title= "SGU-401-450">
+                    <div class="nextTitle">SGU-401-450</div>
+                </a>
             
         </li>
         <li class="previous">
@@ -1125,9 +1173,45 @@ top:50vh;
     
     
     
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
     <div class="total-and-search">
         <div class="total-archive">
-        Total : 29
+        Total : 31
         </div>
         <!-- search  -->
         
@@ -1140,6 +1224,16 @@ top:50vh;
     
     <div class="archive-year"> 2021 </div>
     <ul class="year-list">
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">12/26</span><a class="archive-post-title" href= "../../../12/26/求解无向图最小割/" >求解无向图最小割</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">12/19</span><a class="archive-post-title" href= "../../../12/19/SGU-401-450/" >SGU-401-450</a>
+        </li>
     
     
         <li class="archive-post-item">
@@ -1322,9 +1416,9 @@ top:50vh;
     
         <span class="sidebar-tag-name" data-tags="AC自动机"><span class="iconfont-archer">&#xe606;</span>AC自动机</span>
     
-        <span class="sidebar-tag-name" data-tags="DR"><span class="iconfont-archer">&#xe606;</span>DR</span>
-    
         <span class="sidebar-tag-name" data-tags="KMP"><span class="iconfont-archer">&#xe606;</span>KMP</span>
+    
+        <span class="sidebar-tag-name" data-tags="DR"><span class="iconfont-archer">&#xe606;</span>DR</span>
     
         <span class="sidebar-tag-name" data-tags="domjudge"><span class="iconfont-archer">&#xe606;</span>domjudge</span>
     
@@ -1332,13 +1426,15 @@ top:50vh;
     
         <span class="sidebar-tag-name" data-tags="贪心"><span class="iconfont-archer">&#xe606;</span>贪心</span>
     
+        <span class="sidebar-tag-name" data-tags="polya"><span class="iconfont-archer">&#xe606;</span>polya</span>
+    
         <span class="sidebar-tag-name" data-tags="vim"><span class="iconfont-archer">&#xe606;</span>vim</span>
     
         <span class="sidebar-tag-name" data-tags="git bash"><span class="iconfont-archer">&#xe606;</span>git bash</span>
     
         <span class="sidebar-tag-name" data-tags="斜率优化"><span class="iconfont-archer">&#xe606;</span>斜率优化</span>
     
-        <span class="sidebar-tag-name" data-tags="polya"><span class="iconfont-archer">&#xe606;</span>polya</span>
+        <span class="sidebar-tag-name" data-tags="SW"><span class="iconfont-archer">&#xe606;</span>SW</span>
     
     </div>
     <div class="iconfont-archer sidebar-tags-empty">&#xe678;</div>

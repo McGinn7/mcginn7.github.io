@@ -346,6 +346,74 @@
     
     
     <article class="index-post">
+        <a class="abstract-title" href = "../../../2019/05/12/ICPC-Resolver-踩坑/" >
+            
+                <span>ICPC Resolver 踩坑</span>
+        </a>
+        <div class="abstract-content">
+            应用场景从 DOMjudge 系统中导出数据，使用 ICPC Tools/Resolver 滚榜。
+DOMjudge 版本：7.0.1。
+Resolver 版本：2.0.1798。如果使用 DOMjudge 评测，建议使用 2.1 及以上版本。
+数据操作
+搜索 ICPC Tools，下载 ICPC Resolver.rar。
+
+运行 award.sh，通过 REST 导入 event feed（一场比赛的所有信息流）。
+123URL: http://59.77.134.102/domjudge/api/contests/5USER: amdinPassword: *******
+点击 s...
+        </div>
+        <div class="abstract-post-meta">
+            <!-- date  -->
+            <div class="abstract-date">
+                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2019/05/12</span>
+            </div>
+            <!-- tags  -->
+            
+        </div>
+    </article>
+    
+    
+    
+    
+    
+    
+    <article class="index-post">
+        <a class="abstract-title" href = "../../../2019/04/03/斜率优化/" >
+            
+                <span>斜率优化</span>
+        </a>
+        <div class="abstract-content">
+            斜率优化针对形如：
+
+dp(i)=\min _{j=1}^{i-1} (dp(j)+cost(i, j))的动态规划转移方程，可通过’’斜率’’的单调性进行优化。
+题一、[HNOI2008]玩具装箱TOY题意 题目链接给定长为 $1\le N\le 50000$ 的序列 $1\le C_i\le 10^7$，将序列分成若干连续段，每段 $[i, j]$ 的花费为
+
+((j - i+\sum_{k=i}^jC_k)-L)^2其中 $L$ 为常数，$1\le L \le 10^7$。要求计算总的最小花费代价。
+解题思路利用前缀和 $S_i​$，区间 $[i, j]​$ 序列和可表示成 $S_...
+        </div>
+        <div class="abstract-post-meta">
+            <!-- date  -->
+            <div class="abstract-date">
+                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2019/04/03</span>
+            </div>
+            <!-- tags  -->
+            
+            <div class= abstract-tags >
+    
+        <a class="post-tag" href="javascript:void(0);" data-tags = "ICPC">ICPC</a>
+    
+        <a class="post-tag" href="javascript:void(0);" data-tags = "斜率优化">斜率优化</a>
+    
+</div>
+            
+        </div>
+    </article>
+    
+    
+    
+    
+    
+    
+    <article class="index-post">
         <a class="abstract-title" href = "../../../2019/03/31/Nowcoder-出题人的数组/" >
             
                 <span>Nowcoder-出题人的数组</span>
@@ -654,42 +722,10 @@ InfoGAN: Interpretable Representation Learning by Information Maximizing ...
         </div>
     </article>
     
-    
-    
-    
-    
-    
-    <article class="index-post">
-        <a class="abstract-title" href = "../../../2018/06/05/apt-offline管理Ubuntu离线安装软件包/" >
-            
-                <span>Ubuntu离线安装软件包</span>
-        </a>
-        <div class="abstract-content">
-            参考链接
-apt-offline离线安装指南
-https://blog.sleeplessbeastie.eu/2014/01/30/how-to-manage-packages-on-an-off-line-debian-system/
-http://manpages.ubuntu.com/manpages/precise/man8/apt-offline.8.html#contenttoc4
-https://www.debian.org/
-https://camicri.github.io/camicri-cube/#/
-
-应用场景
-需要升级/安装软件的电脑无网络。
-软件要安装到多台...
-        </div>
-        <div class="abstract-post-meta">
-            <!-- date  -->
-            <div class="abstract-date">
-                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2018/06/05</span>
-            </div>
-            <!-- tags  -->
-            
-        </div>
-    </article>
-    
     <!-- paginator  -->
     
     <nav class="page-nav">
-        <a class="extend prev" rel="prev" href="../2/">&#60; PREV</a><a class="page-number" href="../../">1</a><a class="page-number" href="../2/">2</a><span class="page-number current">3</span>
+        <a class="extend prev" rel="prev" href="../2/">&#60; PREV</a><a class="page-number" href="../../">1</a><a class="page-number" href="../2/">2</a><span class="page-number current">3</span><a class="page-number" href="../4/">4</a><a class="extend next" rel="next" href="../4/">NEXT &#62;</a>
     </nav>
     
 </main>
@@ -1138,9 +1174,45 @@ https://camicri.github.io/camicri-cube/#/
     
     
     
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
     <div class="total-and-search">
         <div class="total-archive">
-        Total : 29
+        Total : 31
         </div>
         <!-- search  -->
         
@@ -1153,6 +1225,16 @@ https://camicri.github.io/camicri-cube/#/
     
     <div class="archive-year"> 2021 </div>
     <ul class="year-list">
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">12/26</span><a class="archive-post-title" href= "../../../12/26/求解无向图最小割/" >求解无向图最小割</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">12/19</span><a class="archive-post-title" href= "../../../12/19/SGU-401-450/" >SGU-401-450</a>
+        </li>
     
     
         <li class="archive-post-item">
@@ -1335,9 +1417,9 @@ https://camicri.github.io/camicri-cube/#/
     
         <span class="sidebar-tag-name" data-tags="AC自动机"><span class="iconfont-archer">&#xe606;</span>AC自动机</span>
     
-        <span class="sidebar-tag-name" data-tags="DR"><span class="iconfont-archer">&#xe606;</span>DR</span>
-    
         <span class="sidebar-tag-name" data-tags="KMP"><span class="iconfont-archer">&#xe606;</span>KMP</span>
+    
+        <span class="sidebar-tag-name" data-tags="DR"><span class="iconfont-archer">&#xe606;</span>DR</span>
     
         <span class="sidebar-tag-name" data-tags="domjudge"><span class="iconfont-archer">&#xe606;</span>domjudge</span>
     
@@ -1345,13 +1427,15 @@ https://camicri.github.io/camicri-cube/#/
     
         <span class="sidebar-tag-name" data-tags="贪心"><span class="iconfont-archer">&#xe606;</span>贪心</span>
     
+        <span class="sidebar-tag-name" data-tags="polya"><span class="iconfont-archer">&#xe606;</span>polya</span>
+    
         <span class="sidebar-tag-name" data-tags="vim"><span class="iconfont-archer">&#xe606;</span>vim</span>
     
         <span class="sidebar-tag-name" data-tags="git bash"><span class="iconfont-archer">&#xe606;</span>git bash</span>
     
         <span class="sidebar-tag-name" data-tags="斜率优化"><span class="iconfont-archer">&#xe606;</span>斜率优化</span>
     
-        <span class="sidebar-tag-name" data-tags="polya"><span class="iconfont-archer">&#xe606;</span>polya</span>
+        <span class="sidebar-tag-name" data-tags="SW"><span class="iconfont-archer">&#xe606;</span>SW</span>
     
     </div>
     <div class="iconfont-archer sidebar-tags-empty">&#xe678;</div>
