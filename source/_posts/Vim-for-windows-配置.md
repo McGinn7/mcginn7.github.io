@@ -1,9 +1,10 @@
 ---
 title: Windows 下使用 Vim
-date: 
-tags: 
-- vim
-- git bash
+date: 2018-06-05 19:27:37
+tags:
+  - vim
+  - git
+  - bash
 ---
 
 ## 简要说明
