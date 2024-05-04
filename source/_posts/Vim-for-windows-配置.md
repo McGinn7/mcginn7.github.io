@@ -15,9 +15,7 @@ tags:
 1. 编译和运行 *.cpp 文件；
 2. 一键复制代码;
 3. 记事本打开代码。
-
-{% asset_img 1539090544618.png 效果图 %}
-
+![效果图](1539090544618.png)
 git bash 和 gvim 都配置了一遍。gvim 使用 Windows 自带的 cmd 运行的话，鼠标是没办法移动光标的，并且配置相对 git bash 较麻烦，所以推荐使用 git bash。
 
 ## Vimrc 配置

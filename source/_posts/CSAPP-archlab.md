@@ -95,7 +95,7 @@ Npos:
 
 在朴素版本中，`mrmovq (%rdi), %r10` 和 `rmmovq %r10, (%rsi)` 存在数据相关：需要先将 \*src 读取到寄存器 %r10 中，进而才能读取 %r10 值保存到 \*dst。处理器通过暂停指令来处理该情况，参考下图情形：
 
-{% asset_img  bubble.png 流水线暂停 %}
+![流水线暂停](bubble.png)
 
 由于有**转发**机制，流水线处理器可以减少暂停的周期数，而不是图上的 3 个周期。
 
@@ -385,7 +385,7 @@ l = 0, r = 9, ret.first = 33, ret.second = 3
 
 在实现过程反复测试中，发现处理器更倾向于总是跳转，结合具体的查找实现，最终的关键点定位：1，3，5，7， 8。
 
-{% asset_img  binarysearch.png 二分查找 %}
+![二分查找](binarysearch.png)
 
 优化后的版本：
 
@@ -556,9 +556,9 @@ R1:
 
 测试结果：
 
-{% asset_img  result.png 正确性结果 %}
+![正确性结果](result.png)
 
-{% asset_img  CPE.png CPE %}
+![CPE](CPE.png)
 
 ## 参考
 

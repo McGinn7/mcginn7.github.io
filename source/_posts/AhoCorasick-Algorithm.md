@@ -25,7 +25,7 @@ AhoCorasick 本质上与 KMP 算法是一样的，都是通过相同前后缀减
 
 $lcps(u)$  的**构建过程**：记节点 $u$ 的父节点为 $f(u)$，与其连边的字符为 $c$。若 $lcps(f(u))$ 存在 $c$ 的出边，则 $lcps(u)=trans(lcps(f(u)), c)$。否则继续找 $lcps(lcps(f(u)))$，直至找到或到达根节点（说明未找到）。
 
-{% asset_img 20190601092923.png %}
+![](20190601092923.png)
 
 <center>图 1. lcps(u) 的构建</center>
 

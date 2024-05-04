@@ -3,35 +3,21 @@ title: 论文笔记 Tips and Tricks for Visual Question Answering
 date: 2018-10-09 11:24:19
 tags:
 ---
-
 ## 简介
-
 ​	该论文作者取得了 2017 VQA Challenge 的第一，总结一些 tips 和 tricks 来提升 VQA 的表现。
-
 ​	这篇论文的每个实验使用不同的随机种子**重复3次实验**来统计结果。
-
-{% asset_img 1539055553531.png 模型%}
+![模型](1539055553531.png)
 
 <center>模型</center>
-
 ## 一些细节
-
 - 所有问题的长度固定 14。
-
-- 问题特征 $q$ 与图像特征 $\hat v$ 的融合使用 Hadamard product（逐项相乘）。
-  $$
+- 问题特征 $q$ 与图像特征 $\hat v$ 的融合使用 Hadamard product（逐项相乘）。 $$
   h = f_q(q) \circ f_v(\hat v)
   $$
-
-- 目标函数（损失函数）
-  $$
+- 目标函数（损失函数） $$
   L=-\sum_i^M\sum_j^N s_{ij}\log (\hat s_{ij})-(1-s_{ij})\log(1-\hat s_{ij})
   $$
-
 - 作者使用了额外的数据集 Visual Genome(VG)，共 485,000。
-
-
-
 ## 关键点
 
 ### Sigmoid output
@@ -39,53 +25,31 @@ tags:
 - 输出使用 sigmoid 将每个类别（或答案）归一化。
 
 - softmax 也可以用来归一化，但是会变成单个类别输出，而 sigmoid 可以输出多个类。这样可以适应一个问题有多个答案的情况。
-
-  {% asset_img 1539055765859.png 结果 %}
-
-
-
-
+  ![结果](1539055765859.png)
 ### Soft scores as ground truth targets
-
 - VQA 中问题答案附有置信度，将答案向量化有 2 种做法：1）使用固定阈值将答案二值化；2）使用 sigmoid 或 softmax 来归一化答案。
-
 - 做法1）就是 hard scores，每个类只有 0、1 两个选项。做法2）就是 soft scores，每个类都有一个浮点数的得分。
-
-- 作者使用了两个简单的二值化进行对比
-  $$
+- 作者使用了两个简单的二值化进行对比 $$
   s'_{ij}=(s_{ij}>0.0) \\
   s'_{ij}=(s_{ij}==1.0)
-  $$
-  {% asset_img 1539055814715.png 结果%}
-
-
-
-
+  $$![结果](1539055814715.png)
 ### Gated tanh activations
-
 - 使用 gated tanh activations 作为激活函数，而不是常用的 Rectified Linear Unit（ReLU）。
-
 - 激活函数 $f_a: x \in R^m \rightarrow y \in R^n$
-
-- $$
+$$
   \tilde y = tanh(Wx + b) \\
   g = \sigma(W'x+b') \\
   y = \tilde y \circ g
   $$
-
   $W,W',b,b'$ 为训练参数，$\circ$ 表示 Hadamard product（逐项相乘）。
-
 - 该激活函数之前被用于自然语言处理。
-
- 
-
 ### Bottom up attention
 
 - 使用 bottom up attention 来提取图像特征，而不是直接使用 CNN 的特征层（feature map）。
 
 - Bottom up attention 基于 Faster R-CNN 框架，提取若干 Region of Interest（RoI）的特征，继而通过非线性层做 attention。论文里使用阈值来筛选出 $K$ 个 RoI 并设置了 100 的上限（作者将数量 $K$ 固定为 36，表现会差一些，但是减少了计算开销）。
 
-  {% asset_img 1539055857312.png 结果 %}
+  ![结果](1539055857312.png)
 
 - Attention 的非线性层
   $$
@@ -118,7 +82,7 @@ tags:
 
 - 通常来说，mini-batches 越大效果越好，但是大到一定程度后就不会有明显提升了，训练速度会慢。
 
-  {% asset_img 1539055903316.png 结果 %}
+  ![结果](1539055903316.png)
 
  
 
