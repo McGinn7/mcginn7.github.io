@@ -1,0 +1,1557 @@
+<!DOCTYPE html>
+<html lang="">
+    <!-- title -->
+
+
+    
+
+<!-- keywords -->
+
+
+
+<head>
+    <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <meta name="author" content="Mcginn">
+    <meta name="renderer" content="webkit">
+    <meta name="copyright" content="Mcginn">
+    
+        <meta name="keywords" content="hexo,hexo-theme,hexo-blog,mcginn,ICPC,ACM,chenmingqin">
+    
+    <meta name="description" content="">
+    <meta name="description" content="要求 &#x2F;&#x2F; Rules  Reduce 任务数量为给定的 ，即 mapper 会生产出  个中间文件用于后续的 reduce 任务。 mr-out-X 文件每行包含一个 reduce 函数输出，每行格式为 %v %v 分别表示 key 和 value。 mapper 输出文件放在当前目录下，以便后续 reducer 作为输入读取。 需要实现 Done() 函数用于表明整个 MapReduce 任务">
+<meta property="og:type" content="article">
+<meta property="og:title" content="MIT 6.824 Lab1">
+<meta property="og:url" content="http://mcginn7.github.io/2023/07/18/MIT%206.824%20Lab1/index.html">
+<meta property="og:site_name" content="Mcginn&#39;s Blog">
+<meta property="og:description" content="要求 &#x2F;&#x2F; Rules  Reduce 任务数量为给定的 ，即 mapper 会生产出  个中间文件用于后续的 reduce 任务。 mr-out-X 文件每行包含一个 reduce 函数输出，每行格式为 %v %v 分别表示 key 和 value。 mapper 输出文件放在当前目录下，以便后续 reducer 作为输入读取。 需要实现 Done() 函数用于表明整个 MapReduce 任务">
+<meta property="og:locale">
+<meta property="article:published_time" content="2023-07-18T15:10:19.000Z">
+<meta property="article:modified_time" content="2024-05-04T10:46:12.806Z">
+<meta property="article:author" content="Mcginn">
+<meta name="twitter:card" content="summary">
+    <meta http-equiv="Cache-control" content="no-cache">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <link rel="icon" href="../../../../assets/m.ico">
+    
+    <title>MIT 6.824 Lab1 · Mcginn&#39;s Blog</title>
+    <!-- /*! loadCSS. [c]2017 Filament Group, Inc. MIT License */
+/* This file is meant as a standalone workflow for
+- testing support for link[rel=preload]
+- enabling async CSS loading in browsers that do not support rel=preload
+- applying rel preload css once loaded, whether supported or not.
+*/ -->
+<script>
+    (function (w) {
+        'use strict'
+        // rel=preload support test
+        if (!w.loadCSS) {
+            w.loadCSS = function () {}
+        }
+        // define on the loadCSS obj
+        var rp = (loadCSS.relpreload = {})
+        // rel=preload feature support test
+        // runs once and returns a function for compat purposes
+        rp.support = (function () {
+            var ret
+            try {
+                ret = w.document.createElement('link').relList.supports('preload')
+            } catch (e) {
+                ret = false
+            }
+            return function () {
+                return ret
+            }
+        })()
+
+        // if preload isn't supported, get an asynchronous load by using a non-matching media attribute
+        // then change that media back to its intended value on load
+        rp.bindMediaToggle = function (link) {
+            // remember existing media attr for ultimate state, or default to 'all'
+            var finalMedia = link.media || 'all'
+
+            function enableStylesheet() {
+                link.media = finalMedia
+            }
+
+            // bind load handlers to enable media
+            if (link.addEventListener) {
+                link.addEventListener('load', enableStylesheet)
+            } else if (link.attachEvent) {
+                link.attachEvent('onload', enableStylesheet)
+            }
+
+            // Set rel and non-applicable media type to start an async request
+            // note: timeout allows this to happen async to let rendering continue in IE
+            setTimeout(function () {
+                link.rel = 'stylesheet'
+                link.media = 'only x'
+            })
+            // also enable media after 3 seconds,
+            // which will catch very old browsers (android 2.x, old firefox) that don't support onload on link
+            setTimeout(enableStylesheet, 3000)
+        }
+
+        // loop through link elements in DOM
+        rp.poly = function () {
+            // double check this to prevent external calls from running
+            if (rp.support()) {
+                return
+            }
+            var links = w.document.getElementsByTagName('link')
+            for (var i = 0; i < links.length; i++) {
+                var link = links[i]
+                // qualify links to those with rel=preload and as=style attrs
+                if (
+                    link.rel === 'preload' &&
+                    link.getAttribute('as') === 'style' &&
+                    !link.getAttribute('data-loadcss')
+                ) {
+                    // prevent rerunning on link
+                    link.setAttribute('data-loadcss', true)
+                    // bind listeners to toggle media back
+                    rp.bindMediaToggle(link)
+                }
+            }
+        }
+
+        // if unsupported, run the polyfill
+        if (!rp.support()) {
+            // run once at least
+            rp.poly()
+
+            // rerun poly on an interval until onload
+            var run = w.setInterval(rp.poly, 500)
+            if (w.addEventListener) {
+                w.addEventListener('load', function () {
+                    rp.poly()
+                    w.clearInterval(run)
+                })
+            } else if (w.attachEvent) {
+                w.attachEvent('onload', function () {
+                    rp.poly()
+                    w.clearInterval(run)
+                })
+            }
+        }
+
+        // commonjs
+        if (typeof exports !== 'undefined') {
+            exports.loadCSS = loadCSS
+        } else {
+            w.loadCSS = loadCSS
+        }
+    })(typeof global !== 'undefined' ? global : this)
+</script>
+
+    <style type="text/css">
+    @font-face {
+        font-family: 'Oswald-Regular';
+        src: url("../../../../font/Oswald-Regular.ttf");
+    }
+
+    body {
+        margin: 0;
+    }
+
+    header,
+    footer,
+    .back-top,
+    .sidebar,
+    .container,
+    .site-intro-meta,
+    .toc-wrapper {
+        display: none;
+    }
+
+    .site-intro {
+        position: relative;
+        z-index: 3;
+        width: 100%;
+        /* height: 50vh; */
+        overflow: hidden;
+    }
+
+    .site-intro-placeholder {
+        position: absolute;
+        z-index: -2;
+        top: 0;
+        left: 0;
+        width: calc(100% + 300px);
+        height: 100%;
+        background: repeating-linear-gradient(-45deg, #444 0, #444 80px, #333 80px, #333 160px);
+        background-position: center center;
+        transform: translate3d(-226px, 0, 0);
+        animation: gradient-move 2.5s ease-out 0s infinite;
+    }
+
+    @keyframes gradient-move {
+        0% {
+            transform: translate3d(-226px, 0, 0);
+        }
+        100% {
+            transform: translate3d(0, 0, 0);
+        }
+    }
+</style>
+
+    <link rel="preload" href="../../../../css/style.css?v=20211217" as="style" onload="this.onload=null;this.rel='stylesheet'">
+    <link rel="preload" href="../../../../css/dark.css?v=20211217" as="style">
+    <link rel="stylesheet" href="../../../../css/dark.css">
+    <link rel="stylesheet" href="../../../../css/mobile.css?v=20211217" media="(max-width: 960px)">
+    <link rel="preload" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+    <link rel="preload" href="https://cdn.jsdelivr.net/npm/jquery@3.6.0/dist/jquery.min.js" as="script">
+    <link rel="preload" href="../../../../scripts/main.js?v=20211217" as="script">
+    <link rel="preload" href="../../../../scripts/dark.js?v=20211217" as="script">
+    <link rel="preload" href="../../../../font/Oswald-Regular.ttf" as="font" crossorigin>
+    <link rel="preload" href="https://at.alicdn.com/t/font_327081_1dta1rlogw17zaor.woff" as="font" crossorigin>
+    <!-- algolia -->
+    
+    <!-- 百度统计  -->
+    
+    <!-- Google tag (gtag.js) -->
+    
+
+<meta name="generator" content="Hexo 7.2.0"><style>mjx-container[jax="SVG"] {
+  direction: ltr;
+}
+
+mjx-container[jax="SVG"] > svg {
+  overflow: visible;
+}
+
+mjx-container[jax="SVG"][display="true"] {
+  display: block;
+  text-align: center;
+  margin: 1em 0;
+}
+
+mjx-container[jax="SVG"][justify="left"] {
+  text-align: left;
+}
+
+mjx-container[jax="SVG"][justify="right"] {
+  text-align: right;
+}
+
+g[data-mml-node="merror"] > g {
+  fill: red;
+  stroke: red;
+}
+
+g[data-mml-node="merror"] > rect[data-background] {
+  fill: yellow;
+  stroke: none;
+}
+
+g[data-mml-node="mtable"] > line[data-line] {
+  stroke-width: 70px;
+  fill: none;
+}
+
+g[data-mml-node="mtable"] > rect[data-frame] {
+  stroke-width: 70px;
+  fill: none;
+}
+
+g[data-mml-node="mtable"] > .mjx-dashed {
+  stroke-dasharray: 140;
+}
+
+g[data-mml-node="mtable"] > .mjx-dotted {
+  stroke-linecap: round;
+  stroke-dasharray: 0,140;
+}
+
+g[data-mml-node="mtable"] > svg {
+  overflow: visible;
+}
+
+[jax="SVG"] mjx-tool {
+  display: inline-block;
+  position: relative;
+  width: 0;
+  height: 0;
+}
+
+[jax="SVG"] mjx-tool > mjx-tip {
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+
+mjx-tool > mjx-tip {
+  display: inline-block;
+  padding: .2em;
+  border: 1px solid #888;
+  font-size: 70%;
+  background-color: #F8F8F8;
+  color: black;
+  box-shadow: 2px 2px 5px #AAAAAA;
+}
+
+g[data-mml-node="maction"][data-toggle] {
+  cursor: pointer;
+}
+
+mjx-status {
+  display: block;
+  position: fixed;
+  left: 1em;
+  bottom: 1em;
+  min-width: 25%;
+  padding: .2em .4em;
+  border: 1px solid #888;
+  font-size: 90%;
+  background-color: #F8F8F8;
+  color: black;
+}
+
+foreignObject[data-mjx-xml] {
+  font-family: initial;
+  line-height: normal;
+  overflow: visible;
+}
+
+.MathJax path {
+  stroke-width: 3;
+}
+
+mjx-container[display="true"] {
+  overflow: auto hidden;
+}
+
+mjx-container[display="true"] + br {
+  display: none;
+}
+</style><!-- hexo-inject:begin --><!-- hexo-inject:end --></head>
+
+    <script src="https://cdn.jsdelivr.net/npm/jquery@3.6.0/dist/jquery.min.js"></script>
+    <script type="text/javascript">
+        if (typeof window.$ == undefined) {
+            console.warn('jquery load from jsdelivr failed, will load local script')
+            document.write('<script src="../../../../lib/jquery.min.js" />')
+        }
+    </script>
+    
+        <body class="post-body">
+    
+        <!-- hexo-inject:begin --><!-- hexo-inject:end --><!-- header -->
+        <header class="header header-mobile">
+    <!-- top read progress line -->
+    <div class="header-element">
+        <div class="read-progress"></div>
+    </div>
+    <!-- sidebar menu button -->
+    <div class="header-element">
+        
+            <div class="header-sidebar-menu">
+        
+            
+                <div style="padding-left: 1px;">&#xe775;</div>
+            
+        </div>
+    </div>
+    <!-- header actions -->
+    <div class="header-actions">
+        <!-- theme mode switch button -->
+        <span class="header-theme-btn header-element">
+            <i class="fas fa-adjust"></i>
+        </span>
+        <!-- back to home page text -->
+        <span class="home-link header-element">
+            <a href=/>Mcginn's Blog</a>
+        </span>
+    </div>
+    <!-- toggle banner for post layout -->
+    
+        
+            <div class="banner">
+        
+            <div class="blog-title header-element">
+                <a href="../../../../index.html">Mcginn&#39;s Blog</a>
+            </div>
+            <div class="post-title header-element">
+                <a href="#" class="post-name">MIT 6.824 Lab1</a>
+            </div>
+        </div>
+    
+</header>
+
+        <!-- fixed footer -->
+        <footer class="footer-fixed">
+    <!-- back to top button -->
+    <div class="footer-fixed-element">
+        
+            <div class="back-top back-top-hidden">
+        
+        
+            <div>&#xe639;</div>
+        
+        </div>
+    </div>
+</footer>
+
+        <!-- wrapper -->
+        <div class="wrapper">
+            <div class="site-intro" style="
+
+
+
+
+
+
+
+    height:50vh;
+
+">
+    
+    <!-- 主页  -->
+    
+        
+    <!-- 404页  -->
+    
+    <div class="site-intro-placeholder"></div>
+    <div class="site-intro-img" style="background-image: url(../../../../intro/post-bg.jpg)"></div>
+    <div class="site-intro-meta">
+        <!-- 标题  -->
+        <h1 class="intro-title">
+            <!-- 主页  -->
+            
+                MIT 6.824 Lab1
+            <!-- 404 -->
+            
+        </h1>
+        <!-- 副标题 -->
+        <p class="intro-subtitle">
+            <!-- 主页副标题  -->
+            
+                
+            <!-- 404 -->
+            
+        </p>
+        <!-- 文章页 meta -->
+        
+            <div class="post-intros">
+                <!-- 文章页标签  -->
+                
+                    <div class= post-intro-tags >
+    
+    
+</div>
+
+                
+                <!-- 文章字数统计 -->
+                
+                <div class="post-intro-meta">
+                    <!-- 撰写日期 -->
+                    <span class="iconfont-archer post-intro-calander">&#xe676;</span>
+                    <span class="post-intro-time">2023/07/18</span>
+                    <!-- busuanzi -->
+                    
+                        <span id="busuanzi_container_page_pv" class="busuanzi-pv">
+                            <span class="iconfont-archer post-intro-busuanzi">&#xe602;</span>
+                            <span id="busuanzi_value_page_pv"></span>
+                        </span>
+                    
+                    <!-- 文章分享 -->
+                    <span class="share-wrapper">
+                        <span class="iconfont-archer share-icon">&#xe71d;</span>
+                        <span class="share-text">Share</span>
+                        <ul class="share-list">
+                            <li class="iconfont-archer share-qr" data-type="qr">&#xe75b;
+                                <div class="share-qrcode"></div>
+                            </li>
+                            <li class="iconfont-archer" data-type="weibo">&#xe619;</li>
+                            <li class="iconfont-archer" data-type="qzone">&#xe62e;</li>
+                            <li class="iconfont-archer" data-type="twitter">&#xe634;</li>
+                            <li class="iconfont-archer" data-type="facebook">&#xe67a;</li>
+                        </ul>
+                    </span>
+                </div>
+            </div>
+        
+    </div>
+</div>
+
+            <script>
+  // get user agent
+  function getBrowserVersions() {
+    var u = window.navigator.userAgent
+    return {
+      userAgent: u,
+      trident: u.indexOf('Trident') > -1, //IE内核
+      presto: u.indexOf('Presto') > -1, //opera内核
+      webKit: u.indexOf('AppleWebKit') > -1, //苹果、谷歌内核
+      gecko: u.indexOf('Gecko') > -1 && u.indexOf('KHTML') == -1, //火狐内核
+      mobile: !!u.match(/AppleWebKit.*Mobile.*/), //是否为移动终端
+      ios: !!u.match(/\(i[^;]+;( U;)? CPU.+Mac OS X/), //ios终端
+      android: u.indexOf('Android') > -1 || u.indexOf('Linux') > -1, //android终端或者uc浏览器
+      iPhone: u.indexOf('iPhone') > -1 || u.indexOf('Mac') > -1, //是否为iPhone或者安卓QQ浏览器
+      iPad: u.indexOf('iPad') > -1, //是否为iPad
+      webApp: u.indexOf('Safari') == -1, //是否为web应用程序，没有头部与底部
+      weixin: u.indexOf('MicroMessenger') == -1, //是否为微信浏览器
+      uc: u.indexOf('UCBrowser') > -1, //是否为android下的UC浏览器
+    }
+  }
+  var browser = {
+    versions: getBrowserVersions(),
+  }
+  console.log('userAgent: ' + browser.versions.userAgent)
+
+  // callback
+  function fontLoaded() {
+    console.log('font loaded')
+    if (document.getElementsByClassName('site-intro-meta')) {
+      document
+        .getElementsByClassName('intro-title')[0]
+        .classList.add('intro-fade-in')
+      document
+        .getElementsByClassName('intro-subtitle')[0]
+        .classList.add('intro-fade-in')
+      var postIntros = document.getElementsByClassName('post-intros')[0]
+      if (postIntros) {
+        postIntros.classList.add('post-fade-in')
+      }
+    }
+  }
+
+  // UC不支持跨域，所以直接显示
+  function asyncCb() {
+    if (browser.versions.uc) {
+      console.log('UCBrowser')
+      fontLoaded()
+    } else {
+      WebFont.load({
+        custom: {
+          families: ['Oswald-Regular'],
+        },
+        loading: function () {
+          // 所有字体开始加载
+          // console.log('font loading');
+        },
+        active: function () {
+          // 所有字体已渲染
+          fontLoaded()
+        },
+        inactive: function () {
+          // 字体预加载失败，无效字体或浏览器不支持加载
+          console.log('inactive: timeout')
+          fontLoaded()
+        },
+        timeout: 5000, // Set the timeout to two seconds
+      })
+    }
+  }
+
+  function asyncErr() {
+    console.warn('script load from CDN failed, will load local script')
+  }
+
+  // load webfont-loader async, and add callback function
+  function async(u, cb, err) {
+    var d = document,
+      t = 'script',
+      o = d.createElement(t),
+      s = d.getElementsByTagName(t)[0]
+    o.src = u
+    if (cb) {
+      o.addEventListener(
+        'load',
+        function (e) {
+          cb(null, e)
+        },
+        false
+      )
+    }
+    if (err) {
+      o.addEventListener(
+        'error',
+        function (e) {
+          err(null, e)
+        },
+        false
+      )
+    }
+    s.parentNode.insertBefore(o, s)
+  }
+
+  var asyncLoadWithFallBack = function (arr, success, reject) {
+    var currReject = function () {
+      reject()
+      arr.shift()
+      if (arr.length) async(arr[0], success, currReject)
+    }
+
+    async(arr[0], success, currReject)
+  }
+
+  asyncLoadWithFallBack(
+    [
+      'https://cdn.jsdelivr.net/npm/webfontloader@1.6.28/webfontloader.min.js',
+      'https://cdn.bootcss.com/webfont/1.6.28/webfontloader.js',
+      "../../../../lib/webfontloader.min.js",
+    ],
+    asyncCb,
+    asyncErr
+  )
+</script>
+
+            <img class="loading" src="../../../../assets/loading.svg" style="display: block; margin: 6rem auto 0 auto; width: 6rem; height: 6rem;" />
+            <div class="container container-unloaded">
+                <main class="main post-page">
+    <article class="article-entry">
+        <h2 id="要求-rules">要求 // Rules</h2>
+<ol type="1">
+<li>Reduce 任务数量为给定的 <span class="math inline"><mjx-container class="MathJax" jax="SVG"><svg style="vertical-align: -0.048ex;" xmlns="http://www.w3.org/2000/svg" width="8.633ex" height="1.618ex" role="img" focusable="false" viewBox="0 -694 3816 715"><g stroke="currentColor" fill="currentColor" stroke-width="0" transform="scale(1,-1)"><g data-mml-node="math"><g data-mml-node="mi"><path data-c="1D45B" d="M21 287Q22 293 24 303T36 341T56 388T89 425T135 442Q171 442 195 424T225 390T231 369Q231 367 232 367L243 378Q304 442 382 442Q436 442 469 415T503 336T465 179T427 52Q427 26 444 26Q450 26 453 27Q482 32 505 65T540 145Q542 153 560 153Q580 153 580 145Q580 144 576 130Q568 101 554 73T508 17T439 -10Q392 -10 371 17T350 73Q350 92 386 193T423 345Q423 404 379 404H374Q288 404 229 303L222 291L189 157Q156 26 151 16Q138 -11 108 -11Q95 -11 87 -5T76 7T74 17Q74 30 112 180T152 343Q153 348 153 366Q153 405 129 405Q91 405 66 305Q60 285 60 284Q58 278 41 278H27Q21 284 21 287Z"></path></g><g data-mml-node="mi" transform="translate(600,0)"><path data-c="1D445" d="M230 637Q203 637 198 638T193 649Q193 676 204 682Q206 683 378 683Q550 682 564 680Q620 672 658 652T712 606T733 563T739 529Q739 484 710 445T643 385T576 351T538 338L545 333Q612 295 612 223Q612 212 607 162T602 80V71Q602 53 603 43T614 25T640 16Q668 16 686 38T712 85Q717 99 720 102T735 105Q755 105 755 93Q755 75 731 36Q693 -21 641 -21H632Q571 -21 531 4T487 82Q487 109 502 166T517 239Q517 290 474 313Q459 320 449 321T378 323H309L277 193Q244 61 244 59Q244 55 245 54T252 50T269 48T302 46H333Q339 38 339 37T336 19Q332 6 326 0H311Q275 2 180 2Q146 2 117 2T71 2T50 1Q33 1 33 10Q33 12 36 24Q41 43 46 45Q50 46 61 46H67Q94 46 127 49Q141 52 146 61Q149 65 218 339T287 628Q287 635 230 637ZM630 554Q630 586 609 608T523 636Q521 636 500 636T462 637H440Q393 637 386 627Q385 624 352 494T319 361Q319 360 388 360Q466 361 492 367Q556 377 592 426Q608 449 619 486T630 554Z"></path></g><g data-mml-node="mi" transform="translate(1359,0)"><path data-c="1D452" d="M39 168Q39 225 58 272T107 350T174 402T244 433T307 442H310Q355 442 388 420T421 355Q421 265 310 237Q261 224 176 223Q139 223 138 221Q138 219 132 186T125 128Q125 81 146 54T209 26T302 45T394 111Q403 121 406 121Q410 121 419 112T429 98T420 82T390 55T344 24T281 -1T205 -11Q126 -11 83 42T39 168ZM373 353Q367 405 305 405Q272 405 244 391T199 357T170 316T154 280T149 261Q149 260 169 260Q282 260 327 284T373 353Z"></path></g><g data-mml-node="mi" transform="translate(1825,0)"><path data-c="1D451" d="M366 683Q367 683 438 688T511 694Q523 694 523 686Q523 679 450 384T375 83T374 68Q374 26 402 26Q411 27 422 35Q443 55 463 131Q469 151 473 152Q475 153 483 153H487H491Q506 153 506 145Q506 140 503 129Q490 79 473 48T445 8T417 -8Q409 -10 393 -10Q359 -10 336 5T306 36L300 51Q299 52 296 50Q294 48 292 46Q233 -10 172 -10Q117 -10 75 30T33 157Q33 205 53 255T101 341Q148 398 195 420T280 442Q336 442 364 400Q369 394 369 396Q370 400 396 505T424 616Q424 629 417 632T378 637H357Q351 643 351 645T353 664Q358 683 366 683ZM352 326Q329 405 277 405Q242 405 210 374T160 293Q131 214 119 129Q119 126 119 118T118 106Q118 61 136 44T179 26Q233 26 290 98L298 109L352 326Z"></path></g><g data-mml-node="mi" transform="translate(2345,0)"><path data-c="1D462" d="M21 287Q21 295 30 318T55 370T99 420T158 442Q204 442 227 417T250 358Q250 340 216 246T182 105Q182 62 196 45T238 27T291 44T328 78L339 95Q341 99 377 247Q407 367 413 387T427 416Q444 431 463 431Q480 431 488 421T496 402L420 84Q419 79 419 68Q419 43 426 35T447 26Q469 29 482 57T512 145Q514 153 532 153Q551 153 551 144Q550 139 549 130T540 98T523 55T498 17T462 -8Q454 -10 438 -10Q372 -10 347 46Q345 45 336 36T318 21T296 6T267 -6T233 -11Q189 -11 155 7Q103 38 103 113Q103 170 138 262T173 379Q173 380 173 381Q173 390 173 393T169 400T158 404H154Q131 404 112 385T82 344T65 302T57 280Q55 278 41 278H27Q21 284 21 287Z"></path></g><g data-mml-node="mi" transform="translate(2917,0)"><path data-c="1D450" d="M34 159Q34 268 120 355T306 442Q362 442 394 418T427 355Q427 326 408 306T360 285Q341 285 330 295T319 325T330 359T352 380T366 386H367Q367 388 361 392T340 400T306 404Q276 404 249 390Q228 381 206 359Q162 315 142 235T121 119Q121 73 147 50Q169 26 205 26H209Q321 26 394 111Q403 121 406 121Q410 121 419 112T429 98T420 83T391 55T346 25T282 0T202 -11Q127 -11 81 37T34 159Z"></path></g><g data-mml-node="mi" transform="translate(3350,0)"><path data-c="1D452" d="M39 168Q39 225 58 272T107 350T174 402T244 433T307 442H310Q355 442 388 420T421 355Q421 265 310 237Q261 224 176 223Q139 223 138 221Q138 219 132 186T125 128Q125 81 146 54T209 26T302 45T394 111Q403 121 406 121Q410 121 419 112T429 98T420 82T390 55T344 24T281 -1T205 -11Q126 -11 83 42T39 168ZM373 353Q367 405 305 405Q272 405 244 391T199 357T170 316T154 280T149 261Q149 260 169 260Q282 260 327 284T373 353Z"></path></g></g></g></svg></mjx-container></span>，即 mapper 会生产出 <span class="math inline"><mjx-container class="MathJax" jax="SVG"><svg style="vertical-align: -0.048ex;" xmlns="http://www.w3.org/2000/svg" width="8.633ex" height="1.618ex" role="img" focusable="false" viewBox="0 -694 3816 715"><g stroke="currentColor" fill="currentColor" stroke-width="0" transform="scale(1,-1)"><g data-mml-node="math"><g data-mml-node="mi"><path data-c="1D45B" d="M21 287Q22 293 24 303T36 341T56 388T89 425T135 442Q171 442 195 424T225 390T231 369Q231 367 232 367L243 378Q304 442 382 442Q436 442 469 415T503 336T465 179T427 52Q427 26 444 26Q450 26 453 27Q482 32 505 65T540 145Q542 153 560 153Q580 153 580 145Q580 144 576 130Q568 101 554 73T508 17T439 -10Q392 -10 371 17T350 73Q350 92 386 193T423 345Q423 404 379 404H374Q288 404 229 303L222 291L189 157Q156 26 151 16Q138 -11 108 -11Q95 -11 87 -5T76 7T74 17Q74 30 112 180T152 343Q153 348 153 366Q153 405 129 405Q91 405 66 305Q60 285 60 284Q58 278 41 278H27Q21 284 21 287Z"></path></g><g data-mml-node="mi" transform="translate(600,0)"><path data-c="1D445" d="M230 637Q203 637 198 638T193 649Q193 676 204 682Q206 683 378 683Q550 682 564 680Q620 672 658 652T712 606T733 563T739 529Q739 484 710 445T643 385T576 351T538 338L545 333Q612 295 612 223Q612 212 607 162T602 80V71Q602 53 603 43T614 25T640 16Q668 16 686 38T712 85Q717 99 720 102T735 105Q755 105 755 93Q755 75 731 36Q693 -21 641 -21H632Q571 -21 531 4T487 82Q487 109 502 166T517 239Q517 290 474 313Q459 320 449 321T378 323H309L277 193Q244 61 244 59Q244 55 245 54T252 50T269 48T302 46H333Q339 38 339 37T336 19Q332 6 326 0H311Q275 2 180 2Q146 2 117 2T71 2T50 1Q33 1 33 10Q33 12 36 24Q41 43 46 45Q50 46 61 46H67Q94 46 127 49Q141 52 146 61Q149 65 218 339T287 628Q287 635 230 637ZM630 554Q630 586 609 608T523 636Q521 636 500 636T462 637H440Q393 637 386 627Q385 624 352 494T319 361Q319 360 388 360Q466 361 492 367Q556 377 592 426Q608 449 619 486T630 554Z"></path></g><g data-mml-node="mi" transform="translate(1359,0)"><path data-c="1D452" d="M39 168Q39 225 58 272T107 350T174 402T244 433T307 442H310Q355 442 388 420T421 355Q421 265 310 237Q261 224 176 223Q139 223 138 221Q138 219 132 186T125 128Q125 81 146 54T209 26T302 45T394 111Q403 121 406 121Q410 121 419 112T429 98T420 82T390 55T344 24T281 -1T205 -11Q126 -11 83 42T39 168ZM373 353Q367 405 305 405Q272 405 244 391T199 357T170 316T154 280T149 261Q149 260 169 260Q282 260 327 284T373 353Z"></path></g><g data-mml-node="mi" transform="translate(1825,0)"><path data-c="1D451" d="M366 683Q367 683 438 688T511 694Q523 694 523 686Q523 679 450 384T375 83T374 68Q374 26 402 26Q411 27 422 35Q443 55 463 131Q469 151 473 152Q475 153 483 153H487H491Q506 153 506 145Q506 140 503 129Q490 79 473 48T445 8T417 -8Q409 -10 393 -10Q359 -10 336 5T306 36L300 51Q299 52 296 50Q294 48 292 46Q233 -10 172 -10Q117 -10 75 30T33 157Q33 205 53 255T101 341Q148 398 195 420T280 442Q336 442 364 400Q369 394 369 396Q370 400 396 505T424 616Q424 629 417 632T378 637H357Q351 643 351 645T353 664Q358 683 366 683ZM352 326Q329 405 277 405Q242 405 210 374T160 293Q131 214 119 129Q119 126 119 118T118 106Q118 61 136 44T179 26Q233 26 290 98L298 109L352 326Z"></path></g><g data-mml-node="mi" transform="translate(2345,0)"><path data-c="1D462" d="M21 287Q21 295 30 318T55 370T99 420T158 442Q204 442 227 417T250 358Q250 340 216 246T182 105Q182 62 196 45T238 27T291 44T328 78L339 95Q341 99 377 247Q407 367 413 387T427 416Q444 431 463 431Q480 431 488 421T496 402L420 84Q419 79 419 68Q419 43 426 35T447 26Q469 29 482 57T512 145Q514 153 532 153Q551 153 551 144Q550 139 549 130T540 98T523 55T498 17T462 -8Q454 -10 438 -10Q372 -10 347 46Q345 45 336 36T318 21T296 6T267 -6T233 -11Q189 -11 155 7Q103 38 103 113Q103 170 138 262T173 379Q173 380 173 381Q173 390 173 393T169 400T158 404H154Q131 404 112 385T82 344T65 302T57 280Q55 278 41 278H27Q21 284 21 287Z"></path></g><g data-mml-node="mi" transform="translate(2917,0)"><path data-c="1D450" d="M34 159Q34 268 120 355T306 442Q362 442 394 418T427 355Q427 326 408 306T360 285Q341 285 330 295T319 325T330 359T352 380T366 386H367Q367 388 361 392T340 400T306 404Q276 404 249 390Q228 381 206 359Q162 315 142 235T121 119Q121 73 147 50Q169 26 205 26H209Q321 26 394 111Q403 121 406 121Q410 121 419 112T429 98T420 83T391 55T346 25T282 0T202 -11Q127 -11 81 37T34 159Z"></path></g><g data-mml-node="mi" transform="translate(3350,0)"><path data-c="1D452" d="M39 168Q39 225 58 272T107 350T174 402T244 433T307 442H310Q355 442 388 420T421 355Q421 265 310 237Q261 224 176 223Q139 223 138 221Q138 219 132 186T125 128Q125 81 146 54T209 26T302 45T394 111Q403 121 406 121Q410 121 419 112T429 98T420 82T390 55T344 24T281 -1T205 -11Q126 -11 83 42T39 168ZM373 353Q367 405 305 405Q272 405 244 391T199 357T170 316T154 280T149 261Q149 260 169 260Q282 260 327 284T373 353Z"></path></g></g></g></svg></mjx-container></span> 个中间文件用于后续的 reduce
+任务。</li>
+<li><code>mr-out-X</code> 文件每行包含一个 reduce 函数输出，每行格式为
+<code>%v %v</code> 分别表示 key 和 value。</li>
+<li>mapper 输出文件放在当前目录下，以便后续 reducer 作为输入读取。</li>
+<li>需要实现 <code>Done()</code> 函数用于表明整个 MapReduce
+任务完成。</li>
+<li>当整个任务都完成时，需要让 worker
+进程也应该退出。一种简单的方案是改造 <code>call()</code> 函数：当 worker
+联系不上 coordinator 时，就可以假定 coordinator
+因为任务完成而退出了，因此 worker 也可以退出了。</li>
+</ol>
+<h2 id="提示-hints">提示 // Hints</h2>
+<ol type="1">
+<li>一个入手的途径是去修改 <code>mr/workers.go</code> 中的
+<code>Worker()</code> 函数，发送 RPC 到 coordinator 请求任务下发。</li>
+<li>reduce 任务必须输出至 <code>mr-out-X</code></li>
+<li>当修改了 <code>mr/</code> 文件夹下的任意内容时，最好 re-build 所有
+MapReduce 插件以确认生效。</li>
+<li>对于中间文件的命名，一种合理的方案是 <code>mr-X-Y</code> ，其中
+<code>X</code> 表示 map 的任务 id，<code>Y</code> 表示 reduce 的任务
+id。</li>
+<li>map 任务需要将生产的 key-value
+对存储到中间文件上，一种可行的方案使用 Go 语言的
+<code>encoding/json</code> 包。 <figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 存储</span></span><br><span class="line">enc := json.NewEncoder(file)</span><br><span class="line"><span class="keyword">for</span> _, kv := ... {</span><br><span class="line"> err := enc.Encode(&amp;kv)</span><br><span class="line">}</span><br><span class="line"><span class="comment">// 读取</span></span><br><span class="line">dec := json.NewDecoder(file)</span><br><span class="line"><span class="keyword">for</span> {</span><br><span class="line">  <span class="keyword">var</span> kv KeyValue</span><br><span class="line">  <span class="keyword">if</span> err := dec.Decode(&amp;kv); err != <span class="literal">nil</span> {</span><br><span class="line">    <span class="keyword">break</span></span><br><span class="line">  }</span><br><span class="line">  kva = <span class="built_in">append</span>(kva, kv)</span><br><span class="line">}</span><br></pre></td></tr></table></figure></li>
+<li>coordinator 作为 RPC 服务器，是并发的，因此记得给数据上锁。</li>
+<li>运行 <code>go run -race</code> 使用 Go 语言的竞争检测器。</li>
+<li>Worker 有时是需要等待的，比如 reduce 任务必须等最后一个 map
+任务完成后才能开始。
+<ol type="1">
+<li>一种方案是 worker 周期性地向 coordinator 请求任务。</li>
+<li>一种方案是 coordinator 中对应的 RPC handler 使用
+<code>time.Sleep()</code> 或 <code>sync.Cond</code> 进行循环等待。因为
+Go 语言中的每个 handler 都有自己的线程，所以 handler 等待状态不会影响
+coordinator 处理其他请求。</li>
+</ol></li>
+<li>因为 coordinator 不能判断 worker 是宕机还是处理速度过慢，因此最好给
+worker 设置超时时间（10s），当 worker 超时后将任务重新分配给其他 worker
+去完成。</li>
+<li>若要测试宕机恢复，可以使用 <code>mrapps/crash.go</code>
+插件，该插件会在 map 和 reduce 函数中随机退出。</li>
+<li><code>test-mr.sh</code> 处理文件在 <code>mr-tmp</code>
+文件夹中，若程序有问题可在该目录下查看输出文件。</li>
+<li>Go RPC
+只处理大写字母开头的字段，子数据结构的字段名也必须是大写开头的。</li>
+<li>当调用 RPC <code>call()</code>
+函数时，返回结构体必须包含所有的默认值，否则可能返回错误值。</li>
+</ol>
+<h2 id="思路-idea">思路 // Idea</h2>
+<ul>
+<li>MapReduce 整体分成 2 阶段
+<ul>
+<li>Map：从原始输入生产 key-value 对</li>
+<li>Reduce：从 key-value 对生产最终结果</li>
+</ul></li>
+<li>Worker 采用轮询机制不断向 Coordinator
+请求任务下发直至整个任务完成。</li>
+<li>Worker 请求任务的同时向 Coordinator 透传已完成的任务信息。</li>
+<li>Coordinator 维护两个 chan，一个 chan 用于分配任务，一个 chan
+用于定时检测 worker 是否超时（判定为宕机）。</li>
+</ul>
+<h2 id="具体实现-implementation">具体实现 // Implementation</h2>
+<h3 id="rpc.go">rpc.go</h3>
+<ul>
+<li>结构定义 <figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">type</span> Task <span class="keyword">struct</span> {</span><br><span class="line">    Id       <span class="type">int</span></span><br><span class="line">    Type     <span class="type">string</span></span><br><span class="line">    Filepath <span class="type">string</span></span><br><span class="line">    TTL      time.Time  <span class="comment">// 超时时间点</span></span><br><span class="line">}</span><br><span class="line"></span><br><span class="line"><span class="keyword">type</span> TaskRequest <span class="keyword">struct</span> {</span><br><span class="line">    WorkerId     <span class="type">int</span></span><br><span class="line">    LastTaskId   <span class="type">int</span></span><br><span class="line">    LastTaskType <span class="type">string</span></span><br><span class="line">}</span><br><span class="line"></span><br><span class="line"><span class="keyword">type</span> TaskResponse <span class="keyword">struct</span> {</span><br><span class="line">    TaskId   <span class="type">int</span></span><br><span class="line">    TaskType <span class="type">string</span></span><br><span class="line">    Filepath <span class="type">string</span></span><br><span class="line">    NMap     <span class="type">int</span></span><br><span class="line">    NReduce  <span class="type">int</span></span><br><span class="line">}</span><br></pre></td></tr></table></figure></li>
+<li>文件重命名方法
+<ul>
+<li>中间文件名需以 <code>mr</code> 开头，否则 <code>test-mr.sh</code>
+中的 test 会受前一个 test 的影响导致失败。 <figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">mapTempFilename</span><span class="params">(mapId <span class="type">int</span>, reduceId <span class="type">int</span>, workerId <span class="type">int</span>)</span></span> <span class="type">string</span> {</span><br><span class="line">    <span class="keyword">return</span> fmt.Sprintf(<span class="string">"mr-map-%d-%d-%d"</span>, mapId, reduceId, workerId)</span><br><span class="line">}</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">mapOutputFilename</span><span class="params">(mapId <span class="type">int</span>, reduceId <span class="type">int</span>)</span></span> <span class="type">string</span> {</span><br><span class="line">    <span class="keyword">return</span> fmt.Sprintf(<span class="string">"mr-map-%d-%d"</span>, mapId, reduceId)</span><br><span class="line">}</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">finishMapTask</span><span class="params">(workerId <span class="type">int</span>, mapId <span class="type">int</span>, nReduce <span class="type">int</span>)</span></span> {</span><br><span class="line">    <span class="keyword">for</span> reduceId := <span class="number">0</span>; reduceId &lt; nReduce; reduceId++ {</span><br><span class="line">        os.Rename(</span><br><span class="line">            mapTempFilename(mapId, reduceId, workerId),</span><br><span class="line">            mapOutputFilename(mapId, reduceId))</span><br><span class="line">    }</span><br><span class="line">}</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">reduceTempFilename</span><span class="params">(reduceId <span class="type">int</span>, workerId <span class="type">int</span>)</span></span> <span class="type">string</span> {</span><br><span class="line">    <span class="keyword">return</span> fmt.Sprintf(<span class="string">"mr-reduce-%d-%d"</span>, reduceId, workerId)</span><br><span class="line">}</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">reduceOutputFilename</span><span class="params">(reduceId <span class="type">int</span>)</span></span> <span class="type">string</span> {</span><br><span class="line">    <span class="keyword">return</span> fmt.Sprintf(<span class="string">"mr-out-%d"</span>, reduceId)</span><br><span class="line">}</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">finishReduceTask</span><span class="params">(workerId <span class="type">int</span>, reduceId <span class="type">int</span>)</span></span> {</span><br><span class="line">    os.Rename(</span><br><span class="line">        reduceTempFilename(reduceId, workerId),</span><br><span class="line">        reduceOutputFilename(reduceId))</span><br><span class="line">}</span><br></pre></td></tr></table></figure></li>
+</ul></li>
+</ul>
+<h3 id="worker.go">worker.go</h3>
+<ul>
+<li>初始化 <figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">Worker</span><span class="params">(mapf <span class="keyword">func</span>(<span class="type">string</span>, <span class="type">string</span>)</span></span> []KeyValue, reducef <span class="function"><span class="keyword">func</span><span class="params">(<span class="type">string</span>, []<span class="type">string</span>)</span></span> <span class="type">string</span>) {</span><br><span class="line">    id := os.Getpid()  <span class="comment">// pid 作为 workerId</span></span><br><span class="line">    done := <span class="literal">false</span></span><br><span class="line">    lastTaskId := <span class="number">-1</span></span><br><span class="line">    lastTaskType := <span class="string">""</span></span><br><span class="line"></span><br><span class="line">    <span class="keyword">for</span> {</span><br><span class="line">        req := TaskRequest{</span><br><span class="line">            WorkerId:     id,</span><br><span class="line">            LastTaskId:   lastTaskId,</span><br><span class="line">            LastTaskType: lastTaskType,</span><br><span class="line">        }</span><br><span class="line">        rsp := TaskResponse{}</span><br><span class="line">        call(<span class="string">"Coordinator.GetTask"</span>, &amp;req, &amp;rsp)</span><br><span class="line">        <span class="keyword">switch</span> rsp.TaskType {</span><br><span class="line">        <span class="keyword">case</span> <span class="string">"MAP"</span>:</span><br><span class="line">            _map(id, rsp.TaskId, rsp.NReduce, rsp.Filepath, mapf)</span><br><span class="line">        <span class="keyword">case</span> <span class="string">"REDUCE"</span>:</span><br><span class="line">            _reduce(id, rsp.TaskId, rsp.NMap, reducef)</span><br><span class="line">        <span class="keyword">default</span>:</span><br><span class="line">            done = <span class="literal">true</span></span><br><span class="line">        }</span><br><span class="line">        <span class="keyword">if</span> done {</span><br><span class="line">            <span class="keyword">break</span></span><br><span class="line">        }</span><br><span class="line">        lastTaskId = rsp.TaskId</span><br><span class="line">        lastTaskType = rsp.TaskType</span><br><span class="line">    }</span><br><span class="line">}</span><br></pre></td></tr></table></figure></li>
+<li>map 任务处理 <figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">func</span> _<span class="title">map</span><span class="params">(workerId <span class="type">int</span>, mapId <span class="type">int</span>, nReduce <span class="type">int</span>, filepath <span class="type">string</span>, mapf <span class="keyword">func</span>(<span class="type">string</span>, <span class="type">string</span>)</span></span> []KeyValue) {</span><br><span class="line">    file, _ := os.Open(filepath)</span><br><span class="line">    content, _ := ioutil.ReadAll(file)</span><br><span class="line">    file.Close()</span><br><span class="line"></span><br><span class="line">    kva := mapf(filepath, <span class="type">string</span>(content))</span><br><span class="line">    result := <span class="built_in">make</span>(<span class="keyword">map</span>[<span class="type">int</span>][]KeyValue)</span><br><span class="line">    <span class="keyword">for</span> _, kv := <span class="keyword">range</span> kva {</span><br><span class="line">        reduceId := ihash(kv.Key) % nReduce</span><br><span class="line">        result[reduceId] = <span class="built_in">append</span>(result[reduceId], kv)</span><br><span class="line">    }</span><br><span class="line"></span><br><span class="line">    <span class="keyword">for</span> reduceId, kvs := <span class="keyword">range</span> result {</span><br><span class="line">        outFile, _ := os.Create(mapTempFilename(mapId, reduceId, workerId))</span><br><span class="line">        <span class="keyword">for</span> _, kv := <span class="keyword">range</span> kvs {</span><br><span class="line">            fmt.Fprintf(outFile, <span class="string">"%v\t%v\n"</span>, kv.Key, kv.Value)</span><br><span class="line">        }</span><br><span class="line">        outFile.Close()</span><br><span class="line">    }</span><br><span class="line">}</span><br></pre></td></tr></table></figure></li>
+<li>reduce 任务处理 <figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">func</span> _<span class="title">reduce</span><span class="params">(workerId <span class="type">int</span>, reduceId <span class="type">int</span>, nMap <span class="type">int</span>, reducef <span class="keyword">func</span>(<span class="type">string</span>, []<span class="type">string</span>)</span></span> <span class="type">string</span>) {</span><br><span class="line">    <span class="keyword">var</span> lines []<span class="type">string</span></span><br><span class="line">    <span class="keyword">for</span> mapId := <span class="number">0</span>; mapId &lt; nMap; mapId++ {</span><br><span class="line">        file, err := os.Open(mapOutputFilename(mapId, reduceId))</span><br><span class="line">        <span class="keyword">if</span> err != <span class="literal">nil</span> {</span><br><span class="line">            <span class="keyword">continue</span></span><br><span class="line">        }</span><br><span class="line">        content, err := ioutil.ReadAll(file)</span><br><span class="line">        <span class="keyword">if</span> err != <span class="literal">nil</span> {</span><br><span class="line">            <span class="keyword">continue</span></span><br><span class="line">        }</span><br><span class="line">        file.Close()</span><br><span class="line">        lines = <span class="built_in">append</span>(lines, strings.Split(<span class="type">string</span>(content), <span class="string">"\n"</span>)...)</span><br><span class="line">    }</span><br><span class="line"></span><br><span class="line">    result := <span class="built_in">make</span>(<span class="keyword">map</span>[<span class="type">string</span>][]<span class="type">string</span>)</span><br><span class="line">    <span class="keyword">for</span> _, line := <span class="keyword">range</span> lines {</span><br><span class="line">        <span class="keyword">if</span> strings.TrimSpace(line) == <span class="string">""</span> {</span><br><span class="line">            <span class="keyword">continue</span></span><br><span class="line">        }</span><br><span class="line">        split := strings.Split(line, <span class="string">"\t"</span>)</span><br><span class="line">        key := split[<span class="number">0</span>]</span><br><span class="line">        value := split[<span class="number">1</span>]</span><br><span class="line">        result[key] = <span class="built_in">append</span>(result[key], value)</span><br><span class="line">    }</span><br><span class="line"></span><br><span class="line">    keys := <span class="built_in">make</span>([]<span class="type">string</span>, <span class="number">0</span>)</span><br><span class="line">    <span class="keyword">for</span> key := <span class="keyword">range</span> result {</span><br><span class="line">        keys = <span class="built_in">append</span>(keys, key)</span><br><span class="line">    }</span><br><span class="line">    sort.Strings(keys)</span><br><span class="line"></span><br><span class="line">    outFile, _ := os.Create(reduceTempFilename(reduceId, workerId))</span><br><span class="line">    <span class="keyword">for</span> _, key := <span class="keyword">range</span> keys {</span><br><span class="line">        fmt.Fprintf(outFile, <span class="string">"%v %v\n"</span>, key, reducef(key, result[key]))</span><br><span class="line">    }</span><br><span class="line">    outFile.Close()</span><br><span class="line">}</span><br></pre></td></tr></table></figure></li>
+</ul>
+<h3 id="coordinator.go">coordinator.go</h3>
+<ul>
+<li>初始化 <figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">MakeCoordinator</span><span class="params">(files []<span class="type">string</span>, nReduce <span class="type">int</span>)</span></span> *Coordinator {</span><br><span class="line">    bufferSize := <span class="built_in">len</span>(files)</span><br><span class="line">    <span class="keyword">if</span> bufferSize &lt; nReduce {</span><br><span class="line">        bufferSize = nReduce</span><br><span class="line">    }</span><br><span class="line">    c := Coordinator{</span><br><span class="line">        nMap:            <span class="built_in">len</span>(files),</span><br><span class="line">        nLeftMapTask:    <span class="built_in">len</span>(files),</span><br><span class="line">        nReduce:         nReduce,</span><br><span class="line">        nLeftReduceTask: nReduce,</span><br><span class="line">        taskList:        <span class="built_in">make</span>(<span class="keyword">chan</span> Task, bufferSize),</span><br><span class="line">        reviewList:      <span class="built_in">make</span>(<span class="keyword">chan</span> Task, bufferSize),</span><br><span class="line">        taskStatus:      <span class="built_in">make</span>(<span class="keyword">map</span>[<span class="type">int</span>]<span class="type">bool</span>),</span><br><span class="line">    }</span><br><span class="line"></span><br><span class="line">    <span class="keyword">for</span> i, file := <span class="keyword">range</span> files {</span><br><span class="line">        task := Task{</span><br><span class="line">            Id:       i,</span><br><span class="line">            Type:     <span class="string">"MAP"</span>,</span><br><span class="line">            Filepath: file,</span><br><span class="line">            TTL:      time.Now().Add(<span class="number">10</span> * time.Second),</span><br><span class="line">        }</span><br><span class="line">        c.taskList &lt;- task</span><br><span class="line">    }</span><br><span class="line">    c.server()</span><br><span class="line"></span><br><span class="line">	<span class="keyword">return</span> &amp;c</span><br><span class="line">}</span><br></pre></td></tr></table></figure></li>
+<li>任务请求处理 <figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">func</span> <span class="params">(c *Coordinator)</span></span> GetTask(req *TaskRequest, rsp *TaskResponse) <span class="type">error</span> {</span><br><span class="line">    c.lock.Lock()</span><br><span class="line">    <span class="keyword">if</span> req.LastTaskId != <span class="number">-1</span> {</span><br><span class="line">        <span class="keyword">if</span> finished, ok := c.taskStatus[req.LastTaskId]; !ok || !finished {</span><br><span class="line">            <span class="keyword">switch</span> req.LastTaskType {</span><br><span class="line">            <span class="keyword">case</span> <span class="string">"MAP"</span>:</span><br><span class="line">                <span class="keyword">if</span> c.nLeftMapTask &gt; <span class="number">0</span> {</span><br><span class="line">                    finishMapTask(req.WorkerId, req.LastTaskId, c.nReduce)</span><br><span class="line">                    c.nLeftMapTask -= <span class="number">1</span></span><br><span class="line">                    c.taskStatus[req.LastTaskId] = <span class="literal">true</span></span><br><span class="line">                    <span class="keyword">if</span> c.nLeftMapTask == <span class="number">0</span> {</span><br><span class="line">                        c.taskStatus = <span class="built_in">make</span>(<span class="keyword">map</span>[<span class="type">int</span>]<span class="type">bool</span>)</span><br><span class="line">                        <span class="keyword">for</span> i := <span class="number">0</span>; i &lt; c.nReduce; i++ {</span><br><span class="line">                            task := Task{</span><br><span class="line">                                Id:       i,</span><br><span class="line">                                Type:     <span class="string">"REDUCE"</span>,</span><br><span class="line">                                Filepath: <span class="string">""</span>,</span><br><span class="line">                                TTL:      time.Now().Add(<span class="number">10</span> * time.Second),</span><br><span class="line">                            }</span><br><span class="line">                            c.taskList &lt;- task</span><br><span class="line">                        }</span><br><span class="line">                    }</span><br><span class="line">                }</span><br><span class="line">            <span class="keyword">case</span> <span class="string">"REDUCE"</span>:</span><br><span class="line">                <span class="keyword">if</span> c.nLeftReduceTask &gt; <span class="number">0</span> {</span><br><span class="line">                    finishReduceTask(req.WorkerId, req.LastTaskId)</span><br><span class="line">                    c.nLeftReduceTask -= <span class="number">1</span></span><br><span class="line">                    c.taskStatus[req.LastTaskId] = <span class="literal">true</span></span><br><span class="line">                    <span class="keyword">if</span> c.nLeftReduceTask == <span class="number">0</span> {</span><br><span class="line">                        <span class="built_in">close</span>(c.taskList)</span><br><span class="line">                        <span class="built_in">close</span>(c.reviewList)</span><br><span class="line">                    }</span><br><span class="line">                }</span><br><span class="line">                <span class="keyword">break</span></span><br><span class="line">            }</span><br><span class="line">        }</span><br><span class="line">    }</span><br><span class="line">	c.lock.Unlock()</span><br><span class="line"></span><br><span class="line">	<span class="keyword">for</span> {</span><br><span class="line">        task, ok := &lt;-c.taskList</span><br><span class="line">        <span class="keyword">if</span> !ok {</span><br><span class="line">            <span class="keyword">return</span> <span class="literal">nil</span></span><br><span class="line">        }</span><br><span class="line">        c.lock.Lock()</span><br><span class="line">        <span class="keyword">defer</span> c.lock.Unlock()</span><br><span class="line">        <span class="keyword">if</span> finished, ok := c.taskStatus[task.Id]; ok &amp;&amp; finished {</span><br><span class="line">            <span class="keyword">continue</span></span><br><span class="line">        } <span class="keyword">else</span> {</span><br><span class="line">            rsp.TaskId = task.Id</span><br><span class="line">            rsp.TaskType = task.Type</span><br><span class="line">            rsp.Filepath = task.Filepath</span><br><span class="line">            rsp.NMap = c.nMap</span><br><span class="line">            rsp.NReduce = c.nReduce</span><br><span class="line"></span><br><span class="line">			task.TTL = time.Now().Add(<span class="number">10</span> * time.Second)</span><br><span class="line">            c.reviewList &lt;- task</span><br><span class="line">            <span class="keyword">return</span> <span class="literal">nil</span></span><br><span class="line">        }</span><br><span class="line">    }</span><br><span class="line">}</span><br></pre></td></tr></table></figure></li>
+<li>定期检查超时任务 <figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">MakeCoordinator</span><span class="params">(files []<span class="type">string</span>, nReduce <span class="type">int</span>)</span></span> *Coordinator {</span><br><span class="line">	<span class="comment">// ...</span></span><br><span class="line">    <span class="keyword">go</span> <span class="function"><span class="keyword">func</span><span class="params">()</span></span> {</span><br><span class="line">        <span class="keyword">for</span> task := <span class="keyword">range</span> c.reviewList {</span><br><span class="line">            time.Sleep(time.Until(task.TTL))</span><br><span class="line">            <span class="keyword">if</span> !((c.nLeftMapTask == <span class="number">0</span> &amp;&amp; task.Type == <span class="string">"MAP"</span>) || (c.nLeftReduceTask == <span class="number">0</span> &amp;&amp; task.Type == <span class="string">"REDUCE"</span>)) {</span><br><span class="line">                c.lock.Lock()</span><br><span class="line">                <span class="keyword">if</span> finished, ok := c.taskStatus[task.Id]; !ok || !finished {</span><br><span class="line">                    task.TTL = time.Now().Add(<span class="number">10</span> * time.Second)</span><br><span class="line">                    c.taskList &lt;- task</span><br><span class="line">                }</span><br><span class="line">                c.lock.Unlock()</span><br><span class="line">            }</span><br><span class="line">        }</span><br><span class="line">    }()</span><br><span class="line">    <span class="comment">// ...</span></span><br><span class="line">}</span><br></pre></td></tr></table></figure></li>
+</ul>
+<h3 id="其他事项">其他事项</h3>
+<ul>
+<li>每次完成修改，在 <code>src/mr</code> 目录使用
+<code>go build -buildmode=plugin ../mrapps/wc.go</code>
+重新编译，之后运行 <code>main/test-mr.sh</code> 进行测试。</li>
+</ul>
+
+    </article>
+    <!-- license -->
+    
+        <div class="license-wrapper">
+            <p>原文作者：<a href="http://mcginn7.github.io">Mcginn</a>
+            <p>原文链接：<a href="http://mcginn7.github.io/2023/07/18/MIT%206.824%20Lab1/">http://mcginn7.github.io/2023/07/18/MIT%206.824%20Lab1/</a>
+            <p>发表日期：<a href="http://mcginn7.github.io/2023/07/18/MIT%206.824%20Lab1/">July 18th 2023, 11:10:19 pm</a>
+            <p>更新日期：<a href="http://mcginn7.github.io/2023/07/18/MIT%206.824%20Lab1/">May 4th 2024, 6:46:12 pm</a>
+            <p>版权声明：本文采用<a rel="license" href="http://creativecommons.org/licenses/by-nc/4.0/">知识共享署名-非商业性使用 4.0 国际许可协议</a>进行许可</p>
+        </div>
+    
+    <!-- paginator -->
+    <ul class="post-paginator">
+        <li class="next">
+            
+        </li>
+        <li class="previous">
+            
+                <div class="prevSlogan">Previous Post</div>
+                <a href="../../../../2021/12/26/%E6%B1%82%E8%A7%A3%E6%97%A0%E5%90%91%E5%9B%BE%E6%9C%80%E5%B0%8F%E5%89%B2/" title="求解无向图最小割">
+                    <div class="prevTitle">求解无向图最小割</div>
+                </a>
+            
+        </li>
+    </ul>
+    <!-- comment -->
+    
+        <div class="post-comment">
+            <!-- 来必力 City 版安装代码 -->
+
+
+            
+
+            
+
+            
+
+            <!-- utteranc评论 -->
+
+
+            <!-- partial('_partial/comment/changyan') -->
+            <!--PC版-->
+
+
+            
+            
+
+            
+
+        </div>
+    
+    <!-- timeliness note -->
+    <!-- idea from: https://hexo.fluid-dev.com/posts/hexo-injector/#%E6%96%87%E7%AB%A0%E6%97%B6%E6%95%88%E6%80%A7%E6%8F%90%E7%A4%BA -->
+    
+    <!-- Mathjax -->
+    
+</main>
+
+                <!-- profile -->
+                
+            </div>
+            <footer class="footer footer-unloaded">
+    <!-- social  -->
+    
+        <div class="social">
+            
+    
+        
+            
+                <a href="mailto:mingqinchen@foxmail.com" class="iconfont-archer email" title=email ></a>
+            
+        
+    
+        
+            
+                <a href="//github.com/mcginn7" class="iconfont-archer github" target="_blank" title=github></a>
+            
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+
+
+        </div>
+    
+    <!-- powered by Hexo  -->
+    <div class="copyright">
+        <span id="hexo-power">Powered by <a href="https://hexo.io/" target="_blank">Hexo</a></span><span class="iconfont-archer power">&#xe635;</span><span id="theme-info">theme <a href="https://github.com/fi3ework/hexo-theme-archer" target="_blank">Archer</a></span>
+    </div>
+    <!-- website approve for Chinese user -->
+    
+    <!-- 不蒜子  -->
+    
+        <div class="busuanzi-container">
+            
+             
+                <span id="busuanzi_container_site_pv">PV: <span id="busuanzi_value_site_pv"></span> :)</span>
+            
+        </div>
+    	
+</footer>
+
+        </div>
+        <!-- toc -->
+        
+            <div class="toc-wrapper toc-wrapper-loding" style=
+
+
+
+
+
+
+
+    top:50vh;
+
+>
+                <div class="toc-catalog">
+                    <span class="iconfont-archer catalog-icon">&#xe613;</span><span>CATALOG</span>
+                </div>
+                <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%A6%81%E6%B1%82-rules"><span class="toc-number">1.</span> <span class="toc-text">要求 &#x2F;&#x2F; Rules</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%8F%90%E7%A4%BA-hints"><span class="toc-number">2.</span> <span class="toc-text">提示 &#x2F;&#x2F; Hints</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%80%9D%E8%B7%AF-idea"><span class="toc-number">3.</span> <span class="toc-text">思路 &#x2F;&#x2F; Idea</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%85%B7%E4%BD%93%E5%AE%9E%E7%8E%B0-implementation"><span class="toc-number">4.</span> <span class="toc-text">具体实现 &#x2F;&#x2F; Implementation</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#rpc.go"><span class="toc-number">4.1.</span> <span class="toc-text">rpc.go</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#worker.go"><span class="toc-number">4.2.</span> <span class="toc-text">worker.go</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#coordinator.go"><span class="toc-number">4.3.</span> <span class="toc-text">coordinator.go</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%85%B6%E4%BB%96%E4%BA%8B%E9%A1%B9"><span class="toc-number">4.4.</span> <span class="toc-text">其他事项</span></a></li></ol></li></ol>
+            </div>
+        
+        <!-- sidebar -->
+        <div class="sidebar sidebar-hide">
+    <ul class="sidebar-tabs sidebar-tabs-active-0">
+        <li class="sidebar-tab-archives"><span class="iconfont-archer">&#xe67d;</span><span class="tab-name">Archive</span></li>
+        <li class="sidebar-tab-tags"><span class="iconfont-archer">&#xe61b;</span><span class="tab-name">Tag</span></li>
+        <li class="sidebar-tab-categories"><span class="iconfont-archer">&#xe666;</span><span class="tab-name">Cate</span></li>
+    </ul>
+    <div class="sidebar-content sidebar-content-show-archive">
+        <div class="sidebar-panel-archives">
+    <!-- 在 ejs 中将 archive 按照时间排序 -->
+    
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+    
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+    
+    
+    
+    
+    <div class="total-and-search">
+        <div class="total-archive">
+        Total : 28
+        </div>
+        <!-- search  -->
+        
+    </div>
+    
+    <div class="post-archive">
+    
+        
+            
+            
+            <div class="archive-year"> 2023 </div>
+            <ul class="year-list">
+            
+        
+        <li class="archive-post-item">
+            <span class="archive-post-date">07/18</span>
+            <a class="archive-post-title" href="">MIT 6.824 Lab1</a>
+        </li>
+    
+        
+            
+            
+                
+                </ul>
+            
+            <div class="archive-year"> 2021 </div>
+            <ul class="year-list">
+            
+        
+        <li class="archive-post-item">
+            <span class="archive-post-date">12/26</span>
+            <a class="archive-post-title" href="../../../../2021/12/26/%E6%B1%82%E8%A7%A3%E6%97%A0%E5%90%91%E5%9B%BE%E6%9C%80%E5%B0%8F%E5%89%B2/">求解无向图最小割</a>
+        </li>
+    
+        
+        <li class="archive-post-item">
+            <span class="archive-post-date">12/19</span>
+            <a class="archive-post-title" href="../../../../2021/12/19/SGU-401-450/">SGU-401-450</a>
+        </li>
+    
+        
+        <li class="archive-post-item">
+            <span class="archive-post-date">09/12</span>
+            <a class="archive-post-title" href="../../../../2021/09/12/SGU-351-400/">SGU-351-400</a>
+        </li>
+    
+        
+        <li class="archive-post-item">
+            <span class="archive-post-date">06/27</span>
+            <a class="archive-post-title" href="../../../../2021/06/27/SGU-301-350/">SGU-301-350</a>
+        </li>
+    
+        
+        <li class="archive-post-item">
+            <span class="archive-post-date">04/24</span>
+            <a class="archive-post-title" href="../../../../2021/04/24/SGU-253-300/">SGU-253-300</a>
+        </li>
+    
+        
+            
+            
+                
+                </ul>
+            
+            <div class="archive-year"> 2020 </div>
+            <ul class="year-list">
+            
+        
+        <li class="archive-post-item">
+            <span class="archive-post-date">10/06</span>
+            <a class="archive-post-title" href="../../../../2020/10/06/SGU-153-252/">SGU 153-252</a>
+        </li>
+    
+        
+        <li class="archive-post-item">
+            <span class="archive-post-date">05/10</span>
+            <a class="archive-post-title" href="../../../../2020/05/10/Kuhn-Munkres-Algorithm/">Kuhn-Munkres Algorithm</a>
+        </li>
+    
+        
+        <li class="archive-post-item">
+            <span class="archive-post-date">02/23</span>
+            <a class="archive-post-title" href="../../../../2020/02/23/CSAPP-cachelab/">CSAPP - cachelab</a>
+        </li>
+    
+        
+        <li class="archive-post-item">
+            <span class="archive-post-date">02/21</span>
+            <a class="archive-post-title" href="../../../../2020/02/21/CSAPP-archlab/">CSAPP - archlab</a>
+        </li>
+    
+        
+        <li class="archive-post-item">
+            <span class="archive-post-date">02/19</span>
+            <a class="archive-post-title" href="../../../../2020/02/19/CSAPP-attacklab/">CSAPP - attacklab</a>
+        </li>
+    
+        
+        <li class="archive-post-item">
+            <span class="archive-post-date">02/16</span>
+            <a class="archive-post-title" href="../../../../2020/02/16/CSAPP-bomblab/">CSAPP - bomblab</a>
+        </li>
+    
+        
+        <li class="archive-post-item">
+            <span class="archive-post-date">02/14</span>
+            <a class="archive-post-title" href="../../../../2020/02/14/CSAPP-datalab/">CSAPP - datalab</a>
+        </li>
+    
+        
+            
+            
+                
+                </ul>
+            
+            <div class="archive-year"> 2019 </div>
+            <ul class="year-list">
+            
+        
+        <li class="archive-post-item">
+            <span class="archive-post-date">11/20</span>
+            <a class="archive-post-title" href="../../../../2019/11/20/Palindromic-Factorization/">回文分解算法</a>
+        </li>
+    
+        
+        <li class="archive-post-item">
+            <span class="archive-post-date">11/15</span>
+            <a class="archive-post-title" href="../../../../2019/11/15/SGU-100-152/">SGU 100~152</a>
+        </li>
+    
+        
+        <li class="archive-post-item">
+            <span class="archive-post-date">10/31</span>
+            <a class="archive-post-title" href="../../../../2019/10/31/polya/">Pólya计数法</a>
+        </li>
+    
+        
+        <li class="archive-post-item">
+            <span class="archive-post-date">07/22</span>
+            <a class="archive-post-title" href="../../../../2019/07/22/B-Tree/">B-Tree</a>
+        </li>
+    
+        
+        <li class="archive-post-item">
+            <span class="archive-post-date">05/31</span>
+            <a class="archive-post-title" href="../../../../2019/05/31/AhoCorasick-Algorithm/">AhoCorasick Algorithm</a>
+        </li>
+    
+        
+        <li class="archive-post-item">
+            <span class="archive-post-date">05/24</span>
+            <a class="archive-post-title" href="../../../../2019/05/24/Knuth-Morris-Pratt-Algorithm/">Knuth-Morris-Pratt Algorithm</a>
+        </li>
+    
+        
+        <li class="archive-post-item">
+            <span class="archive-post-date">05/12</span>
+            <a class="archive-post-title" href="../../../../2019/05/12/ICPC-Resolver-%E8%B8%A9%E5%9D%91/">ICPC Resolver 踩坑</a>
+        </li>
+    
+        
+        <li class="archive-post-item">
+            <span class="archive-post-date">04/03</span>
+            <a class="archive-post-title" href="../../../../2019/04/03/%E6%96%9C%E7%8E%87%E4%BC%98%E5%8C%96/">斜率优化</a>
+        </li>
+    
+        
+        <li class="archive-post-item">
+            <span class="archive-post-date">03/31</span>
+            <a class="archive-post-title" href="../../../../2019/03/31/Nowcoder-%E5%87%BA%E9%A2%98%E4%BA%BA%E7%9A%84%E6%95%B0%E7%BB%84/">Nowcoder-出题人的数组</a>
+        </li>
+    
+        
+            
+            
+                
+                </ul>
+            
+            <div class="archive-year"> 2018 </div>
+            <ul class="year-list">
+            
+        
+        <li class="archive-post-item">
+            <span class="archive-post-date">10/09</span>
+            <a class="archive-post-title" href="../../../../2018/10/09/%E8%AE%BA%E6%96%87%E7%AC%94%E8%AE%B0-Tips-and-Tricks-for-Visual-Question-Answering/">论文笔记 Tips and Tricks for Visual Question Answering</a>
+        </li>
+    
+        
+        <li class="archive-post-item">
+            <span class="archive-post-date">10/04</span>
+            <a class="archive-post-title" href="../../../../2018/10/04/DOMjudge%E9%85%8D%E7%BD%AE/">DOMjudge 配置</a>
+        </li>
+    
+        
+        <li class="archive-post-item">
+            <span class="archive-post-date">08/18</span>
+            <a class="archive-post-title" href="../../../../2018/08/18/%E8%AE%BA%E6%96%87%E7%AC%94%E8%AE%B0%20Semantic%20Compositional%20Networks%20for%20Visual%20Captioning/">论文笔记 Semantic Compositional Networks for Visual Captioning</a>
+        </li>
+    
+        
+        <li class="archive-post-item">
+            <span class="archive-post-date">07/17</span>
+            <a class="archive-post-title" href="../../../../2018/07/17/%E8%AE%BA%E6%96%87%E9%98%85%E8%AF%BB%E8%AE%B0%E5%BD%95/">论文阅读记录</a>
+        </li>
+    
+        
+        <li class="archive-post-item">
+            <span class="archive-post-date">06/05</span>
+            <a class="archive-post-title" href="../../../../2018/06/05/Vim-for-windows-%E9%85%8D%E7%BD%AE/">Windows 下使用 Vim</a>
+        </li>
+    
+        
+        <li class="archive-post-item">
+            <span class="archive-post-date">06/05</span>
+            <a class="archive-post-title" href="../../../../2018/06/05/apt-offline%E7%AE%A1%E7%90%86Ubuntu%E7%A6%BB%E7%BA%BF%E5%AE%89%E8%A3%85%E8%BD%AF%E4%BB%B6%E5%8C%85/">Ubuntu离线安装软件包</a>
+        </li>
+    
+    </div>
+</div>
+
+        <div class="sidebar-panel-tags">
+    <div class="sidebar-tags-name">
+        
+            <span class="sidebar-tag-name" data-tags="AhoCorasick">
+                <span class="iconfont-archer">&#xe606;</span>
+                AhoCorasick
+            </span>
+        
+            <span class="sidebar-tag-name" data-tags="AC自动机">
+                <span class="iconfont-archer">&#xe606;</span>
+                AC自动机
+            </span>
+        
+            <span class="sidebar-tag-name" data-tags="domjudge">
+                <span class="iconfont-archer">&#xe606;</span>
+                domjudge
+            </span>
+        
+            <span class="sidebar-tag-name" data-tags="KMP">
+                <span class="iconfont-archer">&#xe606;</span>
+                KMP
+            </span>
+        
+            <span class="sidebar-tag-name" data-tags="ICPC">
+                <span class="iconfont-archer">&#xe606;</span>
+                ICPC
+            </span>
+        
+            <span class="sidebar-tag-name" data-tags="贪心">
+                <span class="iconfont-archer">&#xe606;</span>
+                贪心
+            </span>
+        
+            <span class="sidebar-tag-name" data-tags="vim">
+                <span class="iconfont-archer">&#xe606;</span>
+                vim
+            </span>
+        
+            <span class="sidebar-tag-name" data-tags="polya">
+                <span class="iconfont-archer">&#xe606;</span>
+                polya
+            </span>
+        
+            <span class="sidebar-tag-name" data-tags="斜率优化">
+                <span class="iconfont-archer">&#xe606;</span>
+                斜率优化
+            </span>
+        
+            <span class="sidebar-tag-name" data-tags="SW">
+                <span class="iconfont-archer">&#xe606;</span>
+                SW
+            </span>
+        
+            <span class="sidebar-tag-name" data-tags="git">
+                <span class="iconfont-archer">&#xe606;</span>
+                git
+            </span>
+        
+            <span class="sidebar-tag-name" data-tags="bash">
+                <span class="iconfont-archer">&#xe606;</span>
+                bash
+            </span>
+        
+    </div>
+    <div class="iconfont-archer sidebar-tags-empty">&#xe678;</div>
+    <div class="tag-load-fail" style="display: none; color: #ccc; font-size: 0.6rem;">
+        缺失模块，请参考主题文档进行安装配置：https://github.com/fi3ework/hexo-theme-archer#%E5%AE%89%E8%A3%85%E4%B8%BB%E9%A2%98
+    </div> 
+    <div class="sidebar-tags-list"></div>
+</div>
+
+        <div class="sidebar-panel-categories">
+    <div class="sidebar-categories-name">
+    
+    </div>
+    <div class="iconfont-archer sidebar-categories-empty">&#xe678;</div>
+    <div class="sidebar-categories-list"></div>
+</div>
+
+    </div>
+</div>
+
+        <!-- site-meta -->
+        <script>
+    var siteMetaRoot = "/"
+    if (siteMetaRoot === "undefined") {
+        siteMetaRoot = '/'
+    }
+    var siteMeta = {
+        url: "http://mcginn7.github.io",
+        root: siteMetaRoot,
+        author: "Mcginn"
+    }
+</script>
+
+        <!-- import experimental options here -->
+        <!-- Custom Font -->
+
+
+        <!-- main func -->
+        <script src="../../../../scripts/main.js?v=20211217"></script>
+        <!-- dark mode -->
+        <script src="../../../../scripts/dark.js?v=20211217"></script>
+        <!-- fancybox -->
+        <script src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.js" defer></script>
+        <!-- algolia -->
+        
+        <!-- busuanzi -->
+        
+            <script src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js" async></script>
+        
+        <!-- CNZZ -->
+        
+        <!-- async load share.js -->
+        
+            <script src="../../../../scripts/share.js?v=20211217" async></script>
+        
+        <!-- mermaid --><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+        
+    </body>
+</html>
