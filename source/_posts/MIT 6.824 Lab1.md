@@ -1,5 +1,5 @@
 ---
-title: MIT 6.824 Lab1
+title: "MIT 6.824 Lab 1: MapReduce"
 date: 2023-07-18 23:10:19
 tags:
 ---
@@ -48,11 +48,12 @@ tags:
 - MapReduce 整体分成 2 阶段
 	- Map：从原始输入生产 key-value 对
 	- Reduce：从 key-value 对生产最终结果
-- Worker 采用轮询机制不断向 Coordinator 请求任务下发直至整个任务完成。
-- Worker 请求任务的同时向 Coordinator 透传已完成的任务信息。
-- Coordinator 维护两个 chan，一个 chan 用于分配任务，一个 chan 用于定时检测 worker 是否超时（判定为宕机）。
+- Worker 采用轮询机制不断向 Coordinator 请求任务下发直至整个任务完成，请求任务的同时向 Coordinator 透传已完成的任务信息。
+- Coordinator 维护两个 channel，一个 chan 用于分配任务，一个 chan 用于定时检测 worker 是否超时（判定为宕机）。
 
 ## 具体实现 // Implementation
+
+完整代码实现：[MIT6.824/src/mr at master · McGinn7/MIT6.824](https://github.com/McGinn7/MIT6.824/tree/master/src/mr)
 
 ### rpc.go
 - 结构定义
@@ -78,8 +79,7 @@ type TaskResponse struct {
     NReduce  int
 }
 ```
-- 文件重命名方法
-	- 中间文件名需以 `mr` 开头，否则 `test-mr.sh` 中的 test 会受前一个 test 的影响导致失败。
+- 文件命名规则
 ```go
 func mapTempFilename(mapId int, reduceId int, workerId int) string {
     return fmt.Sprintf("mr-map-%d-%d-%d", mapId, reduceId, workerId)
@@ -113,217 +113,202 @@ func finishReduceTask(workerId int, reduceId int) {
 ```
 
 ### worker.go
-- 初始化
+- 循环请求任务
 ```go
-func Worker(mapf func(string, string) []KeyValue, reducef func(string, []string) string) {
-    id := os.Getpid()  // pid 作为 workerId
-    done := false
-    lastTaskId := -1
-    lastTaskType := ""
-
-    for {
-        req := TaskRequest{
-            WorkerId:     id,
-            LastTaskId:   lastTaskId,
-            LastTaskType: lastTaskType,
-        }
-        rsp := TaskResponse{}
-        call("Coordinator.GetTask", &req, &rsp)
-        switch rsp.TaskType {
-        case "MAP":
-            _map(id, rsp.TaskId, rsp.NReduce, rsp.Filepath, mapf)
-        case "REDUCE":
-            _reduce(id, rsp.TaskId, rsp.NMap, reducef)
-        default:
-            done = true
-        }
-        if done {
-            break
-        }
-        lastTaskId = rsp.TaskId
-        lastTaskType = rsp.TaskType
-    }
+func Worker(mapf func(string, string) []KeyValue,
+    reducef func(string, []string) string) {
+    id := os.Getpid()
+    lastTaskId := -1
+    lastTaskType := ""
+    for {
+        req := TaskRequest{
+            WorkerId:     id,
+            LastTaskId:   lastTaskId,
+            LastTaskType: lastTaskType,
+        }
+        rsp := TaskResponse{}
+        call("Coordinator.GetTask", &req, &rsp)
+        switch rsp.TaskType {
+        case "MAP":
+            _map(id, rsp.TaskId, rsp.NReduce, rsp.Filepath, mapf)
+        case "REDUCE":
+            _reduce(id, rsp.TaskId, rsp.NMap, reducef)
+        default:
+            return
+        }
+        lastTaskId = rsp.TaskId
+        lastTaskType = rsp.TaskType
+    }
 }
 ```
 - map 任务处理
 ```go
 func _map(workerId int, mapId int, nReduce int, filepath string, mapf func(string, string) []KeyValue) {
-    file, _ := os.Open(filepath)
-    content, _ := ioutil.ReadAll(file)
-    file.Close()
+	file, _ := os.Open(filepath)
+	content, _ := io.ReadAll(file)
+	file.Close()
 
-    kva := mapf(filepath, string(content))
-    result := make(map[int][]KeyValue)
-    for _, kv := range kva {
-        reduceId := ihash(kv.Key) % nReduce
-        result[reduceId] = append(result[reduceId], kv)
-    }
-
-    for reduceId, kvs := range result {
-        outFile, _ := os.Create(mapTempFilename(mapId, reduceId, workerId))
-        for _, kv := range kvs {
-            fmt.Fprintf(outFile, "%v\t%v\n", kv.Key, kv.Value)
-        }
-        outFile.Close()
-    }
+	kva := mapf(filepath, string(content))
+	result := make(map[int][]KeyValue)
+	for _, kv := range kva {
+		reduceId := ihash(kv.Key) % nReduce
+		result[reduceId] = append(result[reduceId], kv)
+	}
+	for reduceId, kvs := range result {
+		outFile, _ := os.Create(mapTempFilename(mapId, reduceId, workerId))
+		for _, kv := range kvs {
+			fmt.Fprintf(outFile, "%v\t%v\n", kv.Key, kv.Value)
+		}
+		outFile.Close()
+	}
 }
 ```
 - reduce 任务处理
 ```go
 func _reduce(workerId int, reduceId int, nMap int, reducef func(string, []string) string) {
-    var lines []string
-    for mapId := 0; mapId < nMap; mapId++ {
-        file, err := os.Open(mapOutputFilename(mapId, reduceId))
-        if err != nil {
-            continue
-        }
-        content, err := ioutil.ReadAll(file)
-        if err != nil {
-            continue
-        }
-        file.Close()
-        lines = append(lines, strings.Split(string(content), "\n")...)
-    }
+	var lines []string
+	for mapId := 0; mapId < nMap; mapId++ {
+		file, err := os.Open(mapOutputFilename(mapId, reduceId))
+		if err != nil {
+			continue
+		}
+		content, err := io.ReadAll(file)
+		if err != nil {
+			continue
+		}
+		file.Close()
+		lines = append(lines, strings.Split(string(content), "\n")...)
+	}
 
-    result := make(map[string][]string)
-    for _, line := range lines {
-        if strings.TrimSpace(line) == "" {
-            continue
-        }
-        split := strings.Split(line, "\t")
-        key := split[0]
-        value := split[1]
-        result[key] = append(result[key], value)
-    }
+	result := make(map[string][]string)
+	for _, line := range lines {
+		if strings.TrimSpace(line) == "" {
+			continue
+		}
+		split := strings.Split(line, "\t")
+		key := split[0]
+		value := split[1]
+		result[key] = append(result[key], value)
+	}
 
-    keys := make([]string, 0)
-    for key := range result {
-        keys = append(keys, key)
-    }
-    sort.Strings(keys)
-
-    outFile, _ := os.Create(reduceTempFilename(reduceId, workerId))
-    for _, key := range keys {
-        fmt.Fprintf(outFile, "%v %v\n", key, reducef(key, result[key]))
-    }
-    outFile.Close()
+	keys := make([]string, 0)
+	for key := range result {
+		keys = append(keys, key)
+	}
+	sort.Strings(keys)
+	outFile, _ := os.Create(reduceTempFilename(reduceId, workerId))
+	for _, key := range keys {
+		fmt.Fprintf(outFile, "%v %v\n", key, reducef(key, result[key]))
+	}
+	outFile.Close()
 }
 ```
 
 ### coordinator.go
 - 初始化
 ```go
+type Coordinator struct {
+	// Your definitions here.
+	nMap             int
+	nReduce          int
+	stage            string
+	taskStatus       map[int]bool
+	taskList         chan Task
+	reviewList       chan Task
+	timeout_duration time.Duration
+}
 func MakeCoordinator(files []string, nReduce int) *Coordinator {
-    bufferSize := len(files)
-    if bufferSize < nReduce {
-        bufferSize = nReduce
-    }
-    c := Coordinator{
-        nMap:            len(files),
-        nLeftMapTask:    len(files),
-        nReduce:         nReduce,
-        nLeftReduceTask: nReduce,
-        taskList:        make(chan Task, bufferSize),
-        reviewList:      make(chan Task, bufferSize),
-        taskStatus:      make(map[int]bool),
-    }
+	// Your code here.
+	bufferSize := len(files)
+	if bufferSize < nReduce {
+		bufferSize = nReduce
+	}
+	c := Coordinator{
+		nMap:             len(files),
+		nReduce:          nReduce,
+		stage:            "MAP",
+		taskStatus:       make(map[int]bool),
+		taskList:         make(chan Task, bufferSize),
+		reviewList:       make(chan Task, bufferSize),
+		timeout_duration: 10 * time.Second,
+	}
+	for i, file := range files {
+		task := Task{
+			Id:       i,
+			Type:     "MAP",
+			Filepath: file,
+			TTL:      time.Now().Add(c.timeout_duration),
+		}
+		c.taskList <- task
+	}
 
-    for i, file := range files {
-        task := Task{
-            Id:       i,
-            Type:     "MAP",
-            Filepath: file,
-            TTL:      time.Now().Add(10 * time.Second),
-        }
-        c.taskList <- task
-    }
-    c.server()
+	c.server()
 
+	go func() {
+		for task := range c.reviewList {
+			time.Sleep(time.Until(task.TTL))
+			if finished, ok := c.taskStatus[task.Id]; !ok || !finished {
+				task.TTL = time.Now().Add(c.timeout_duration)
+				c.taskList <- task
+			}
+		}
+	}()
 	return &c
 }
 ```
 - 任务请求处理
 ```go
 func (c *Coordinator) GetTask(req *TaskRequest, rsp *TaskResponse) error {
-    c.lock.Lock()
-    if req.LastTaskId != -1 {
-        if finished, ok := c.taskStatus[req.LastTaskId]; !ok || !finished {
-            switch req.LastTaskType {
-            case "MAP":
-                if c.nLeftMapTask > 0 {
-                    finishMapTask(req.WorkerId, req.LastTaskId, c.nReduce)
-                    c.nLeftMapTask -= 1
-                    c.taskStatus[req.LastTaskId] = true
-                    if c.nLeftMapTask == 0 {
-                        c.taskStatus = make(map[int]bool)
-                        for i := 0; i < c.nReduce; i++ {
-                            task := Task{
-                                Id:       i,
-                                Type:     "REDUCE",
-                                Filepath: "",
-                                TTL:      time.Now().Add(10 * time.Second),
-                            }
-                            c.taskList <- task
-                        }
-                    }
-                }
-            case "REDUCE":
-                if c.nLeftReduceTask > 0 {
-                    finishReduceTask(req.WorkerId, req.LastTaskId)
-                    c.nLeftReduceTask -= 1
-                    c.taskStatus[req.LastTaskId] = true
-                    if c.nLeftReduceTask == 0 {
-                        close(c.taskList)
-                        close(c.reviewList)
-                    }
-                }
-                break
-            }
-        }
-    }
-	c.lock.Unlock()
+
+	if req.LastTaskType == c.stage {
+		switch req.LastTaskType {
+		case "MAP":
+			finishMapTask(req.WorkerId, req.LastTaskId, c.nReduce)
+			c.taskStatus[req.LastTaskId] = true
+			if len(c.taskStatus) == c.nMap {
+				c.stage = "REDUCE"
+				c.taskStatus = make(map[int]bool)
+				for i := 0; i < c.nReduce; i++ {
+					task := Task{
+						Id:       i,
+						Type:     "REDUCE",
+						Filepath: "",
+						TTL:      time.Now().Add(c.timeout_duration),
+					}
+					c.taskList <- task
+				}
+			}
+
+		case "REDUCE":
+			finishReduceTask(req.WorkerId, req.LastTaskId)
+			c.taskStatus[req.LastTaskId] = true
+			if len(c.taskStatus) == c.nReduce {
+				c.stage = "DONE"
+				close(c.taskList)
+				close(c.reviewList)
+			}
+		}
+	}
 
 	for {
-        task, ok := <-c.taskList
-        if !ok {
-            return nil
-        }
-        c.lock.Lock()
-        defer c.lock.Unlock()
-        if finished, ok := c.taskStatus[task.Id]; ok && finished {
-            continue
-        } else {
-            rsp.TaskId = task.Id
-            rsp.TaskType = task.Type
-            rsp.Filepath = task.Filepath
-            rsp.NMap = c.nMap
-            rsp.NReduce = c.nReduce
+		task, ok := <-c.taskList
+		if !ok {
+			return nil
+		}
+		if finished, ok := c.taskStatus[task.Id]; ok && finished {
+			continue
+		} else {
+			rsp.TaskId = task.Id
+			rsp.TaskType = task.Type
+			rsp.Filepath = task.Filepath
+			rsp.NMap = c.nMap
+			rsp.NReduce = c.nReduce
 
-			task.TTL = time.Now().Add(10 * time.Second)
-            c.reviewList <- task
-            return nil
-        }
-    }
-}
-```
-- 定期检查超时任务
-```go
-func MakeCoordinator(files []string, nReduce int) *Coordinator {
-	// ...
-    go func() {
-        for task := range c.reviewList {
-            time.Sleep(time.Until(task.TTL))
-            if !((c.nLeftMapTask == 0 && task.Type == "MAP") || (c.nLeftReduceTask == 0 && task.Type == "REDUCE")) {
-                c.lock.Lock()
-                if finished, ok := c.taskStatus[task.Id]; !ok || !finished {
-                    task.TTL = time.Now().Add(10 * time.Second)
-                    c.taskList <- task
-                }
-                c.lock.Unlock()
-            }
-        }
-    }()
-    // ...
+			task.TTL = time.Now().Add(c.timeout_duration)
+			c.reviewList <- task
+			return nil
+		}
+	}
 }
 ```
 
