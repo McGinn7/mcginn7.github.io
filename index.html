@@ -556,9 +556,54 @@ mjx-container[display="true"] + br {
             
         
         <article class="index-post">
+            <a class="abstract-title" href="2024/05/04/MIT%206.824%20Lab2/">
+                
+                <span class="abstract-title-text">MIT 6.824 Lab 2: Key/Value Server</span>
+            </a>
+            <div class="abstract-content">
+                要求
+
+实现单机 key/value 存储服务，一个 server 和若干 clients。
+支持 3 种函数
+
+Put(key, value)：保存和替换 (key, value) 对。
+Append(key, arg)：将 arg 补充到 key's value 上并返回旧值
+value。
+Get(key)：返回 key's value，若不存在 key 则返回空字符串。
+
+注意事项
+
+每个操作需要保持顺序执行。
+每个操作可以是线性复杂度，便于观察并发问题。
+考虑信息丢失，当 client
+不断重试需要保证对应的操作只执行一次。可以假设一个请求不会同时出现。
+
+
+
+            </div>
+            <!-- read more -->
+            
+            <div class="abstract-post-meta">
+                <!-- date -->
+                <div class="abstract-date" title="Last updated: 2024/05/04">
+                    <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2024/05/04</span>
+                </div>
+                <!-- tags -->
+                
+            </div>
+        </article>
+        <div class="index-post-divider"></div>
+    
+        
+        
+        
+        
+            
+        
+        <article class="index-post">
             <a class="abstract-title" href="2023/07/18/MIT%206.824%20Lab1/">
                 
-                <span class="abstract-title-text">MIT 6.824 Lab1</span>
+                <span class="abstract-title-text">MIT 6.824 Lab 1: MapReduce</span>
             </a>
             <div class="abstract-content">
                 要求 // Rules
@@ -578,7 +623,7 @@ mapper 输出文件放在当前目录下，以便后续 reducer 作为输入读�
             
             <div class="abstract-post-meta">
                 <!-- date -->
-                <div class="abstract-date" title="Last updated: 2024/05/04">
+                <div class="abstract-date" title="Last updated: 2024/05/05">
                     <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2023/07/18</span>
                 </div>
                 <!-- tags -->
@@ -1366,45 +1411,6 @@ Suffix）表示既是原串
         </article>
         <div class="index-post-divider"></div>
     
-        
-        
-        
-        
-            
-        
-        <article class="index-post">
-            <a class="abstract-title" href="2019/05/12/ICPC-Resolver-%E8%B8%A9%E5%9D%91/">
-                
-                <span class="abstract-title-text">ICPC Resolver 踩坑</span>
-            </a>
-            <div class="abstract-content">
-                应用场景
-从 DOMjudge 系统中导出数据，使用 ICPC Tools/Resolver 滚榜。
-DOMjudge 版本：7.0.1。
-Resolver 版本：2.0.1798。如果使用 DOMjudge 评测，建议使用 2.1
-及以上版本。
-数据操作
-
-搜索 ICPC
-Tools，下载 ICPC Resolver.rar。
-运行 award.sh，通过 REST 导入 event
-feed（一场比赛的所有信息流）。
-123URL: http://59.77.134.102/domjudge/api/contests/5USER: amdinPassword: *******
-点击 ...
-            </div>
-            <!-- read more -->
-            
-            <div class="abstract-post-meta">
-                <!-- date -->
-                <div class="abstract-date" title="Last updated: 2024/05/04">
-                    <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2019/05/12</span>
-                </div>
-                <!-- tags -->
-                
-            </div>
-        </article>
-        <div class="index-post-divider"></div>
-    
     <!-- paginator  -->
     
         <nav class="page-nav">
@@ -1583,6 +1589,11 @@ feed（一场比赛的所有信息流）。
         <div class="sidebar-panel-archives">
     <!-- 在 ejs 中将 archive 按照时间排序 -->
     
+        
+        
+        
+        
+        
         
         
         
@@ -1936,7 +1947,7 @@ feed（一场比赛的所有信息流）。
     
     <div class="total-and-search">
         <div class="total-archive">
-        Total : 28
+        Total : 29
         </div>
         <!-- search  -->
         
@@ -1947,13 +1958,28 @@ feed（一场比赛的所有信息流）。
         
             
             
+            <div class="archive-year"> 2024 </div>
+            <ul class="year-list">
+            
+        
+        <li class="archive-post-item">
+            <span class="archive-post-date">05/04</span>
+            <a class="archive-post-title" href="">MIT 6.824 Lab 2: Key/Value Server</a>
+        </li>
+    
+        
+            
+            
+                
+                </ul>
+            
             <div class="archive-year"> 2023 </div>
             <ul class="year-list">
             
         
         <li class="archive-post-item">
             <span class="archive-post-date">07/18</span>
-            <a class="archive-post-title" href="">MIT 6.824 Lab1</a>
+            <a class="archive-post-title" href="../../../../2023/07/18/MIT%206.824%20Lab1/">MIT 6.824 Lab 1: MapReduce</a>
         </li>
     
         
@@ -2195,6 +2221,16 @@ feed（一场比赛的所有信息流）。
                 vim
             </span>
         
+            <span class="sidebar-tag-name" data-tags="git">
+                <span class="iconfont-archer">&#xe606;</span>
+                git
+            </span>
+        
+            <span class="sidebar-tag-name" data-tags="bash">
+                <span class="iconfont-archer">&#xe606;</span>
+                bash
+            </span>
+        
             <span class="sidebar-tag-name" data-tags="polya">
                 <span class="iconfont-archer">&#xe606;</span>
                 polya
@@ -2208,16 +2244,6 @@ feed（一场比赛的所有信息流）。
             <span class="sidebar-tag-name" data-tags="SW">
                 <span class="iconfont-archer">&#xe606;</span>
                 SW
-            </span>
-        
-            <span class="sidebar-tag-name" data-tags="git">
-                <span class="iconfont-archer">&#xe606;</span>
-                git
-            </span>
-        
-            <span class="sidebar-tag-name" data-tags="bash">
-                <span class="iconfont-archer">&#xe606;</span>
-                bash
             </span>
         
     </div>

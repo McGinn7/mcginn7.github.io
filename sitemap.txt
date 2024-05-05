@@ -1,5 +1,6 @@
-http://mcginn7.github.io/2018/06/05/Vim-for-windows-%E9%85%8D%E7%BD%AE/
 http://mcginn7.github.io/2023/07/18/MIT%206.824%20Lab1/
+http://mcginn7.github.io/2024/05/04/MIT%206.824%20Lab2/
+http://mcginn7.github.io/2018/06/05/Vim-for-windows-%E9%85%8D%E7%BD%AE/
 http://mcginn7.github.io/2021/06/27/SGU-301-350/
 http://mcginn7.github.io/2019/10/31/polya/
 http://mcginn7.github.io/2019/11/20/Palindromic-Factorization/
@@ -34,8 +35,8 @@ http://mcginn7.github.io/tags/KMP/
 http://mcginn7.github.io/tags/ICPC/
 http://mcginn7.github.io/tags/%E8%B4%AA%E5%BF%83/
 http://mcginn7.github.io/tags/vim/
+http://mcginn7.github.io/tags/git/
+http://mcginn7.github.io/tags/bash/
 http://mcginn7.github.io/tags/polya/
 http://mcginn7.github.io/tags/%E6%96%9C%E7%8E%87%E4%BC%98%E5%8C%96/
 http://mcginn7.github.io/tags/SW/
-http://mcginn7.github.io/tags/git/
-http://mcginn7.github.io/tags/bash/

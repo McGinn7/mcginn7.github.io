@@ -10,7 +10,7 @@
 
 
 <head>
-    <meta charset="utf-8">
+    <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
     <meta name="author" content="Mcginn">
     <meta name="renderer" content="webkit">
@@ -19,18 +19,22 @@
         <meta name="keywords" content="hexo,hexo-theme,hexo-blog,mcginn,ICPC,ACM,chenmingqin">
     
     <meta name="description" content="">
-    <meta property="og:type" content="website">
-<meta property="og:title" content="Mcginn&#39;s Blog">
-<meta property="og:url" content="http://mcginn7.github.io/archives/2018/06/index.html">
+    <meta name="description" content="要求  实现单机 key&#x2F;value 存储服务，一个 server 和若干 clients。 支持 3 种函数  Put(key, value)：保存和替换 (key, value) 对。 Append(key, arg)：将 arg 补充到 key&#39;s value 上并返回旧值 value。 Get(key)：返回 key&#39;s value，若不存在 key 则返回空字符串。  注意事项  每个操">
+<meta property="og:type" content="article">
+<meta property="og:title" content="MIT 6.824 Lab 2: Key&#x2F;Value Server">
+<meta property="og:url" content="http://mcginn7.github.io/2024/05/04/MIT%206.824%20Lab2/index.html">
 <meta property="og:site_name" content="Mcginn&#39;s Blog">
+<meta property="og:description" content="要求  实现单机 key&#x2F;value 存储服务，一个 server 和若干 clients。 支持 3 种函数  Put(key, value)：保存和替换 (key, value) 对。 Append(key, arg)：将 arg 补充到 key&#39;s value 上并返回旧值 value。 Get(key)：返回 key&#39;s value，若不存在 key 则返回空字符串。  注意事项  每个操">
 <meta property="og:locale">
+<meta property="article:published_time" content="2024-05-04T14:03:00.000Z">
+<meta property="article:modified_time" content="2024-05-04T14:10:12.730Z">
 <meta property="article:author" content="Mcginn">
 <meta name="twitter:card" content="summary">
     <meta http-equiv="Cache-control" content="no-cache">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-    <link rel="icon" href="../../../assets/m.ico">
+    <link rel="icon" href="../../../../assets/m.ico">
     
-    <title>Mcginn&#39;s Blog</title>
+    <title>MIT 6.824 Lab 2: Key/Value Server · Mcginn&#39;s Blog</title>
     <!-- /*! loadCSS. [c]2017 Filament Group, Inc. MIT License */
 /* This file is meant as a standalone workflow for
 - testing support for link[rel=preload]
@@ -143,7 +147,7 @@
     <style type="text/css">
     @font-face {
         font-family: 'Oswald-Regular';
-        src: url("../../../font/Oswald-Regular.ttf");
+        src: url("../../../../font/Oswald-Regular.ttf");
     }
 
     body {
@@ -191,15 +195,15 @@
     }
 </style>
 
-    <link rel="preload" href="../../../css/style.css?v=20211217" as="style" onload="this.onload=null;this.rel='stylesheet'">
-    <link rel="preload" href="../../../css/dark.css?v=20211217" as="style">
-    <link rel="stylesheet" href="../../../css/dark.css">
-    <link rel="stylesheet" href="../../../css/mobile.css?v=20211217" media="(max-width: 960px)">
+    <link rel="preload" href="../../../../css/style.css?v=20211217" as="style" onload="this.onload=null;this.rel='stylesheet'">
+    <link rel="preload" href="../../../../css/dark.css?v=20211217" as="style">
+    <link rel="stylesheet" href="../../../../css/dark.css">
+    <link rel="stylesheet" href="../../../../css/mobile.css?v=20211217" media="(max-width: 960px)">
     <link rel="preload" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
     <link rel="preload" href="https://cdn.jsdelivr.net/npm/jquery@3.6.0/dist/jquery.min.js" as="script">
-    <link rel="preload" href="../../../scripts/main.js?v=20211217" as="script">
-    <link rel="preload" href="../../../scripts/dark.js?v=20211217" as="script">
-    <link rel="preload" href="../../../font/Oswald-Regular.ttf" as="font" crossorigin>
+    <link rel="preload" href="../../../../scripts/main.js?v=20211217" as="script">
+    <link rel="preload" href="../../../../scripts/dark.js?v=20211217" as="script">
+    <link rel="preload" href="../../../../font/Oswald-Regular.ttf" as="font" crossorigin>
     <link rel="preload" href="https://at.alicdn.com/t/font_327081_1dta1rlogw17zaor.woff" as="font" crossorigin>
     <!-- algolia -->
     
@@ -320,17 +324,19 @@ mjx-container[display="true"] {
 mjx-container[display="true"] + br {
   display: none;
 }
-</style></head>
+</style><!-- hexo-inject:begin --><!-- hexo-inject:end --></head>
 
     <script src="https://cdn.jsdelivr.net/npm/jquery@3.6.0/dist/jquery.min.js"></script>
     <script type="text/javascript">
         if (typeof window.$ == undefined) {
             console.warn('jquery load from jsdelivr failed, will load local script')
-            document.write('<script src="../../../lib/jquery.min.js" />')
+            document.write('<script src="../../../../lib/jquery.min.js" />')
         }
     </script>
     
-        <!-- header -->
+        <body class="post-body">
+    
+        <!-- hexo-inject:begin --><!-- hexo-inject:end --><!-- header -->
         <header class="header header-mobile">
     <!-- top read progress line -->
     <div class="header-element">
@@ -359,6 +365,17 @@ mjx-container[display="true"] + br {
     </div>
     <!-- toggle banner for post layout -->
     
+        
+            <div class="banner">
+        
+            <div class="blog-title header-element">
+                <a href="../../../../index.html">Mcginn&#39;s Blog</a>
+            </div>
+            <div class="post-title header-element">
+                <a href="#" class="post-name">MIT 6.824 Lab 2: Key/Value Server</a>
+            </div>
+        </div>
+    
 </header>
 
         <!-- fixed footer -->
@@ -385,24 +402,74 @@ mjx-container[display="true"] + br {
 
 
 
+    height:50vh;
+
 ">
     
     <!-- 主页  -->
     
+        
+    <!-- 404页  -->
+    
     <div class="site-intro-placeholder"></div>
-    <div class="site-intro-img" style="background-image: url(../../../index.html)"></div>
+    <div class="site-intro-img" style="background-image: url(../../../../intro/post-bg.jpg)"></div>
     <div class="site-intro-meta">
         <!-- 标题  -->
         <h1 class="intro-title">
             <!-- 主页  -->
+            
+                MIT 6.824 Lab 2: Key/Value Server
+            <!-- 404 -->
             
         </h1>
         <!-- 副标题 -->
         <p class="intro-subtitle">
             <!-- 主页副标题  -->
             
+                
+            <!-- 404 -->
+            
         </p>
         <!-- 文章页 meta -->
+        
+            <div class="post-intros">
+                <!-- 文章页标签  -->
+                
+                    <div class= post-intro-tags >
+    
+    
+</div>
+
+                
+                <!-- 文章字数统计 -->
+                
+                <div class="post-intro-meta">
+                    <!-- 撰写日期 -->
+                    <span class="iconfont-archer post-intro-calander">&#xe676;</span>
+                    <span class="post-intro-time">2024/05/04</span>
+                    <!-- busuanzi -->
+                    
+                        <span id="busuanzi_container_page_pv" class="busuanzi-pv">
+                            <span class="iconfont-archer post-intro-busuanzi">&#xe602;</span>
+                            <span id="busuanzi_value_page_pv"></span>
+                        </span>
+                    
+                    <!-- 文章分享 -->
+                    <span class="share-wrapper">
+                        <span class="iconfont-archer share-icon">&#xe71d;</span>
+                        <span class="share-text">Share</span>
+                        <ul class="share-list">
+                            <li class="iconfont-archer share-qr" data-type="qr">&#xe75b;
+                                <div class="share-qrcode"></div>
+                            </li>
+                            <li class="iconfont-archer" data-type="weibo">&#xe619;</li>
+                            <li class="iconfont-archer" data-type="qzone">&#xe62e;</li>
+                            <li class="iconfont-archer" data-type="twitter">&#xe634;</li>
+                            <li class="iconfont-archer" data-type="facebook">&#xe67a;</li>
+                        </ul>
+                    </span>
+                </div>
+            </div>
         
     </div>
 </div>
@@ -523,110 +590,91 @@ mjx-container[display="true"] + br {
     [
       'https://cdn.jsdelivr.net/npm/webfontloader@1.6.28/webfontloader.min.js',
       'https://cdn.bootcss.com/webfont/1.6.28/webfontloader.js',
-      "../../../lib/webfontloader.min.js",
+      "../../../../lib/webfontloader.min.js",
     ],
     asyncCb,
     asyncErr
   )
 </script>
 
-            <img class="loading" src="../../../assets/loading.svg" style="display: block; margin: 6rem auto 0 auto; width: 6rem; height: 6rem;" />
+            <img class="loading" src="../../../../assets/loading.svg" style="display: block; margin: 6rem auto 0 auto; width: 6rem; height: 6rem;" />
             <div class="container container-unloaded">
-                <main class="main index-page">
+                <main class="main post-page">
+    <article class="article-entry">
+        <h2 id="要求">要求</h2>
+<ul>
+<li>实现单机 key/value 存储服务，一个 server 和若干 clients。</li>
+<li>支持 3 种函数
+<ul>
+<li>Put(key, value)：保存和替换 (key, value) 对。</li>
+<li>Append(key, arg)：将 arg 补充到 key's value 上并返回旧值
+value。</li>
+<li>Get(key)：返回 key's value，若不存在 key 则返回空字符串。</li>
+</ul></li>
+<li>注意事项
+<ul>
+<li>每个操作需要保持顺序执行。</li>
+<li>每个操作可以是线性复杂度，便于观察并发问题。</li>
+<li>考虑信息丢失，当 client
+不断重试需要保证对应的操作只执行一次。可以假设一个请求不会同时出现。</li>
+</ul></li>
+</ul>
+
+    </article>
+    <!-- license -->
     
-        
-        
-        
-        
+        <div class="license-wrapper">
+            <p>原文作者：<a href="http://mcginn7.github.io">Mcginn</a>
+            <p>原文链接：<a href="http://mcginn7.github.io/2024/05/04/MIT%206.824%20Lab2/">http://mcginn7.github.io/2024/05/04/MIT%206.824%20Lab2/</a>
+            <p>发表日期：<a href="http://mcginn7.github.io/2024/05/04/MIT%206.824%20Lab2/">May 4th 2024, 10:03:00 pm</a>
+            <p>更新日期：<a href="http://mcginn7.github.io/2024/05/04/MIT%206.824%20Lab2/">May 4th 2024, 10:10:12 pm</a>
+            <p>版权声明：本文采用<a rel="license" href="http://creativecommons.org/licenses/by-nc/4.0/">知识共享署名-非商业性使用 4.0 国际许可协议</a>进行许可</p>
+        </div>
+    
+    <!-- paginator -->
+    <ul class="post-paginator">
+        <li class="next">
             
-        
-        <article class="index-post">
-            <a class="abstract-title" href="../../../2018/06/05/Vim-for-windows-%E9%85%8D%E7%BD%AE/">
-                
-                <span class="abstract-title-text">Windows 下使用 Vim</span>
-            </a>
-            <div class="abstract-content">
-                简要说明
-主要针对 ACM/ICPC 竞赛选手在 Windows 10 系统下使用 vim 编写 C/C++
-代码。
-功能配置：
-
-编译和运行 *.cpp 文件；
-一键复制代码;
-记事本打开代码。  git
-bash 和 gvim 都配置了一遍。gvim 使用 Windows 自带的 cmd
-运行的话，鼠标是没办法移动光标的，并且配置相对 git bash
-较麻烦，所以推荐使用 git bash。
-
-Vimrc 配置
-
-编辑安装路径下的 vimrc 文件，例如 "D:"，配置快捷键。
-1234567set nu ai ci si mouse=a ts=4 sts=4 sw=4nmap&l...
-            </div>
-            <!-- read more -->
+        </li>
+        <li class="previous">
             
-            <div class="abstract-post-meta">
-                <!-- date -->
-                <div class="abstract-date" title="Last updated: 2024/05/04">
-                    <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2018/06/05</span>
-                </div>
-                <!-- tags -->
-                
-                    <div class= abstract-tags >
-    
-    
-        <a class="post-tag" href="javascript:void(0);" data-tags="vim">vim</a>
-    
-        <a class="post-tag" href="javascript:void(0);" data-tags="git">git</a>
-    
-        <a class="post-tag" href="javascript:void(0);" data-tags="bash">bash</a>
-    
-</div>
-
-                
-            </div>
-        </article>
-        <div class="index-post-divider"></div>
-    
-        
-        
-        
-        
+                <div class="prevSlogan">Previous Post</div>
+                <a href="../../../../2023/07/18/MIT%206.824%20Lab1/" title="MIT 6.824 Lab 1: MapReduce">
+                    <div class="prevTitle">MIT 6.824 Lab 1: MapReduce</div>
+                </a>
             
-        
-        <article class="index-post">
-            <a class="abstract-title" href="../../../2018/06/05/apt-offline%E7%AE%A1%E7%90%86Ubuntu%E7%A6%BB%E7%BA%BF%E5%AE%89%E8%A3%85%E8%BD%AF%E4%BB%B6%E5%8C%85/">
-                
-                <span class="abstract-title-text">Ubuntu离线安装软件包</span>
-            </a>
-            <div class="abstract-content">
-                参考链接
-
-apt-offline离线安装指南
-https://blog.sleeplessbeastie.eu/2014/01/30/how-to-manage-packages-on-an-off-line-debian-system/
-http://manpages.ubuntu.com/manpages/precise/man8/apt-offline.8.html#contenttoc4
-https://www.debian.org/
-https://camicri.github.io/camicri-cube/#/
-
-应用场景
-
-需要升级/安装软件的电脑无网络。
-软件要安装到...
-            </div>
-            <!-- read more -->
-            
-            <div class="abstract-post-meta">
-                <!-- date -->
-                <div class="abstract-date" title="Last updated: 2024/05/04">
-                    <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2018/06/05</span>
-                </div>
-                <!-- tags -->
-                
-            </div>
-        </article>
-        <div class="index-post-divider"></div>
+        </li>
+    </ul>
+    <!-- comment -->
     
-    <!-- paginator  -->
+        <div class="post-comment">
+            <!-- 来必力 City 版安装代码 -->
+
+
+            
+
+            
+
+            
+
+            <!-- utteranc评论 -->
+
+
+            <!-- partial('_partial/comment/changyan') -->
+            <!--PC版-->
+
+
+            
+            
+
+            
+
+        </div>
+    
+    <!-- timeliness note -->
+    <!-- idea from: https://hexo.fluid-dev.com/posts/hexo-injector/#%E6%96%87%E7%AB%A0%E6%97%B6%E6%95%88%E6%80%A7%E6%8F%90%E7%A4%BA -->
+    
+    <!-- Mathjax -->
     
 </main>
 
@@ -710,6 +758,23 @@ https://camicri.github.io/camicri-cube/#/
 
         </div>
         <!-- toc -->
+        
+            <div class="toc-wrapper toc-wrapper-loding" style=
+
+
+
+
+
+
+
+    top:50vh;
+
+>
+                <div class="toc-catalog">
+                    <span class="iconfont-archer catalog-icon">&#xe613;</span><span>CATALOG</span>
+                </div>
+                <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%A6%81%E6%B1%82"><span class="toc-number">1.</span> <span class="toc-text">要求</span></a></li></ol>
+            </div>
         
         <!-- sidebar -->
         <div class="sidebar sidebar-hide">
@@ -1416,9 +1481,9 @@ https://camicri.github.io/camicri-cube/#/
 
 
         <!-- main func -->
-        <script src="../../../scripts/main.js?v=20211217"></script>
+        <script src="../../../../scripts/main.js?v=20211217"></script>
         <!-- dark mode -->
-        <script src="../../../scripts/dark.js?v=20211217"></script>
+        <script src="../../../../scripts/dark.js?v=20211217"></script>
         <!-- fancybox -->
         <script src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.js" defer></script>
         <!-- algolia -->
@@ -1431,7 +1496,9 @@ https://camicri.github.io/camicri-cube/#/
         
         <!-- async load share.js -->
         
-        <!-- mermaid -->
+            <script src="../../../../scripts/share.js?v=20211217" async></script>
+        
+        <!-- mermaid --><!-- hexo-inject:begin --><!-- hexo-inject:end -->
         
     </body>
 </html>

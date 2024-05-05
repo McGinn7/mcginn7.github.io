@@ -541,9 +541,54 @@ mjx-container[display="true"] + br {
             
         
         <article class="index-post">
+            <a class="abstract-title" href="../2024/05/04/MIT%206.824%20Lab2/">
+                
+                <span class="abstract-title-text">MIT 6.824 Lab 2: Key/Value Server</span>
+            </a>
+            <div class="abstract-content">
+                要求
+
+实现单机 key/value 存储服务，一个 server 和若干 clients。
+支持 3 种函数
+
+Put(key, value)：保存和替换 (key, value) 对。
+Append(key, arg)：将 arg 补充到 key's value 上并返回旧值
+value。
+Get(key)：返回 key's value，若不存在 key 则返回空字符串。
+
+注意事项
+
+每个操作需要保持顺序执行。
+每个操作可以是线性复杂度，便于观察并发问题。
+考虑信息丢失，当 client
+不断重试需要保证对应的操作只执行一次。可以假设一个请求不会同时出现。
+
+
+
+            </div>
+            <!-- read more -->
+            
+            <div class="abstract-post-meta">
+                <!-- date -->
+                <div class="abstract-date" title="Last updated: 2024/05/04">
+                    <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2024/05/04</span>
+                </div>
+                <!-- tags -->
+                
+            </div>
+        </article>
+        <div class="index-post-divider"></div>
+    
+        
+        
+        
+        
+            
+        
+        <article class="index-post">
             <a class="abstract-title" href="../2023/07/18/MIT%206.824%20Lab1/">
                 
-                <span class="abstract-title-text">MIT 6.824 Lab1</span>
+                <span class="abstract-title-text">MIT 6.824 Lab 1: MapReduce</span>
             </a>
             <div class="abstract-content">
                 要求 // Rules
@@ -563,7 +608,7 @@ mapper 输出文件放在当前目录下，以便后续 reducer 作为输入读�
             
             <div class="abstract-post-meta">
                 <!-- date -->
-                <div class="abstract-date" title="Last updated: 2024/05/04">
+                <div class="abstract-date" title="Last updated: 2024/05/05">
                     <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2023/07/18</span>
                 </div>
                 <!-- tags -->
@@ -905,55 +950,6 @@ Valgrind 输出格式为：
         </article>
         <div class="index-post-divider"></div>
     
-        
-        
-        
-        
-            
-        
-        <article class="index-post">
-            <a class="abstract-title" href="../2020/02/21/CSAPP-archlab/">
-                
-                <span class="abstract-title-text">CSAPP - archlab</span>
-            </a>
-            <div class="abstract-content">
-                知识点
-
-学习流水线化的 Y86-64
-处理器的设计和实现，深刻理解流水线冒险。
-学习循环展开，理解其对程序性能的影响。
-
-题目
-Part A
-要求
-使用 Y86-64 指令集，编写关于 sum_list, rsum_list 和 copy_block 函数的
-Y86-64 程序。
-做法
-参考书本图 4-7 即可，实现也较为简单。
-Part B
-要求
-使用硬件控制语言（HCL）修改 sim/seq/seq-full.hcl，使得处理器支持
-iaddq 指令。
-做法
-iaddq 指令将立即数和寄存器相加，并将结果写回寄存器。
-具体参考 irmovq 指令的实现即可。
-Part C
-要求
-在...
-            </div>
-            <!-- read more -->
-            
-            <div class="abstract-post-meta">
-                <!-- date -->
-                <div class="abstract-date" title="Last updated: 2024/05/04">
-                    <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2020/02/21</span>
-                </div>
-                <!-- tags -->
-                
-            </div>
-        </article>
-        <div class="index-post-divider"></div>
-    
     <!-- paginator  -->
     
         <nav class="page-nav">
@@ -1054,6 +1050,11 @@ Part C
         <div class="sidebar-panel-archives">
     <!-- 在 ejs 中将 archive 按照时间排序 -->
     
+        
+        
+        
+        
+        
         
         
         
@@ -1407,7 +1408,7 @@ Part C
     
     <div class="total-and-search">
         <div class="total-archive">
-        Total : 28
+        Total : 29
         </div>
         <!-- search  -->
         
@@ -1418,13 +1419,28 @@ Part C
         
             
             
+            <div class="archive-year"> 2024 </div>
+            <ul class="year-list">
+            
+        
+        <li class="archive-post-item">
+            <span class="archive-post-date">05/04</span>
+            <a class="archive-post-title" href="">MIT 6.824 Lab 2: Key/Value Server</a>
+        </li>
+    
+        
+            
+            
+                
+                </ul>
+            
             <div class="archive-year"> 2023 </div>
             <ul class="year-list">
             
         
         <li class="archive-post-item">
             <span class="archive-post-date">07/18</span>
-            <a class="archive-post-title" href="">MIT 6.824 Lab1</a>
+            <a class="archive-post-title" href="../../../../2023/07/18/MIT%206.824%20Lab1/">MIT 6.824 Lab 1: MapReduce</a>
         </li>
     
         
@@ -1666,6 +1682,16 @@ Part C
                 vim
             </span>
         
+            <span class="sidebar-tag-name" data-tags="git">
+                <span class="iconfont-archer">&#xe606;</span>
+                git
+            </span>
+        
+            <span class="sidebar-tag-name" data-tags="bash">
+                <span class="iconfont-archer">&#xe606;</span>
+                bash
+            </span>
+        
             <span class="sidebar-tag-name" data-tags="polya">
                 <span class="iconfont-archer">&#xe606;</span>
                 polya
@@ -1679,16 +1705,6 @@ Part C
             <span class="sidebar-tag-name" data-tags="SW">
                 <span class="iconfont-archer">&#xe606;</span>
                 SW
-            </span>
-        
-            <span class="sidebar-tag-name" data-tags="git">
-                <span class="iconfont-archer">&#xe606;</span>
-                git
-            </span>
-        
-            <span class="sidebar-tag-name" data-tags="bash">
-                <span class="iconfont-archer">&#xe606;</span>
-                bash
             </span>
         
     </div>
